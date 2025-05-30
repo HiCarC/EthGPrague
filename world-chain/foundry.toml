@@ -1,0 +1,14 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.28"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+[rpc_endpoints]
+worldchain_mainnet = "https://worldchain-mainnet.g.alchemy.com/public"
+worldchain_sepolia = "https://worldchain-sepolia.g.alchemy.com/public"
+
+[etherscan]
+worldchain = { key = "${ETHERSCAN_API_KEY}" }
