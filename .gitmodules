@@ -1,3 +1,6 @@
 [submodule "email-proof/lib/forge-std"]
 	path = email-proof/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "hello-world-chain/lib/forge-std"]
+	path = hello-world-chain/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
