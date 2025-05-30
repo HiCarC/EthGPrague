@@ -31,6 +31,16 @@
         "name": "_maxParticipants",
         "type": "uint256",
         "internalType": "uint256"
+      },
+      {
+        "name": "_platformFeePercentage",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_platformOwner",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "nonpayable"
@@ -57,6 +67,13 @@
   },
   {
     "type": "function",
+    "name": "checkIn",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "checkInDate",
     "inputs": [],
     "outputs": [
@@ -67,6 +84,13 @@
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "checkOut",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -83,6 +107,13 @@
   },
   {
     "type": "function",
+    "name": "confirmPool",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "contributions",
     "inputs": [
       {
@@ -96,6 +127,19 @@
         "name": "",
         "type": "uint256",
         "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "currentStatus",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "enum BookingPool.PoolStatus"
       }
     ],
     "stateMutability": "view"
@@ -193,6 +237,11 @@
         "name": "_poolCanceled",
         "type": "bool",
         "internalType": "bool"
+      },
+      {
+        "name": "_status",
+        "type": "uint8",
+        "internalType": "enum BookingPool.PoolStatus"
       }
     ],
     "stateMutability": "view"
@@ -226,6 +275,11 @@
         "name": "remainingSlots",
         "type": "uint256",
         "internalType": "uint256"
+      },
+      {
+        "name": "status",
+        "type": "uint8",
+        "internalType": "enum BookingPool.PoolStatus"
       }
     ],
     "stateMutability": "view"
@@ -286,6 +340,32 @@
         "internalType": "uint256"
       }
     ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "platformFeePercentage",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "platformOwner",
+    "inputs": [],
     "outputs": [
       {
         "name": "",
@@ -388,8 +468,66 @@
   },
   {
     "type": "event",
+    "name": "PaymentReleased",
+    "inputs": [
+      {
+        "name": "host",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
     "name": "PoolCanceled",
     "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PoolCheckedIn",
+    "inputs": [
+      {
+        "name": "host",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PoolCheckedOut",
+    "inputs": [
+      {
+        "name": "host",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PoolConfirmed",
+    "inputs": [
+      {
+        "name": "host",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
     "anonymous": false
   },
   {

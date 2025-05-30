@@ -14,7 +14,11 @@
     "verify-pools": "ts-node scripts/verifyCreatedPools.ts",
     "manual-verify": "ts-node scripts/manualVerify.ts",
     "deploy-v2": "forge script script/Deploy.s.sol:DeployScript --rpc-url worldchain_sepolia --broadcast --verify",
-    "build": "tsc"
+    "build": "tsc",
+    "generate-abis": "ts-node scripts/generateABIs.ts",
+    "interact": "ts-node scripts/completeInteraction.ts",
+    "demo": "ts-node scripts/completeInteraction.ts",
+    "check-pools": "ts-node scripts/verifyCreatedPools.ts"
   },
   "keywords": [],
   "author": "",

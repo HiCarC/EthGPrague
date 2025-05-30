@@ -9,26 +9,48 @@ contract DeployScript is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         address deployer = vm.addr(deployerPrivateKey);
 
-        console.log("Deploying BookingPoolFactoryV2 from address:", deployer);
+        console.log("=== WorldCoin Booking Pool System Deployment ===");
+        console.log("Deploying from address:", deployer);
         console.log("Deployer balance:", deployer.balance);
+        console.log("Chain ID:", block.chainid);
 
         vm.startBroadcast(deployerPrivateKey);
 
-        // Deploy BookingPoolFactoryV2
+        // Deploy BookingPoolFactoryV2 with enhanced features
         BookingPoolFactoryV2 factory = new BookingPoolFactoryV2();
 
         console.log("=== Deployment Successful ===");
         console.log("BookingPoolFactoryV2 deployed at:", address(factory));
-        console.log("Chain ID:", block.chainid);
+        console.log("Platform Owner:", factory.platformOwner());
+        console.log("Platform Fee:", factory.platformFeePercentage(), "%");
         console.log("Block number:", block.number);
 
         // Test the factory by reading basic info
         console.log("Initial pool count:", factory.getPoolsCount());
+        console.log("Next property ID:", factory.nextPropertyId());
 
         vm.stopBroadcast();
 
-        console.log("=== Deployment Complete ===");
-        console.log("Save this address for frontend integration:");
+        console.log("=== Save These Addresses ===");
         console.log("FACTORY_V2_ADDRESS=", address(factory));
+        console.log("PLATFORM_OWNER=", factory.platformOwner());
+        console.log("");
+        console.log("=== Verification Command ===");
+        console.log(
+            "forge verify-contract",
+            address(factory),
+            "src/BookingPoolFactory.sol:BookingPoolFactoryV2 --chain-id",
+            block.chainid
+        );
+        console.log("");
+        console.log("=== Explorer Link ===");
+        if (block.chainid == 4801) {
+            console.log(
+                "https://worldchain-sepolia.explorer.alchemy.com/address/",
+                address(factory)
+            );
+        } else if (block.chainid == 480) {
+            console.log("https://worldscan.org/address/", address(factory));
+        }
     }
 }
