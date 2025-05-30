@@ -86,3 +86,9 @@ forge verify-contract \
 4. **PoolManager.sol** - Main manager contract
 
 // For Beraborrow integration (future): 5. **YieldStrategy.sol** - Integration with Beraborrow for yield
+
+# After forge build, copy the ABI
+
+mkdir -p scripts/abis
+jq .abi out/BookingPoolFactory.sol/BookingPoolFactory.json > scripts/abis/BookingPoolFactory.json
+jq .abi out/BookingPool.sol/BookingPool.json > scripts/abis/BookingPool.json

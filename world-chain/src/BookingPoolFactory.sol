@@ -3,18 +3,29 @@ pragma solidity ^0.8.28;
 
 import "./BookingPool.sol";
 
-contract BookingPoolFactory {
-    // Events
+contract BookingPoolFactoryV2 {
+    // Events with all constructor parameters for easy verification
     event PoolCreated(
         address indexed pool,
         address indexed host,
         string bookingId,
         uint256 totalAmount,
         uint256 checkInDate,
-        uint256 checkOutDate
+        uint256 checkOutDate,
+        uint256 maxParticipants
     );
 
-    // Mapping to track all created pools
+    event PoolCreatedWithDetails(
+        address indexed pool,
+        string bookingId,
+        address host,
+        uint256 totalAmount,
+        uint256 checkInDate,
+        uint256 checkOutDate,
+        uint256 maxParticipants,
+        bytes constructorArgs
+    );
+
     mapping(string => address) public bookingPools;
     address[] public allPools;
 
@@ -51,13 +62,35 @@ contract BookingPoolFactory {
         bookingPools[_bookingId] = poolAddress;
         allPools.push(poolAddress);
 
+        // Encode constructor arguments for verification
+        bytes memory constructorArgs = abi.encode(
+            _bookingId,
+            _host,
+            _totalAmount,
+            _checkInDate,
+            _checkOutDate,
+            _maxParticipants
+        );
+
         emit PoolCreated(
             poolAddress,
             _host,
             _bookingId,
             _totalAmount,
             _checkInDate,
-            _checkOutDate
+            _checkOutDate,
+            _maxParticipants
+        );
+
+        emit PoolCreatedWithDetails(
+            poolAddress,
+            _bookingId,
+            _host,
+            _totalAmount,
+            _checkInDate,
+            _checkOutDate,
+            _maxParticipants,
+            constructorArgs
         );
 
         return poolAddress;
