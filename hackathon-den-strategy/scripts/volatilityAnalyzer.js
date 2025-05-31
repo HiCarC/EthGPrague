@@ -782,18 +782,10 @@ async function runAdvancedVolatilityAnalysis() {
   const analyzer = new VolatilityAnalyzer();
   
   console.log("🎯 ADVANCED RISK-ADJUSTED VOLATILITY ANALYSIS");
-  console.log("=".repeat(90));
   
   try {
-    // Analyze with different investment horizons
-    console.log(`\n🐻 30-DAY HORIZON ANALYSIS:`);
-    await analyzer.analyzeBerachainRiskAdjusted(30);
-    
     console.log(`\n🐻 7-DAY HORIZON ANALYSIS:`);
     await analyzer.analyzeBerachainRiskAdjusted(7);
-    
-    console.log(`\n🐻 90-DAY HORIZON ANALYSIS:`);
-    await analyzer.analyzeBerachainRiskAdjusted(90);
     
   } catch (error) {
     console.error(`❌ Analysis error: ${error.message}`);

@@ -20,7 +20,13 @@
     "type": "git",
     "url": "git+https://github.com/Beraborrowofficial/hackathon-den-strategy.git"
   },
-  "keywords": ["beraborrow", "yield", "defi", "berachain", "hackathon"],
+  "keywords": [
+    "beraborrow",
+    "yield",
+    "defi",
+    "berachain",
+    "hackathon"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
@@ -30,7 +36,7 @@
   "homepage": "https://github.com/Beraborrowofficial/hackathon-den-strategy#readme",
   "dependencies": {
     "@types/node": "^20.0.0",
-    "axios": "^1.6.0",
+    "axios": "^1.9.0",
     "dotenv": "^16.3.0",
     "ethers": "^6.8.0",
     "ts-node": "^10.9.0",
