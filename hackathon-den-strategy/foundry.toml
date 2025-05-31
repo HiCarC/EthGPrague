@@ -1,0 +1,21 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+auto_detect_solc = true
+evm_version = "cancun"
+ffi = true
+fs_permissions = [{ access = "read-write", path = "./" }]
+[profile.fuzzing]
+runs = 1000
+
+[profile.invariant]
+runs = 200
+depth = 1000
+shrink_run_limit = 1000
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+
+# [fuzz]
+# runs = 10000
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
