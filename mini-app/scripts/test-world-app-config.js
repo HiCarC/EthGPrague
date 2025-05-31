@@ -2,7 +2,7 @@
 console.log("🧪 World App Configuration Test");
 console.log("================================");
 
-const CONTRACT_ADDRESS = "0xc7663Be8fD3860cCd91D6e2D8ae94251258d8412";
+const CONTRACT_ADDRESS = "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
 const WLD_TOKEN = "0x2cFc85d8E48F8EAB294be644d9E25C3030863003";
 const PERMIT2 = "0xF0882554ee924278806d708396F1a7975b732522";
 const WORLD_APP_ID = "app_1280bf653c14c769c5e1915c5ac6e7a5";

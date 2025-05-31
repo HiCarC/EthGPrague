@@ -4,7 +4,7 @@ const { ethers } = pkg;
 async function main() {
   console.log("🔍 Verifying HotelBookingPermit2 contract...\n");
 
-  const contractAddress = "0xc7663Be8fD3860cCd91D6e2D8ae94251258d8412";
+  const contractAddress = "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
 
   // Get network info
   const network = await ethers.provider.getNetwork();

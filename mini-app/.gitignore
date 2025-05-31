@@ -40,3 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 !.env.sample
+cache/
+artifacts/
+
+# vscode
+.vscode/
+
+# cursor
+.cursorrules
+
+
