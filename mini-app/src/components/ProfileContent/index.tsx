@@ -17,7 +17,7 @@ interface BookingData {
   status: string;
 }
 
-export const ProfileContent = (sessionUser: any) => {
+export const ProfileContent = () => {
   const { data: session } = useSession();
 
   const [bookingHistory, setBookingHistory] = useState<BookingData[]>([]);
@@ -32,17 +32,17 @@ export const ProfileContent = (sessionUser: any) => {
   useEffect(() => {
     const fetchUserData = async () => {
       console.log("ProfileContent: Starting fetchUserData");
-      console.log("ProfileContent: Session data:", sessionUser);
-      console.log("ProfileContent: Session data:", session);
-      console.log("ProfileContent: Session data:", sessionUser.user);
-      if (!sessionUser?.user?.walletAddress) {
+
+      console.log("ProfileContent: Session data:", session?.user);
+
+      if (!session?.user?.walletAddress) {
         console.log("ProfileContent: No wallet address found, returning early");
         return;
       }
 
       console.log(
         "ProfileContent: Wallet address:",
-        sessionUser.user.walletAddress
+        session?.user.walletAddress
       );
 
       try {
@@ -52,7 +52,7 @@ export const ProfileContent = (sessionUser: any) => {
         // Fetch user's booking history
         console.log("ProfileContent: Fetching guest bookings...");
         const bookingIds = await BookingService.getGuestBookings(
-          sessionUser.user.walletAddress
+          session?.user.walletAddress
         );
         console.log("ProfileContent: Received booking IDs:", bookingIds);
 

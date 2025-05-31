@@ -100,30 +100,24 @@ export const PropertyListings = () => {
 
         {/* Search and actions */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <Search
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-              size={20}
-            />
+          <div className="   w-full flex flex-row items-center ">
             <input
               type="text"
               placeholder="Search by name, location, or description..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+              className="w-full p-4 h-5 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
             />
           </div>
 
           <div className="flex gap-2">
-            <Button
+            <div
               onClick={() => setShowCreateModal(true)}
-              variant="primary"
-              size="sm"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+              className="w-full flex items-center justify-center gap-2 bg-black text-white p-3 rounded-lg cursor-pointer hover:bg-gray-800 disabled:bg-gray-400"
             >
               <Plus size={16} />
               List Property
-            </Button>
+            </div>
           </div>
         </div>
       </div>

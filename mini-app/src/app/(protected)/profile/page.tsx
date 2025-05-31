@@ -22,9 +22,7 @@ export default async function ProfilePage() {
           }
         />
       </Page.Header>
-      <Page.Main>
-        {session && <ProfileContent sessionUser={session} />}
-      </Page.Main>
+      <Page.Main>{session && <ProfileContent />}</Page.Main>
     </>
   );
 }

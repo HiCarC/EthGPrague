@@ -26,6 +26,7 @@ export const WalletContent = () => {
 
   useEffect(() => {
     const fetchWalletData = async () => {
+      console.log("fetchWalletData", session);
       if (!session?.user?.walletAddress) return;
 
       try {
