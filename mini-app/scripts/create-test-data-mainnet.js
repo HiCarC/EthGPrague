@@ -71,7 +71,7 @@ async function main() {
   console.log("🏨 Creating test properties on mainnet...\n");
 
   // Use the mainnet contract address
-  const contractAddress = "0xFd38A35dE21941bCF08006BDC469a96fD591be7E";
+  const contractAddress = "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
 
   // Get the contract ABI (you'll need to import this after compilation)
   const contractABI = [
