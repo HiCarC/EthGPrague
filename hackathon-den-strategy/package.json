@@ -1,0 +1,44 @@
+{
+  "name": "hackathon-den-strategy",
+  "version": "1.0.0",
+  "description": "Create a vault strategy on Beraborrow that automatically manages a CDP. Let users 'set it and forget it' but optimize for sustainability, yield, risk, and usability.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "analyze-yield": "npx ts-node --project tsconfig.json scripts/runYieldAnalysis.ts",
+    "fetch-data": "npx ts-node --project tsconfig.json scripts/yieldAnalyzer.ts",
+    "deploy": "forge script script/Deploy.s.sol --broadcast",
+    "compile-ts": "tsc",
+    "run-js": "node dist/scripts/runYieldAnalysis.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Beraborrowofficial/hackathon-den-strategy.git"
+  },
+  "keywords": ["beraborrow", "yield", "defi", "berachain", "hackathon"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Beraborrowofficial/hackathon-den-strategy/issues"
+  },
+  "homepage": "https://github.com/Beraborrowofficial/hackathon-den-strategy#readme",
+  "dependencies": {
+    "@types/node": "^20.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0",
+    "ethers": "^6.8.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
