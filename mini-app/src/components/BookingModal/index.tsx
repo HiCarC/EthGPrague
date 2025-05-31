@@ -12,6 +12,9 @@ import {
   AlertCircle,
   CheckCircle,
 } from "lucide-react";
+import { tokenToDecimals } from "@worldcoin/minikit-js";
+import { Tokens } from "@worldcoin/minikit-js";
+import { MiniKit } from "@worldcoin/minikit-js";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -106,7 +109,23 @@ export const BookingModal = ({
         guestCount,
         totalAmount: totalPrice.toString(),
       });
+      const res = await fetch("/api/initiate-payment", {
+        method: "POST",
+      });
+      // const { id } = await res.json();
 
+      // const result = await MiniKit.commandsAsync.pay({
+      //   reference: id,
+      //   to: "0xc7663Be8fD3860cCd91D6e2D8ae94251258d8412",
+      //   tokens: [
+      //     {
+      //       symbol: Tokens.WLD,
+      //       token_amount: tokenToDecimals(0.5, Tokens.WLD).toString(),
+      //     },
+      //   ],
+      //   description: "Test example payment for minikit",
+      // });
+      // console.log("result", result);
       await BookingService.createBooking(
         property.id.toString(),
         new Date(checkInDate),

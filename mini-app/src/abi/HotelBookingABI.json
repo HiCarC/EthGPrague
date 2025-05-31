@@ -14,7 +14,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": false,
+                "indexed": true,
                 "internalType": "address",
                 "name": "guest",
                 "type": "address"
@@ -33,7 +33,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": false,
+                "indexed": true,
                 "internalType": "address",
                 "name": "propertyOwner",
                 "type": "address"
@@ -52,7 +52,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": false,
+                "indexed": true,
                 "internalType": "address",
                 "name": "propertyOwner",
                 "type": "address"
@@ -71,7 +71,7 @@
                 "type": "uint256"
             },
             {
-                "indexed": false,
+                "indexed": true,
                 "internalType": "address",
                 "name": "propertyOwner",
                 "type": "address"
@@ -219,6 +219,19 @@
         "type": "event"
     },
     {
+        "inputs": [],
+        "name": "WLD_TOKEN",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
                 "internalType": "uint256",
@@ -363,6 +376,11 @@
                 "internalType": "uint256",
                 "name": "guestCount",
                 "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalAmount",
+                "type": "uint256"
             }
         ],
         "name": "createBooking",
@@ -373,7 +391,7 @@
                 "type": "uint256"
             }
         ],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {

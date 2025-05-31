@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@openzeppelin/contracts-upgradeable": "^5.3.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.0",
     "@worldcoin/mini-apps-ui-kit-react": "^1.0.2",
     "@worldcoin/minikit-js": "latest",
     "@worldcoin/minikit-react": "latest",

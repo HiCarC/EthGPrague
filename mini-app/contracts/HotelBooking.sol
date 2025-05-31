@@ -231,14 +231,6 @@ contract HotelBooking {
             guestCount,
             totalAmount
         );
-
-        // Transfer WLD tokens from guest to contract using transferFrom
-        // Guest must have approved this contract to spend their WLD tokens
-        require(
-            WLD_TOKEN.transferFrom(msg.sender, address(this), totalAmount),
-            "WLD transfer failed"
-        );
-
         return
             _createBookingInternal(
                 propertyId,
