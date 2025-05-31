@@ -13,6 +13,11 @@ module.exports = {
     },
   },
   networks: {
+    mainnet: {
+      url: "https://worldchain-mainnet.g.alchemy.com/public",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 480,
+    },
     worldchain: {
       url: "https://worldchain-mainnet.g.alchemy.com/public",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],

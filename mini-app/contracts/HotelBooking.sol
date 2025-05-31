@@ -1,7 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+// Interface for ERC20 token (WLD)
+interface IERC20 {
+    function transfer(address to, uint256 amount) external returns (bool);
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+    function allowance(
+        address owner,
+        address spender
+    ) external view returns (uint256);
+}
+
 contract HotelBooking {
+    // WLD Token contract address on World Chain Mainnet
+    IERC20 public constant WLD_TOKEN =
+        IERC20(0x2cFc85d8E48F8EAB294be644d9E25C3030863003);
+
     // Structs
     struct Property {
         uint256 id;
@@ -10,7 +29,7 @@ contract HotelBooking {
         string description;
         string location;
         string[] imageUrls;
-        uint256 pricePerNight; // in wei
+        uint256 pricePerNight; // in WLD wei (18 decimals)
         uint256 maxGuests;
         bool isActive;
         uint256 createdAt;
@@ -22,7 +41,7 @@ contract HotelBooking {
         address guest;
         uint256 checkInDate;
         uint256 checkOutDate;
-        uint256 totalAmount;
+        uint256 totalAmount; // in WLD wei
         uint256 guestCount;
         BookingStatus status;
         uint256 createdAt;
@@ -202,8 +221,9 @@ contract HotelBooking {
         uint256 propertyId,
         uint256 checkInDate,
         uint256 checkOutDate,
-        uint256 guestCount
-    ) external payable propertyExists(propertyId) returns (uint256) {
+        uint256 guestCount,
+        uint256 totalAmount
+    ) external propertyExists(propertyId) returns (uint256) {
         Property memory property = properties[propertyId];
         require(property.isActive, "Property is not active");
         require(property.owner != msg.sender, "Cannot book your own property");
@@ -225,8 +245,14 @@ contract HotelBooking {
         );
 
         uint256 nights = (checkOutDate - checkInDate) / 1 days;
-        uint256 totalAmount = property.pricePerNight * nights;
-        require(msg.value >= totalAmount, "Insufficient payment");
+        uint256 expectedAmount = property.pricePerNight * nights;
+        require(totalAmount >= expectedAmount, "Insufficient payment amount");
+
+        // Transfer WLD tokens from guest to contract
+        require(
+            WLD_TOKEN.transferFrom(msg.sender, address(this), totalAmount),
+            "WLD transfer failed"
+        );
 
         uint256 bookingId = nextBookingId;
         nextBookingId++;
@@ -245,11 +271,6 @@ contract HotelBooking {
 
         guestBookings[msg.sender].push(bookingId);
         propertyBookings[propertyId].push(bookingId);
-
-        // Refund excess payment
-        if (msg.value > totalAmount) {
-            payable(msg.sender).transfer(msg.value - totalAmount);
-        }
 
         emit BookingCreated(bookingId, propertyId, msg.sender);
         return bookingId;
@@ -293,7 +314,7 @@ contract HotelBooking {
         uint256 refundAmount = calculateRefundAmount(bookingId);
         if (refundAmount > 0) {
             booking.status = BookingStatus.Refunded;
-            payable(booking.guest).transfer(refundAmount);
+            WLD_TOKEN.transfer(booking.guest, refundAmount);
             emit RefundIssued(bookingId, booking.guest, refundAmount);
         }
 
@@ -341,8 +362,8 @@ contract HotelBooking {
             100;
         uint256 ownerAmount = booking.totalAmount - platformFee;
 
-        payable(properties[booking.propertyId].owner).transfer(ownerAmount);
-        payable(platformOwner).transfer(platformFee);
+        WLD_TOKEN.transfer(properties[booking.propertyId].owner, ownerAmount);
+        WLD_TOKEN.transfer(platformOwner, platformFee);
 
         emit BookingCheckedOut(bookingId, msg.sender);
         emit PaymentReleased(bookingId, msg.sender, ownerAmount);
@@ -460,6 +481,6 @@ contract HotelBooking {
     }
 
     function emergencyWithdraw() external onlyPlatformOwner {
-        payable(platformOwner).transfer(address(this).balance);
+        WLD_TOKEN.transfer(platformOwner, WLD_TOKEN.balanceOf(address(this)));
     }
 }
