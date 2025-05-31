@@ -7,3 +7,6 @@
 [submodule "world-chain/lib/forge-std"]
 	path = world-chain/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "revolut-proof/lib/forge-std"]
+	path = revolut-proof/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
