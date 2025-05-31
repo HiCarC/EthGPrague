@@ -2,9 +2,10 @@ import { MiniKit } from "@worldcoin/minikit-js";
 import { createPublicClient, http } from "viem";
 import { defineChain } from "viem";
 import HotelBookingABI from "@/abi/HotelBookingABI.json";
-import Permit2 from "@/abi/Permit2.json";
 import { useWaitForTransactionReceipt } from "@worldcoin/minikit-react";
-import { useState } from "react";
+
+// WLD Token contract address on World Chain Mainnet
+export const WLD_TOKEN_ADDRESS = "0x2cFc85d8E48F8EAB294be644d9E25C3030863003";
 
 // Define World Chain Testnet
 const worldchainTestnet = defineChain({
@@ -13,8 +14,8 @@ const worldchainTestnet = defineChain({
   network: "worldchain-testnet",
   nativeCurrency: {
     decimals: 18,
-    name: "Ether",
-    symbol: "ETH",
+    name: "World Token",
+    symbol: "WLD",
   },
   rpcUrls: {
     default: {
@@ -29,20 +30,39 @@ const worldchainTestnet = defineChain({
   },
   testnet: true,
 });
-const [transactionId, setTransactionId] = useState<string>("");
+const worldchainMainnet = defineChain({
+  id: 480,
+  name: "World Chain Mainnet",
+  network: "worldchain-mainnet",
+  nativeCurrency: {
+    decimals: 18,
+    name: "World Token",
+    symbol: "WLD",
+  },
+
+  rpcUrls: {
+    default: {
+      http: ["https://worldchain-mainnet.g.alchemy.com/public"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "Worldscan",
+      url: "https://worldscan.org",
+    },
+  },
+});
+
 // Replace with your deployed contract address
 export const HOTEL_BOOKING_CONTRACT_ADDRESS =
-  "0xe97576A27CBCdBAA108a82D95E00A505043C6424";
+  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||
+  "0xFd38A35dE21941bCF08006BDC469a96fD591be7E";
 
 // Public client for reading contract data
 export const publicClient = createPublicClient({
-  chain: worldchainTestnet,
-  transport: http("https://worldchain-sepolia.g.alchemy.com/public"),
+  chain: worldchainMainnet,
+  transport: http("https://worldchain-mainnet.g.alchemy.com/public"),
 });
-
-// Constants for Permit2
-const PERMIT2_ADDRESS = "0x000000000022D473030F116dDEE9F6B43aC78BA3"; // Canonical Permit2 address
-const WETH_ADDRESS = "0x4200000000000000000000000000000000000006"; // WETH address on World Chain
 
 export interface Property {
   id: bigint;
@@ -69,33 +89,68 @@ export interface Booking {
   createdAt: bigint;
 }
 
-export interface Permit2Transfer {
-  permitted: {
-    token: string;
-    amount: string;
-  };
-  nonce: string;
-  deadline: string;
-}
-
-export interface TransferDetails {
-  to: string;
-  requestedAmount: string;
-}
+// ERC20 ABI for WLD token operations
+const ERC20_ABI = [
+  {
+    inputs: [
+      { internalType: "address", name: "spender", type: "address" },
+      { internalType: "uint256", name: "amount", type: "uint256" },
+    ],
+    name: "approve",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "address", name: "spender", type: "address" },
+    ],
+    name: "allowance",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+];
 
 export class BookingService {
+  // Helper function to approve WLD tokens
+  static async approveWLD(amount: string): Promise<any> {
+    try {
+      const amountInWei = BigInt(
+        Math.floor(parseFloat(amount) * Math.pow(10, 18))
+      );
+
+      const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
+        transaction: [
+          {
+            address: WLD_TOKEN_ADDRESS,
+            abi: ERC20_ABI,
+            functionName: "approve",
+            args: [HOTEL_BOOKING_CONTRACT_ADDRESS, amountInWei.toString()],
+          },
+        ],
+      });
+
+      return finalPayload;
+    } catch (error) {
+      console.error("Error approving WLD:", error);
+      throw error;
+    }
+  }
+
   // Property Management
   static async createProperty(
     name: string,
     description: string,
     location: string,
     imageUrls: string[],
-    pricePerNightInEth: string,
+    pricePerNightInWld: string,
     maxGuests: number
   ): Promise<any> {
     try {
       const priceInWei = BigInt(
-        Math.floor(parseFloat(pricePerNightInEth) * Math.pow(10, 18))
+        Math.floor(parseFloat(pricePerNightInWld) * Math.pow(10, 18))
       );
 
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
@@ -130,12 +185,12 @@ export class BookingService {
     description: string,
     location: string,
     imageUrls: string[],
-    pricePerNightInEth: string,
+    pricePerNightInWld: string,
     maxGuests: number
   ): Promise<any> {
     try {
       const priceInWei = BigInt(
-        Math.floor(parseFloat(pricePerNightInEth) * Math.pow(10, 18))
+        Math.floor(parseFloat(pricePerNightInWld) * Math.pow(10, 18))
       );
 
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
@@ -204,142 +259,45 @@ export class BookingService {
     }
   }
 
-  // Booking Management
+  // Booking Functions
   static async createBooking(
     propertyId: string,
     checkInDate: Date,
     checkOutDate: Date,
     guestCount: number,
-    totalAmountInEth: string,
-    recipientAddress: string // Address to receive the payment (hotel owner or booking contract)
+    totalAmountInWld: string
   ): Promise<any> {
     try {
-      const checkInTimestamp = Math.floor(checkInDate.getTime() / 1000);
-      const checkOutTimestamp = Math.floor(checkOutDate.getTime() / 1000);
       const totalAmountInWei = BigInt(
-        Math.floor(parseFloat(totalAmountInEth) * Math.pow(10, 18))
+        Math.floor(parseFloat(totalAmountInWld) * Math.pow(10, 18))
       );
-
-      // Permit2 setup - valid for 30 minutes
-      const permitTransfer = {
-        permitted: {
-          token: WETH_ADDRESS, // Using WETH for the payment token
-          amount: totalAmountInWei.toString(),
-        },
-        nonce: Date.now().toString(),
-        deadline: Math.floor((Date.now() + 30 * 60 * 1000) / 1000).toString(), // 30 minutes from now
-      };
-
-      const transferDetails = {
-        to: recipientAddress,
-        requestedAmount: totalAmountInWei.toString(),
-      };
-
-      console.log("Permit2 Transaction details:", {
-        propertyId,
-        checkInTimestamp,
-        checkOutTimestamp,
-        guestCount,
-        totalAmountInEth,
-        totalAmountInWei: totalAmountInWei.toString(),
-        permitTransfer,
-        transferDetails,
-      });
-
-      const { isLoading: isConfirming, isSuccess: isConfirmed } =
-        useWaitForTransactionReceipt({
-          client: publicClient,
-          appConfig: {
-            app_id: "1234567890",
-          },
-          transactionId: transactionId,
-        });
-
+      console.log("totalAmountInWld", totalAmountInWld);
+      console.log("Approve WLD");
+      // First approve the WLD tokens for the booking contract
+      await this.approveWLD(totalAmountInWld);
+      console.log("Approve WLD Done");
+      console.log("Send tx");
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
         transaction: [
           {
-            address: PERMIT2_ADDRESS,
-            abi: Permit2,
-            functionName: "signatureTransfer",
+            address: HOTEL_BOOKING_CONTRACT_ADDRESS,
+            abi: HotelBookingABI,
+            functionName: "createBooking",
             args: [
-              [
-                [
-                  permitTransfer.permitted.token,
-                  permitTransfer.permitted.amount,
-                ],
-                permitTransfer.nonce,
-                permitTransfer.deadline,
-              ],
-              [transferDetails.to, transferDetails.requestedAmount],
-              "PERMIT2_SIGNATURE_PLACEHOLDER_0", // This will be automatically replaced with the correct signature
+              propertyId,
+              Math.floor(checkInDate.getTime() / 1000),
+              Math.floor(checkOutDate.getTime() / 1000),
+              guestCount,
+              totalAmountInWld.toString(),
             ],
           },
-          {
-            address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
-            functionName: "createBooking",
-            args: [propertyId, checkInTimestamp, checkOutTimestamp, guestCount],
-            // Remove the value field since we're using Permit2 for payment
-          },
-        ],
-        permit2: [
-          {
-            ...permitTransfer,
-            spender: HOTEL_BOOKING_CONTRACT_ADDRESS, // The contract that will spend the tokens
-          },
         ],
       });
-
+      console.log("Send tx Done");
+      console.log("finalPayload", finalPayload);
       return finalPayload;
     } catch (error) {
-      console.error("Error creating booking with Permit2:", error);
-      throw error;
-    }
-  }
-
-  // Alternative method for direct ETH payments (fallback)
-  static async createBookingWithETH(
-    propertyId: string,
-    checkInDate: Date,
-    checkOutDate: Date,
-    guestCount: number,
-    totalAmountInEth: string
-  ): Promise<any> {
-    try {
-      const checkInTimestamp = Math.floor(checkInDate.getTime() / 1000);
-      const checkOutTimestamp = Math.floor(checkOutDate.getTime() / 1000);
-      const totalAmountInWei = BigInt(
-        Math.floor(parseFloat(totalAmountInEth) * Math.pow(10, 18))
-      );
-
-      // Convert value to hex string format that MiniKit expects
-      const valueHex = `0x${totalAmountInWei.toString(16)}`;
-
-      console.log("Direct ETH Transaction details:", {
-        propertyId,
-        checkInTimestamp,
-        checkOutTimestamp,
-        guestCount,
-        totalAmountInEth,
-        totalAmountInWei: totalAmountInWei.toString(),
-        valueHex,
-      });
-
-      const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
-        transaction: [
-          {
-            address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
-            functionName: "createBooking",
-            args: [propertyId, checkInTimestamp, checkOutTimestamp, guestCount],
-            value: valueHex,
-          },
-        ],
-      });
-
-      return finalPayload;
-    } catch (error) {
-      console.error("Error creating booking with ETH:", error);
+      console.error("Error creating booking:", error);
       throw error;
     }
   }
