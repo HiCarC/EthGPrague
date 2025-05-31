@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
+import "./MockYieldStrategy.sol";
+
 contract BookingPool {
     // Enums
     enum PoolStatus {
@@ -30,6 +32,12 @@ contract BookingPool {
     bool public poolCanceled;
     PoolStatus public currentStatus;
 
+    // 🆕 YIELD INTEGRATION
+    MockYieldStrategy public yieldStrategy;
+    mapping(address => uint256) public yieldEarned;
+    bool public yieldDistributed;
+    uint256 public poolYieldStartTime;
+
     // Events
     event ParticipantJoined(address indexed participant, uint256 amount);
     event FundsReleased(address indexed host, uint256 amount);
@@ -39,6 +47,15 @@ contract BookingPool {
     event PoolCheckedIn(address indexed host);
     event PoolCheckedOut(address indexed host);
     event PaymentReleased(address indexed host, uint256 amount);
+
+    // 🆕 YIELD EVENTS
+    event YieldStrategyCreated(address indexed strategy);
+    event YieldDistributed(
+        uint256 totalYield,
+        uint256 userShare,
+        uint256 platformShare
+    );
+    event UserYieldClaimed(address indexed user, uint256 amount);
 
     // Modifiers
     modifier onlyAfterCheckout() {
@@ -98,6 +115,11 @@ contract BookingPool {
         platformFeePercentage = _platformFeePercentage;
         platformOwner = _platformOwner;
         currentStatus = PoolStatus.Active;
+
+        // 🆕 CREATE YIELD STRATEGY
+        yieldStrategy = new MockYieldStrategy(_platformOwner);
+        poolYieldStartTime = block.timestamp;
+        emit YieldStrategyCreated(address(yieldStrategy));
     }
 
     function joinPool()
@@ -129,6 +151,12 @@ contract BookingPool {
             payable(msg.sender).transfer(excess);
         }
 
+        // 🆕 DEPOSIT TO YIELD STRATEGY
+        yieldStrategy.deposit{value: contributions[msg.sender]}();
+
+        // 🆕 REGISTER CONTRIBUTION TO YIELD STRATEGY
+        yieldStrategy.registerContribution(msg.sender, msg.value);
+
         emit ParticipantJoined(msg.sender, contributions[msg.sender]);
     }
 
@@ -153,27 +181,112 @@ contract BookingPool {
     function checkOut() external onlyHost poolCheckedIn {
         currentStatus = PoolStatus.CheckedOut;
 
-        // Release payment to host with platform fee
-        uint256 platformFee = (totalContributed * platformFeePercentage) / 100;
-        uint256 hostAmount = totalContributed - platformFee;
+        // 🆕 DISTRIBUTE YIELD BEFORE RELEASING FUNDS
+        _distributeYield();
+
+        // 🎯 SIMPLE: Just pay host everything (skip platform fee for demo)
+        uint256 hostAmount = totalContributed;
 
         fundsReleased = true;
+
+        // 🔧 Simple check: ensure contract has funds
+        if (address(this).balance < hostAmount) {
+            revert("Contract needs funding for payments");
+        }
 
         // Transfer to host
         (bool hostSuccess, ) = host.call{value: hostAmount}("");
         require(hostSuccess, "Host transfer failed");
 
-        // Transfer platform fee
-        if (platformFee > 0) {
-            (bool platformSuccess, ) = platformOwner.call{value: platformFee}(
-                ""
-            );
-            require(platformSuccess, "Platform fee transfer failed");
-        }
-
         emit PoolCheckedOut(msg.sender);
         emit PaymentReleased(msg.sender, hostAmount);
         emit FundsReleased(msg.sender, totalContributed);
+    }
+
+    // 🆕 DISTRIBUTE YIELD TO PARTICIPANTS
+    function _distributeYield() internal {
+        require(!yieldDistributed, "Yield already distributed");
+
+        uint256 totalUserYield = 0;
+        uint256 totalPlatformYield = 0;
+
+        // Calculate yield for each participant proportionally
+        for (uint256 i = 0; i < participants.length; i++) {
+            address participant = participants[i];
+            (uint256 userYield, uint256 platformYield) = yieldStrategy
+                .calculateYieldEarned(participant);
+
+            yieldEarned[participant] = userYield;
+            totalUserYield += userYield;
+            totalPlatformYield += platformYield;
+        }
+
+        yieldDistributed = true;
+        emit YieldDistributed(
+            totalUserYield + totalPlatformYield,
+            totalUserYield,
+            totalPlatformYield
+        );
+    }
+
+    // 🆕 USERS CLAIM THEIR YIELD
+    function claimYield() external {
+        require(currentStatus == PoolStatus.CheckedOut, "Pool not completed");
+        require(yieldDistributed, "Yield not distributed yet");
+        require(yieldEarned[msg.sender] > 0, "No yield to claim");
+        require(contributions[msg.sender] > 0, "Not a participant");
+
+        uint256 yield = yieldEarned[msg.sender];
+        yieldEarned[msg.sender] = 0;
+
+        // For demo: transfer yield from contract balance
+        // In production, this would come from the yield strategy
+        payable(msg.sender).transfer(yield);
+
+        emit UserYieldClaimed(msg.sender, yield);
+    }
+
+    // 🆕 VIEW YIELD INFORMATION
+    function getYieldInfo()
+        external
+        view
+        returns (
+            uint256 estimatedTotalYield,
+            uint256 estimatedUserYield,
+            uint256 estimatedPlatformYield,
+            bool isYieldDistributed,
+            uint256 timeElapsed
+        )
+    {
+        timeElapsed = block.timestamp - poolYieldStartTime;
+
+        // Estimate total yield for the pool
+        (
+            uint256 totalYield,
+            uint256 userYield,
+            uint256 platformYield
+        ) = yieldStrategy.estimateYield(totalContributed, timeElapsed);
+
+        return (
+            totalYield,
+            userYield,
+            platformYield,
+            yieldDistributed,
+            timeElapsed
+        );
+    }
+
+    // 🆕 GET USER'S POTENTIAL YIELD
+    function getUserYieldPreview(
+        address user
+    ) external view returns (uint256 pendingYield, uint256 claimableYield) {
+        if (contributions[user] == 0) return (0, 0);
+
+        if (yieldDistributed) {
+            claimableYield = yieldEarned[user];
+        } else {
+            (pendingYield, ) = yieldStrategy.calculateYieldEarned(user);
+        }
     }
 
     function releaseFunds() external onlyAfterCheckout {
@@ -191,24 +304,22 @@ contract BookingPool {
         // Auto check-out if not done manually
         if (currentStatus != PoolStatus.CheckedOut) {
             currentStatus = PoolStatus.CheckedOut;
+            _distributeYield(); // 🆕 Also distribute yield here
         }
 
-        uint256 platformFee = (totalContributed * platformFeePercentage) / 100;
-        uint256 hostAmount = totalContributed - platformFee;
+        // 🎯 SIMPLE: Just pay host everything
+        uint256 hostAmount = totalContributed;
 
         fundsReleased = true;
+
+        // 🔧 Simple check: ensure contract has funds
+        if (address(this).balance < hostAmount) {
+            revert("Contract needs funding for payments");
+        }
 
         // Transfer to host
         (bool hostSuccess, ) = host.call{value: hostAmount}("");
         require(hostSuccess, "Host transfer failed");
-
-        // Transfer platform fee
-        if (platformFee > 0) {
-            (bool platformSuccess, ) = platformOwner.call{value: platformFee}(
-                ""
-            );
-            require(platformSuccess, "Platform fee transfer failed");
-        }
 
         emit PaymentReleased(msg.sender, hostAmount);
         emit FundsReleased(host, totalContributed);
@@ -224,16 +335,17 @@ contract BookingPool {
         currentStatus = PoolStatus.Cancelled;
         poolCanceled = true;
 
-        // Refund all participants
+        // 🎯 SIMPLE: Just refund all participants their original contributions
         for (uint256 i = 0; i < participants.length; i++) {
             address participant = participants[i];
             uint256 refundAmount = contributions[participant];
 
             if (refundAmount > 0) {
                 contributions[participant] = 0;
+
+                // Simple refund - just return their original contribution
                 (bool success, ) = participant.call{value: refundAmount}("");
                 require(success, "Refund failed");
-
                 emit RefundIssued(participant, refundAmount);
             }
         }
@@ -265,6 +377,13 @@ contract BookingPool {
 
         contributions[msg.sender] = 0;
         totalContributed -= refundAmount;
+
+        // 🔧 FIX: Ensure contract has funds for refund
+        if (address(this).balance < refundAmount) {
+            revert(
+                "Contract needs funding for refunds - call fundYieldPayments()"
+            );
+        }
 
         (bool success, ) = msg.sender.call{value: refundAmount}("");
         require(success, "Refund failed");
@@ -367,5 +486,10 @@ contract BookingPool {
         } else {
             return 0;
         }
+    }
+
+    // 🆕 EMERGENCY FUNCTION TO FUND YIELD PAYMENTS (FOR DEMO)
+    function fundYieldPayments() external payable {
+        // Anyone can fund the contract for demo purposes
     }
 }
