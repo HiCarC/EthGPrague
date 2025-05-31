@@ -55,7 +55,7 @@ export const steps: Step[] = [
     component: ProveStep,
     title: "Revolut Balance Proof",
     description:
-      "Open vlayer browser extension and follow instructions to produce the Proof of your Revolut balance (minimum 40€). \n",
+      "Open vlayer browser extension and follow instructions to produce the Proof of your Revolut balance (more than 40€). \n",
     index: 2,
   },
   {

@@ -27,7 +27,7 @@ contract WebProofVerifier is Verifier, ERC721 {
         require(hasMinimumBalance, "User doesn't have minimum 40 EUR balance");
 
         uint256 tokenId = uint256(
-            keccak256(abi.encodePacked(userAccount, balance))
+            keccak256(abi.encodePacked(userAccount, balance, block.timestamp))
         );
         require(
             _ownerOf(tokenId) == address(0),

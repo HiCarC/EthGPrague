@@ -55,6 +55,12 @@ createAppKit({
 });
 
 const App = () => {
+  console.log({
+    proverUrl: import.meta.env.VITE_PROVER_URL,
+    wsProxyUrl: import.meta.env.VITE_WS_PROXY_URL,
+    notaryUrl: import.meta.env.VITE_NOTARY_URL,
+    token: import.meta.env.VITE_VLAYER_API_TOKEN,
+  })
   return (
     <div id="app">
       <WagmiProvider config={wagmiAdapter.wagmiConfig}>

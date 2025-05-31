@@ -21,78 +21,86 @@ contract WebProofProver is Prover {
 
         // Parse the wallet response to get EUR balance from pockets
         uint256 eurBalance = parseEurBalance(web);
-        bool hasMinimumBalance = eurBalance >= (MINIMUM_BALANCE_EUROS * 100); // Convert to cents/centimes
+        bool hasMoreThan40EUR = eurBalance >= (MINIMUM_BALANCE_EUROS * 100); // Convert to cents
 
-        return (proof(), hasMinimumBalance, eurBalance, userAccount);
+        return (proof(), hasMoreThan40EUR, eurBalance, userAccount);
     }
 
     function parseEurBalance(Web memory web) private view returns (uint256) {
-        // Try to find EUR balance in the pockets array
-        // Structure: {"pockets": [{"currency": "EUR", "type": "CURRENT", "balance": 5000}]}
+        // Based on your JSON structure, try the first few pockets
+        // Your EUR pocket is at index 0 with balance 5000
 
-        // Try multiple pocket indices to find the EUR CURRENT account
-        for (uint256 i = 0; i < 10; i++) {
-            try this.tryGetPocketBalance(web, i) returns (uint256 balance) {
-                if (balance > 0) return balance;
-            } catch {}
+        // Try pocket 0 (most likely where EUR is)
+        if (isEurPocketAtIndex(web, 0)) {
+            return getBalanceAtIndex(web, 0);
         }
 
-        // If all methods fail, return 0 (which will trigger the original error)
-        return 0;
+        // Try pocket 1 as backup
+        if (isEurPocketAtIndex(web, 1)) {
+            return getBalanceAtIndex(web, 1);
+        }
+
+        // Try pocket 2 as backup
+        if (isEurPocketAtIndex(web, 2)) {
+            return getBalanceAtIndex(web, 2);
+        }
+
+        return 0; // No EUR balance found
     }
 
-    function tryGetPocketBalance(
+    function isEurPocketAtIndex(
         Web memory web,
-        uint256 pocketIndex
-    ) external view returns (uint256) {
-        // Convert index to string for JSON path
-        string memory indexStr = uintToString(pocketIndex);
+        uint256 index
+    ) private view returns (bool) {
+        string memory indexStr = uintToString(index);
 
-        // Build JSON paths using bracket notation for arrays
         string memory currencyPath = string(
             abi.encodePacked("pockets[", indexStr, "].currency")
-        );
-        string memory typePath = string(
-            abi.encodePacked("pockets[", indexStr, "].type")
         );
         string memory statePath = string(
             abi.encodePacked("pockets[", indexStr, "].state")
         );
+        string memory typePath = string(
+            abi.encodePacked("pockets[", indexStr, "].type")
+        );
+
+        // Try to get the values - if any fail, this isn't the right pocket
+        string memory currency = web.jsonGetString(currencyPath);
+        string memory state = web.jsonGetString(statePath);
+        string memory pocketType = web.jsonGetString(typePath);
+
+        // Check if this is an active EUR current pocket
+        return (keccak256(bytes(currency)) == keccak256(bytes("EUR")) &&
+            keccak256(bytes(state)) == keccak256(bytes("ACTIVE")) &&
+            keccak256(bytes(pocketType)) == keccak256(bytes("CURRENT")));
+    }
+
+    function getBalanceAtIndex(
+        Web memory web,
+        uint256 index
+    ) private view returns (uint256) {
+        string memory indexStr = uintToString(index);
         string memory balancePath = string(
             abi.encodePacked("pockets[", indexStr, "].balance")
         );
 
-        // Check if this pocket is EUR CURRENT and ACTIVE
-        string memory currency = web.jsonGetString(currencyPath);
-        string memory pocketType = web.jsonGetString(typePath);
-        string memory state = web.jsonGetString(statePath);
-
-        // Check if this is the EUR current account
-        if (
-            keccak256(bytes(currency)) == keccak256(bytes("EUR")) &&
-            keccak256(bytes(pocketType)) == keccak256(bytes("CURRENT")) &&
-            keccak256(bytes(state)) == keccak256(bytes("ACTIVE"))
-        ) {
-            // Get balance as integer (should be in cents already)
-            int256 balanceInt = web.jsonGetInt(balancePath);
-            if (balanceInt > 0) {
-                return uint256(balanceInt);
-            }
+        int256 balanceInt = web.jsonGetInt(balancePath);
+        if (balanceInt > 0) {
+            return uint256(balanceInt);
         }
-
-        revert("EUR pocket not found at this index");
+        return 0;
     }
 
     function uintToString(uint256 value) private pure returns (string memory) {
-        if (value == 0) {
-            return "0";
-        }
+        if (value == 0) return "0";
+
         uint256 temp = value;
         uint256 digits;
         while (temp != 0) {
             digits++;
             temp /= 10;
         }
+
         bytes memory buffer = new bytes(digits);
         while (value != 0) {
             digits -= 1;

@@ -31,14 +31,25 @@ const webProofConfig: WebProofConfig<Abi, string> = {
       [
         {
           request: {
-            // redact sensitive headers but keep authentication
-            headers_except: ["Authorization", "Cookie"],
+            headers_except: [
+              "Authorization", 
+              "Cookie", 
+              "X-CSRF-Token",
+              "X-Client-Transaction-Id",
+              "X-Transaction-Id"
+            ],
           },
-        },
-        {
           response: {
-            // Keep essential response headers
-            headers_except: ["Content-Type", "Transfer-Encoding"],
+            headers_except: [
+              "Set-Cookie", 
+              "X-Frame-Options",
+              "Strict-Transport-Security",
+              "Transfer-Encoding",
+              "Connection",
+              "Date",
+              "Server"
+            ],
+            json_body_except: []
           },
         },
       ],
@@ -56,9 +67,18 @@ export const useRevolutBalanceProof = () => {
     error: webProofError,
   } = useWebProof(webProofConfig);
 
-  if (webProofError) {
-    throw new WebProofError(webProofError.message);
-  }
+  // Handle web proof errors without throwing immediately
+  useEffect(() => {
+    if (webProofError) {
+      console.error("WebProof Error Details:", {
+        message: webProofError.message,
+        stack: webProofError.stack,
+        name: webProofError.name,
+        cause: webProofError.cause,
+      });
+      setError(new WebProofError(`TLSN Connection Failed: ${webProofError.message}`));
+    }
+  }, [webProofError]);
 
   const { chain, error: chainError } = useChain(
     import.meta.env.VITE_CHAIN_NAME,
@@ -89,9 +109,12 @@ export const useRevolutBalanceProof = () => {
     error: callProverError,
   } = useCallProver(vlayerProverConfig);
 
-  if (callProverError) {
-    throw callProverError;
-  }
+  useEffect(() => {
+    if (callProverError) {
+      console.error("Call Prover Error:", callProverError);
+      setError(callProverError);
+    }
+  }, [callProverError]);
 
   const {
     isPending: isWaitingForProvingResult,
@@ -99,9 +122,12 @@ export const useRevolutBalanceProof = () => {
     error: waitForProvingResultError,
   } = useWaitForProvingResult(hash);
 
-  if (waitForProvingResultError) {
-    throw waitForProvingResultError;
-  }
+  useEffect(() => {
+    if (waitForProvingResultError) {
+      console.error("Wait For Proving Result Error:", waitForProvingResultError);
+      setError(waitForProvingResultError);
+    }
+  }, [waitForProvingResultError]);
 
   const [, setWebProof] = useLocalStorage("revolutWebProof", "");
   const [, setProverResult] = useLocalStorage("revolutProverResult", "");
