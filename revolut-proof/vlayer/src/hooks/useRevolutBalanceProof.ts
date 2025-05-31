@@ -43,8 +43,13 @@ const webProofConfig: WebProofConfig<Abi, string> = {
             headers_except: [
               "Set-Cookie", 
               "X-Frame-Options",
-              "Strict-Transport-Security"
+              "Strict-Transport-Security",
+              "Transfer-Encoding",
+              "Connection",
+              "Date",
+              "Server"
             ],
+            json_body_except: []
           },
         },
       ],

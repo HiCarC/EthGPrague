@@ -30,13 +30,13 @@ export const ProveStep = () => {
 
   useEffect(() => {
     if (result) {
-      // Check if balance verification was successful (less than 100 EUR)
-      if (balanceInfo?.hasLessThanMaximum) {
-        console.log(`✅ Balance verified: ${balanceInfo.balanceInEuros}€ (less than 100€)`);
+      // Check if balance verification was successful (MORE than 40 EUR)
+      if (balanceInfo?.hasMinimumBalance) {
+        console.log(`✅ Balance verified: ${balanceInfo.balanceInEuros}€ (more than 40€)`);
         void navigate("/mint");
       } else {
-        console.log(`❌ Balance too high: ${balanceInfo?.balanceInEuros || '0'}€ (should be less than 100€)`);
-        setErrorMessage(`Balance too high: ${balanceInfo?.balanceInEuros || '0'}€. Should be less than 100€ to qualify.`);
+        console.log(`❌ Balance too low: ${balanceInfo?.balanceInEuros || '0'}€ (should be more than 40€)`);
+        setErrorMessage(`Balance too low: ${balanceInfo?.balanceInEuros || '0'}€. Need more than 40€ to qualify.`);
       }
     }
   }, [result, balanceInfo, navigate]);

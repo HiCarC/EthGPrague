@@ -32,10 +32,10 @@ export const steps: Step[] = [
     path: "",
     kind: STEP_KIND.WELCOME,
     component: WelcomeScreen,
-    title: "Wise Balance Proof",
+    title: "Revolut Balance Proof",
     description:
-      "Prove you have less than 100€ in your Wise account and mint an NFT. Only you can prove your balance. This example demonstrates use of Web Proofs for financial verification.",
-    headerIcon: "/wise-illustration.svg",
+      "Prove you have more than 40€ in your Revolut account and mint an NFT. Only you can prove your balance. This example demonstrates use of Web Proofs for financial verification.",
+    headerIcon: "/revolut-illustration.svg",
     index: 0,
   },
   {
@@ -43,7 +43,7 @@ export const steps: Step[] = [
     kind: STEP_KIND.CONNECT_WALLET,
     backUrl: "",
     component: ConnectWalletStep,
-    title: "Wise Balance Proof",
+    title: "Revolut Balance Proof",
     description:
       "To proceed to the next step, please connect your wallet now by clicking the button below.",
     index: 1,
@@ -53,9 +53,9 @@ export const steps: Step[] = [
     kind: STEP_KIND.START_PROVING,
     backUrl: "/connect-wallet",
     component: ProveStep,
-    title: "Wise Balance Proof",
+    title: "Revolut Balance Proof",
     description:
-      "Open vlayer browser extension and follow instructions to produce the Proof of your Wise balance (less than 100€). \n",
+      "Open vlayer browser extension and follow instructions to produce the Proof of your Revolut balance (more than 40€). \n",
     index: 2,
   },
   {
@@ -63,7 +63,7 @@ export const steps: Step[] = [
     kind: STEP_KIND.INSTALL_EXTENSION,
     component: InstallExtension,
     backUrl: "/connect-wallet",
-    title: "Wise Balance Proof",
+    title: "Revolut Balance Proof",
     description: `Install vlayer browser extension to proceed to the next step. \n`,
     index: 2,
   },
@@ -72,8 +72,8 @@ export const steps: Step[] = [
     kind: STEP_KIND.MINT,
     backUrl: "/start-proving",
     component: MintStep,
-    title: "Wise Balance Proof",
-    description: `You are all set to mint your unique Wise Balance NFT, proving you have less than 100€.`,
+    title: "Revolut Balance Proof",
+    description: `You are all set to mint your unique Revolut Balance NFT, proving you have more than 40€.`,
     index: 3,
   },
   {
