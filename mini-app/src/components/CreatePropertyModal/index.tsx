@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { BookingService } from "@/services/booking";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
-import { X, Plus, Trash2, Building } from "lucide-react";
+import { X, Plus, Trash2, Building, CheckCircle } from "lucide-react";
 
 interface CreatePropertyModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onPropertyCreated?: () => void;
+  onPropertyCreated: () => void;
 }
 
 export const CreatePropertyModal = ({
@@ -25,6 +25,7 @@ export const CreatePropertyModal = ({
   });
   const [imageUrls, setImageUrls] = useState<string[]>([""]);
   const [loading, setLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   if (!isOpen) return null;
 
@@ -74,26 +75,59 @@ export const CreatePropertyModal = ({
         formData.maxGuests
       );
 
-      alert("Property created successfully!");
+      // Show success state
+      setLoading(false);
+      setIsSuccess(true);
 
-      // Reset form
-      setFormData({
-        name: "",
-        description: "",
-        location: "",
-        pricePerNight: "",
-        maxGuests: 1,
-      });
-      setImageUrls([""]);
-
-      onPropertyCreated?.();
+      // Wait 5 seconds before closing and fetching properties
+      setTimeout(() => {
+        // Reset form
+        setFormData({
+          name: "",
+          description: "",
+          location: "",
+          pricePerNight: "",
+          maxGuests: 1,
+        });
+        setImageUrls([""]);
+        setIsSuccess(false);
+        onClose();
+        onPropertyCreated();
+      }, 5000);
     } catch (error) {
       console.error("Error creating property:", error);
       alert("Failed to create property. Please try again.");
-    } finally {
       setLoading(false);
     }
   };
+
+  // Success state UI
+  if (isSuccess) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-lg max-w-lg w-full p-8">
+          <div className="text-center space-y-4">
+            <div className="flex justify-center">
+              <CheckCircle size={64} className="text-green-500" />
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-900">
+              Property Created Successfully!
+            </h2>
+            <p className="text-gray-600">
+              Your property has been listed on the blockchain and will be
+              visible to all users.
+            </p>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+              <p className="text-sm text-gray-500">
+                Refreshing properties list...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -107,6 +141,7 @@ export const CreatePropertyModal = ({
           <button
             onClick={onClose}
             className="p-1 hover:bg-gray-100 rounded-full"
+            disabled={loading}
           >
             <X size={20} />
           </button>
@@ -125,6 +160,7 @@ export const CreatePropertyModal = ({
               onChange={(e) => handleInputChange("name", e.target.value)}
               placeholder="e.g., Cozy Downtown Apartment"
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              disabled={loading}
             />
           </div>
 
@@ -139,6 +175,7 @@ export const CreatePropertyModal = ({
               onChange={(e) => handleInputChange("location", e.target.value)}
               placeholder="e.g., New York, NY"
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              disabled={loading}
             />
           </div>
 
@@ -153,6 +190,7 @@ export const CreatePropertyModal = ({
               placeholder="Describe your property, amenities, and what makes it special..."
               rows={3}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              disabled={loading}
             />
           </div>
 
@@ -172,6 +210,7 @@ export const CreatePropertyModal = ({
                 }
                 placeholder="0.01"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={loading}
               />
             </div>
             <div>
@@ -184,6 +223,7 @@ export const CreatePropertyModal = ({
                   handleInputChange("maxGuests", parseInt(e.target.value))
                 }
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={loading}
               >
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                   <option key={num} value={num}>
@@ -208,11 +248,13 @@ export const CreatePropertyModal = ({
                     onChange={(e) => updateImageUrl(index, e.target.value)}
                     placeholder="https://example.com/image.jpg"
                     className="flex-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    disabled={loading}
                   />
                   {imageUrls.length > 1 && (
                     <button
                       onClick={() => removeImageUrl(index)}
                       className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
+                      disabled={loading}
                     >
                       <Trash2 size={16} />
                     </button>
@@ -222,6 +264,7 @@ export const CreatePropertyModal = ({
               <button
                 onClick={addImageUrl}
                 className="flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm"
+                disabled={loading}
               >
                 <Plus size={16} />
                 Add another image
@@ -238,7 +281,10 @@ export const CreatePropertyModal = ({
             className="w-full flex items-center justify-center gap-2"
           >
             {loading ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Creating Property...
+              </>
             ) : (
               <>
                 <Building size={16} />

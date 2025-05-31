@@ -23,6 +23,7 @@ export const PropertyListings = () => {
       setLoading(true);
       setError(null);
       const fetchedProperties = await BookingService.getAllActiveProperties();
+      console.log("fetchedProperties", fetchedProperties);
       setProperties(fetchedProperties);
     } catch (error) {
       console.error("Error loading properties:", error);
@@ -200,7 +201,10 @@ export const PropertyListings = () => {
       {/* Create Property Modal */}
       <CreatePropertyModal
         isOpen={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => {
+          setShowCreateModal(false);
+          loadProperties();
+        }}
         onPropertyCreated={loadProperties}
       />
     </div>
