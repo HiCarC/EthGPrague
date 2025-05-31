@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Property, BookingService } from "@/services/booking";
-import { formatWeiToEth, calculateNights } from "@/lib/utils";
+import { formatWeiToWld, calculateNights } from "@/lib/utils";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import {
   X,
@@ -35,7 +35,7 @@ export const BookingModal = ({
 
   if (!isOpen) return null;
 
-  const pricePerNight = formatWeiToEth(property.pricePerNight);
+  const pricePerNight = formatWeiToWld(property.pricePerNight);
   const nights =
     checkInDate && checkOutDate
       ? calculateNights(new Date(checkInDate), new Date(checkOutDate))
@@ -112,8 +112,7 @@ export const BookingModal = ({
         new Date(checkInDate),
         new Date(checkOutDate),
         guestCount,
-        totalPrice.toString(),
-        property.owner
+        totalPrice.toString()
       );
 
       setSuccess(true);
@@ -131,7 +130,7 @@ export const BookingModal = ({
       if (error?.message) {
         if (error.message.includes("insufficient funds")) {
           errorMessage =
-            "Insufficient funds. Please ensure you have enough ETH.";
+            "Insufficient funds. Please ensure you have enough WLD.";
         } else if (error.message.includes("rejected")) {
           errorMessage = "Transaction was rejected. Please try again.";
         } else if (error.message.includes("network")) {
@@ -208,7 +207,7 @@ export const BookingModal = ({
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium">{property.name}</span>
               <span className="text-blue-600 font-bold">
-                {pricePerNight} ETH/night
+                {pricePerNight} WLD/night
               </span>
             </div>
             <div className="text-sm text-gray-600">{property.location}</div>
@@ -283,17 +282,15 @@ export const BookingModal = ({
             <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
               <div className="flex justify-between text-sm mb-1">
                 <span>
-                  {pricePerNight} ETH × {nights} nights
+                  {pricePerNight} WLD × {nights} nights
                 </span>
-                <span>
-                  {(parseFloat(pricePerNight) * nights).toFixed(6)} ETH
-                </span>
+                <div className="text-right">
+                  {(parseFloat(pricePerNight) * nights).toFixed(6)} WLD
+                </div>
               </div>
-              <div className="flex justify-between font-bold text-lg border-t border-blue-200 pt-2">
-                <span>Total</span>
-                <span className="text-blue-600">
-                  {totalPrice.toFixed(6)} ETH
-                </span>
+              <div className="flex justify-between font-bold text-lg border-t pt-2">
+                <span>Total:</span>
+                <span>{totalPrice.toFixed(6)} WLD</span>
               </div>
             </div>
           )}
@@ -318,7 +315,7 @@ export const BookingModal = ({
             ) : (
               <div className="flex items-center gap-2 bg-black p-4 rounded-lg">
                 <CreditCard size={16} />
-                Book Now - ${totalPrice.toFixed(6)} ETH
+                Book Now - ${totalPrice.toFixed(6)} WLD
               </div>
             )}
           </Button>
