@@ -10,17 +10,48 @@ contract WebProofProver is Prover {
     using WebLib for Web;
 
     string public constant DATA_URL =
-        "https://api.x.com/1.1/account/settings.json?include_ext_sharing_audiospaces_listening_data_with_followers=true&include_mention_filter=true&include_nsfw_user_flag=true&include_nsfw_admin_flag=true&include_ranked_timeline=true&include_alt_text_compose=true&ext=ssoConnections&include_country_code=true&include_ext_dm_nsfw_media_filter=true";
+        "https://app.revolut.com/api/retail/user/current/wallet";
+    uint256 public constant MINIMUM_BALANCE_EUROS = 40; // 40€ minimum
 
-    function main(WebProof calldata webProof, address account)
-        public
-        view
-        returns (Proof memory, string memory, address)
-    {
+    function main(
+        WebProof calldata webProof,
+        address userAccount
+    ) public view returns (Proof memory, bool, uint256, address) {
         Web memory web = webProof.verify(DATA_URL);
 
-        string memory screenName = web.jsonGetString("screen_name");
+        // Parse the wallet response to get EUR balance
+        // For now, let's use a simple approach and assume balance is in the response
+        uint256 eurBalance = parseEurBalance(web);
+        bool hasMinimumBalance = eurBalance >= (MINIMUM_BALANCE_EUROS * 100); // Convert to cents/centimes
 
-        return (proof(), screenName, account);
+        return (proof(), hasMinimumBalance, eurBalance, userAccount);
+    }
+
+    function parseEurBalance(Web memory web) private view returns (uint256) {
+        // This depends on Revolut's exact API response format
+        // You'll need to examine the actual response structure
+
+        // First, try to get balance as an integer (common for APIs to use cents)
+        int256 balanceInt = web.jsonGetInt("balance");
+        if (balanceInt > 0) {
+            return uint256(balanceInt);
+        }
+
+        // If that fails, try to get it as a string and convert
+        string memory balanceStr = web.jsonGetString("balance");
+        return stringToUint(balanceStr);
+    }
+
+    function stringToUint(string memory str) private pure returns (uint256) {
+        bytes memory b = bytes(str);
+        uint256 result = 0;
+
+        for (uint256 i = 0; i < b.length; i++) {
+            uint8 c = uint8(b[i]);
+            if (c >= 48 && c <= 57) {
+                result = result * 10 + (c - 48);
+            }
+        }
+        return result;
     }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { useTwitterAccountProof } from "../../../hooks/useTwitterAccountProof";
+import { useRevolutBalanceProof } from "../../../hooks/useRevolutBalanceProof";
 import { ProveStepPresentational } from "./Presentational";
 import { useAccount } from "wagmi";
 
@@ -17,8 +17,9 @@ export const ProveStep = () => {
     isPending,
     isCallProverIdle,
     result,
+    balanceInfo,
     error,
-  } = useTwitterAccountProof();
+  } = useRevolutBalanceProof();
 
   useEffect(() => {
     if (webProof && isCallProverIdle) {
@@ -28,9 +29,17 @@ export const ProveStep = () => {
 
   useEffect(() => {
     if (result) {
-      void navigate("/mint");
+      // Check if balance verification was successful
+      if (balanceInfo?.hasMinimumBalance) {
+        console.log(`✅ Balance verified: ${balanceInfo.balanceInEuros}€`);
+        void navigate("/mint");
+      } else {
+        console.log(`❌ Insufficient balance: ${balanceInfo?.balanceInEuros || '0'}€ (minimum 40€ required)`);
+        // You could show an error message or redirect to a different page
+        alert(`Insufficient balance: ${balanceInfo?.balanceInEuros || '0'}€. Minimum 40€ required.`);
+      }
     }
-  }, [result, navigate]);
+  }, [result, balanceInfo, navigate]);
 
   useEffect(() => {
     modalRef.current?.showModal();
