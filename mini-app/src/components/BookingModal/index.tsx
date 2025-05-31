@@ -112,19 +112,19 @@ export const BookingModal = ({
       const res = await fetch("/api/initiate-payment", {
         method: "POST",
       });
-      // const { id } = await res.json();
+      const { id } = await res.json();
 
-      // const result = await MiniKit.commandsAsync.pay({
-      //   reference: id,
-      //   to: "0xc7663Be8fD3860cCd91D6e2D8ae94251258d8412",
-      //   tokens: [
-      //     {
-      //       symbol: Tokens.WLD,
-      //       token_amount: tokenToDecimals(0.5, Tokens.WLD).toString(),
-      //     },
-      //   ],
-      //   description: "Test example payment for minikit",
-      // });
+      const result = await MiniKit.commandsAsync.pay({
+        reference: id,
+        to: "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771",
+        tokens: [
+          {
+            symbol: Tokens.WLD,
+            token_amount: tokenToDecimals(0.5, Tokens.WLD).toString(),
+          },
+        ],
+        description: "Test example payment for minikit",
+      });
       // console.log("result", result);
       await BookingService.createBooking(
         property.id.toString(),

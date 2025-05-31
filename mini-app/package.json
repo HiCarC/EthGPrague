@@ -13,8 +13,11 @@
     "lint": "next lint",
     "check-setup": "node scripts/check-setup.js",
     "deploy:worldchain": "npx hardhat run scripts/deploy-worldchain.js --network worldchain",
+    "deploy:upgradeable": "npx hardhat run scripts/deploy-upgradeable.js --network worldchain",
+    "upgrade:worldchain": "npx hardhat run scripts/upgrade-contract.js --network worldchain",
     "deploy:testnet": "npx hardhat run scripts/deploy-worldchain.js --network worldchain_testnet",
     "verify:worldchain": "npx hardhat verify --network worldchain",
+    "transfer:holiday-wld": "npx hardhat run scripts/transfer-wld-from-holiday.js --network worldchain",
     "test:network": "node scripts/test-network.js"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 "use client";
 
 import { TabItem, Tabs } from "@worldcoin/mini-apps-ui-kit-react";
-import { Bank, Home, User } from "iconoir-react";
+import { Bank, Home, User, Calendar } from "iconoir-react";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -23,6 +23,8 @@ export const Navigation = () => {
       setValue("wallet");
     } else if (pathname.includes("/profile")) {
       setValue("profile");
+    } else if (pathname.includes("/bookings")) {
+      setValue("bookings");
     } else {
       setValue("home");
     }
@@ -35,6 +37,9 @@ export const Navigation = () => {
     switch (newValue) {
       case "home":
         router.push("/home");
+        break;
+      case "bookings":
+        router.push("/bookings");
         break;
       case "wallet":
         router.push("/wallet");
@@ -50,6 +55,7 @@ export const Navigation = () => {
   return (
     <Tabs value={value} onValueChange={handleValueChange}>
       <TabItem value="home" icon={<Home />} label="Home" />
+      <TabItem value="bookings" icon={<Calendar />} label="Bookings" />
       <TabItem value="wallet" icon={<Bank />} label="Wallet" />
       <TabItem value="profile" icon={<User />} label="Profile" />
     </Tabs>
