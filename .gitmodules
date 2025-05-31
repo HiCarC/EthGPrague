@@ -10,3 +10,6 @@
 [submodule "revolut-proof/lib/forge-std"]
 	path = revolut-proof/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "rev/lib/forge-std"]
+	path = rev/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
