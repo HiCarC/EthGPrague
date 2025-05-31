@@ -2,6 +2,7 @@
 pragma solidity ^0.8.28;
 
 import "./BookingPool.sol";
+import "./MockYieldStrategy.sol";
 
 contract BookingPoolFactoryV2 {
     // Structs
@@ -27,6 +28,7 @@ contract BookingPoolFactoryV2 {
     uint256 public nextPropertyId = 1;
     uint256 public platformFeePercentage = 5; // 5% platform fee
     address public platformOwner;
+    address public yieldStrategy;
 
     // Events - Factory events
     event PoolCreated(
@@ -84,8 +86,9 @@ contract BookingPoolFactoryV2 {
         _;
     }
 
-    constructor() {
+    constructor(address _yieldStrategy) {
         platformOwner = msg.sender;
+        yieldStrategy = _yieldStrategy;
     }
 
     // Property Management Functions
@@ -205,7 +208,8 @@ contract BookingPoolFactoryV2 {
             _checkOutDate,
             _maxParticipants,
             platformFeePercentage,
-            platformOwner
+            platformOwner,
+            yieldStrategy
         );
 
         address poolAddress = address(newPool);
@@ -221,7 +225,8 @@ contract BookingPoolFactoryV2 {
             _checkOutDate,
             _maxParticipants,
             platformFeePercentage,
-            platformOwner
+            platformOwner,
+            yieldStrategy
         );
 
         emit PoolCreated(

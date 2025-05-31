@@ -4,9 +4,11 @@ pragma solidity ^0.8.28;
 import "forge-std/Test.sol";
 import "../src/BookingPoolFactory.sol";
 import "../src/BookingPool.sol";
+import "../src/MockYieldStrategy.sol";
 
 contract BookingPoolFactoryV2Test is Test {
     BookingPoolFactoryV2 factory;
+    MockYieldStrategy yieldStrategy;
 
     address host = address(0x1);
     address user1 = address(0x2);
@@ -15,15 +17,18 @@ contract BookingPoolFactoryV2Test is Test {
     address platformOwner;
 
     function setUp() public {
-        factory = new BookingPoolFactoryV2();
+        yieldStrategy = new MockYieldStrategy(address(this));
+
+        factory = new BookingPoolFactoryV2(address(yieldStrategy));
         platformOwner = factory.platformOwner();
 
-        // Fund test accounts
         vm.deal(host, 10 ether);
         vm.deal(user1, 10 ether);
         vm.deal(user2, 10 ether);
         vm.deal(user3, 10 ether);
         vm.deal(platformOwner, 1 ether);
+
+        vm.deal(address(yieldStrategy), 10 ether);
     }
 
     function testCreateProperty() public {

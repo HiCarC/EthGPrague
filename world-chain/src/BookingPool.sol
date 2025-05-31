@@ -104,7 +104,8 @@ contract BookingPool {
         uint256 _checkOutDate,
         uint256 _maxParticipants,
         uint256 _platformFeePercentage,
-        address _platformOwner
+        address _platformOwner,
+        address _yieldStrategy
     ) {
         bookingId = _bookingId;
         host = _host;
@@ -116,10 +117,10 @@ contract BookingPool {
         platformOwner = _platformOwner;
         currentStatus = PoolStatus.Active;
 
-        // 🆕 CREATE YIELD STRATEGY
-        yieldStrategy = new MockYieldStrategy(_platformOwner);
+        // 🆕 USE PROVIDED YIELD STRATEGY INSTEAD OF CREATING NEW ONE
+        yieldStrategy = MockYieldStrategy(_yieldStrategy);
         poolYieldStartTime = block.timestamp;
-        emit YieldStrategyCreated(address(yieldStrategy));
+        emit YieldStrategyCreated(_yieldStrategy);
     }
 
     function joinPool()

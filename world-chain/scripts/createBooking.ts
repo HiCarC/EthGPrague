@@ -3,6 +3,7 @@ import { execSync } from 'child_process';
 import * as dotenv from 'dotenv';
 import BookingPoolFactoryABI from './abis/BookingPoolFactory.json';
 import BookingPoolABI from './abis/BookingPool.json';
+import MockYieldStrategyABI from './abis/MockYieldStrategy.json';
 
 // Load environment variables
 dotenv.config();
@@ -13,6 +14,7 @@ const WORLDCHAIN_MAINNET_RPC = 'https://worldchain-mainnet.g.alchemy.com/public'
 
 // Contract addresses (replace with your deployed address)
 const FACTORY_ADDRESS = process.env.FACTORY_ADDRESS || '0xe8F829fA5571Da7C6Fc59000F66ac72a2b38ccb0'; // Replace with your deployed address
+const YIELD_STRATEGY_ADDRESS = process.env.YIELD_STRATEGY_ADDRESS || '';
 
 interface BookingParams {
   bookingId: string;
@@ -27,6 +29,7 @@ class BookingPoolManager {
   private provider: ethers.Provider;
   private signer: ethers.Signer;
   private factory: ethers.Contract;
+  private yieldStrategy: ethers.Contract;
 
   constructor(useMainnet: boolean = false) {
     // Setup provider
@@ -43,6 +46,9 @@ class BookingPoolManager {
     
     // Setup factory contract
     this.factory = new ethers.Contract(FACTORY_ADDRESS, BookingPoolFactoryABI, this.signer);
+    
+    // Setup yield strategy contract
+    this.yieldStrategy = new ethers.Contract(YIELD_STRATEGY_ADDRESS, MockYieldStrategyABI, this.signer);
   }
 
   async createBooking(params: BookingParams): Promise<string> {
@@ -185,6 +191,30 @@ class BookingPoolManager {
       console.error('❌ Error getting pool info:', error.message);
       throw error;
     }
+  }
+
+  async fundYieldPool(amountETH: string): Promise<string> {
+    console.log('💰 Funding yield pool with', amountETH, 'ETH...');
+    const tx = await this.yieldStrategy.fundYieldPool({
+      value: ethers.parseEther(amountETH)
+    });
+    await tx.wait();
+    console.log('✅ Yield pool funded!');
+    return tx.hash;
+  }
+
+  async getYieldInfo(poolAddress: string) {
+    const pool = new ethers.Contract(poolAddress, BookingPoolABI, this.provider);
+    const yieldInfo = await pool.getYieldInfo();
+    
+    console.log('\n💎 Yield Information:');
+    console.log('  Estimated Total Yield:', ethers.formatEther(yieldInfo[0]), 'ETH');
+    console.log('  Estimated User Yield:', ethers.formatEther(yieldInfo[1]), 'ETH');
+    console.log('  Estimated Platform Yield:', ethers.formatEther(yieldInfo[2]), 'ETH');
+    console.log('  Yield Distributed:', yieldInfo[3]);
+    console.log('  Time Elapsed:', yieldInfo[4].toString(), 'seconds');
+    
+    return yieldInfo;
   }
 }
 

@@ -24,9 +24,16 @@ async function generateABIs() {
   );
   fs.writeFileSync('scripts/abis/BookingPool.json', JSON.stringify(poolABI, null, 2));
 
+  // 🆕 Generate MockYieldStrategy ABI
+  const yieldStrategyABI = JSON.parse(
+    execSync('jq .abi out/MockYieldStrategy.sol/MockYieldStrategy.json', { encoding: 'utf8' })
+  );
+  fs.writeFileSync('scripts/abis/MockYieldStrategy.json', JSON.stringify(yieldStrategyABI, null, 2));
+
   console.log('✅ ABI files generated:');
   console.log('  - scripts/abis/BookingPoolFactoryV2.json');
   console.log('  - scripts/abis/BookingPool.json');
+  console.log('  - scripts/abis/MockYieldStrategy.json');  // 🆕 Add this
 }
 
 generateABIs().catch(console.error); 
