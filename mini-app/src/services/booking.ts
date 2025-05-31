@@ -1,11 +1,14 @@
 import { MiniKit } from "@worldcoin/minikit-js";
 import { createPublicClient, http } from "viem";
 import { defineChain } from "viem";
-import HotelBookingABI from "@/abi/HotelBookingABI.json";
+import HotelBookingPermit2ABI from "@/abi/HotelBookingPermit2ABI.json";
 import { useWaitForTransactionReceipt } from "@worldcoin/minikit-react";
 
 // WLD Token contract address on World Chain Mainnet
 export const WLD_TOKEN_ADDRESS = "0x2cFc85d8E48F8EAB294be644d9E25C3030863003";
+
+// Permit2 contract address on World Chain Mainnet
+export const PERMIT2_ADDRESS = "0xF0882554ee924278806d708396F1a7975b732522";
 
 // Define World Chain Testnet
 const worldchainTestnet = defineChain({
@@ -55,8 +58,7 @@ const worldchainMainnet = defineChain({
 
 // Replace with your deployed contract address
 export const HOTEL_BOOKING_CONTRACT_ADDRESS =
-  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||
-  "0xFd38A35dE21941bCF08006BDC469a96fD591be7E";
+  "0x52295055E09Cb7252dBAce63AD2A261bdF5f5dC8";
 
 // Public client for reading contract data
 export const publicClient = createPublicClient({
@@ -89,56 +91,31 @@ export interface Booking {
   createdAt: bigint;
 }
 
-// ERC20 ABI for WLD token operations
-const ERC20_ABI = [
+// Permit2 ABI for signature transfers
+const PERMIT2_ABI = [
   {
     inputs: [
+      {
+        components: [
+          { internalType: "address", name: "token", type: "address" },
+          { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        internalType: "struct IPermit2.TokenPermissions",
+        name: "permitted",
+        type: "tuple",
+      },
       { internalType: "address", name: "spender", type: "address" },
-      { internalType: "uint256", name: "amount", type: "uint256" },
+      { internalType: "uint256", name: "nonce", type: "uint256" },
+      { internalType: "uint256", name: "deadline", type: "uint256" },
     ],
-    name: "approve",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    name: "signatureTransfer",
+    outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "owner", type: "address" },
-      { internalType: "address", name: "spender", type: "address" },
-    ],
-    name: "allowance",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
     type: "function",
   },
 ];
 
 export class BookingService {
-  // Helper function to approve WLD tokens
-  static async approveWLD(amount: string): Promise<any> {
-    try {
-      const amountInWei = BigInt(
-        Math.floor(parseFloat(amount) * Math.pow(10, 18))
-      );
-
-      const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
-        transaction: [
-          {
-            address: WLD_TOKEN_ADDRESS,
-            abi: ERC20_ABI,
-            functionName: "approve",
-            args: [HOTEL_BOOKING_CONTRACT_ADDRESS, amountInWei.toString()],
-          },
-        ],
-      });
-
-      return finalPayload;
-    } catch (error) {
-      console.error("Error approving WLD:", error);
-      throw error;
-    }
-  }
-
   // Property Management
   static async createProperty(
     name: string,
@@ -157,7 +134,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "createProperty",
             args: [
               name,
@@ -197,7 +174,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "updateProperty",
             args: [
               propertyId,
@@ -225,7 +202,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "deactivateProperty",
             args: [propertyId],
           },
@@ -245,7 +222,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "activateProperty",
             args: [propertyId],
           },
@@ -259,7 +236,7 @@ export class BookingService {
     }
   }
 
-  // Booking Functions
+  // Booking Functions with Permit2
   static async createBooking(
     propertyId: string,
     checkInDate: Date,
@@ -268,33 +245,58 @@ export class BookingService {
     totalAmountInWld: string
   ): Promise<any> {
     try {
-      const totalAmountInWei = BigInt(
-        Math.floor(parseFloat(totalAmountInWld) * Math.pow(10, 18))
-      );
-      console.log("totalAmountInWld", totalAmountInWld);
-      console.log("Approve WLD");
-      // First approve the WLD tokens for the booking contract
-      await this.approveWLD(totalAmountInWld);
-      console.log("Approve WLD Done");
-      console.log("Send tx");
+      const totalAmountInWei = BigInt((0.5 * 10 ** 18).toString());
+
+      console.log("Creating booking with Permit2...");
+      console.log("Total amount in WLD:", totalAmountInWld);
+      console.log("Total amount in Wei:", totalAmountInWei.toString());
+
+      // Create permit for Permit2 signature transfer
+      const currentTime = Math.floor(Date.now() / 1000);
+      const deadline = currentTime + 30 * 60; // 30 minutes from now
+      const nonce = Math.floor(Math.random() * 1000000); // Random nonce
+
+      console.log("Permit parameters:", {
+        amount: (0.5 * 10 ** 18).toString(),
+        nonce: nonce.toString(),
+        deadline: deadline.toString(),
+      });
+
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
-            functionName: "createBooking",
+            abi: HotelBookingPermit2ABI,
+            functionName: "createBookingWithPermit2",
             args: [
               propertyId,
               Math.floor(checkInDate.getTime() / 1000),
               Math.floor(checkOutDate.getTime() / 1000),
               guestCount,
-              totalAmountInWld.toString(),
+              (0.5 * 10 ** 18).toString(),
+              [
+                (0.5 * 10 ** 18).toString(),
+                nonce.toString(), // nonce
+                deadline.toString(), // deadline
+              ],
+              "PERMIT2_SIGNATURE_PLACEHOLDER_0", // This will be replaced with the actual signature
             ],
           },
         ],
+        permit2: [
+          {
+            permitted: {
+              token: WLD_TOKEN_ADDRESS,
+              amount: totalAmountInWei.toString(),
+            },
+            spender: HOTEL_BOOKING_CONTRACT_ADDRESS,
+            nonce: nonce.toString(),
+            deadline: deadline.toString(),
+          },
+        ],
       });
-      console.log("Send tx Done");
-      console.log("finalPayload", finalPayload);
+
+      console.log("Booking created successfully:", finalPayload);
       return finalPayload;
     } catch (error) {
       console.error("Error creating booking:", error);
@@ -308,7 +310,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "confirmBooking",
             args: [bookingId],
           },
@@ -328,7 +330,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "cancelBooking",
             args: [bookingId],
           },
@@ -348,7 +350,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "checkIn",
             args: [bookingId],
           },
@@ -368,7 +370,7 @@ export class BookingService {
         transaction: [
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-            abi: HotelBookingABI,
+            abi: HotelBookingPermit2ABI,
             functionName: "checkOut",
             args: [bookingId],
           },
@@ -387,7 +389,7 @@ export class BookingService {
     try {
       const properties = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getAllActiveProperties",
       })) as Property[];
 
@@ -402,7 +404,7 @@ export class BookingService {
     try {
       const property = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getProperty",
         args: [propertyId],
       })) as Property;
@@ -418,7 +420,7 @@ export class BookingService {
     try {
       const propertyIds = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getOwnerProperties",
         args: [ownerAddress],
       })) as bigint[];
@@ -434,7 +436,7 @@ export class BookingService {
     try {
       const bookingIds = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getGuestBookings",
         args: [guestAddress],
       })) as bigint[];
@@ -450,7 +452,7 @@ export class BookingService {
     try {
       const booking = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getBooking",
         args: [bookingId],
       })) as Booking;
@@ -466,7 +468,7 @@ export class BookingService {
     try {
       const bookingIds = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "getPropertyBookings",
         args: [propertyId],
       })) as bigint[];
@@ -489,7 +491,7 @@ export class BookingService {
 
       const isBooked = (await publicClient.readContract({
         address: HOTEL_BOOKING_CONTRACT_ADDRESS as `0x${string}`,
-        abi: HotelBookingABI,
+        abi: HotelBookingPermit2ABI,
         functionName: "isPropertyBooked",
         args: [propertyId, checkInTimestamp, checkOutTimestamp],
       })) as boolean;

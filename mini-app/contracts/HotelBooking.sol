@@ -216,7 +216,7 @@ contract HotelBooking {
         properties[propertyId].isActive = true;
     }
 
-    // Booking Functions
+    // Booking Functions with Direct WLD Transfer
     function createBooking(
         uint256 propertyId,
         uint256 checkInDate,
@@ -224,6 +224,39 @@ contract HotelBooking {
         uint256 guestCount,
         uint256 totalAmount
     ) external propertyExists(propertyId) returns (uint256) {
+        _validateBookingParams(
+            propertyId,
+            checkInDate,
+            checkOutDate,
+            guestCount,
+            totalAmount
+        );
+
+        // Transfer WLD tokens from guest to contract using transferFrom
+        // Guest must have approved this contract to spend their WLD tokens
+        require(
+            WLD_TOKEN.transferFrom(msg.sender, address(this), totalAmount),
+            "WLD transfer failed"
+        );
+
+        return
+            _createBookingInternal(
+                propertyId,
+                checkInDate,
+                checkOutDate,
+                guestCount,
+                totalAmount
+            );
+    }
+
+    // Internal function to validate booking parameters
+    function _validateBookingParams(
+        uint256 propertyId,
+        uint256 checkInDate,
+        uint256 checkOutDate,
+        uint256 guestCount,
+        uint256 totalAmount
+    ) internal view {
         Property memory property = properties[propertyId];
         require(property.isActive, "Property is not active");
         require(property.owner != msg.sender, "Cannot book your own property");
@@ -247,13 +280,16 @@ contract HotelBooking {
         uint256 nights = (checkOutDate - checkInDate) / 1 days;
         uint256 expectedAmount = property.pricePerNight * nights;
         require(totalAmount >= expectedAmount, "Insufficient payment amount");
+    }
 
-        // Transfer WLD tokens from guest to contract
-        require(
-            WLD_TOKEN.transferFrom(msg.sender, address(this), totalAmount),
-            "WLD transfer failed"
-        );
-
+    // Internal function to create booking
+    function _createBookingInternal(
+        uint256 propertyId,
+        uint256 checkInDate,
+        uint256 checkOutDate,
+        uint256 guestCount,
+        uint256 totalAmount
+    ) internal returns (uint256) {
         uint256 bookingId = nextBookingId;
         nextBookingId++;
 
