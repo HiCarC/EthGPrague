@@ -12,7 +12,6 @@ import { startPage, expectUrl, notarize } from "@vlayer/sdk/web_proof";
 import { UseChainError, WebProofError } from "../errors";
 import webProofProver from "../../../out/WebProofProver.sol/WebProofProver";
 
-// Configuration that matches your exact curl POST request
 const webProofConfig: WebProofConfig<Abi, string> = {
   proverCallCommitment: {
     address: "0x0000000000000000000000000000000000000000",
@@ -21,48 +20,37 @@ const webProofConfig: WebProofConfig<Abi, string> = {
     commitmentArgs: [],
     chainId: 1,
   },
-  logoUrl: "/wise-logo.png",
+  logoUrl: "/revolut-logo.png", // You'll need to add Revolut logo
   steps: [
-    startPage("https://wise.com/payments/account-details/new?currency=EUR", "Navigate to account details"),
-    // notarize(
-    //   "https://wise.com/gateway/v1/profiles/70749292/account-details",
-    //   "GET",
-    //   "Capture exact Wise balance POST request",
-    //   [
-    //   ],
-    // ),
+    startPage("https://app.revolut.com/", "Go to Revolut app"),
+    expectUrl("https://app.revolut.com/home", "Log in to your Revolut account"),
     notarize(
-      "https://wise.com/gateway/v4/profiles/70749292/balances",
-      "POST",
-      "Capture exact Wise balance POST request",
+      "https://app.revolut.com/api/retail/user/current/wallet",
+      "GET",
+      "Generate Proof of Revolut balance",
       [
         {
           request: {
-            // Redact only the most sensitive authentication
             headers_except: [
-              "cookie",            // appToken, userToken, etc.
-              "x-access-token",    // Tr4n5f3rw153
-              "x-idempotence-uuid" // d87b7163-6310-47dd-a646-d640ae5b52e2
+              "Authorization", 
+              "Cookie", 
+              "X-CSRF-Token",
+              "X-Client-Transaction-Id",
+              "X-Transaction-Id"
             ],
-            // Keep the exact POST body: {"currency":"EUR","type":"STANDARD"}
-            json_body_except: []
           },
           response: {
-            // Keep the response data (balance information)
             headers_except: [
-              "set-cookie",
-              "server", 
-              "date"
+              "Set-Cookie", 
+              "X-Frame-Options",
+              "Strict-Transport-Security"
             ],
-            json_body_except: [] // Keep all response data
           },
         },
       ],
     ),
   ],
 };
-
-console.log("webProofConfig:", webProofConfig);
 
 export const useRevolutBalanceProof = () => {
   const [error, setError] = useState<Error | null>(null);
@@ -74,6 +62,7 @@ export const useRevolutBalanceProof = () => {
     error: webProofError,
   } = useWebProof(webProofConfig);
 
+  // Handle web proof errors without throwing immediately
   useEffect(() => {
     if (webProofError) {
       console.error("WebProof Error Details:", {
@@ -135,9 +124,10 @@ export const useRevolutBalanceProof = () => {
     }
   }, [waitForProvingResultError]);
 
-  const [, setWebProof] = useLocalStorage("wiseWebProof", "");
-  const [, setProverResult] = useLocalStorage("wiseProverResult", "");
+  const [, setWebProof] = useLocalStorage("revolutWebProof", "");
+  const [, setProverResult] = useLocalStorage("revolutProverResult", "");
 
+  // Helper function to safely stringify data with BigInt values
   const safeStringify = (obj: any) => {
     return JSON.stringify(obj, (key, value) =>
       typeof value === 'bigint' ? value.toString() : value
@@ -146,20 +136,21 @@ export const useRevolutBalanceProof = () => {
 
   useEffect(() => {
     if (webProof) {
-      console.log("Wise webProof", webProof);
+      console.log("Revolut webProof", webProof);
       setWebProof(safeStringify(webProof));
     }
   }, [webProof]);
 
   useEffect(() => {
     if (result) {
-      console.log("Wise proverResult", result);
+      console.log("Revolut proverResult", result);
       setProverResult(safeStringify(result));
       
+      // Log the extracted data for debugging
       if (result && Array.isArray(result) && result.length >= 4) {
-        const [proof, hasLessThanMaximum, balance, userAccount] = result;
+        const [proof, hasMinBalance, balance, userAccount] = result;
         console.log("Proof verification:", {
-          hasLessThanMaximum,
+          hasMinBalance,
           balance: balance.toString(),
           balanceInEuros: (Number(balance) / 100).toFixed(2),
           userAccount
@@ -168,11 +159,12 @@ export const useRevolutBalanceProof = () => {
     }
   }, [result]);
 
+  // Helper function to extract balance information from result
   const getBalanceInfo = () => {
     if (result && Array.isArray(result) && result.length >= 4) {
-      const [, hasLessThanMaximum, balance, userAccount] = result;
+      const [, hasMinBalance, balance, userAccount] = result;
       return {
-        hasLessThanMaximum: hasLessThanMaximum,
+        hasMinimumBalance: hasMinBalance,
         balanceInCents: Number(balance),
         balanceInEuros: (Number(balance) / 100).toFixed(2),
         userAccount
@@ -195,29 +187,3 @@ export const useRevolutBalanceProof = () => {
     error,
   };
 }; 
-
-
-// curl 'https://wise.com/gateway/v4/profiles/70749292/balances' \
-//   -H 'accept: application/json, text/plain, */*' \
-//   -H 'accept-language: en-GB' \
-//   -H 'content-type: application/json' \
-//   -b 'appToken=dad99d7d8e52c2c8aaf9fda788d8acdc; gid=aeefb1d1-716a-4353-801d-6a5a59e0a09b; gid=aeefb1d1-716a-4353-801d-6a5a59e0a09b; signupToken=b4bede8f-9fc6-4dcf-b36f-857ef3b8882e; selected-profile-id-89058057=70749292; tw-ref-user=Your%20friend; localeData=fr; __cf_bm=87vVs4n5FTGM6gky4lv81yEQ20Gw2_89ud8nNOYVI8c-1748702505-1.0.1.1-lOUfNfsWw4ELKERHyogtTeIQ9nhmRn6w_Qcr0j2CbhDIPq0KBsSoQVz1P2hIUhM2Dzp2l9w.h5CsFhKCOsJnoHhH4eDMQYDx38HxNhNgDK39n7ljDf64WcAj4qxjZERk; oauthToken=afb2e0c0-3251-4a42-9d47-c399ead44005; userToken=6cd03429557a4ea7b882c2192a7b5d57' \
-//   -H 'origin: https://wise.com' \
-//   -H 'priority: u=1, i' \
-//   -H 'referer: https://wise.com/payments/account-details/new?currency=EUR' \
-//   -H 'sec-ch-ua: "Chromium";v="136", "Brave";v="136", "Not.A/Brand";v="99"' \
-//   -H 'sec-ch-ua-arch: "arm"' \
-//   -H 'sec-ch-ua-bitness: "64"' \
-//   -H 'sec-ch-ua-mobile: ?0' \
-//   -H 'sec-ch-ua-model: ""' \
-//   -H 'sec-ch-ua-platform: "macOS"' \
-//   -H 'sec-ch-ua-platform-version: "15.4.1"' \
-//   -H 'sec-fetch-dest: empty' \
-//   -H 'sec-fetch-mode: cors' \
-//   -H 'sec-fetch-site: same-origin' \
-//   -H 'sec-gpc: 1' \
-//   -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36' \
-//   -H 'x-access-token: Tr4n5f3rw153' \
-//   -H 'x-idempotence-uuid: d87b7163-6310-47dd-a646-d640ae5b52e2' \
-//   -H 'x-visual-context: personal::light' \
-//   --data-raw '{"currency":"EUR","type":"STANDARD"}'

@@ -12,26 +12,19 @@ contract WebProofVerifier is Verifier, ERC721 {
     mapping(address => uint256) public userBalanceProof; // Store proven balance
     mapping(uint256 => uint256) public tokenIdToBalance;
 
-    event BalanceProven(
-        address indexed user,
-        uint256 balance,
-        bool hasLessThanMaximum
-    );
+    event BalanceProven(address indexed user, uint256 balance, bool hasMinimum);
 
-    constructor(address _prover) ERC721("WiseBalanceNFT", "WBNFT") {
+    constructor(address _prover) ERC721("RevolutBalanceNFT", "RBNFT") {
         prover = _prover;
     }
 
     function verify(
         Proof calldata,
-        bool hasLessThanMaximum,
+        bool hasMinimumBalance,
         uint256 balance,
         address userAccount
     ) public onlyVerified(prover, WebProofProver.main.selector) {
-        require(
-            hasLessThanMaximum,
-            "User doesn't have less than 100 EUR balance"
-        );
+        require(hasMinimumBalance, "User doesn't have minimum 40 EUR balance");
 
         uint256 tokenId = uint256(
             keccak256(abi.encodePacked(userAccount, balance))
@@ -47,7 +40,7 @@ contract WebProofVerifier is Verifier, ERC721 {
 
         _safeMint(userAccount, tokenId);
 
-        emit BalanceProven(userAccount, balance, hasLessThanMaximum);
+        emit BalanceProven(userAccount, balance, hasMinimumBalance);
     }
 
     function tokenURI(
@@ -61,12 +54,12 @@ contract WebProofVerifier is Verifier, ERC721 {
 
         return
             string.concat(
-                '{"name":"Wise Balance Proof","description":"Proven balance of ',
+                '{"name":"Revolut Balance Proof","description":"Proven balance of ',
                 _toString(euros),
                 ".",
                 cents < 10 ? "0" : "",
                 _toString(cents),
-                ' EUR (less than 100 EUR)","attributes":[{"trait_type":"Balance EUR","value":"',
+                ' EUR (minimum 40 EUR minimum balance)","attributes":[{"trait_type":"Balance EUR","value":"',
                 _toString(euros),
                 ".",
                 cents < 10 ? "0" : "",

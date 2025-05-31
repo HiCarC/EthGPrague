@@ -9,10 +9,9 @@ contract WebProofProver is Prover {
     using WebProofLib for WebProof;
     using WebLib for Web;
 
-    // string public constant DATA_URL = "https://wise.com/gateway/v4/profiles/70749292/balances";
     string public constant DATA_URL =
-        "https://wise.com/gateway/v1/profiles/70749292/account-details";
-    uint256 public constant MAXIMUM_BALANCE_EUROS = 100; // 100€ maximum (prove less than this)
+        "https://app.revolut.com/api/retail/user/current/wallet";
+    uint256 public constant MINIMUM_BALANCE_EUROS = 40; // 40€ minimum
 
     function main(
         WebProof calldata webProof,
@@ -20,33 +19,86 @@ contract WebProofProver is Prover {
     ) public view returns (Proof memory, bool, uint256, address) {
         Web memory web = webProof.verify(DATA_URL);
 
-        // Parse the exact Wise API response for EUR balance
-        uint256 eurBalance = parseWiseEurBalance(web);
-        bool hasLessThanMaximum = eurBalance < (MAXIMUM_BALANCE_EUROS * 100);
+        // Parse the wallet response to get EUR balance from pockets
+        uint256 eurBalance = parseEurBalance(web);
+        bool hasMinimumBalance = eurBalance >= (MINIMUM_BALANCE_EUROS * 100); // Convert to cents/centimes
 
-        return (proof(), hasLessThanMaximum, eurBalance, userAccount);
+        return (proof(), hasMinimumBalance, eurBalance, userAccount);
     }
 
-    function parseWiseEurBalance(
-        Web memory web
-    ) private view returns (uint256) {
-        // Since you have 0 EUR balance, let's parse the Wise response directly
-        // Based on your data: {"id": 123252897, "currency": "EUR", "amount": {"value": 0}}
+    function parseEurBalance(Web memory web) private view returns (uint256) {
+        // Try to find EUR balance in the pockets array
+        // Structure: {"pockets": [{"currency": "EUR", "type": "CURRENT", "balance": 5000}]}
 
-        // First check if this is a EUR balance
-        string memory currency = web.jsonGetString("currency");
+        // Try multiple pocket indices to find the EUR CURRENT account
+        for (uint256 i = 0; i < 10; i++) {
+            try this.tryGetPocketBalance(web, i) returns (uint256 balance) {
+                if (balance > 0) return balance;
+            } catch {}
+        }
 
-        if (keccak256(bytes(currency)) == keccak256(bytes("EUR"))) {
-            // Get the balance value from amount.value
-            int256 balanceValue = web.jsonGetInt("amount.value");
+        // If all methods fail, return 0 (which will trigger the original error)
+        return 0;
+    }
 
-            if (balanceValue >= 0) {
-                // Wise returns balance in euros, convert to cents
-                return uint256(balanceValue) * 100;
+    function tryGetPocketBalance(
+        Web memory web,
+        uint256 pocketIndex
+    ) external view returns (uint256) {
+        // Convert index to string for JSON path
+        string memory indexStr = uintToString(pocketIndex);
+
+        // Build JSON paths using bracket notation for arrays
+        string memory currencyPath = string(
+            abi.encodePacked("pockets[", indexStr, "].currency")
+        );
+        string memory typePath = string(
+            abi.encodePacked("pockets[", indexStr, "].type")
+        );
+        string memory statePath = string(
+            abi.encodePacked("pockets[", indexStr, "].state")
+        );
+        string memory balancePath = string(
+            abi.encodePacked("pockets[", indexStr, "].balance")
+        );
+
+        // Check if this pocket is EUR CURRENT and ACTIVE
+        string memory currency = web.jsonGetString(currencyPath);
+        string memory pocketType = web.jsonGetString(typePath);
+        string memory state = web.jsonGetString(statePath);
+
+        // Check if this is the EUR current account
+        if (
+            keccak256(bytes(currency)) == keccak256(bytes("EUR")) &&
+            keccak256(bytes(pocketType)) == keccak256(bytes("CURRENT")) &&
+            keccak256(bytes(state)) == keccak256(bytes("ACTIVE"))
+        ) {
+            // Get balance as integer (should be in cents already)
+            int256 balanceInt = web.jsonGetInt(balancePath);
+            if (balanceInt > 0) {
+                return uint256(balanceInt);
             }
         }
 
-        // If we can't parse or no EUR found, return 0 (which is less than 100 EUR)
-        return 0;
+        revert("EUR pocket not found at this index");
+    }
+
+    function uintToString(uint256 value) private pure returns (string memory) {
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
     }
 }
