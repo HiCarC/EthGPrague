@@ -24,9 +24,37 @@ export function formatPrice(price: string | number): string {
   }).format(num);
 }
 
-export function formatWeiToEth(wei: string | bigint): string {
-  const eth = Number(wei) / Math.pow(10, 18);
-  return eth.toFixed(6);
+export function formatWeiToEth(
+  wei: string | bigint | null | undefined
+): string {
+  try {
+    if (wei === null || wei === undefined) {
+      return "0.000000";
+    }
+
+    let weiNumber: number;
+
+    if (typeof wei === "bigint") {
+      weiNumber = Number(wei);
+    } else if (typeof wei === "string") {
+      if (wei === "" || wei === "0" || wei === "undefined" || wei === "null") {
+        return "0.000000";
+      }
+      weiNumber = Number(wei);
+    } else {
+      return "0.000000";
+    }
+
+    if (isNaN(weiNumber) || !isFinite(weiNumber)) {
+      return "0.000000";
+    }
+
+    const eth = weiNumber / Math.pow(10, 18);
+    return eth.toFixed(6);
+  } catch (error) {
+    console.error("Error formatting wei to eth:", error, "Input:", wei);
+    return "0.000000";
+  }
 }
 
 export function parseEthToWei(eth: string): string {
@@ -69,7 +97,28 @@ export function isDateInPast(date: Date): boolean {
   return date < new Date();
 }
 
-export function truncateAddress(address: string, start = 6, end = 4): string {
-  if (address.length <= start + end) return address;
-  return `${address.slice(0, start)}...${address.slice(-end)}`;
+export function truncateAddress(
+  address: string | null | undefined,
+  start = 6,
+  end = 4
+): string {
+  try {
+    if (
+      !address ||
+      typeof address !== "string" ||
+      address === "undefined" ||
+      address === "null"
+    ) {
+      return "0x...";
+    }
+
+    if (address.length <= start + end) {
+      return address;
+    }
+
+    return `${address.slice(0, start)}...${address.slice(-end)}`;
+  } catch (error) {
+    console.error("Error truncating address:", error, "Input:", address);
+    return "0x...";
+  }
 }

@@ -2,6 +2,9 @@ import { MiniKit } from "@worldcoin/minikit-js";
 import { createPublicClient, http } from "viem";
 import { defineChain } from "viem";
 import HotelBookingABI from "@/abi/HotelBookingABI.json";
+import Permit2 from "@/abi/Permit2.json";
+import { useWaitForTransactionReceipt } from "@worldcoin/minikit-react";
+import { useState } from "react";
 
 // Define World Chain Testnet
 const worldchainTestnet = defineChain({
@@ -26,7 +29,7 @@ const worldchainTestnet = defineChain({
   },
   testnet: true,
 });
-
+const [transactionId, setTransactionId] = useState<string>("");
 // Replace with your deployed contract address
 export const HOTEL_BOOKING_CONTRACT_ADDRESS =
   "0xe97576A27CBCdBAA108a82D95E00A505043C6424";
@@ -36,6 +39,10 @@ export const publicClient = createPublicClient({
   chain: worldchainTestnet,
   transport: http("https://worldchain-sepolia.g.alchemy.com/public"),
 });
+
+// Constants for Permit2
+const PERMIT2_ADDRESS = "0x000000000022D473030F116dDEE9F6B43aC78BA3"; // Canonical Permit2 address
+const WETH_ADDRESS = "0x4200000000000000000000000000000000000006"; // WETH address on World Chain
 
 export interface Property {
   id: bigint;
@@ -60,6 +67,20 @@ export interface Booking {
   guestCount: bigint;
   status: number; // BookingStatus enum
   createdAt: bigint;
+}
+
+export interface Permit2Transfer {
+  permitted: {
+    token: string;
+    amount: string;
+  };
+  nonce: string;
+  deadline: string;
+}
+
+export interface TransferDetails {
+  to: string;
+  requestedAmount: string;
 }
 
 export class BookingService {
@@ -97,6 +118,7 @@ export class BookingService {
 
       return finalPayload;
     } catch (error) {
+      console.log("Error creating property:", error);
       console.error("Error creating property:", error);
       throw error;
     }
@@ -188,6 +210,99 @@ export class BookingService {
     checkInDate: Date,
     checkOutDate: Date,
     guestCount: number,
+    totalAmountInEth: string,
+    recipientAddress: string // Address to receive the payment (hotel owner or booking contract)
+  ): Promise<any> {
+    try {
+      const checkInTimestamp = Math.floor(checkInDate.getTime() / 1000);
+      const checkOutTimestamp = Math.floor(checkOutDate.getTime() / 1000);
+      const totalAmountInWei = BigInt(
+        Math.floor(parseFloat(totalAmountInEth) * Math.pow(10, 18))
+      );
+
+      // Permit2 setup - valid for 30 minutes
+      const permitTransfer = {
+        permitted: {
+          token: WETH_ADDRESS, // Using WETH for the payment token
+          amount: totalAmountInWei.toString(),
+        },
+        nonce: Date.now().toString(),
+        deadline: Math.floor((Date.now() + 30 * 60 * 1000) / 1000).toString(), // 30 minutes from now
+      };
+
+      const transferDetails = {
+        to: recipientAddress,
+        requestedAmount: totalAmountInWei.toString(),
+      };
+
+      console.log("Permit2 Transaction details:", {
+        propertyId,
+        checkInTimestamp,
+        checkOutTimestamp,
+        guestCount,
+        totalAmountInEth,
+        totalAmountInWei: totalAmountInWei.toString(),
+        permitTransfer,
+        transferDetails,
+      });
+
+      const { isLoading: isConfirming, isSuccess: isConfirmed } =
+        useWaitForTransactionReceipt({
+          client: publicClient,
+          appConfig: {
+            app_id: "1234567890",
+          },
+          transactionId: transactionId,
+        });
+
+      const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
+        transaction: [
+          {
+            address: PERMIT2_ADDRESS,
+            abi: Permit2,
+            functionName: "signatureTransfer",
+            args: [
+              [
+                [
+                  permitTransfer.permitted.token,
+                  permitTransfer.permitted.amount,
+                ],
+                permitTransfer.nonce,
+                permitTransfer.deadline,
+              ],
+              [transferDetails.to, transferDetails.requestedAmount],
+              "PERMIT2_SIGNATURE_PLACEHOLDER_0", // This will be automatically replaced with the correct signature
+            ],
+          },
+          {
+            address: HOTEL_BOOKING_CONTRACT_ADDRESS,
+            abi: HotelBookingABI,
+            functionName: "createBooking",
+            args: [propertyId, checkInTimestamp, checkOutTimestamp, guestCount],
+            // Remove the value field since we're using Permit2 for payment
+          },
+        ],
+        permit2: [
+          {
+            ...permitTransfer,
+            spender: HOTEL_BOOKING_CONTRACT_ADDRESS, // The contract that will spend the tokens
+          },
+        ],
+      });
+
+      return finalPayload;
+    } catch (error) {
+      console.error("Error creating booking with Permit2:", error);
+      throw error;
+    }
+  }
+
+  // Alternative method for direct ETH payments (fallback)
+  static async createBookingWithETH(
+    propertyId: string,
+    checkInDate: Date,
+    checkOutDate: Date,
+    guestCount: number,
     totalAmountInEth: string
   ): Promise<any> {
     try {
@@ -197,6 +312,19 @@ export class BookingService {
         Math.floor(parseFloat(totalAmountInEth) * Math.pow(10, 18))
       );
 
+      // Convert value to hex string format that MiniKit expects
+      const valueHex = `0x${totalAmountInWei.toString(16)}`;
+
+      console.log("Direct ETH Transaction details:", {
+        propertyId,
+        checkInTimestamp,
+        checkOutTimestamp,
+        guestCount,
+        totalAmountInEth,
+        totalAmountInWei: totalAmountInWei.toString(),
+        valueHex,
+      });
+
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
         transaction: [
           {
@@ -204,14 +332,14 @@ export class BookingService {
             abi: HotelBookingABI,
             functionName: "createBooking",
             args: [propertyId, checkInTimestamp, checkOutTimestamp, guestCount],
-            value: totalAmountInWei.toString(),
+            value: valueHex,
           },
         ],
       });
 
       return finalPayload;
     } catch (error) {
-      console.error("Error creating booking:", error);
+      console.error("Error creating booking with ETH:", error);
       throw error;
     }
   }

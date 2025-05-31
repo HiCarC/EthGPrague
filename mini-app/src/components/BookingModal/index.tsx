@@ -4,7 +4,14 @@ import { useState } from "react";
 import { Property, BookingService } from "@/services/booking";
 import { formatWeiToEth, calculateNights } from "@/lib/utils";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
-import { X, Calendar, Users, CreditCard } from "lucide-react";
+import {
+  X,
+  Calendar,
+  Users,
+  CreditCard,
+  AlertCircle,
+  CheckCircle,
+} from "lucide-react";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -23,6 +30,8 @@ export const BookingModal = ({
   const [checkOutDate, setCheckOutDate] = useState("");
   const [guestCount, setGuestCount] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
   if (!isOpen) return null;
 
@@ -33,34 +42,124 @@ export const BookingModal = ({
       : 0;
   const totalPrice = nights * parseFloat(pricePerNight);
 
+  const validateDates = () => {
+    if (!checkInDate || !checkOutDate) {
+      return "Please select both check-in and check-out dates";
+    }
+
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (checkIn < today) {
+      return "Check-in date cannot be in the past";
+    }
+
+    if (checkOut <= checkIn) {
+      return "Check-out date must be after check-in date";
+    }
+
+    if (nights > 30) {
+      return "Maximum stay is 30 nights";
+    }
+
+    return null;
+  };
+
   const handleBooking = async () => {
-    if (!checkInDate || !checkOutDate || guestCount < 1) {
-      alert("Please fill in all required fields");
+    setError(null);
+    setSuccess(false);
+
+    // Validate inputs
+    const dateError = validateDates();
+    if (dateError) {
+      setError(dateError);
+      return;
+    }
+
+    if (guestCount < 1 || guestCount > Number(property.maxGuests)) {
+      setError(`Guest count must be between 1 and ${property.maxGuests}`);
+      return;
+    }
+
+    if (totalPrice <= 0) {
+      setError("Invalid price calculation. Please check your dates.");
+      return;
+    }
+
+    if (totalPrice > 100) {
+      // Reasonable upper limit for safety
+      setError(
+        "Total amount seems too high. Please check your booking details."
+      );
       return;
     }
 
     try {
       setLoading(true);
 
+      console.log("Creating booking with:", {
+        propertyId: property.id.toString(),
+        checkInDate: new Date(checkInDate),
+        checkOutDate: new Date(checkOutDate),
+        guestCount,
+        totalAmount: totalPrice.toString(),
+      });
+
       await BookingService.createBooking(
         property.id.toString(),
         new Date(checkInDate),
         new Date(checkOutDate),
         guestCount,
-        totalPrice.toString()
+        totalPrice.toString(),
+        property.owner
       );
 
-      alert("Booking created successfully!");
-      onBookingCreated?.();
-    } catch (error) {
+      setSuccess(true);
+
+      // Close modal after a short delay to show success message
+      setTimeout(() => {
+        onBookingCreated?.();
+      }, 2000);
+    } catch (error: any) {
       console.error("Error creating booking:", error);
-      alert("Failed to create booking. Please try again.");
+
+      // Better error handling
+      let errorMessage = "Failed to create booking. Please try again.";
+
+      if (error?.message) {
+        if (error.message.includes("insufficient funds")) {
+          errorMessage =
+            "Insufficient funds. Please ensure you have enough ETH.";
+        } else if (error.message.includes("rejected")) {
+          errorMessage = "Transaction was rejected. Please try again.";
+        } else if (error.message.includes("network")) {
+          errorMessage = "Network error. Please check your connection.";
+        } else if (error.message.includes("hex string")) {
+          errorMessage = "Transaction format error. Please try again.";
+        } else if (error.message.includes("user denied")) {
+          errorMessage = "Transaction was cancelled by user.";
+        } else if (
+          error.message.includes("invalid") ||
+          error.message.includes("revert")
+        ) {
+          errorMessage =
+            "Invalid transaction. Please check your booking details.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   const today = new Date().toISOString().split("T")[0];
+  const isValidBooking =
+    checkInDate && checkOutDate && nights > 0 && !validateDates();
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -70,7 +169,7 @@ export const BookingModal = ({
           <h2 className="text-xl font-semibold">Book {property.name}</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-full"
+            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
           >
             <X size={20} />
           </button>
@@ -78,6 +177,32 @@ export const BookingModal = ({
 
         {/* Content */}
         <div className="p-4 space-y-4">
+          {/* Success Message */}
+          {success && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+              <CheckCircle size={20} className="text-green-600 flex-shrink-0" />
+              <div>
+                <p className="text-green-800 font-medium">
+                  Booking created successfully!
+                </p>
+                <p className="text-green-600 text-sm">
+                  Your transaction is being processed.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+              <AlertCircle size={20} className="text-red-600 flex-shrink-0" />
+              <div>
+                <p className="text-red-800 font-medium">Booking Failed</p>
+                <p className="text-red-600 text-sm">{error}</p>
+              </div>
+            </div>
+          )}
+
           {/* Property info */}
           <div className="bg-gray-50 p-3 rounded-lg">
             <div className="flex justify-between items-center mb-2">
@@ -101,7 +226,10 @@ export const BookingModal = ({
             <input
               type="date"
               value={checkInDate}
-              onChange={(e) => setCheckInDate(e.target.value)}
+              onChange={(e) => {
+                setCheckInDate(e.target.value);
+                setError(null);
+              }}
               min={today}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -116,7 +244,10 @@ export const BookingModal = ({
             <input
               type="date"
               value={checkOutDate}
-              onChange={(e) => setCheckOutDate(e.target.value)}
+              onChange={(e) => {
+                setCheckOutDate(e.target.value);
+                setError(null);
+              }}
               min={checkInDate || today}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -130,7 +261,10 @@ export const BookingModal = ({
             </label>
             <select
               value={guestCount}
-              onChange={(e) => setGuestCount(parseInt(e.target.value))}
+              onChange={(e) => {
+                setGuestCount(parseInt(e.target.value));
+                setError(null);
+              }}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               {Array.from(
@@ -146,7 +280,7 @@ export const BookingModal = ({
 
           {/* Price breakdown */}
           {nights > 0 && (
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
               <div className="flex justify-between text-sm mb-1">
                 <span>
                   {pricePerNight} ETH × {nights} nights
@@ -155,7 +289,7 @@ export const BookingModal = ({
                   {(parseFloat(pricePerNight) * nights).toFixed(6)} ETH
                 </span>
               </div>
-              <div className="flex justify-between font-bold text-lg border-t pt-2">
+              <div className="flex justify-between font-bold text-lg border-t border-blue-200 pt-2">
                 <span>Total</span>
                 <span className="text-blue-600">
                   {totalPrice.toFixed(6)} ETH
@@ -167,18 +301,25 @@ export const BookingModal = ({
           {/* Book button */}
           <Button
             onClick={handleBooking}
-            disabled={loading || !checkInDate || !checkOutDate || nights <= 0}
+            disabled={loading || !isValidBooking || success}
             variant="primary"
             size="lg"
-            className="w-full flex items-center justify-center gap-2"
+            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400"
           >
             {loading ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            ) : (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white">
+                loading....
+              </div>
+            ) : success ? (
               <>
-                <CreditCard size={16} />
-                Book Now - {totalPrice.toFixed(6)} ETH
+                <CheckCircle size={16} />
+                Booking Created!
               </>
+            ) : (
+              <div className="flex items-center gap-2 bg-black p-4 rounded-lg">
+                <CreditCard size={16} />
+                Book Now - ${totalPrice.toFixed(6)} ETH
+              </div>
             )}
           </Button>
 
