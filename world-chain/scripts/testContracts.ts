@@ -51,7 +51,7 @@ class ContractTester {
 
     const bookingId = `test_${Date.now()}`;
     const hostAddress = await this.signer.getAddress();
-    const totalAmount = ethers.parseEther('1.0'); // 1 ETH total
+    const totalAmount = ethers.parseEther('0.02'); // 🔧 Changed: 0.02 ETH total (was 1.0 ETH)
     const checkInDate = Math.floor(Date.now() / 1000) + (24 * 60 * 60); // Tomorrow
     const checkOutDate = checkInDate + (2 * 24 * 60 * 60); // Day after tomorrow
     const maxParticipants = 4;
@@ -148,7 +148,7 @@ class ContractTester {
     console.log('\n💰 Funding Yield Strategy for Payouts...\n');
     
     try {
-      const fundAmount = ethers.parseEther('10'); // Fund with 10 ETH
+      const fundAmount = ethers.parseEther('0.01'); // 🔧 Changed: 0.01 ETH (was 10 ETH)
       const tx = await this.yieldStrategy.fundYieldPool({ value: fundAmount });
       
       console.log('📤 Funding transaction:', tx.hash);

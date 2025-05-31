@@ -21,7 +21,8 @@
     "check-pools": "ts-node scripts/verifyCreatedPools.ts",
     "deploy": "npx ts-node scripts/deployWithYield.ts",
     "deploy-contracts": "forge script script/Deploy.s.sol --broadcast --rpc-url $WORLDCHAIN_RPC_URL --slow",
-    "fund-yield": "npx ts-node scripts/fundYieldDemo.ts"
+    "fund-yield": "npx ts-node scripts/fundYieldDemo.ts",
+    "test-contracts": "npx ts-node scripts/testContracts.ts"
   },
   "keywords": [],
   "author": "",
