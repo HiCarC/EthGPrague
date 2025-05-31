@@ -3,24 +3,28 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Property } from "@/services/booking";
-import { formatWeiToEth, truncateAddress } from "@/lib/utils";
+import { formatWeiToWld, truncateAddress } from "@/lib/utils";
 import { BookingModal } from "@/components/BookingModal";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import { MapPin, Users, Calendar } from "lucide-react";
+import Image from "next/image";
 
 interface PropertyCardProps {
   property: Property;
   onBookingUpdate?: () => void;
+  userAddress?: string;
 }
 
 export const PropertyCard = ({
   property,
   onBookingUpdate,
+  userAddress,
 }: PropertyCardProps) => {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const pricePerNight = formatWeiToEth(property.pricePerNight);
+  const isOwner = userAddress === property.owner;
+  const pricePerNight = formatWeiToWld(property.pricePerNight);
   const hasImages = property.imageUrls && property.imageUrls.length > 0;
 
   const nextImage = (e: React.MouseEvent) => {
@@ -106,7 +110,7 @@ export const PropertyCard = ({
           </Link>
           <div className="text-right">
             <div className="text-lg font-bold text-blue-600">
-              {pricePerNight} ETH
+              {pricePerNight} WLD
             </div>
             <div className="text-sm text-gray-500">per night</div>
           </div>
