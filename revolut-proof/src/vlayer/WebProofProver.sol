@@ -19,8 +19,7 @@ contract WebProofProver is Prover {
     ) public view returns (Proof memory, bool, uint256, address) {
         Web memory web = webProof.verify(DATA_URL);
 
-        // Parse the wallet response to get EUR balance
-        // For now, let's use a simple approach and assume balance is in the response
+        // Parse the wallet response to get EUR balance from pockets
         uint256 eurBalance = parseEurBalance(web);
         bool hasMinimumBalance = eurBalance >= (MINIMUM_BALANCE_EUROS * 100); // Convert to cents/centimes
 
@@ -28,30 +27,78 @@ contract WebProofProver is Prover {
     }
 
     function parseEurBalance(Web memory web) private view returns (uint256) {
-        // This depends on Revolut's exact API response format
-        // You'll need to examine the actual response structure
+        // Try to find EUR balance in the pockets array
+        // Structure: {"pockets": [{"currency": "EUR", "type": "CURRENT", "balance": 5000}]}
 
-        // First, try to get balance as an integer (common for APIs to use cents)
-        int256 balanceInt = web.jsonGetInt("balance");
-        if (balanceInt > 0) {
-            return uint256(balanceInt);
+        // Try multiple pocket indices to find the EUR CURRENT account
+        for (uint256 i = 0; i < 10; i++) {
+            try this.tryGetPocketBalance(web, i) returns (uint256 balance) {
+                if (balance > 0) return balance;
+            } catch {}
         }
 
-        // If that fails, try to get it as a string and convert
-        string memory balanceStr = web.jsonGetString("balance");
-        return stringToUint(balanceStr);
+        // If all methods fail, return 0 (which will trigger the original error)
+        return 0;
     }
 
-    function stringToUint(string memory str) private pure returns (uint256) {
-        bytes memory b = bytes(str);
-        uint256 result = 0;
+    function tryGetPocketBalance(
+        Web memory web,
+        uint256 pocketIndex
+    ) external view returns (uint256) {
+        // Convert index to string for JSON path
+        string memory indexStr = uintToString(pocketIndex);
 
-        for (uint256 i = 0; i < b.length; i++) {
-            uint8 c = uint8(b[i]);
-            if (c >= 48 && c <= 57) {
-                result = result * 10 + (c - 48);
+        // Build JSON paths using bracket notation for arrays
+        string memory currencyPath = string(
+            abi.encodePacked("pockets[", indexStr, "].currency")
+        );
+        string memory typePath = string(
+            abi.encodePacked("pockets[", indexStr, "].type")
+        );
+        string memory statePath = string(
+            abi.encodePacked("pockets[", indexStr, "].state")
+        );
+        string memory balancePath = string(
+            abi.encodePacked("pockets[", indexStr, "].balance")
+        );
+
+        // Check if this pocket is EUR CURRENT and ACTIVE
+        string memory currency = web.jsonGetString(currencyPath);
+        string memory pocketType = web.jsonGetString(typePath);
+        string memory state = web.jsonGetString(statePath);
+
+        // Check if this is the EUR current account
+        if (
+            keccak256(bytes(currency)) == keccak256(bytes("EUR")) &&
+            keccak256(bytes(pocketType)) == keccak256(bytes("CURRENT")) &&
+            keccak256(bytes(state)) == keccak256(bytes("ACTIVE"))
+        ) {
+            // Get balance as integer (should be in cents already)
+            int256 balanceInt = web.jsonGetInt(balancePath);
+            if (balanceInt > 0) {
+                return uint256(balanceInt);
             }
         }
-        return result;
+
+        revert("EUR pocket not found at this index");
+    }
+
+    function uintToString(uint256 value) private pure returns (string memory) {
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
     }
 }

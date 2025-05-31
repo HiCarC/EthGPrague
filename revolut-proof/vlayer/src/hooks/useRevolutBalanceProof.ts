@@ -106,17 +106,24 @@ export const useRevolutBalanceProof = () => {
   const [, setWebProof] = useLocalStorage("revolutWebProof", "");
   const [, setProverResult] = useLocalStorage("revolutProverResult", "");
 
+  // Helper function to safely stringify data with BigInt values
+  const safeStringify = (obj: any) => {
+    return JSON.stringify(obj, (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value
+    );
+  };
+
   useEffect(() => {
     if (webProof) {
       console.log("Revolut webProof", webProof);
-      setWebProof(JSON.stringify(webProof));
+      setWebProof(safeStringify(webProof));
     }
-  }, [JSON.stringify(webProof)]);
+  }, [webProof]);
 
   useEffect(() => {
     if (result) {
       console.log("Revolut proverResult", result);
-      setProverResult(JSON.stringify(result));
+      setProverResult(safeStringify(result));
       
       // Log the extracted data for debugging
       if (result && Array.isArray(result) && result.length >= 4) {
@@ -129,7 +136,7 @@ export const useRevolutBalanceProof = () => {
         });
       }
     }
-  }, [JSON.stringify(result)]);
+  }, [result]);
 
   // Helper function to extract balance information from result
   const getBalanceInfo = () => {
