@@ -24,41 +24,22 @@ export function formatPrice(price: string | number): string {
   }).format(num);
 }
 
-export function formatWeiToEth(
-  wei: string | bigint | null | undefined
+export function formatWeiToWld(
+  wei: string | bigint | number,
+  decimals: number = 6
 ): string {
   try {
-    if (wei === null || wei === undefined) {
-      return "0.000000";
-    }
-
-    let weiNumber: number;
-
-    if (typeof wei === "bigint") {
-      weiNumber = Number(wei);
-    } else if (typeof wei === "string") {
-      if (wei === "" || wei === "0" || wei === "undefined" || wei === "null") {
-        return "0.000000";
-      }
-      weiNumber = Number(wei);
-    } else {
-      return "0.000000";
-    }
-
-    if (isNaN(weiNumber) || !isFinite(weiNumber)) {
-      return "0.000000";
-    }
-
-    const eth = weiNumber / Math.pow(10, 18);
-    return eth.toFixed(6);
+    const weiNumber = typeof wei === "string" ? BigInt(wei) : BigInt(wei);
+    const wld = Number(weiNumber) / Math.pow(10, 18);
+    return wld.toFixed(decimals);
   } catch (error) {
-    console.error("Error formatting wei to eth:", error, "Input:", wei);
+    console.error("Error formatting wei to WLD:", error, "Input:", wei);
     return "0.000000";
   }
 }
 
-export function parseEthToWei(eth: string): string {
-  const wei = BigInt(Math.floor(parseFloat(eth) * Math.pow(10, 18)));
+export function parseWldToWei(wld: string): string {
+  const wei = BigInt(Math.floor(parseFloat(wld) * Math.pow(10, 18)));
   return wei.toString();
 }
 

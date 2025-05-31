@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Property, BookingService } from "@/services/booking";
-import { formatWeiToEth, truncateAddress } from "@/lib/utils";
+import { formatWeiToWld, truncateAddress } from "@/lib/utils";
 import { BookingModal } from "@/components/BookingModal";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
 import {
@@ -27,6 +27,14 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
   const [error, setError] = useState<string | null>(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const pricePerNight = useMemo(
+    () =>
+      property && property.pricePerNight
+        ? formatWeiToWld(property.pricePerNight)
+        : "0",
+    [property?.pricePerNight]
+  );
 
   useEffect(() => {
     if (propertyId) {
@@ -99,9 +107,6 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
   }
 
   // Safely get property values with fallbacks
-  const pricePerNight = property.pricePerNight
-    ? formatWeiToEth(property.pricePerNight)
-    : "0";
   const hasImages =
     property.imageUrls &&
     Array.isArray(property.imageUrls) &&
@@ -219,7 +224,7 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
         </div>
         <div className="text-right">
           <div className="text-3xl font-bold text-blue-600">
-            {pricePerNight} ETH
+            {pricePerNight} WLD
           </div>
           <div className="text-sm text-gray-500">per night</div>
         </div>
@@ -268,7 +273,7 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
       <div className="sticky bottom-0 bg-white border-t p-4 flex items-center justify-between shadow-lg">
         <div>
           <div className="text-lg font-bold text-blue-600">
-            {pricePerNight} ETH
+            {pricePerNight} WLD
             <span className="text-sm font-normal text-gray-500">
               {" "}
               per night
