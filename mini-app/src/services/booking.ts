@@ -54,7 +54,7 @@ const worldchainMainnet = defineChain({
 
 // Replace with your deployed contract address
 export const HOTEL_BOOKING_CONTRACT_ADDRESS =
-  "0xc7663Be8fD3860cCd91D6e2D8ae94251258d8412";
+  "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
 
 // Public client for reading contract data
 export const publicClient = createPublicClient({
@@ -285,13 +285,6 @@ export class BookingService {
       // Then create the booking which will transfer the tokens
       const { finalPayload } = await MiniKit.commandsAsync.sendTransaction({
         transaction: [
-          //   {
-          //     address: HOTEL_BOOKING_CONTRACT_ADDRESS,
-          //     abi: ERC20_ABI,
-          //     functionName: "transfer",
-          //     args: [HOTEL_BOOKING_CONTRACT_ADDRESS, totalAmountInWei.toString()],
-          //   },
-
           {
             address: HOTEL_BOOKING_CONTRACT_ADDRESS,
             abi: HotelBookingABI,
