@@ -8,14 +8,11 @@ class RiskAdjustedYieldCalculator {
         
         // Configuration parameters (removed investmentHorizonDays)
         this.config = {
-            liquidationProbability: 0.05,   // p_liq = 5% default
-            baselineAPR: 3.0,               // APR_ΔSPL = 3% baseline (risk-free rate)
+            liquidationProbability: 2, // my liquidity ratio (berachain average)
+            lpAPR: 0.1362,         //  https://infrared.finance/vaults/beraborrow-snect     
+            lpVol: 0.01,
             emergencyHaircut: 0.4           // 40% haircut on emergency unwinding
         };
-        
-        console.log('📊 Risk-Adjusted Yield Calculator Initialized');
-        console.log(`⚠️ Liquidation Probability: ${this.config.liquidationProbability * 100}%`);
-        console.log(`📈 Baseline APR: ${this.config.baselineAPR}%`);
     }
 
     /**
@@ -49,8 +46,9 @@ class RiskAdjustedYieldCalculator {
         const μ = annualAPR / 100; // Convert percentage to decimal
         const timeRatio = delta / 365;
         
-        const adjustedAPR = 1 - Math.pow(1 + μ, timeRatio);
-        return adjustedAPR * 100; // Convert back to percentage
+        const adjustedAPR = -1 + (1+μ) ** timeRatio;
+
+        return adjustedAPR;
     }
 
     /**
@@ -64,7 +62,7 @@ class RiskAdjustedYieldCalculator {
         const timeRatio = delta / 365;
         
         const downsideVolatility = σ * Math.sqrt(timeRatio);
-        return downsideVolatility * 100; // Convert back to percentage
+        return downsideVolatility; // Convert back to percentage
     }
 
     /**
@@ -73,7 +71,7 @@ class RiskAdjustedYieldCalculator {
      */
     calculateExpectedLiquidationLoss(liquidationProbability) {
         const haircut = this.config.emergencyHaircut;
-        return liquidationProbability * haircut * 100; // Return as percentage
+        return liquidationProbability * haircut
     }
 
     /**
@@ -94,13 +92,17 @@ class RiskAdjustedYieldCalculator {
     calculateRiskAdjustedScore(pool, delta) {
         // Extract pool data
         const apy = pool.apy || 0;
-        const volatility = pool.volatility || 10; // Default 10% if missing
+        const volatility = pool.volatility || 0.1; // Default 10% if missing
         
-        // Step 2: Horizon-scaled APR
-        const aprHorizon = this.calculateHorizonScaledAPR(apy, delta);
+        // Step 2: Horizon-scaled APR for the pool
+        const aprHorizon = this.calculateHorizonScaledAPR(apy * 100, delta);
         
-        // Step 3: Downside volatility
+        // Step 3: Downside volatility for the pool
         const downsideVol = this.calculateDownsideVolatility(volatility, delta);
+        
+        // Step 2 & 3 for Liquidity Pool (baseline/benchmark)
+        const lpAPRHorizon = this.calculateHorizonScaledAPR(this.config.lpAPR * 100, delta); // Convert decimal to percentage
+        const lpVolHorizon = this.calculateDownsideVolatility(this.config.lpVol * 100, delta); // Convert decimal to percentage
         
         // Step 4: Expected liquidation loss
         const liquidationLoss = this.calculateExpectedLiquidationLoss(this.config.liquidationProbability);
@@ -108,11 +110,8 @@ class RiskAdjustedYieldCalculator {
         // Step 5: Correlation haircut
         const correlationHaircut = this.calculateCorrelationHaircut(0.3); // Default correlation
         
-        // Baseline APR scaled for horizon
-        const baselineAPRHorizon = this.calculateHorizonScaledAPR(this.config.baselineAPR, delta);
-        
         // Step 6: Final score calculation
-        const numerator = aprHorizon - baselineAPRHorizon - liquidationLoss;
+        const numerator = aprHorizon - lpAPRHorizon - liquidationLoss;
         const denominator = downsideVol || 1; // Avoid division by zero
         
         const score = (numerator / denominator) * correlationHaircut;
@@ -121,7 +120,8 @@ class RiskAdjustedYieldCalculator {
             score: score,
             components: {
                 aprHorizon: aprHorizon,
-                baselineAPRHorizon: baselineAPRHorizon,
+                lpAPRHorizon: lpAPRHorizon,         // Liquidity pool horizon APR
+                lpVolHorizon: lpVolHorizon,         // Liquidity pool horizon volatility
                 downsideVolatility: downsideVol,
                 liquidationLoss: liquidationLoss,
                 correlationHaircut: correlationHaircut,

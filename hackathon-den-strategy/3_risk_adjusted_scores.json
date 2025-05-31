@@ -8,41 +8,17 @@
       "AAVE",
       "ETH"
     ],
-    "processedAt": "2025-05-31T21:29:19.074Z",
+    "processedAt": "2025-05-31T23:34:36.850Z",
     "calculationConfig": {
-      "liquidationProbability": 0.05,
-      "baselineAPR": 3,
+      "liquidationProbability": 2,
+      "lpAPR": 0.1362,
+      "lpVol": 0.01,
       "emergencyHaircut": 0.4,
       "delta": 7
     }
   },
   "scores": {
     "BTC": [
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.233,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.27963,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 405379691.54073,
-          "tvlUsd": 41847033
-        },
-        "riskAdjustedScore": -0.06563560003206206,
-        "scoreComponents": {
-          "aprHorizon": -0.004463395034903783,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9477592103991346,
-          "delta": 7
-        }
-      },
       {
         "symbol": "WBTC-USDT",
         "apy": 0.248,
@@ -57,14 +33,41 @@
           "volumeUsd7d": 98199915.92345,
           "tvlUsd": 7014122
         },
-        "riskAdjustedScore": -0.065645271166298,
+        "riskAdjustedScore": -2.6897547034435956,
         "scoreComponents": {
-          "aprHorizon": -0.004750389299812419,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004257794621816746,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9480462046640432,
+          "numerator": -0.7981940432916712,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WBTC-WETH",
+        "apy": 0.233,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 23.27963,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 405379691.54073,
+          "tvlUsd": 41847033
+        },
+        "riskAdjustedScore": -2.6905394040824695,
+        "scoreComponents": {
+          "aprHorizon": 0.004024931983854119,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7984269059296338,
           "delta": 7
         }
       },
@@ -82,14 +85,15 @@
           "volumeUsd7d": 399975.64595,
           "tvlUsd": 85547
         },
-        "riskAdjustedScore": -0.07361559958181522,
+        "riskAdjustedScore": -3.02810295884731,
         "scoreComponents": {
-          "aprHorizon": -0.0022808609642543942,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 18.500204863730563,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0021586223828606865,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.18500204863730563,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9455766763284852,
+          "numerator": -0.8002932155306273,
           "delta": 7
         }
       },
@@ -107,14 +111,15 @@
           "volumeUsd7d": 2159132.46003,
           "tvlUsd": 652074
         },
-        "riskAdjustedScore": -0.10398054644798502,
+        "riskAdjustedScore": -4.2726287608740385,
         "scoreComponents": {
-          "aprHorizon": -0.002932047147341521,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 13.10206139799048,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002734061402178689,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.1310206139799048,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9462278625115723,
+          "numerator": -0.7997177765113093,
           "delta": 7
         }
       },
@@ -132,14 +137,15 @@
           "volumeUsd7d": 27825.34397,
           "tvlUsd": 12198
         },
-        "riskAdjustedScore": -0.15106628655953294,
+        "riskAdjustedScore": -6.190344202565298,
         "scoreComponents": {
-          "aprHorizon": -0.0046929938165130025,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.026449232861427,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004211442507863206,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09026449232861428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9479888091807438,
+          "numerator": -0.7982403954056247,
           "delta": 7
         }
       },
@@ -157,14 +163,15 @@
           "volumeUsd7d": 691385.59262,
           "tvlUsd": 320542
         },
-        "riskAdjustedScore": -0.15953400436060905,
+        "riskAdjustedScore": -6.567028961616072,
         "scoreComponents": {
-          "aprHorizon": -0.001840229661587145,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 8.53482764991178,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001759547065312228,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0853482764991178,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.945136045025818,
+          "numerator": -0.8006922908481757,
           "delta": 7
         }
       },
@@ -182,14 +189,15 @@
           "volumeUsd7d": 104397.78484,
           "tvlUsd": 71116
         },
-        "riskAdjustedScore": -0.24069835098317943,
+        "riskAdjustedScore": -9.35591776470262,
         "scoreComponents": {
-          "aprHorizon": -0.05383305036488206,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.808058926453026,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.026170099507180966,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.05808058926453026,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9971288657291129,
+          "numerator": -0.776281738406307,
           "delta": 7
         }
       },
@@ -207,14 +215,15 @@
           "volumeUsd7d": 5136080.16905,
           "tvlUsd": 3700400
         },
-        "riskAdjustedScore": -0.2482460091471518,
+        "riskAdjustedScore": -10.17581997035566,
         "scoreComponents": {
-          "aprHorizon": -0.0044825292964345564,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.492313233741703,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004040542379809553,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.054923132337417024,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9477783446606654,
+          "numerator": -0.7984112955336784,
           "delta": 7
         }
       },
@@ -232,14 +241,15 @@
           "volumeUsd7d": 60101.02206,
           "tvlUsd": 57984
         },
-        "riskAdjustedScore": -0.33193166675992836,
+        "riskAdjustedScore": -13.67981700699163,
         "scoreComponents": {
-          "aprHorizon": -0.0011311795838242489,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 4.100539456658896,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0010999893843082198,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.04100539456658896,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944426994948055,
+          "numerator": -0.8013518485291797,
           "delta": 7
         }
       },
@@ -257,14 +267,15 @@
           "volumeUsd7d": 13098.25507,
           "tvlUsd": 22563
         },
-        "riskAdjustedScore": -0.592709410733201,
+        "riskAdjustedScore": -24.390463227699204,
         "scoreComponents": {
-          "aprHorizon": -0.0020318206896519087,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.2974653693337075,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0019340578042570389,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.022974653693337076,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9453276360538827,
+          "numerator": -0.8005177801092309,
           "delta": 7
         }
       },
@@ -282,14 +293,15 @@
           "volumeUsd7d": 5164.22694,
           "tvlUsd": 12007
         },
-        "riskAdjustedScore": -0.8001641549635665,
+        "riskAdjustedScore": -32.91703448419446,
         "scoreComponents": {
-          "aprHorizon": -0.0022233929468651326,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.7019800716763875,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002107027759439273,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.017019800716763876,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.945519208311096,
+          "numerator": -0.8003448101540487,
           "delta": 7
         }
       },
@@ -307,14 +319,15 @@
           "volumeUsd7d": 19126.92867,
           "tvlUsd": 65630
         },
-        "riskAdjustedScore": -1.1800543730292805,
+        "riskAdjustedScore": -48.61127383302066,
         "scoreComponents": {
-          "aprHorizon": -0.0013994990414545327,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.1535796580198785,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0013521715676787505,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.011535796580198786,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9446953144056853,
+          "numerator": -0.8010996663458092,
           "delta": 7
         }
       }
@@ -334,14 +347,15 @@
           "volumeUsd7d": 503213.27317,
           "tvlUsd": 37249
         },
-        "riskAdjustedScore": -0.06569424977660739,
+        "riskAdjustedScore": -2.68591586479611,
         "scoreComponents": {
-          "aprHorizon": -0.006203846559227344,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.005396983313506132,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9494996619234581,
+          "numerator": -0.7970548545999818,
           "delta": 7
         }
       },
@@ -359,14 +373,15 @@
           "volumeUsd7d": 337034.84233,
           "tvlUsd": 77999
         },
-        "riskAdjustedScore": -0.0798946702183096,
+        "riskAdjustedScore": -3.2575509113585572,
         "scoreComponents": {
-          "aprHorizon": -0.008114645848267266,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 17.09735229041227,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.006801901692762069,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.1709735229041227,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.951410461212498,
+          "numerator": -0.7956499362207259,
           "delta": 7
         }
       },
@@ -384,391 +399,43 @@
           "volumeUsd7d": 5938117.66701,
           "tvlUsd": 2301845
         },
-        "riskAdjustedScore": -0.13377049834691798,
+        "riskAdjustedScore": -5.459694965716451,
         "scoreComponents": {
-          "aprHorizon": -0.007407867711450855,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 10.207725881470019,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.006293700678125402,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.10207725881470019,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9507036830756816,
+          "numerator": -0.7961581372353626,
           "delta": 7
         }
       }
     ],
     "ETH": [
       {
-        "symbol": "EZETH-WETH",
-        "apy": 0.023,
+        "symbol": "LPT-WETH",
+        "apy": 4.31,
         "volatility": 150,
         "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1cd19be5-0021-4d2c-b4fe-f633e8de61ff",
+        "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
         "project": "uniswap-v3",
         "rawData": {
-          "originalAPY": 2.27647,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 218930.53729,
-          "tvlUsd": 32955
-        },
-        "riskAdjustedScore": -0.0655000548981804,
-        "scoreComponents": {
-          "aprHorizon": -0.00044104614476125903,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.943736861508992,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USD+",
-        "apy": 0.151,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.14365,
+          "originalAPY": 430.97403,
           "il7d": null,
           "ilRisk": "yes",
-          "volumeUsd7d": 7153312.03553,
-          "tvlUsd": 1133109
+          "volumeUsd7d": 7285231.92736,
+          "tvlUsd": 425094
         },
-        "riskAdjustedScore": -0.06558270606079707,
+        "riskAdjustedScore": -2.5944570254849704,
         "scoreComponents": {
-          "aprHorizon": -0.0028937480802682103,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.03253771129552607,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.946189563444499,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-UNI",
-        "apy": 0.154,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "0474da3c-755b-4e1f-9f3d-5ecf473c1c20",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.39959,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 187450.45272,
-          "tvlUsd": 27623
-        },
-        "riskAdjustedScore": -0.06558464195456055,
-        "scoreComponents": {
-          "aprHorizon": -0.0029511963995698665,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9462470117638007,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.233,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.27963,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 405379691.54073,
-          "tvlUsd": 41847033
-        },
-        "riskAdjustedScore": -0.06563560003206206,
-        "scoreComponents": {
-          "aprHorizon": -0.004463395034903783,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9477592103991346,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDC.E",
-        "apy": 0.271,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 27.0597,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 25429043.42762,
-          "tvlUsd": 2332096
-        },
-        "riskAdjustedScore": -0.06566009748248793,
-        "scoreComponents": {
-          "aprHorizon": -0.005190365378360262,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.948486180742591,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-AAVE",
-        "apy": 0.324,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a8cb3c04-b37b-43a5-b688-53bcc7048661",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 32.37007,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 503213.27317,
-          "tvlUsd": 37249
-        },
-        "riskAdjustedScore": -0.06569424977660739,
-        "scoreComponents": {
-          "aprHorizon": -0.006203846559227344,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9494996619234581,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDT",
-        "apy": 0.348,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 34.79703,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 175561514.46176,
-          "tvlUsd": 10121134
-        },
-        "riskAdjustedScore": -0.06570970914574485,
-        "scoreComponents": {
-          "aprHorizon": -0.006662608703700279,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.949958424067931,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "XAI-WETH",
-        "apy": 0.348,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1074bbc2-ea12-43f5-9f73-3730aceea22e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 34.83314,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 235677.3077,
-          "tvlUsd": 28260
-        },
-        "riskAdjustedScore": -0.06570970914574485,
-        "scoreComponents": {
-          "aprHorizon": -0.006662608703700279,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.949958424067931,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-ARB",
-        "apy": 0.395,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 39.48698,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 61278571.42666,
-          "tvlUsd": 3577025
-        },
-        "riskAdjustedScore": -0.06573997324164985,
-        "scoreComponents": {
-          "aprHorizon": -0.007560706253117999,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9508565216173488,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.518,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 51.78247,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1248295556.70624,
-          "tvlUsd": 54384923
-        },
-        "riskAdjustedScore": -0.06581910930185769,
-        "scoreComponents": {
-          "aprHorizon": -0.009909096304694387,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9532049116689252,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "PENDLE-WETH",
-        "apy": 0.555,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 55.53023,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14000419.92134,
-          "tvlUsd": 750020
-        },
-        "riskAdjustedScore": -0.0658428958761944,
-        "scoreComponents": {
-          "aprHorizon": -0.01061497115348864,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9539107865177194,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.603,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 60.27914,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 225608774.16209,
-          "tvlUsd": 2031098
-        },
-        "riskAdjustedScore": -0.06587374134577782,
-        "scoreComponents": {
-          "aprHorizon": -0.011530321168584656,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9548261365328155,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.762,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 76.24623,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 43053146.92445,
-          "tvlUsd": 7862591
-        },
-        "riskAdjustedScore": -0.06597581396095001,
-        "scoreComponents": {
-          "aprHorizon": -0.014559361449073549,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9578551768133043,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "OBT-WETH",
-        "apy": 0.832,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fddae6b6-0551-47e0-97e7-c719080cfe0b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 83.21795,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 72073.71412,
-          "tvlUsd": 10525
-        },
-        "riskAdjustedScore": -0.06602070151465078,
-        "scoreComponents": {
-          "aprHorizon": -0.01589141518378856,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9591872305480194,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "@G-WETH",
-        "apy": 0.908,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3aeadbf6-3837-4a96-bf83-56b816fa0b40",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 90.75848,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 93286.70282,
-          "tvlUsd": 14058
-        },
-        "riskAdjustedScore": -0.06606940197971203,
-        "scoreComponents": {
-          "aprHorizon": -0.01733661838643208,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9606324337506629,
+          "numerator": -0.7699141266179619,
           "delta": 7
         }
       },
@@ -786,14 +453,405 @@
           "volumeUsd7d": 3767703.50842,
           "tvlUsd": 380029
         },
-        "riskAdjustedScore": -0.06663069679780517,
+        "riskAdjustedScore": -2.6371839015395278,
         "scoreComponents": {
-          "aprHorizon": -0.03399323691595235,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.019858362538724306,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9772890522801831,
+          "numerator": -0.7825934753747636,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "@G-WETH",
+        "apy": 0.908,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "3aeadbf6-3837-4a96-bf83-56b816fa0b40",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 90.75848,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 93286.70282,
+          "tvlUsd": 14058
+        },
+        "riskAdjustedScore": -2.6620907047343394,
+        "scoreComponents": {
+          "aprHorizon": 0.012467182249278563,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7899846556642094,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "OBT-WETH",
+        "apy": 0.832,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "fddae6b6-0551-47e0-97e7-c719080cfe0b",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 83.21795,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 72073.71412,
+          "tvlUsd": 10525
+        },
+        "riskAdjustedScore": -2.664749303725463,
+        "scoreComponents": {
+          "aprHorizon": 0.011678233771746482,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7907736041417415,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDC",
+        "apy": 0.762,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 76.24623,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 43053146.92445,
+          "tvlUsd": 7862591
+        },
+        "riskAdjustedScore": -2.6672955149665576,
+        "scoreComponents": {
+          "aprHorizon": 0.010922636749088,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7915292011644,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDC",
+        "apy": 0.603,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 60.27914,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 225608774.16209,
+          "tvlUsd": 2031098
+        },
+        "riskAdjustedScore": -2.6734685548268446,
+        "scoreComponents": {
+          "aprHorizon": 0.009090765746436746,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7933610721670512,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "PENDLE-WETH",
+        "apy": 0.555,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 55.53023,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 14000419.92134,
+          "tvlUsd": 750020
+        },
+        "riskAdjustedScore": -2.675450563526601,
+        "scoreComponents": {
+          "aprHorizon": 0.008502597786037791,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7939492401274502,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDC",
+        "apy": 0.518,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 51.78247,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 1248295556.70624,
+          "tvlUsd": 54384923
+        },
+        "riskAdjustedScore": -2.6770197561324864,
+        "scoreComponents": {
+          "aprHorizon": 0.00803693443421194,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.794414903479276,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-ARB",
+        "apy": 0.395,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 39.48698,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 61278571.42666,
+          "tvlUsd": 3577025
+        },
+        "riskAdjustedScore": -2.6825200626393046,
+        "scoreComponents": {
+          "aprHorizon": 0.006404699388986357,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7960471385245016,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDT",
+        "apy": 0.348,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 34.79703,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 175561514.46176,
+          "tvlUsd": 10121134
+        },
+        "riskAdjustedScore": -2.684748414970428,
+        "scoreComponents": {
+          "aprHorizon": 0.005743428101020687,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7967084098124673,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "XAI-WETH",
+        "apy": 0.348,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "1074bbc2-ea12-43f5-9f73-3730aceea22e",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 34.83314,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 235677.3077,
+          "tvlUsd": 28260
+        },
+        "riskAdjustedScore": -2.684748414970428,
+        "scoreComponents": {
+          "aprHorizon": 0.005743428101020687,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7967084098124673,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-AAVE",
+        "apy": 0.324,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "a8cb3c04-b37b-43a5-b688-53bcc7048661",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 32.37007,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 503213.27317,
+          "tvlUsd": 37249
+        },
+        "riskAdjustedScore": -2.68591586479611,
+        "scoreComponents": {
+          "aprHorizon": 0.005396983313506132,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7970548545999818,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDC.E",
+        "apy": 0.271,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 27.0597,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 25429043.42762,
+          "tvlUsd": 2332096
+        },
+        "riskAdjustedScore": -2.6885692831278596,
+        "scoreComponents": {
+          "aprHorizon": 0.004609572214623325,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7978422656988646,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WBTC-WETH",
+        "apy": 0.233,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 23.27963,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 405379691.54073,
+          "tvlUsd": 41847033
+        },
+        "riskAdjustedScore": -2.6905394040824695,
+        "scoreComponents": {
+          "aprHorizon": 0.004024931983854119,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7984269059296338,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-UNI",
+        "apy": 0.154,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "0474da3c-755b-4e1f-9f3d-5ecf473c1c20",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 15.39959,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 187450.45272,
+          "tvlUsd": 27623
+        },
+        "riskAdjustedScore": -2.6948332005143874,
+        "scoreComponents": {
+          "aprHorizon": 0.0027507329906610867,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7997011049228269,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USD+",
+        "apy": 0.151,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 15.14365,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 7153312.03553,
+          "tvlUsd": 1133109
+        },
+        "riskAdjustedScore": -2.695001883812001,
+        "scoreComponents": {
+          "aprHorizon": 0.002700675636663208,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.7997511622768247,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "EZETH-WETH",
+        "apy": 0.023,
+        "volatility": 150,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "1cd19be5-0021-4d2c-b4fe-f633e8de61ff",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 2.27647,
+          "il7d": null,
+          "ilRisk": "no",
+          "volumeUsd7d": 218930.53729,
+          "tvlUsd": 32955
+        },
+        "riskAdjustedScore": -2.702632732329847,
+        "scoreComponents": {
+          "aprHorizon": 0.00043619485542034653,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20772742941534428,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8020156430580676,
           "delta": 7
         }
       },
@@ -811,39 +869,15 @@
           "volumeUsd7d": 2139532.56291,
           "tvlUsd": 416473
         },
-        "riskAdjustedScore": -0.06736348384699156,
+        "riskAdjustedScore": -2.7293481497193177,
         "scoreComponents": {
-          "aprHorizon": -0.012826334024085284,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.326821393056157,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.009895089930446854,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.20326821393056158,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.956122149388316,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "LPT-WETH",
-        "apy": 4.31,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 430.97403,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7285231.92736,
-          "tvlUsd": 425094
-        },
-        "riskAdjustedScore": -0.06821333586888005,
-        "scoreComponents": {
-          "aprHorizon": -0.08095860061976268,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 20.77274294153443,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -2.0242544159839935,
+          "numerator": -0.7925567479830411,
           "delta": 7
         }
       },
@@ -861,14 +895,15 @@
           "volumeUsd7d": 187952.15801,
           "tvlUsd": 38030
         },
-        "riskAdjustedScore": -0.06957591103759769,
+        "riskAdjustedScore": -2.8709998464396826,
         "scoreComponents": {
-          "aprHorizon": -0.0004026982550975333,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 19.555460205160514,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0003986486838714054,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.19555460205160513,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9436985136193283,
+          "numerator": -0.8020531892296165,
           "delta": 7
         }
       },
@@ -886,14 +921,15 @@
           "volumeUsd7d": 378071.04241,
           "tvlUsd": 80147
         },
-        "riskAdjustedScore": -0.07316865945004729,
+        "riskAdjustedScore": -2.985080683053398,
         "scoreComponents": {
-          "aprHorizon": -0.007694430178428746,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 18.665001957733406,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.006501312296576023,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.18665001957733404,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9509902455426595,
+          "numerator": -0.7959505256169119,
           "delta": 7
         }
       },
@@ -911,14 +947,15 @@
           "volumeUsd7d": 252401.31624,
           "tvlUsd": 63688
         },
-        "riskAdjustedScore": -0.08703359418962203,
+        "riskAdjustedScore": -3.5576789213843765,
         "scoreComponents": {
-          "aprHorizon": -0.00633766330306873,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 15.680651221799625,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.005498661836677909,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.15680651221799624,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9496334786672995,
+          "numerator": -0.79695317607681,
           "delta": 7
         }
       },
@@ -936,14 +973,15 @@
           "volumeUsd7d": 6972941.25091,
           "tvlUsd": 1797455
         },
-        "riskAdjustedScore": -0.08903309927729802,
+        "riskAdjustedScore": -3.6255284278049587,
         "scoreComponents": {
-          "aprHorizon": -0.009031166715200989,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 15.34967218426451,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.007442225605801989,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.1534967218426451,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9523269820794318,
+          "numerator": -0.795009612307686,
           "delta": 7
         }
       },
@@ -961,14 +999,15 @@
           "volumeUsd7d": 36954.31136,
           "tvlUsd": 10002
         },
-        "riskAdjustedScore": -0.09317879746884299,
+        "riskAdjustedScore": -3.830786029812351,
         "scoreComponents": {
-          "aprHorizon": -0.002606481163591745,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 14.618471632722496,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0024484535157522913,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.14618471632722496,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9459022965278225,
+          "numerator": -0.8000033843977357,
           "delta": 7
         }
       },
@@ -986,14 +1025,15 @@
           "volumeUsd7d": 139278.03426,
           "tvlUsd": 38368
         },
-        "riskAdjustedScore": -0.09471505162989079,
+        "riskAdjustedScore": -3.909654174465423,
         "scoreComponents": {
-          "aprHorizon": -0.000210947524714733,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 14.363659319306338,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00020982908027078473,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.14363659319306338,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9435067628889455,
+          "numerator": -0.8022420088332172,
           "delta": 7
         }
       },
@@ -1011,14 +1051,15 @@
           "volumeUsd7d": 5053676.98249,
           "tvlUsd": 1413409
         },
-        "riskAdjustedScore": -0.09616231483541818,
+        "riskAdjustedScore": -3.969261405042927,
         "scoreComponents": {
-          "aprHorizon": -0.00023012344396722284,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 14.147622792714381,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00022879328167602075,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.14147622792714382,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943525938808198,
+          "numerator": -0.8022230446318119,
           "delta": 7
         }
       },
@@ -1036,14 +1077,15 @@
           "volumeUsd7d": 74834.77754,
           "tvlUsd": 21994
         },
-        "riskAdjustedScore": -0.10302017073643234,
+        "riskAdjustedScore": -4.06191875198779,
         "scoreComponents": {
-          "aprHorizon": -0.037947235080837416,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 13.462122275643745,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.02127973915648984,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.13462122275643745,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9812430504450682,
+          "numerator": -0.7811720987569981,
           "delta": 7
         }
       },
@@ -1061,14 +1103,15 @@
           "volumeUsd7d": 2159132.46003,
           "tvlUsd": 652074
         },
-        "riskAdjustedScore": -0.10398054644798502,
+        "riskAdjustedScore": -4.2726287608740385,
         "scoreComponents": {
-          "aprHorizon": -0.002932047147341521,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 13.10206139799048,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002734061402178689,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.1310206139799048,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9462278625115723,
+          "numerator": -0.7997177765113093,
           "delta": 7
         }
       },
@@ -1086,14 +1129,15 @@
           "volumeUsd7d": 1774653.5374,
           "tvlUsd": 548178
         },
-        "riskAdjustedScore": -0.10692745660574254,
+        "riskAdjustedScore": -4.328889006239272,
         "scoreComponents": {
-          "aprHorizon": -0.013454972019988354,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 12.809858147279565,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.010273922124300894,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.12809858147279565,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9567507873842191,
+          "numerator": -0.7921779157891871,
           "delta": 7
         }
       },
@@ -1111,14 +1155,15 @@
           "volumeUsd7d": 706533.13074,
           "tvlUsd": 221682
         },
-        "riskAdjustedScore": -0.10822648520951587,
+        "riskAdjustedScore": -4.42361123167333,
         "scoreComponents": {
-          "aprHorizon": -0.006395010532922463,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 12.610439815040836,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.005542077882699559,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.12610439815040836,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9496908258971533,
+          "numerator": -0.7969097600307884,
           "delta": 7
         }
       },
@@ -1136,14 +1181,15 @@
           "volumeUsd7d": 2621560.07203,
           "tvlUsd": 898349
         },
-        "riskAdjustedScore": -0.11845666158495095,
+        "riskAdjustedScore": -4.812739250648519,
         "scoreComponents": {
-          "aprHorizon": -0.010710340107022986,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 11.54687537643427,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.008564690106172002,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.11546875376434271,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9540061554712538,
+          "numerator": -0.793887147807316,
           "delta": 7
         }
       },
@@ -1161,14 +1207,15 @@
           "volumeUsd7d": 712540.7286,
           "tvlUsd": 275194
         },
-        "riskAdjustedScore": -0.13354441136948206,
+        "riskAdjustedScore": -5.421901070427066,
         "scoreComponents": {
-          "aprHorizon": -0.011244320312231437,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 10.245116818764782,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.008908840109043581,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.10245116818764781,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9545401356764622,
+          "numerator": -0.7935429978044444,
           "delta": 7
         }
       },
@@ -1186,39 +1233,15 @@
           "volumeUsd7d": 5938117.66701,
           "tvlUsd": 2301845
         },
-        "riskAdjustedScore": -0.13377049834691798,
+        "riskAdjustedScore": -5.459694965716451,
         "scoreComponents": {
-          "aprHorizon": -0.007407867711450855,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 10.207725881470019,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.006293700678125402,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.10207725881470019,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9507036830756816,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "PENDLE-WETH",
-        "apy": 0.537,
-        "volatility": 72.65,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 53.69363,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14151320.51227,
-          "tvlUsd": 5565121
-        },
-        "riskAdjustedScore": -0.13592152464219856,
-        "scoreComponents": {
-          "aprHorizon": -0.01027160440476571,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 10.060931831349842,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9535674197689965,
+          "numerator": -0.7961581372353626,
           "delta": 7
         }
       },
@@ -1236,64 +1259,41 @@
           "volumeUsd7d": 212965.88746,
           "tvlUsd": 83796
         },
-        "riskAdjustedScore": -0.1360574800056281,
+        "riskAdjustedScore": -5.524625854038411,
         "scoreComponents": {
-          "aprHorizon": -0.011148977397512638,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 10.055392433232099,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.008847823497255547,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.10055392433232099,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9544447927617434,
+          "numerator": -0.7936040144162324,
           "delta": 7
         }
       },
       {
-        "symbol": "WETH-WETH",
-        "apy": 0,
-        "volatility": 68.23,
+        "symbol": "PENDLE-WETH",
+        "apy": 0.537,
+        "volatility": 72.65,
         "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
+        "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
         "project": "uniswap-v3",
         "rawData": {
-          "originalAPY": 0.03493,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 250750.21902,
-          "tvlUsd": 105009
-        },
-        "riskAdjustedScore": -0.1439656877976556,
-        "scoreComponents": {
-          "aprHorizon": 0,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.448828339339295,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9432958153642308,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-UNI",
-        "apy": 0.219,
-        "volatility": 67.01,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 21.94012,
+          "originalAPY": 53.69363,
           "il7d": null,
           "ilRisk": "yes",
-          "volumeUsd7d": 1253324.86077,
-          "tvlUsd": 534351
+          "volumeUsd7d": 14151320.51227,
+          "tvlUsd": 5565121
         },
-        "riskAdjustedScore": -0.14690323614225062,
+        "riskAdjustedScore": -5.525552634483161,
         "scoreComponents": {
-          "aprHorizon": -0.004195495712000508,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.279876696748147,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00827743239819334,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.10060931831349842,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9474913110762313,
+          "numerator": -0.7941744055152946,
           "delta": 7
         }
       },
@@ -1311,14 +1311,67 @@
           "volumeUsd7d": 213804.4599,
           "tvlUsd": 90442
         },
-        "riskAdjustedScore": -0.14727070518314175,
+        "riskAdjustedScore": -5.885941982925939,
         "scoreComponents": {
-          "aprHorizon": -0.024508780038123845,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.353273721808238,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.01598288824221572,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09353273721808238,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9678045954023546,
+          "numerator": -0.7864689496712722,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-WETH",
+        "apy": 0,
+        "volatility": 68.23,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 0.03493,
+          "il7d": null,
+          "ilRisk": "no",
+          "volumeUsd7d": 250750.21902,
+          "tvlUsd": 105009
+        },
+        "riskAdjustedScore": -5.944824758862317,
+        "scoreComponents": {
+          "aprHorizon": 0,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09448828339339295,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.802451837913488,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-UNI",
+        "apy": 0.219,
+        "volatility": 67.01,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 21.94012,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 1253324.86077,
+          "tvlUsd": 534351
+        },
+        "riskAdjustedScore": -6.024355212623469,
+        "scoreComponents": {
+          "aprHorizon": 0.0038050729055199017,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09279876696748147,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.798646765007968,
           "delta": 7
         }
       },
@@ -1336,14 +1389,15 @@
           "volumeUsd7d": 27825.34397,
           "tvlUsd": 12198
         },
-        "riskAdjustedScore": -0.15106628655953294,
+        "riskAdjustedScore": -6.190344202565298,
         "scoreComponents": {
-          "aprHorizon": -0.0046929938165130025,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.026449232861427,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004211442507863206,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09026449232861428,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9479888091807438,
+          "numerator": -0.7982403954056247,
           "delta": 7
         }
       },
@@ -1361,14 +1415,15 @@
           "volumeUsd7d": 79646.52468,
           "tvlUsd": 34933
         },
-        "riskAdjustedScore": -0.1510892582067996,
+        "riskAdjustedScore": -6.199894238882021,
         "scoreComponents": {
-          "aprHorizon": -0.0037935778955500155,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 9.020909834743684,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.003470596286323069,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.09020909834743684,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9470893932597808,
+          "numerator": -0.7989812416271649,
           "delta": 7
         }
       },
@@ -1386,14 +1441,15 @@
           "volumeUsd7d": 1950922.51334,
           "tvlUsd": 919469
         },
-        "riskAdjustedScore": -0.16275024073374214,
+        "riskAdjustedScore": -6.631929754244245,
         "scoreComponents": {
-          "aprHorizon": -0.008534771236168304,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 8.39495784743878,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.007097970284124067,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0839495784743878,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.951830586600399,
+          "numerator": -0.7953538676293639,
           "delta": 7
         }
       },
@@ -1411,14 +1467,15 @@
           "volumeUsd7d": 85779.59615,
           "tvlUsd": 42004
         },
-        "riskAdjustedScore": -0.17090956038987345,
+        "riskAdjustedScore": -6.794035196855374,
         "scoreComponents": {
-          "aprHorizon": -0.029634587043303462,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 8.080597004256893,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.018168117077410395,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.08080597004256893,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9729304024075343,
+          "numerator": -0.7842837208360776,
           "delta": 7
         }
       },
@@ -1436,14 +1493,15 @@
           "volumeUsd7d": 76751.48278,
           "tvlUsd": 38612
         },
-        "riskAdjustedScore": -0.1751498355294352,
+        "riskAdjustedScore": -7.0000389875438955,
         "scoreComponents": {
-          "aprHorizon": -0.024527719170497342,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 7.864560477664935,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.015991409862753825,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.07864560477664935,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9678235345347281,
+          "numerator": -0.7864604280507341,
           "delta": 7
         }
       },
@@ -1461,14 +1519,15 @@
           "volumeUsd7d": 5469294.71575,
           "tvlUsd": 3049005
         },
-        "riskAdjustedScore": -0.19238141267621187,
+        "riskAdjustedScore": -7.8533360023940215,
         "scoreComponents": {
-          "aprHorizon": -0.007274124187439668,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 7.097353838357597,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.006196060477729137,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.07097353838357597,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9505699395516705,
+          "numerator": -0.7962557774357588,
           "delta": 7
         }
       },
@@ -1486,14 +1545,15 @@
           "volumeUsd7d": 907638.79091,
           "tvlUsd": 508325
         },
-        "riskAdjustedScore": -0.19290384711075903,
+        "riskAdjustedScore": -7.915741096055955,
         "scoreComponents": {
-          "aprHorizon": -0.0037935778955500155,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 7.065502299180578,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.003470596286323069,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.07065502299180577,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9470893932597808,
+          "numerator": -0.7989812416271649,
           "delta": 7
         }
       },
@@ -1511,14 +1571,15 @@
           "volumeUsd7d": 319686.95687,
           "tvlUsd": 199455
         },
-        "riskAdjustedScore": -0.21683845835126286,
+        "riskAdjustedScore": -8.699766739440706,
         "scoreComponents": {
-          "aprHorizon": -0.02102085445678803,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 6.341225995285743,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.014349166469720842,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.06341225995285743,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9643166698210188,
+          "numerator": -0.7881026714437671,
           "delta": 7
         }
       },
@@ -1536,14 +1597,15 @@
           "volumeUsd7d": 409592.46869,
           "tvlUsd": 256883
         },
-        "riskAdjustedScore": -0.2168992205803988,
+        "riskAdjustedScore": -8.800823369344052,
         "scoreComponents": {
-          "aprHorizon": -0.011701901606997467,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 6.309374456108724,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.009199121352572615,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.06309374456108724,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9549977169712283,
+          "numerator": -0.7932527165609153,
           "delta": 7
         }
       },
@@ -1561,14 +1623,15 @@
           "volumeUsd7d": 44057.77721,
           "tvlUsd": 28445
         },
-        "riskAdjustedScore": -0.22315703424306724,
+        "riskAdjustedScore": -9.071896020230547,
         "scoreComponents": {
-          "aprHorizon": -0.01027160440476571,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 6.127959167752657,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00827743239819334,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.061279591677526564,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9535674197689965,
+          "numerator": -0.7941744055152946,
           "delta": 7
         }
       },
@@ -1586,14 +1649,15 @@
           "volumeUsd7d": 348452.90547,
           "tvlUsd": 231156
         },
-        "riskAdjustedScore": -0.22811721000062826,
+        "riskAdjustedScore": -9.412465982109984,
         "scoreComponents": {
-          "aprHorizon": -0.00044104614476125903,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.9645469232792525,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00043619485542034653,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.05964546923279253,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943736861508992,
+          "numerator": -0.8020156430580676,
           "delta": 7
         }
       },
@@ -1611,14 +1675,15 @@
           "volumeUsd7d": 5136080.16905,
           "tvlUsd": 3700400
         },
-        "riskAdjustedScore": -0.2482460091471518,
+        "riskAdjustedScore": -10.17581997035566,
         "scoreComponents": {
-          "aprHorizon": -0.0044825292964345564,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.492313233741703,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004040542379809553,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.054923132337417024,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9477783446606654,
+          "numerator": -0.7984112955336784,
           "delta": 7
         }
       },
@@ -1636,14 +1701,15 @@
           "volumeUsd7d": 605731.1449,
           "tvlUsd": 452598
         },
-        "riskAdjustedScore": -0.2568946468392349,
+        "riskAdjustedScore": -10.60482559046014,
         "scoreComponents": {
-          "aprHorizon": -0.00017259512201661664,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.295664600561844,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0001718454201720121,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.05295664600561844,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434684104862474,
+          "numerator": -0.8022799924933159,
           "delta": 7
         }
       },
@@ -1661,14 +1727,15 @@
           "volumeUsd7d": 33495.24659,
           "tvlUsd": 25743
         },
-        "riskAdjustedScore": -0.26461988687984933,
+        "riskAdjustedScore": -10.870076866019476,
         "scoreComponents": {
-          "aprHorizon": -0.0031235312312860586,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 5.148870550441668,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002900142820845941,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.05148870550441668,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9464193465955169,
+          "numerator": -0.799551695092642,
           "delta": 7
         }
       },
@@ -1686,14 +1753,15 @@
           "volumeUsd7d": 25813.63695,
           "tvlUsd": 21965
         },
-        "riskAdjustedScore": -0.2942227838035118,
+        "riskAdjustedScore": -11.944241692492813,
         "scoreComponents": {
-          "aprHorizon": -0.01132059129724805,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 4.650324719844841,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.008957517879192078,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.04650324719844841,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9546164066614788,
+          "numerator": -0.7934943200342959,
           "delta": 7
         }
       },
@@ -1711,14 +1779,15 @@
           "volumeUsd7d": 22711.17645,
           "tvlUsd": 19642
         },
-        "riskAdjustedScore": -0.2977716048070683,
+        "riskAdjustedScore": -12.232632897377316,
         "scoreComponents": {
-          "aprHorizon": -0.003085235914590534,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 4.575542845255316,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002867038881636752,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.04575542845255316,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9463810512788213,
+          "numerator": -0.7995847990318512,
           "delta": 7
         }
       },
@@ -1736,14 +1805,15 @@
           "volumeUsd7d": 270668.11402,
           "tvlUsd": 248254
         },
-        "riskAdjustedScore": -0.31569879500809733,
+        "riskAdjustedScore": -12.987170266797749,
         "scoreComponents": {
-          "aprHorizon": -0.0022233929468651326,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 4.313806284191983,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002107027759439273,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.04313806284191983,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.945519208311096,
+          "numerator": -0.8003448101540487,
           "delta": 7
         }
       },
@@ -1761,14 +1831,15 @@
           "volumeUsd7d": 390504.79882,
           "tvlUsd": 413864
         },
-        "riskAdjustedScore": -0.36482072002588856,
+        "riskAdjustedScore": -15.000446948096059,
         "scoreComponents": {
-          "aprHorizon": -0.0025298695242925717,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.7335543313584547,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0023806425509629303,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.037335543313584546,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9458256848885234,
+          "numerator": -0.800071195362525,
           "delta": 7
         }
       },
@@ -1786,14 +1857,15 @@
           "volumeUsd7d": 91520.19986,
           "tvlUsd": 104489
         },
-        "riskAdjustedScore": -0.39336477420749183,
+        "riskAdjustedScore": -16.122000036806302,
         "scoreComponents": {
-          "aprHorizon": -0.004578197795579442,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.466278372177379,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004118408715993782,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03466278372177379,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9478740131598102,
+          "numerator": -0.7983334291974942,
           "delta": 7
         }
       },
@@ -1811,14 +1883,15 @@
           "volumeUsd7d": 21173.9589,
           "tvlUsd": 24228
         },
-        "riskAdjustedScore": -0.39385656480697623,
+        "riskAdjustedScore": -16.19936977258892,
         "scoreComponents": {
-          "aprHorizon": -0.002338327292727982,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.4579692750007642,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0022100815136507634,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03457969275000764,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9456341426569588,
+          "numerator": -0.8002417563998372,
           "delta": 7
         }
       },
@@ -1836,64 +1909,15 @@
           "volumeUsd7d": 17074.22614,
           "tvlUsd": 20501
         },
-        "riskAdjustedScore": -0.41338111802449706,
+        "riskAdjustedScore": -16.981421045082474,
         "scoreComponents": {
-          "aprHorizon": -0.0031043836666855285,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.2959418800567963,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002883597836842444,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03295941880056796,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9464001990309163,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "GSWIFT-WETH",
-        "apy": 0.044,
-        "volatility": 23.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "90d21621-4372-4d25-99ba-85ddc776cbd2",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 4.39628,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 36764.08281,
-          "tvlUsd": 44496
-        },
-        "riskAdjustedScore": -0.41622377360754503,
-        "scoreComponents": {
-          "aprHorizon": -0.0008436535857692107,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.269629738997519,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.94413946895,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-GRT",
-        "apy": 0.122,
-        "volatility": 23.51,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 12.16338,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 701897.44859,
-          "tvlUsd": 853181
-        },
-        "riskAdjustedScore": -0.4183155433105144,
-        "scoreComponents": {
-          "aprHorizon": -0.002338327292727982,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.2557812437031632,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9456341426569588,
+          "numerator": -0.7995682400766455,
           "delta": 7
         }
       },
@@ -1911,14 +1935,67 @@
           "volumeUsd7d": 12531.57954,
           "tvlUsd": 15268
         },
-        "riskAdjustedScore": -0.4215562135091517,
+        "riskAdjustedScore": -17.0892730098731,
         "scoreComponents": {
-          "aprHorizon": -0.01240712973029634,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.2474721465265493,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.009638436428476282,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03247472146526549,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9557029450945271,
+          "numerator": -0.7928134014850117,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "GSWIFT-WETH",
+        "apy": 0.044,
+        "volatility": 23.61,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "90d21621-4372-4d25-99ba-85ddc776cbd2",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 4.39628,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 36764.08281,
+          "tvlUsd": 44496
+        },
+        "riskAdjustedScore": -17.162126408420278,
+        "scoreComponents": {
+          "aprHorizon": 0.0008261394934077071,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03269629738997519,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8016256984200802,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-GRT",
+        "apy": 0.122,
+        "volatility": 23.51,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 12.16338,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 701897.44859,
+          "tvlUsd": 853181
+        },
+        "riskAdjustedScore": -17.205370617675253,
+        "scoreComponents": {
+          "aprHorizon": 0.0022100815136507634,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03255781243703163,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8002417563998372,
           "delta": 7
         }
       },
@@ -1936,14 +2013,15 @@
           "volumeUsd7d": 9916.47032,
           "tvlUsd": 12546
         },
-        "riskAdjustedScore": -0.4350212080794527,
+        "riskAdjustedScore": -17.96348065975093,
         "scoreComponents": {
           "aprHorizon": 0,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.126990237465649,
-          "liquidationLoss": 2.0000000000000004,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.03126990237465649,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9432958153642308,
+          "numerator": -0.802451837913488,
           "delta": 7
         }
       },
@@ -1961,14 +2039,15 @@
           "volumeUsd7d": 14401.59203,
           "tvlUsd": 18759
         },
-        "riskAdjustedScore": -0.44904092938823076,
+        "riskAdjustedScore": -18.395291863001557,
         "scoreComponents": {
-          "aprHorizon": -0.004884305542995904,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 3.0369750180523334,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0043655259461008455,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.030369750180523333,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9481801209072267,
+          "numerator": -0.7980863119673871,
           "delta": 7
         }
       },
@@ -1986,14 +2065,15 @@
           "volumeUsd7d": 37288.20444,
           "tvlUsd": 51754
         },
-        "riskAdjustedScore": -0.4775690122572555,
+        "riskAdjustedScore": -19.65172447872486,
         "scoreComponents": {
-          "aprHorizon": -0.0020509787599820584,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.8514051811079595,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001951423680028208,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.028514051811079594,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9453467941242129,
+          "numerator": -0.8005004142334597,
           "delta": 7
         }
       },
@@ -2011,14 +2091,15 @@
           "volumeUsd7d": 199677.24606,
           "tvlUsd": 287848
         },
-        "riskAdjustedScore": -0.49800478630237544,
+        "riskAdjustedScore": -20.26817409668723,
         "scoreComponents": {
-          "aprHorizon": -0.009432009555276899,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.7447717673414163,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.007715951682806255,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.02744771767341416,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9527278249195077,
+          "numerator": -0.7947358862306817,
           "delta": 7
         }
       },
@@ -2036,14 +2117,15 @@
           "volumeUsd7d": 13425.60351,
           "tvlUsd": 22836
         },
-        "riskAdjustedScore": -0.58476999629778,
+        "riskAdjustedScore": -24.13575007775842,
         "scoreComponents": {
-          "aprHorizon": -0.00026847471830127034,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.326547209451856,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0002666666072554946,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.023265472094518562,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943564290082532,
+          "numerator": -0.8021851713062325,
           "delta": 7
         }
       },
@@ -2061,14 +2143,15 @@
           "volumeUsd7d": 22064.11216,
           "tvlUsd": 39724
         },
-        "riskAdjustedScore": -0.6194167317824324,
+        "riskAdjustedScore": -25.513850549816333,
         "scoreComponents": {
-          "aprHorizon": -0.0014569912780482142,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.1977562032143423,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0014057905743092292,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.021977562032143422,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944752806642279,
+          "numerator": -0.8010460473391787,
           "delta": 7
         }
       },
@@ -2086,14 +2169,15 @@
           "volumeUsd7d": 13661.95046,
           "tvlUsd": 24626
         },
-        "riskAdjustedScore": -0.6197459151713954,
+        "riskAdjustedScore": -25.589654535947023,
         "scoreComponents": {
-          "aprHorizon": -0.00003835578819000318,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.1949865041554713,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000038318593422737024,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.021949865041554713,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433341711524208,
+          "numerator": -0.8024135193200652,
           "delta": 7
         }
       },
@@ -2111,39 +2195,15 @@
           "volumeUsd7d": 38975.53357,
           "tvlUsd": 71464
         },
-        "riskAdjustedScore": -0.6317230121988707,
+        "riskAdjustedScore": -25.92020417273898,
         "scoreComponents": {
-          "aprHorizon": -0.0038509997845936894,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.157595566860709,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0035187291245437624,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.021575955668607094,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9471468151488245,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-USDC.E",
-        "apy": 0.12,
-        "volatility": 15.41,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.9566,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 176740.58798,
-          "tvlUsd": 327715
-        },
-        "riskAdjustedScore": -0.6381833078595119,
-        "scoreComponents": {
-          "aprHorizon": -0.0023000165947362206,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.134053124860304,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.945595831958967,
+          "numerator": -0.7989331087889442,
           "delta": 7
         }
       },
@@ -2161,14 +2221,41 @@
           "volumeUsd7d": 40167.16596,
           "tvlUsd": 74391
         },
-        "riskAdjustedScore": -0.6388102918472646,
+        "riskAdjustedScore": -26.097431862037197,
         "scoreComponents": {
-          "aprHorizon": -0.006739058598204117,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.136822823919175,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.005800580078108242,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.02136822823919175,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.950034873962435,
+          "numerator": -0.7966512578353797,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-USDC.E",
+        "apy": 0.12,
+        "volatility": 15.41,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 11.9566,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 176740.58798,
+          "tvlUsd": 327715
+        },
+        "riskAdjustedScore": -26.250200929938533,
+        "scoreComponents": {
+          "aprHorizon": 0.0021757904456851662,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.02134053124860304,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8002760474678028,
           "delta": 7
         }
       },
@@ -2186,14 +2273,15 @@
           "volumeUsd7d": 8972.8558,
           "tvlUsd": 17681
         },
-        "riskAdjustedScore": -0.6780812094169918,
+        "riskAdjustedScore": -27.911526790472127,
         "scoreComponents": {
-          "aprHorizon": -0.0018593896091712026,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 2.0080318176816614,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001777068265743198,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.020080318176816613,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.945155204973402,
+          "numerator": -0.8006747696477448,
           "delta": 7
         }
       },
@@ -2211,14 +2299,15 @@
           "volumeUsd7d": 11479.76,
           "tvlUsd": 22892
         },
-        "riskAdjustedScore": -0.6873948419084177,
+        "riskAdjustedScore": -28.1352894081643,
         "scoreComponents": {
-          "aprHorizon": -0.00545812844341409,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.9844893756812558,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004820653453210477,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01984489375681256,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9487539438076449,
+          "numerator": -0.7976311844602775,
           "delta": 7
         }
       },
@@ -2236,14 +2325,15 @@
           "volumeUsd7d": 195791.26862,
           "tvlUsd": 393286
         },
-        "riskAdjustedScore": -0.6927326362901145,
+        "riskAdjustedScore": -28.35133490389847,
         "scoreComponents": {
-          "aprHorizon": -0.005515501473052353,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.969256030857464,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00486559159403388,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01969256030857464,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9488113168372831,
+          "numerator": -0.7975862463194541,
           "delta": 7
         }
       },
@@ -2261,14 +2351,15 @@
           "volumeUsd7d": 39135.55377,
           "tvlUsd": 81319
         },
-        "riskAdjustedScore": -0.7155321741231125,
+        "riskAdjustedScore": -29.39268784571666,
         "scoreComponents": {
-          "aprHorizon": -0.0031235312312860586,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.9041681029739896,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002900142820845941,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.019041681029739896,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9464193465955169,
+          "numerator": -0.799551695092642,
           "delta": 7
         }
       },
@@ -2286,14 +2377,15 @@
           "volumeUsd7d": 5301.39271,
           "tvlUsd": 11036
         },
-        "riskAdjustedScore": -0.7164050973820814,
+        "riskAdjustedScore": -29.519282081336947,
         "scoreComponents": {
-          "aprHorizon": -0.0012461781456973853,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.9000135543856826,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0012084654809936257,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.019000135543856825,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9445419935099282,
+          "numerator": -0.8012433724324943,
           "delta": 7
         }
       },
@@ -2311,14 +2403,15 @@
           "volumeUsd7d": 17074.65653,
           "tvlUsd": 36398
         },
-        "riskAdjustedScore": -0.7331155392214608,
+        "riskAdjustedScore": -30.262606426577477,
         "scoreComponents": {
-          "aprHorizon": -0.00019177141739046277,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.8556983694437423,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000190846471808781,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.018556983694437423,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434875867816213,
+          "numerator": -0.8022609914416792,
           "delta": 7
         }
       },
@@ -2336,14 +2429,15 @@
           "volumeUsd7d": 54120.81537,
           "tvlUsd": 116201
         },
-        "riskAdjustedScore": -0.7383712663523919,
+        "riskAdjustedScore": -30.438239371767985,
         "scoreComponents": {
-          "aprHorizon": -0.0009778376463875915,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.8432347236788216,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0009544130893366365,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.018432347236788216,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9442736530106184,
+          "numerator": -0.8014974248241513,
           "delta": 7
         }
       },
@@ -2361,14 +2455,15 @@
           "volumeUsd7d": 14536.10113,
           "tvlUsd": 34854
         },
-        "riskAdjustedScore": -0.8244814132278551,
+        "riskAdjustedScore": -33.986890771353,
         "scoreComponents": {
-          "aprHorizon": -0.0009970060462327623,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.6507406390872694,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0009726694493097376,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.016507406390872694,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9442928214104636,
+          "numerator": -0.8014791684641782,
           "delta": 7
         }
       },
@@ -2386,14 +2481,15 @@
           "volumeUsd7d": 22215.84712,
           "tvlUsd": 56247
         },
-        "riskAdjustedScore": -0.8709082584266198,
+        "riskAdjustedScore": -35.94940877442851,
         "scoreComponents": {
-          "aprHorizon": -0.000210947524714733,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.562110269203389,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00020982908027078473,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01562110269203389,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9435067628889455,
+          "numerator": -0.8022420088332172,
           "delta": 7
         }
       },
@@ -2411,14 +2507,15 @@
           "volumeUsd7d": 7082.90709,
           "tvlUsd": 18217
         },
-        "riskAdjustedScore": -0.8841908639174314,
+        "riskAdjustedScore": -36.50381638943114,
         "scoreComponents": {
-          "aprHorizon": -0.00011506510744219156,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.5385678272029832,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0001147312434348624,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.015385678272029833,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943410880471673,
+          "numerator": -0.8023371066700531,
           "delta": 7
         }
       },
@@ -2436,14 +2533,15 @@
           "volumeUsd7d": 16705.63994,
           "tvlUsd": 46697
         },
-        "riskAdjustedScore": -0.9616260710054824,
+        "riskAdjustedScore": -39.640287475002715,
         "scoreComponents": {
-          "aprHorizon": -0.0009970060462327623,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.4153162190832127,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0009726694493097376,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.014153162190832127,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9442928214104636,
+          "numerator": -0.8014791684641782,
           "delta": 7
         }
       },
@@ -2461,14 +2559,15 @@
           "volumeUsd7d": 4429.54869,
           "tvlUsd": 12932
         },
-        "riskAdjustedScore": -1.0039322423658306,
+        "riskAdjustedScore": -41.37480914984904,
         "scoreComponents": {
-          "aprHorizon": -0.0011311795838242489,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.3557676893174802,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0010999893843082198,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.013557676893174803,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944426994948055,
+          "numerator": -0.8013518485291797,
           "delta": 7
         }
       },
@@ -2486,14 +2585,15 @@
           "volumeUsd7d": 10283.93733,
           "tvlUsd": 30340
         },
-        "riskAdjustedScore": -1.0174002593404365,
+        "riskAdjustedScore": -41.66647441296992,
         "scoreComponents": {
-          "aprHorizon": -0.005075598553827554,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.3405343444936884,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004518409848435434,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.013405343444936884,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9483714139180583,
+          "numerator": -0.7979334280650525,
           "delta": 7
         }
       },
@@ -2511,14 +2611,15 @@
           "volumeUsd7d": 143273.24963,
           "tvlUsd": 430570
         },
-        "riskAdjustedScore": -1.0355160536378192,
+        "riskAdjustedScore": -42.416982529365434,
         "scoreComponents": {
-          "aprHorizon": -0.004941695411209146,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.3169919024932828,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004411516208154609,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.013169919024932829,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.94823751077544,
+          "numerator": -0.7980403217053333,
           "delta": 7
         }
       },
@@ -2536,14 +2637,15 @@
           "volumeUsd7d": 5318.85055,
           "tvlUsd": 17984
         },
-        "riskAdjustedScore": -1.1656210678103194,
+        "riskAdjustedScore": -47.72155683845832,
         "scoreComponents": {
-          "aprHorizon": -0.005285999253601403,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.170197852373106,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.004685218995415852,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01170197852373106,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9485818146178322,
+          "numerator": -0.7977666189180721,
           "delta": 7
         }
       },
@@ -2561,14 +2663,15 @@
           "volumeUsd7d": 19126.92867,
           "tvlUsd": 65630
         },
-        "riskAdjustedScore": -1.1800543730292805,
+        "riskAdjustedScore": -48.61127383302066,
         "scoreComponents": {
-          "aprHorizon": -0.0013994990414545327,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.1535796580198785,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0013521715676787505,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.011535796580198786,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9446953144056853,
+          "numerator": -0.8010996663458092,
           "delta": 7
         }
       },
@@ -2586,14 +2689,15 @@
           "volumeUsd7d": 7919.49923,
           "tvlUsd": 28300
         },
-        "riskAdjustedScore": -1.22863474201027,
+        "riskAdjustedScore": -50.625568769492865,
         "scoreComponents": {
-          "aprHorizon": -0.0012461781456973853,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.107879623548503,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0012084654809936257,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01107879623548503,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9445419935099282,
+          "numerator": -0.8012433724324943,
           "delta": 7
         }
       },
@@ -2611,14 +2715,15 @@
           "volumeUsd7d": 194903.49354,
           "tvlUsd": 715515
         },
-        "riskAdjustedScore": -1.264012527570981,
+        "riskAdjustedScore": -51.99876012991644,
         "scoreComponents": {
-          "aprHorizon": -0.0022233929468651326,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.077412933900919,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002107027759439273,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01077412933900919,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.945519208311096,
+          "numerator": -0.8003448101540487,
           "delta": 7
         }
       },
@@ -2636,14 +2741,15 @@
           "volumeUsd7d": 155498.98972,
           "tvlUsd": 604848
         },
-        "riskAdjustedScore": -1.3380274284553522,
+        "riskAdjustedScore": -55.03495591626342,
         "scoreComponents": {
-          "aprHorizon": -0.002319172037545947,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 1.017864404135187,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.002192943480434195,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.01017864404135187,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9456149874017767,
+          "numerator": -0.8002588944330538,
           "delta": 7
         }
       },
@@ -2661,14 +2767,15 @@
           "volumeUsd7d": 2913.13333,
           "tvlUsd": 11555
         },
-        "riskAdjustedScore": -1.3642883079757848,
+        "riskAdjustedScore": -56.334125569632086,
         "scoreComponents": {
-          "aprHorizon": -0.000019177988130891777,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9970916611936528,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000019168683255355035,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009970916611936527,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433149933523617,
+          "numerator": -0.8024326692302326,
           "delta": 7
         }
       },
@@ -2686,14 +2793,15 @@
           "volumeUsd7d": 3679.49162,
           "tvlUsd": 14943
         },
-        "riskAdjustedScore": -1.3957904812569963,
+        "riskAdjustedScore": -57.56577709950473,
         "scoreComponents": {
-          "aprHorizon": -0.000709460316161703,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9749340687226826,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0006970195305853188,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009749340687226826,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9440052756803925,
+          "numerator": -0.8017548183829026,
           "delta": 7
         }
       },
@@ -2711,14 +2819,15 @@
           "volumeUsd7d": 3951.00354,
           "tvlUsd": 16155
         },
-        "riskAdjustedScore": -1.4055944423255338,
+        "riskAdjustedScore": -57.99505497268424,
         "scoreComponents": {
-          "aprHorizon": -0.00046021980757426917,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9680098210755045,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0004549409510290481,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009680098210755045,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943756035171805,
+          "numerator": -0.8019968969624589,
           "delta": 7
         }
       },
@@ -2736,14 +2845,15 @@
           "volumeUsd7d": 4037.73582,
           "tvlUsd": 17166
         },
-        "riskAdjustedScore": -1.46199710665323,
+        "riskAdjustedScore": -60.33227727386409,
         "scoreComponents": {
-          "aprHorizon": -0.00036434961334652627,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9306188837807424,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00036103030557854687,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009306188837807424,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9436601649775773,
+          "numerator": -0.8020908076079094,
           "delta": 7
         }
       },
@@ -2761,14 +2871,15 @@
           "volumeUsd7d": 6738.16806,
           "tvlUsd": 28759
         },
-        "riskAdjustedScore": -1.468987708706947,
+        "riskAdjustedScore": -60.56075455748189,
         "scoreComponents": {
-          "aprHorizon": -0.0009395002829704069,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9264643351924355,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0009178492013490747,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009264643351924355,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9442353156472012,
+          "numerator": -0.8015339887121389,
           "delta": 7
         }
       },
@@ -2786,14 +2897,15 @@
           "volumeUsd7d": 4460.38263,
           "tvlUsd": 19133
         },
-        "riskAdjustedScore": -1.4750081627246947,
+        "riskAdjustedScore": -60.89161327072618,
         "scoreComponents": {
-          "aprHorizon": -0.00015341863857099014,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.9223097866041287,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00015282588913656525,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.009223097866041287,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434492340028018,
+          "numerator": -0.8022990120243514,
           "delta": 7
         }
       },
@@ -2811,39 +2923,15 @@
           "volumeUsd7d": 54872.82571,
           "tvlUsd": 239820
         },
-        "riskAdjustedScore": -1.5023689313250197,
+        "riskAdjustedScore": -61.97975878278588,
         "scoreComponents": {
-          "aprHorizon": -0.000536912578685822,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.905691592250901,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0005297462090863014,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.00905691592250901,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9438327279429166,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-RETH",
-        "apy": 0.002,
-        "volatility": 6.45,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.15066,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 70893.52138,
-          "tvlUsd": 313949
-        },
-        "riskAdjustedScore": -1.5229415124754444,
-        "scoreComponents": {
-          "aprHorizon": -0.00003835578819000318,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8932279464859805,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9433341711524208,
+          "numerator": -0.8019220917044017,
           "delta": 7
         }
       },
@@ -2861,14 +2949,41 @@
           "volumeUsd7d": 2312.23825,
           "tvlUsd": 10238
         },
-        "riskAdjustedScore": -1.524473712339684,
+        "riskAdjustedScore": -62.73726576532376,
         "scoreComponents": {
-          "aprHorizon": -0.0019935039858198778,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8932279464859805,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0018992798034114244,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008932279464859805,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9452893193500507,
+          "numerator": -0.8005525581100765,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-RETH",
+        "apy": 0.002,
+        "volatility": 6.45,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 0.15066,
+          "il7d": null,
+          "ilRisk": "no",
+          "volumeUsd7d": 70893.52138,
+          "tvlUsd": 313949
+        },
+        "riskAdjustedScore": -62.88310455732719,
+        "scoreComponents": {
+          "aprHorizon": 0.000038318593422737024,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008932279464859805,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8024135193200652,
           "delta": 7
         }
       },
@@ -2886,14 +3001,15 @@
           "volumeUsd7d": 7298.73991,
           "tvlUsd": 32736
         },
-        "riskAdjustedScore": -1.5433609130012553,
+        "riskAdjustedScore": -63.54883225038018,
         "scoreComponents": {
-          "aprHorizon": -0.0016677816841781379,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8821491502504955,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0016011469265713174,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008821491502504955,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944963597048409,
+          "numerator": -0.8008506909869166,
           "delta": 7
         }
       },
@@ -2911,14 +3027,15 @@
           "volumeUsd7d": 10910.52142,
           "tvlUsd": 49321
         },
-        "riskAdjustedScore": -1.5546359150729703,
+        "riskAdjustedScore": -64.14027061326074,
         "scoreComponents": {
-          "aprHorizon": -0.0004985665691403796,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8752249026033174,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0004923793357514139,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008752249026033174,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9437943819333712,
+          "numerator": -0.8019594585777365,
           "delta": 7
         }
       },
@@ -2936,14 +3053,15 @@
           "volumeUsd7d": 4082.41475,
           "tvlUsd": 19294
         },
-        "riskAdjustedScore": -1.6246249682483878,
+        "riskAdjustedScore": -66.9444078764007,
         "scoreComponents": {
-          "aprHorizon": -0.0012270121883872775,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8378339653085553,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001190427823229534,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008378339653085553,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944522827552618,
+          "numerator": -0.8012614100902584,
           "delta": 7
         }
       },
@@ -2961,14 +3079,15 @@
           "volumeUsd7d": 102320.63648,
           "tvlUsd": 503233
         },
-        "riskAdjustedScore": -1.6908344622319407,
+        "riskAdjustedScore": -69.79671705957628,
         "scoreComponents": {
-          "aprHorizon": -0.00019177141739046277,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.8045975766021002,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000190846471808781,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.008045975766021002,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434875867816213,
+          "numerator": -0.8022609914416792,
           "delta": 7
         }
       },
@@ -2986,39 +3105,15 @@
           "volumeUsd7d": 21653.97617,
           "tvlUsd": 110828
         },
-        "riskAdjustedScore": -1.760354637712194,
+        "riskAdjustedScore": -72.69093069841863,
         "scoreComponents": {
           "aprHorizon": 0,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.7727460374250807,
-          "liquidationLoss": 2.0000000000000004,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.007727460374250808,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9432958153642308,
-          "delta": 7
-        }
-      },
-      {
-        "symbol": "WETH-AA",
-        "apy": 0.027,
-        "volatility": 5.17,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "35e57b64-9b1f-4274-bb87-382fe2c540c4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.66091,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4673.41489,
-          "tvlUsd": 25822
-        },
-        "riskAdjustedScore": -1.9004634231215773,
-        "scoreComponents": {
-          "aprHorizon": -0.0005177396679156843,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.71596720671822,
-          "liquidationLoss": 2.0000000000000004,
-          "correlationHaircut": 0.7,
-          "numerator": -1.9438135550321465,
+          "numerator": -0.802451837913488,
           "delta": 7
         }
       },
@@ -3036,14 +3131,41 @@
           "volumeUsd7d": 4067.95612,
           "tvlUsd": 22423
         },
-        "riskAdjustedScore": -1.906293886717896,
+        "riskAdjustedScore": -77.49763710201296,
         "scoreComponents": {
-          "aprHorizon": -0.010252526706366893,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.7173520562476556,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.008264847492579275,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.007173520562476556,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9535483420705977,
+          "numerator": -0.7941869904209087,
+          "delta": 7
+        }
+      },
+      {
+        "symbol": "WETH-AA",
+        "apy": 0.027,
+        "volatility": 5.17,
+        "volatilitySource": "volume_tvl_estimation",
+        "poolId": "35e57b64-9b1f-4274-bb87-382fe2c540c4",
+        "project": "uniswap-v3",
+        "rawData": {
+          "originalAPY": 2.66091,
+          "il7d": null,
+          "ilRisk": "yes",
+          "volumeUsd7d": 4673.41489,
+          "tvlUsd": 25822
+        },
+        "riskAdjustedScore": -78.40562124719001,
+        "scoreComponents": {
+          "aprHorizon": 0.0005110716940972537,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0071596720671822,
+          "liquidationLoss": 0.8,
+          "correlationHaircut": 0.7,
+          "numerator": -0.8019407662193907,
           "delta": 7
         }
       },
@@ -3061,14 +3183,15 @@
           "volumeUsd7d": 6665.9832,
           "tvlUsd": 39840
         },
-        "riskAdjustedScore": -2.0555018793433417,
+        "riskAdjustedScore": -84.80470926272133,
         "scoreComponents": {
-          "aprHorizon": -0.0004985665691403796,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.6619580750702305,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0004923793357514139,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.006619580750702305,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9437943819333712,
+          "numerator": -0.8019594585777365,
           "delta": 7
         }
       },
@@ -3086,14 +3209,15 @@
           "volumeUsd7d": 4565.46035,
           "tvlUsd": 28571
         },
-        "riskAdjustedScore": -2.1494257806183046,
+        "riskAdjustedScore": -88.75398339198051,
         "scoreComponents": {
-          "aprHorizon": -0.000019177988130891777,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.6328762349520823,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000019168683255355035,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.006328762349520824,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433149933523617,
+          "numerator": -0.8024326692302326,
           "delta": 7
         }
       },
@@ -3111,14 +3235,15 @@
           "volumeUsd7d": 35223.90802,
           "tvlUsd": 235268
         },
-        "riskAdjustedScore": -2.2957664613718163,
+        "riskAdjustedScore": -94.69858753536816,
         "scoreComponents": {
-          "aprHorizon": -0.0006136023418257253,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.5927155985984491,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000604266521296859,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.005927155985984491,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9439094177060565,
+          "numerator": -0.8018475713921911,
           "delta": 7
         }
       },
@@ -3136,14 +3261,15 @@
           "volumeUsd7d": 39109.26876,
           "tvlUsd": 275859
         },
-        "riskAdjustedScore": -2.425927959191866,
+        "riskAdjustedScore": -100.09750860480914,
         "scoreComponents": {
-          "aprHorizon": -0.00044104614476125903,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.5608640594214296,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00043619485542034653,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.005608640594214296,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943736861508992,
+          "numerator": -0.8020156430580676,
           "delta": 7
         }
       },
@@ -3161,14 +3287,15 @@
           "volumeUsd7d": 6726.09089,
           "tvlUsd": 51697
         },
-        "riskAdjustedScore": -2.6428241591832577,
+        "riskAdjustedScore": -108.81643363145234,
         "scoreComponents": {
-          "aprHorizon": -0.0016869433216104568,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.5151640249500539,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0016188103379251029,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.005151640249500539,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9449827586858413,
+          "numerator": -0.8008330275755629,
           "delta": 7
         }
       },
@@ -3186,14 +3313,15 @@
           "volumeUsd7d": 7076.82716,
           "tvlUsd": 56008
         },
-        "riskAdjustedScore": -2.722467897937414,
+        "riskAdjustedScore": -112.21498764454176,
         "scoreComponents": {
-          "aprHorizon": -0.0010545101182923844,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.4999306801262619,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001027336577833049,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004999306801262619,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9443503254825232,
+          "numerator": -0.8014245013356549,
           "delta": 7
         }
       },
@@ -3211,14 +3339,15 @@
           "volumeUsd7d": 2393.10328,
           "tvlUsd": 19728
         },
-        "riskAdjustedScore": -2.830772011076093,
+        "riskAdjustedScore": -116.8920441778605,
         "scoreComponents": {
           "aprHorizon": 0,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.4805427867141631,
-          "liquidationLoss": 2.0000000000000004,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004805427867141631,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9432958153642308,
+          "numerator": -0.802451837913488,
           "delta": 7
         }
       },
@@ -3236,14 +3365,15 @@
           "volumeUsd7d": 8581.36123,
           "tvlUsd": 72597
         },
-        "riskAdjustedScore": -2.908441122731892,
+        "riskAdjustedScore": -119.7836645616793,
         "scoreComponents": {
-          "aprHorizon": -0.001533644964046843,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.46807914094924247,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0014770549451583737,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0046807914094924245,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9448294603282776,
+          "numerator": -0.8009747829683296,
           "delta": 7
         }
       },
@@ -3261,14 +3391,15 @@
           "volumeUsd7d": 12199.31892,
           "tvlUsd": 103590
         },
-        "riskAdjustedScore": -2.926041542262481,
+        "riskAdjustedScore": -120.47002993394975,
         "scoreComponents": {
-          "aprHorizon": -0.0017252660331923408,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.4653094418903712,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0016540894408811901,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004653094418903712,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9450210813974231,
+          "numerator": -0.8007977484726068,
           "delta": 7
         }
       },
@@ -3286,14 +3417,15 @@
           "volumeUsd7d": 3103.75312,
           "tvlUsd": 26734
         },
-        "riskAdjustedScore": -2.958697535369173,
+        "riskAdjustedScore": -122.17039280161175,
         "scoreComponents": {
-          "aprHorizon": -0.000019177988130891777,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.4597700437726287,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000019168683255355035,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004597700437726287,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433149933523617,
+          "numerator": -0.8024326692302326,
           "delta": 7
         }
       },
@@ -3311,14 +3443,15 @@
           "volumeUsd7d": 228064.56691,
           "tvlUsd": 2038709
         },
-        "riskAdjustedScore": -3.070829905210784,
+        "riskAdjustedScore": -126.63595211495931,
         "scoreComponents": {
-          "aprHorizon": -0.000766972845145375,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.44315184941940117,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0007524610173315072,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004431518494194012,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9440627882093762,
+          "numerator": -0.8016993768961564,
           "delta": 7
         }
       },
@@ -3336,14 +3469,15 @@
           "volumeUsd7d": 4307.48231,
           "tvlUsd": 38785
         },
-        "riskAdjustedScore": -3.0990047807735874,
+        "riskAdjustedScore": -127.92092459796645,
         "scoreComponents": {
-          "aprHorizon": -0.000210947524714733,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.43899730083109423,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00020982908027078473,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004389973008310942,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9435067628889455,
+          "numerator": -0.8022420088332172,
           "delta": 7
         }
       },
@@ -3361,14 +3495,15 @@
           "volumeUsd7d": 3712.92177,
           "tvlUsd": 34639
         },
-        "riskAdjustedScore": -3.2121169725758683,
+        "riskAdjustedScore": -132.35442815553688,
         "scoreComponents": {
-          "aprHorizon": -0.0012461781456973853,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.42376395600730243,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0012084654809936257,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.004237639560073024,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9445419935099282,
+          "numerator": -0.8012433724324943,
           "delta": 7
         }
       },
@@ -3386,14 +3521,15 @@
           "volumeUsd7d": 4384.40853,
           "tvlUsd": 44132
         },
-        "riskAdjustedScore": -3.4593051802811017,
+        "riskAdjustedScore": -142.76477284696077,
         "scoreComponents": {
-          "aprHorizon": -0.0003260002194416245,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.3932972663597185,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00032333943954743205,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.003932972663597185,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9436218155836724,
+          "numerator": -0.8021284984739405,
           "delta": 7
         }
       },
@@ -3411,14 +3547,15 @@
           "volumeUsd7d": 1071.27336,
           "tvlUsd": 10831
         },
-        "riskAdjustedScore": -3.471015107938734,
+        "riskAdjustedScore": -143.32014996281282,
         "scoreComponents": {
-          "aprHorizon": -0.00003835578819000318,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.39191241683028294,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000038318593422737024,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0039191241683028295,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433341711524208,
+          "numerator": -0.8024135193200652,
           "delta": 7
         }
       },
@@ -3436,14 +3573,15 @@
           "volumeUsd7d": 1025.59788,
           "tvlUsd": 10439
         },
-        "riskAdjustedScore": -3.495995809810525,
+        "riskAdjustedScore": -144.31278509471107,
         "scoreComponents": {
-          "aprHorizon": -0.00019177141739046277,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.38914271777141163,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.000190846471808781,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0038914271777141162,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434875867816213,
+          "numerator": -0.8022609914416792,
           "delta": 7
         }
       },
@@ -3461,14 +3599,15 @@
           "volumeUsd7d": 3976.75779,
           "tvlUsd": 42952
         },
-        "riskAdjustedScore": -3.7100363907540834,
+        "riskAdjustedScore": -152.74354579013,
         "scoreComponents": {
-          "aprHorizon": -0.0017444271073197015,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.3669851253004416,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0016717051902794822,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0036698512530044156,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9450402424715505,
+          "numerator": -0.8007801327232085,
           "delta": 7
         }
       },
@@ -3486,14 +3625,15 @@
           "volumeUsd7d": 1900.18514,
           "tvlUsd": 21665
         },
-        "riskAdjustedScore": -3.913573582691917,
+        "riskAdjustedScore": -161.5881889078304,
         "scoreComponents": {
-          "aprHorizon": -0.000057533400132925294,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.34759723188834274,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0000574497675955854,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0034759723188834274,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9433533487643637,
+          "numerator": -0.8023943881458924,
           "delta": 7
         }
       },
@@ -3511,14 +3651,15 @@
           "volumeUsd7d": 1753.93583,
           "tvlUsd": 20498
         },
-        "riskAdjustedScore": -4.026245496381081,
+        "riskAdjustedScore": -166.18449532329143,
         "scoreComponents": {
-          "aprHorizon": -0.0002492991751701368,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.33790328518229334,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.00024773911203590515,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0033790328518229335,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.943545114539401,
+          "numerator": -0.802204098801452,
           "delta": 7
         }
       },
@@ -3536,14 +3677,15 @@
           "volumeUsd7d": 17107.48381,
           "tvlUsd": 203902
         },
-        "riskAdjustedScore": -4.095005093282433,
+        "riskAdjustedScore": -168.79387820414846,
         "scoreComponents": {
-          "aprHorizon": -0.0010353422821740565,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.3323638870645509,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001009131161614274,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0033236388706455087,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9443311576464049,
+          "numerator": -0.8014427067518737,
           "delta": 7
         }
       },
@@ -3561,14 +3703,15 @@
           "volumeUsd7d": 5926.31254,
           "tvlUsd": 73544
         },
-        "riskAdjustedScore": -4.271152737014063,
+        "riskAdjustedScore": -176.31675242573726,
         "scoreComponents": {
-          "aprHorizon": -0.00017259512201661664,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.31851539177019456,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.0001718454201720121,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0031851539177019457,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9434684104862474,
+          "numerator": -0.8022799924933159,
           "delta": 7
         }
       },
@@ -3586,14 +3729,15 @@
           "volumeUsd7d": 711140.0832,
           "tvlUsd": 9708664
         },
-        "riskAdjustedScore": -4.702861750192702,
+        "riskAdjustedScore": -193.78644385273887,
         "scoreComponents": {
-          "aprHorizon": -0.0012270121883872775,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.2894335516520464,
-          "liquidationLoss": 2.0000000000000004,
+          "aprHorizon": 0.001190427823229534,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.0028943355165204636,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.944522827552618,
+          "numerator": -0.8012614100902584,
           "delta": 7
         }
       },
@@ -3611,14 +3755,15 @@
           "volumeUsd7d": 871.59452,
           "tvlUsd": 12106
         },
-        "riskAdjustedScore": -4.768339261375749,
+        "riskAdjustedScore": -196.9006763578524,
         "scoreComponents": {
           "aprHorizon": 0,
-          "baselineAPRHorizon": -0.05670418463576965,
-          "downsideVolatility": 0.2852790030637395,
-          "liquidationLoss": 2.0000000000000004,
+          "lpAPRHorizon": 0.0024518379134879087,
+          "lpVolHorizon": 0.0013848495294356286,
+          "downsideVolatility": 0.002852790030637395,
+          "liquidationLoss": 0.8,
           "correlationHaircut": 0.7,
-          "numerator": -1.9432958153642308,
+          "numerator": -0.802451837913488,
           "delta": 7
         }
       }
