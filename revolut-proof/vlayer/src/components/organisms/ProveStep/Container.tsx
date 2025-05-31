@@ -8,6 +8,7 @@ export const ProveStep = () => {
   const navigate = useNavigate();
   const { address } = useAccount();
   const [disabled, setDisabled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const {
@@ -29,14 +30,13 @@ export const ProveStep = () => {
 
   useEffect(() => {
     if (result) {
-      // Check if balance verification was successful
-      if (balanceInfo?.hasMinimumBalance) {
-        console.log(`✅ Balance verified: ${balanceInfo.balanceInEuros}€`);
+      // Check if balance verification was successful (less than 100 EUR)
+      if (balanceInfo?.hasLessThanMaximum) {
+        console.log(`✅ Balance verified: ${balanceInfo.balanceInEuros}€ (less than 100€)`);
         void navigate("/mint");
       } else {
-        console.log(`❌ Insufficient balance: ${balanceInfo?.balanceInEuros || '0'}€ (minimum 40€ required)`);
-        // You could show an error message or redirect to a different page
-        alert(`Insufficient balance: ${balanceInfo?.balanceInEuros || '0'}€. Minimum 40€ required.`);
+        console.log(`❌ Balance too high: ${balanceInfo?.balanceInEuros || '0'}€ (should be less than 100€)`);
+        setErrorMessage(`Balance too high: ${balanceInfo?.balanceInEuros || '0'}€. Should be less than 100€ to qualify.`);
       }
     }
   }, [result, balanceInfo, navigate]);
@@ -45,9 +45,25 @@ export const ProveStep = () => {
     modalRef.current?.showModal();
   }, []);
 
+  // Handle errors gracefully instead of throwing
   useEffect(() => {
     if (error) {
-      throw error;
+      console.error("ProveStep Error:", error);
+      
+      // Set user-friendly error messages
+      if (error.message.includes("TLSN")) {
+        setErrorMessage(
+          "Connection to Wise failed. This may be due to:\n" +
+          "• Wise blocking automated connections\n" +
+          "• Network security restrictions\n" +
+          "• VPN/proxy interference\n\n" +
+          "Please try again or contact support."
+        );
+      } else {
+        setErrorMessage(`Error: ${error.message}`);
+      }
+      
+      setDisabled(false); // Re-enable the button for retry
     }
   }, [error]);
 
@@ -57,6 +73,11 @@ export const ProveStep = () => {
       isPending={isPending}
       disabled={disabled}
       setDisabled={setDisabled}
+      errorMessage={errorMessage}
+      onRetry={() => {
+        setErrorMessage(null);
+        setDisabled(false);
+      }}
     />
   );
 };
