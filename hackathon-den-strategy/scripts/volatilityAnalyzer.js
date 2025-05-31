@@ -5,6 +5,10 @@ class VolatilityAnalyzer {
     this.baseURL = 'https://coins.llama.fi';
     this.yieldsURL = 'https://yields.llama.fi';
     this.defipulseURL = 'https://data-api.defipulse.com';
+    
+    // Default parameters for risk calculations
+    this.LIQUIDATION_HAIRCUT = 0.4; // 40% haircut on emergency liquidation
+    this.BASELINE_APR_SPL = 0.08; // 8% baseline stability pool APR
   }
 
   /**
@@ -417,54 +421,379 @@ class VolatilityAnalyzer {
     if (poolSymbol.includes('/')) return poolSymbol.split('/')[0];
     return poolSymbol;
   }
+
+  /**
+   * 🎯 NEW: Calculate Horizon-Scaled APR
+   * Formula: APR_Δ = 1 - (1 + μ)^(Δ/365d)
+   */
+  calculateHorizonScaledAPR(annualReturn, horizonDays) {
+    const mu = annualReturn; // Annual return rate
+    const delta = horizonDays / 365; // Convert days to years
+    
+    const horizonAPR = 1 - Math.pow(1 + mu, delta);
+    
+    return {
+      horizonAPR,
+      annualReturn: mu,
+      horizonDays,
+      delta
+    };
+  }
+
+  /**
+   * 📉 NEW: Calculate Downside Volatility (Sortino numerator)
+   * Formula: σ_Δ^- = σ × sqrt(Δ/365d)
+   */
+  calculateDownsideVolatility(annualVolatility, horizonDays) {
+    const delta = horizonDays / 365; // Convert days to years
+    const downsideVol = annualVolatility * Math.sqrt(delta);
+    
+    return {
+      downsideVolatility: downsideVol,
+      annualVolatility,
+      horizonDays,
+      scalingFactor: Math.sqrt(delta)
+    };
+  }
+
+  /**
+   * ⚠️ NEW: Calculate Expected Loss from Emergency Unwinding
+   * Formula: L_liq = p_liq × 0.4
+   */
+  calculateLiquidationLoss(liquidationProbability) {
+    const expectedLoss = liquidationProbability * this.LIQUIDATION_HAIRCUT;
+    
+    return {
+      expectedLoss,
+      liquidationProbability,
+      haircut: this.LIQUIDATION_HAIRCUT
+    };
+  }
+
+  /**
+   * 🔗 NEW: Calculate Correlation Haircut
+   * Formula: H_ρ = 1 - |ρ|
+   */
+  calculateCorrelationHaircut(correlation) {
+    const haircut = 1 - Math.abs(correlation);
+    
+    return {
+      correlationHaircut: haircut,
+      correlation,
+      diversificationBenefit: haircut
+    };
+  }
+
+  /**
+   * 🏆 NEW: Calculate Final Risk-Adjusted Yield Score
+   * Formula: S = ((APR_Δ - APR_Δ^SPL - L_liq) / σ_Δ^-) × H_ρ
+   */
+  calculateRiskAdjustedScore(params) {
+    const {
+      horizonAPR,
+      baselineAPR = this.BASELINE_APR_SPL,
+      expectedLoss,
+      downsideVolatility,
+      correlationHaircut
+    } = params;
+
+    // Avoid division by zero
+    if (downsideVolatility <= 0) {
+      return {
+        score: 0,
+        components: params,
+        warning: "Zero or negative downside volatility"
+      };
+    }
+
+    const numerator = horizonAPR - baselineAPR - expectedLoss;
+    const sortinoRatio = numerator / downsideVolatility;
+    const finalScore = sortinoRatio * correlationHaircut;
+
+    return {
+      score: finalScore,
+      sortinoRatio,
+      excessReturn: numerator,
+      components: {
+        horizonAPR,
+        baselineAPR,
+        expectedLoss,
+        downsideVolatility,
+        correlationHaircut
+      }
+    };
+  }
+
+  /**
+   * 📊 NEW: Enhanced volatility calculation with downside focus
+   */
+  calculateAdvancedVolatility(priceData, period = 30) {
+    if (priceData.length < 2) {
+      return { 
+        volatility: 0, 
+        downsideVolatility: 0,
+        returns: [], 
+        riskScore: 1 
+      };
+    }
+
+    // Calculate daily returns
+    const returns = [];
+    for (let i = 1; i < priceData.length; i++) {
+      const dailyReturn = (priceData[i].price - priceData[i-1].price) / priceData[i-1].price;
+      returns.push(dailyReturn);
+    }
+
+    // Calculate mean return
+    const meanReturn = returns.reduce((sum, ret) => sum + ret, 0) / returns.length;
+
+    // Standard volatility calculation
+    const variance = returns.reduce((sum, ret) => {
+      return sum + Math.pow(ret - meanReturn, 2);
+    }, 0) / (returns.length - 1);
+
+    // Downside volatility (only negative returns)
+    const negativeReturns = returns.filter(ret => ret < meanReturn);
+    const downsideVariance = negativeReturns.length > 0 
+      ? negativeReturns.reduce((sum, ret) => {
+          return sum + Math.pow(ret - meanReturn, 2);
+        }, 0) / negativeReturns.length
+      : variance; // Fallback to regular variance if no negative returns
+
+    // Annualized volatilities
+    const volatility = Math.sqrt(variance) * Math.sqrt(365);
+    const downsideVolatility = Math.sqrt(downsideVariance) * Math.sqrt(365);
+
+    // Estimate liquidation probability based on volatility
+    const liquidationProbability = Math.min(0.5, volatility * 0.1); // Cap at 50%
+
+    return {
+      volatility: volatility * 100, // Convert to percentage
+      downsideVolatility: downsideVolatility * 100,
+      returns,
+      meanReturn: meanReturn * 100,
+      liquidationProbability,
+      negativeReturnRatio: negativeReturns.length / returns.length,
+      period,
+      dataPoints: priceData.length
+    };
+  }
+
+  /**
+   * 🎯 NEW: Comprehensive Risk-Adjusted Analysis
+   */
+  async analyzeRiskAdjustedYields(pools, horizonDays = 30, baselineCorrelation = 0.3) {
+    console.log(`🎯 RISK-ADJUSTED YIELD ANALYSIS`);
+    console.log("=".repeat(70));
+    console.log(`Investment Horizon: ${horizonDays} days`);
+    console.log(`Baseline Correlation: ${baselineCorrelation}`);
+    console.log("");
+
+    const results = [];
+
+    for (const pool of pools) {
+      try {
+        console.log(`\n📊 Analyzing ${pool.name}...`);
+        
+        // Get enhanced volatility data for each token
+        const tokenAnalytics = {};
+        let poolEstimatedAPR = pool.estimatedAPR || 0.12; // Default 12% APR
+        
+        for (const token of pool.tokens) {
+          const priceData = await this.fetchHistoricalPrices(token, Math.max(horizonDays, 30));
+          const advancedVolatility = this.calculateAdvancedVolatility(priceData, horizonDays);
+          tokenAnalytics[token] = advancedVolatility;
+          
+          await new Promise(resolve => setTimeout(resolve, 200));
+        }
+
+        // Calculate pool-level metrics
+        const poolVolatility = this.calculatePoolAdvancedVolatility(tokenAnalytics, pool.weights);
+        
+        // Apply risk-adjusted formulas
+        const horizonAPRData = this.calculateHorizonScaledAPR(poolEstimatedAPR, horizonDays);
+        const downsideVolData = this.calculateDownsideVolatility(poolVolatility.downsideVolatility / 100, horizonDays);
+        const liquidationLoss = this.calculateLiquidationLoss(poolVolatility.liquidationProbability);
+        const correlationHaircut = this.calculateCorrelationHaircut(baselineCorrelation);
+        
+        const riskAdjustedScore = this.calculateRiskAdjustedScore({
+          horizonAPR: horizonAPRData.horizonAPR,
+          expectedLoss: liquidationLoss.expectedLoss,
+          downsideVolatility: downsideVolData.downsideVolatility,
+          correlationHaircut: correlationHaircut.correlationHaircut
+        });
+
+        const analysis = {
+          name: pool.name,
+          tokens: pool.tokens,
+          chain: pool.chain,
+          protocol: pool.protocol,
+          estimatedAPR: poolEstimatedAPR,
+          horizonDays,
+          
+          // Core metrics
+          tokenAnalytics,
+          poolVolatility,
+          
+          // Risk-adjusted components
+          horizonAPRData,
+          downsideVolData,
+          liquidationLoss,
+          correlationHaircut,
+          riskAdjustedScore,
+          
+          // Final ranking score
+          finalScore: riskAdjustedScore.score
+        };
+
+        results.push(analysis);
+        
+        console.log(`✅ Risk-Adjusted Score: ${riskAdjustedScore.score.toFixed(4)}`);
+        console.log(`   Horizon APR: ${(horizonAPRData.horizonAPR * 100).toFixed(2)}%`);
+        console.log(`   Downside Vol: ${(downsideVolData.downsideVolatility * 100).toFixed(2)}%`);
+        console.log(`   Expected Loss: ${(liquidationLoss.expectedLoss * 100).toFixed(2)}%`);
+        
+      } catch (error) {
+        console.log(`❌ Failed to analyze ${pool.name}: ${error.message}`);
+      }
+    }
+
+    this.displayRiskAdjustedResults(results);
+    return results;
+  }
+
+  /**
+   * 📊 NEW: Calculate pool-level advanced volatility
+   */
+  calculatePoolAdvancedVolatility(tokenAnalytics, weights = null) {
+    const tokens = Object.keys(tokenAnalytics);
+    
+    if (tokens.length === 1) {
+      return tokenAnalytics[tokens[0]];
+    }
+    
+    const defaultWeight = 1 / tokens.length;
+    let weightedVolatility = 0;
+    let weightedDownsideVol = 0;
+    let weightedLiqProb = 0;
+    
+    tokens.forEach((token, i) => {
+      const weight = weights ? weights[i] : defaultWeight;
+      const analytics = tokenAnalytics[token];
+      
+      weightedVolatility += weight * (analytics.volatility / 100);
+      weightedDownsideVol += weight * (analytics.downsideVolatility / 100);
+      weightedLiqProb += weight * analytics.liquidationProbability;
+    });
+    
+    return {
+      volatility: weightedVolatility * 100,
+      downsideVolatility: weightedDownsideVol * 100,
+      liquidationProbability: weightedLiqProb
+    };
+  }
+
+  /**
+   * 🎨 NEW: Display risk-adjusted results
+   */
+  displayRiskAdjustedResults(results) {
+    console.log(`\n🏆 RISK-ADJUSTED YIELD RANKINGS:`);
+    console.log("=".repeat(90));
+    
+    // Sort by risk-adjusted score (highest first)
+    results.sort((a, b) => b.finalScore - a.finalScore);
+    
+    results.forEach((result, index) => {
+      console.log(`\n${index + 1}. ${result.name} (${result.protocol} - ${result.chain})`);
+      console.log(`   🏆 Risk-Adjusted Score: ${result.finalScore.toFixed(4)}`);
+      console.log(`   💰 Estimated APR: ${(result.estimatedAPR * 100).toFixed(1)}%`);
+      console.log(`   ⏰ Horizon (${result.horizonDays}d) APR: ${(result.horizonAPRData.horizonAPR * 100).toFixed(2)}%`);
+      console.log(`   📉 Downside Volatility: ${(result.downsideVolData.downsideVolatility * 100).toFixed(2)}%`);
+      console.log(`   ⚠️  Expected Liquidation Loss: ${(result.liquidationLoss.expectedLoss * 100).toFixed(2)}%`);
+      console.log(`   🔗 Correlation Haircut: ${(result.correlationHaircut.correlationHaircut).toFixed(3)}`);
+      console.log(`   📊 Sortino Ratio: ${result.riskAdjustedScore.sortinoRatio.toFixed(3)}`);
+      console.log(`   ${'─'.repeat(60)}`);
+    });
+    
+    // Summary statistics
+    const avgScore = results.reduce((sum, r) => sum + r.finalScore, 0) / results.length;
+    const bestStrategy = results[0];
+    const worstStrategy = results[results.length - 1];
+    
+    console.log(`\n📈 SUMMARY:`);
+    console.log(`   Average Risk-Adjusted Score: ${avgScore.toFixed(4)}`);
+    console.log(`   🥇 Best Strategy: ${bestStrategy.name} (${bestStrategy.finalScore.toFixed(4)})`);
+    console.log(`   🥉 Worst Strategy: ${worstStrategy.name} (${worstStrategy.finalScore.toFixed(4)})`);
+    console.log(`   📊 Score Range: ${(bestStrategy.finalScore - worstStrategy.finalScore).toFixed(4)}`);
+  }
+
+  /**
+   * 🐻 NEW: Analyze Berachain pools with risk-adjusted metrics
+   */
+  async analyzeBerachainRiskAdjusted(horizonDays = 30) {
+    const berachainPools = [
+      {
+        name: "HONEY-USDC Pool",
+        tokens: ["HONEY", "USDC"],
+        chain: "berachain",
+        protocol: "BEX",
+        type: "AMM",
+        weights: [0.5, 0.5],
+        estimatedAPR: 0.15 // 15% estimated APR
+      },
+      {
+        name: "NECT-HONEY Pool", 
+        tokens: ["NECT", "HONEY"],
+        chain: "berachain",
+        protocol: "BEX",
+        type: "AMM",
+        weights: [0.5, 0.5],
+        estimatedAPR: 0.12 // 12% estimated APR
+      },
+      {
+        name: "NECT Stability Pool",
+        tokens: ["NECT"],
+        chain: "berachain",
+        protocol: "Beraborrow",
+        type: "Stability Pool",
+        weights: [1.0],
+        estimatedAPR: 0.08 // 8% baseline APR
+      },
+      {
+        name: "BERA-ETH Pool",
+        tokens: ["BERA", "ETH"],
+        chain: "berachain", 
+        protocol: "BEX",
+        type: "AMM",
+        weights: [0.5, 0.5],
+        estimatedAPR: 0.20 // 20% estimated APR (higher risk)
+      }
+    ];
+
+    console.log(`🐻 BERACHAIN RISK-ADJUSTED ANALYSIS`);
+    console.log("=".repeat(70));
+    
+    return await this.analyzeRiskAdjustedYields(berachainPools, horizonDays);
+  }
 }
 
-// Updated demo function focusing on pool analysis
-async function runPoolVolatilityAnalysis() {
+// Updated demo function with risk-adjusted analysis
+async function runAdvancedVolatilityAnalysis() {
   const analyzer = new VolatilityAnalyzer();
   
-  console.log("🎯 COMPREHENSIVE POOL VOLATILITY ANALYSIS FOR BERABORROW HACKATHON");
+  console.log("🎯 ADVANCED RISK-ADJUSTED VOLATILITY ANALYSIS");
   console.log("=".repeat(90));
   
   try {
-    // 1. Analyze Berachain pools
-    console.log(`\n🐻 ANALYZING BERACHAIN NATIVE POOLS...`);
-    await analyzer.analyzeBerachainPools(30);
+    // Analyze with different investment horizons
+    console.log(`\n🐻 30-DAY HORIZON ANALYSIS:`);
+    await analyzer.analyzeBerachainRiskAdjusted(30);
     
-    // 2. Analyze cross-chain opportunities
-    console.log(`\n🌉 ANALYZING CROSS-CHAIN OPPORTUNITIES...`);
-    await analyzer.analyzeCrossChainPools(30);
+    console.log(`\n🐻 7-DAY HORIZON ANALYSIS:`);
+    await analyzer.analyzeBerachainRiskAdjusted(7);
     
-    // 3. Analyze major DeFi pools for comparison
-    const majorPools = [
-      {
-        name: "USDC-USDT Stable Pool",
-        tokens: ["USDC", "USDT"],
-        chain: "arbitrum",
-        protocol: "Curve",
-        type: "Stable AMM",
-        weights: [0.5, 0.5]
-      },
-      {
-        name: "ETH-USDC Pool",
-        tokens: ["ETH", "USDC"],
-        chain: "arbitrum", 
-        protocol: "Uniswap V3",
-        type: "Concentrated Liquidity",
-        weights: [0.5, 0.5]
-      },
-      {
-        name: "WBTC-ETH Pool",
-        tokens: ["BTC", "ETH"],
-        chain: "ethereum",
-        protocol: "Uniswap V2", 
-        type: "AMM",
-        weights: [0.5, 0.5]
-      }
-    ];
-    
-    console.log(`\n📊 ANALYZING MAJOR DEFI POOLS FOR COMPARISON...`);
-    await analyzer.analyzeLiquidityPoolVolatility(majorPools, 30);
+    console.log(`\n🐻 90-DAY HORIZON ANALYSIS:`);
+    await analyzer.analyzeBerachainRiskAdjusted(90);
     
   } catch (error) {
     console.error(`❌ Analysis error: ${error.message}`);
@@ -472,7 +801,7 @@ async function runPoolVolatilityAnalysis() {
 }
 
 if (require.main === module) {
-  runPoolVolatilityAnalysis().catch(console.error);
+  runAdvancedVolatilityAnalysis().catch(console.error);
 }
 
 module.exports = { VolatilityAnalyzer }; 
