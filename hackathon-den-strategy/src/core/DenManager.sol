@@ -5,7 +5,7 @@ pragma solidity 0.8.26;
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
-import { IERC3156FlashBorrower } from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
+import {IERC3156FlashBorrower} from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
 import "../interfaces/core/IBorrowerOperations.sol";
 import "../interfaces/core/IDebtToken.sol";
 import "../interfaces/core/ISortedDens.sol";
@@ -18,16 +18,16 @@ import "../dependencies/BeraborrowMath.sol";
 import "../dependencies/BeraborrowOwnable.sol";
 
 /**
-    @title Beraborrow Den Manager
-    @notice Based on Liquity's `TroveManager`
-            https://github.com/liquity/dev/blob/main/packages/contracts/contracts/TroveManager.sol
-
-            Beraborrow's implementation is modified so that multiple `DenManager` and `SortedDens`
-            contracts are deployed in tandem, with each pair managing dens of a single collateral
-            type.
-
-            Functionality related to liquidations has been moved to `LiquidationManager`. This was
-            necessary to avoid the restriction on deployed bytecode size.
+ * @title Beraborrow Den Manager
+ *     @notice Based on Liquity's `TroveManager`
+ *             https://github.com/liquity/dev/blob/main/packages/contracts/contracts/TroveManager.sol
+ *
+ *             Beraborrow's implementation is modified so that multiple `DenManager` and `SortedDens`
+ *             contracts are deployed in tandem, with each pair managing dens of a single collateral
+ *             type.
+ *
+ *             Functionality related to liquidations has been moved to `LiquidationManager`. This was
+ *             necessary to avoid the restriction on deployed bytecode size.
  */
 contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     using SafeERC20 for IERC20;
@@ -39,7 +39,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     address immutable gasPoolAddress;
     IDebtToken public immutable debtToken;
     address public immutable brimeDen;
-    
+
     address public collVaultRouter;
     IPriceFeed public priceFeed;
     IERC20 public collateralToken;
@@ -181,11 +181,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     event NewParameters(IFactory.DeploymentParams params);
     event PriceFeedUpdated(address _priceFeed);
     event DenUpdated(
-        address indexed _borrower,
-        uint256 _debt,
-        uint256 _coll,
-        uint256 _stake,
-        DenManagerOperation _operation
+        address indexed _borrower, uint256 _debt, uint256 _coll, uint256 _stake, DenManagerOperation _operation
     );
     event Redemption(
         address indexed _redeemer,
@@ -220,7 +216,10 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
         address _brimeDen,
         uint256 _gasCompensation
     ) BeraborrowOwnable(_beraborrowCore) BeraborrowBase(_gasCompensation) SystemStart(_beraborrowCore) {
-        if (_beraborrowCore == address(0) || _gasPoolAddress == address(0) || _debtTokenAddress == address(0) || _borrowerOperations == address(0) || _liquidationManager == address(0) || _brimeDen == address(0)) {
+        if (
+            _beraborrowCore == address(0) || _gasPoolAddress == address(0) || _debtTokenAddress == address(0)
+                || _borrowerOperations == address(0) || _liquidationManager == address(0) || _brimeDen == address(0)
+        ) {
             revert("DenManager: 0 address");
         }
 
@@ -272,13 +271,13 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     /**
      * @notice Starts sunsetting a collateral
      *         During sunsetting only the following are possible:
-               1) Disable collateral handoff to SP
-               2) Greatly Increase interest rate to incentivize redemptions
-               3) Remove redemptions fees
-               4) Disable new loans
-        @dev IMPORTANT: When sunsetting a collateral altogether this function should be called on
-                        all DM linked to that collateral as well as `StabilityPool.startCollateralSunset`
-        @dev IMPORTANT: A peripheral system will ensure users aren't MEVed due to redemptions fees being removed
+     *            1) Disable collateral handoff to SP
+     *            2) Greatly Increase interest rate to incentivize redemptions
+     *            3) Remove redemptions fees
+     *            4) Disable new loans
+     *     @dev IMPORTANT: When sunsetting a collateral altogether this function should be called on
+     *                     all DM linked to that collateral as well as `StabilityPool.startCollateralSunset`
+     *     @dev IMPORTANT: A peripheral system will ensure users aren't MEVed due to redemptions fees being removed
      */
     function startSunset() external onlyOwner {
         sunsetting = true;
@@ -299,7 +298,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
 
         where n = the half-life in minutes
      */
-    function setParameters(IFactory.DeploymentParams calldata params) public  {
+    function setParameters(IFactory.DeploymentParams calldata params) public {
         require(!sunsetting, "Cannot change after sunset");
         require(params.MCR <= BERABORROW_CORE.CCR() && params.MCR >= 1.1e18, "MCR cannot be > CCR or < 110%");
 
@@ -307,8 +306,8 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
             require(msg.sender == owner(), "Only owner");
         }
         require(
-            params.minuteDecayFactor >= 977159968434245900 && // half-life of 30 minutes
-                params.minuteDecayFactor <= 999931237762985000 // half-life of 1 week
+            params.minuteDecayFactor >= 977159968434245900 // half-life of 30 minutes
+                && params.minuteDecayFactor <= 999931237762985000 // half-life of 1 week
         );
         require(params.redemptionFeeFloor <= params.maxRedemptionFee && params.maxRedemptionFee <= DECIMAL_PRECISION);
         require(params.borrowingFeeFloor <= params.maxBorrowingFee && params.maxBorrowingFee <= DECIMAL_PRECISION);
@@ -369,21 +368,23 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     }
 
     /**
-        @notice Get the current total collateral and debt amounts for a den
-        @dev Also includes pending rewards from redistribution
+     * @notice Get the current total collateral and debt amounts for a den
+     *     @dev Also includes pending rewards from redistribution
      */
     function getDenCollAndDebt(address _borrower) public view returns (uint256 coll, uint256 debt) {
-        (debt, coll, , ) = getEntireDebtAndColl(_borrower);
+        (debt, coll,,) = getEntireDebtAndColl(_borrower);
         return (coll, debt);
     }
 
     /**
-        @notice Get the total and pending collateral and debt amounts for a den
-        @dev Used by the liquidation manager
+     * @notice Get the total and pending collateral and debt amounts for a den
+     *     @dev Used by the liquidation manager
      */
-    function getEntireDebtAndColl(
-        address _borrower
-    ) public view returns (uint256 debt, uint256 coll, uint256 pendingDebtReward, uint256 pendingCollateralReward) {
+    function getEntireDebtAndColl(address _borrower)
+        public
+        view
+        returns (uint256 debt, uint256 coll, uint256 pendingDebtReward, uint256 pendingCollateralReward)
+    {
         Den storage t = Dens[_borrower];
         debt = t.debt;
         coll = t.coll;
@@ -392,7 +393,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
         // Accrued den interest for correct liquidation values. This assumes the index to be updated.
         uint256 denInterestIndex = t.activeInterestIndex;
         if (denInterestIndex > 0 && _borrower != brimeDen) {
-            (uint256 currentIndex, ) = _calculateInterestIndex();
+            (uint256 currentIndex,) = _calculateInterestIndex();
             debt = (debt * currentIndex) / denInterestIndex;
         }
 
@@ -484,11 +485,10 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
      * then,
      * 2) increases the baseRate based on the amount redeemed, as a proportion of total supply
      */
-    function _updateBaseRateFromRedemption(
-        uint256 _collateralDrawn,
-        uint256 _price,
-        uint256 _totalDebtSupply
-    ) internal returns (uint256) {
+    function _updateBaseRateFromRedemption(uint256 _collateralDrawn, uint256 _price, uint256 _totalDebtSupply)
+        internal
+        returns (uint256)
+    {
         uint256 decayedBaseRate = _calcDecayedBaseRate();
 
         /* Convert the drawn collateral back to debt at face value rate (1 debt:1 USD), in order to get
@@ -516,11 +516,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     }
 
     function _calcRedemptionRate(uint256 _baseRate) internal view returns (uint256) {
-        return
-            BeraborrowMath._min(
-                redemptionFeeFloor + _baseRate,
-                maxRedemptionFee
-            );
+        return BeraborrowMath._min(redemptionFeeFloor + _baseRate, maxRedemptionFee);
     }
 
     function getRedemptionFeeWithDecay(uint256 _collateralDrawn) external view returns (uint256) {
@@ -617,8 +613,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
         RedemptionTotals memory totals;
 
         require(
-            _maxFeePercentage >= redemptionFeeFloor && _maxFeePercentage <= maxRedemptionFee,
-            "Max fee not in bounds"
+            _maxFeePercentage >= redemptionFeeFloor && _maxFeePercentage <= maxRedemptionFee, "Max fee not in bounds"
         );
         require(block.timestamp >= systemDeploymentTime + BERABORROW_CORE.dmBootstrapPeriod(), "BOOTSTRAP_PERIOD");
         totals.price = fetchPrice();
@@ -686,7 +681,9 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
 
         totals.collateralToSendToRedeemer = totals.totalCollateralDrawn - totals.collateralFee;
 
-        emit Redemption(msg.sender, _debtAmount, totals.totalDebtToRedeem, totals.totalCollateralDrawn, totals.collateralFee);
+        emit Redemption(
+            msg.sender, _debtAmount, totals.totalDebtToRedeem, totals.totalCollateralDrawn, totals.collateralFee
+        );
 
         // Burn the total debt that is cancelled with debt, and send the redeemed collateral to msg.sender
         debtToken.burn(msg.sender, totals.totalDebtToRedeem);
@@ -736,10 +733,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
                 uint256 icrError = _partialRedemptionHintNICR > newNICR
                     ? _partialRedemptionHintNICR - newNICR
                     : newNICR - _partialRedemptionHintNICR;
-                if (
-                    icrError > 5e14 ||
-                    _getNetDebt(newDebt) < IBorrowerOperations(borrowerOperations).minNetDebt()
-                ) {
+                if (icrError > 5e14 || _getNetDebt(newDebt) < IBorrowerOperations(borrowerOperations).minNetDebt()) {
                     singleRedemption.cancelledPartial = true;
                     return singleRedemption;
                 }
@@ -771,15 +765,14 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
         totalActiveCollateral -= _collateral;
     }
 
-    function _isValidFirstRedemptionHint(
-        ISortedDens _sortedDens,
-        address _firstRedemptionHint,
-        uint256 _price
-    ) internal view returns (bool) {
+    function _isValidFirstRedemptionHint(ISortedDens _sortedDens, address _firstRedemptionHint, uint256 _price)
+        internal
+        view
+        returns (bool)
+    {
         if (
-            _firstRedemptionHint == address(0) ||
-            !_sortedDens.contains(_firstRedemptionHint) ||
-            getCurrentICR(_firstRedemptionHint, _price) < _100pct
+            _firstRedemptionHint == address(0) || !_sortedDens.contains(_firstRedemptionHint)
+                || getCurrentICR(_firstRedemptionHint, _price) < _100pct
         ) {
             return false;
         }
@@ -900,10 +893,10 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
     }
 
     /**
-        @dev Only called from `closeDen` because liquidating the final den is blocked in
-             `LiquidationManager`. Many liquidation paths involve redistributing debt and
-             collateral to existing dens. If the collateral is being sunset, the final den
-             must be closed by repaying the debt or via a redemption.
+     * @dev Only called from `closeDen` because liquidating the final den is blocked in
+     *          `LiquidationManager`. Many liquidation paths involve redistributing debt and
+     *          collateral to existing dens. If the collateral is being sunset, the final den
+     *          must be closed by repaying the debt or via a redemption.
      */
     function _resetState() private {
         if (DenOwners.length == 0) {
@@ -1099,12 +1092,13 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
         }
         // update system snapshot
         totalStakesSnapshot = totalStakes;
-        totalCollateralSnapshot = _activeColl + defaultedCollateral - _collGasComp;  
+        totalCollateralSnapshot = _activeColl + defaultedCollateral - _collGasComp;
         emit SystemSnapshotsUpdated(totalStakesSnapshot, totalCollateralSnapshot);
-        
+
         // Split collateral and debt compensation between liquidator, sNect guage and validator pools.
         // Send compensation tokens to liquidator
-        ILiquidationManager.LiquidationFeeData memory data = ILiquidationManager(liquidationManager).liquidationsFeeAndRecipients();
+        ILiquidationManager.LiquidationFeeData memory data =
+            ILiquidationManager(liquidationManager).liquidationsFeeAndRecipients();
         debtToken.returnFromPool(gasPoolAddress, _liquidator, _debtGasComp * data.liquidatorFee / DECIMAL_PRECISION);
         // Send compensation tokens to sNect Gauge
         debtToken.returnFromPool(gasPoolAddress, data.sNectGauge, _debtGasComp * data.sNectGaugeFee / DECIMAL_PRECISION);
@@ -1223,8 +1217,7 @@ contract DenManager is BeraborrowBase, BeraborrowOwnable, SystemStart {
             uint256 deltaT = block.timestamp - lastIndexUpdateCached;
             interestFactor = deltaT * currentInterest;
             currentInterestIndex =
-                currentInterestIndex +
-                Math.mulDiv(currentInterestIndex, interestFactor, INTEREST_PRECISION);
+                currentInterestIndex + Math.mulDiv(currentInterestIndex, interestFactor, INTEREST_PRECISION);
         }
     }
 

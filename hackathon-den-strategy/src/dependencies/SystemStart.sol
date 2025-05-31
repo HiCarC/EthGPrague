@@ -5,8 +5,8 @@ pragma solidity 0.8.26;
 import "../interfaces/core/IBeraborrowCore.sol";
 
 /**
-    @title Beraborrow System Start Time
-    @dev Provides a unified `startTime` and `getWeek`, used for emissions.
+ * @title Beraborrow System Start Time
+ *     @dev Provides a unified `startTime` and `getWeek`, used for emissions.
  */
 contract SystemStart {
     uint256 immutable startTime;

@@ -4,14 +4,18 @@ pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 
 library PriceLib {
-    using Math for uint;
+    using Math for uint256;
 
     // WAD adjusted result
-    function convertToValue(uint amount, uint price, uint8 decimals) internal pure returns (uint) {
+    function convertToValue(uint256 amount, uint256 price, uint8 decimals) internal pure returns (uint256) {
         return amount * price / 10 ** decimals;
     }
 
-    function convertToAmount(uint amountInUsd, uint collPrice, uint8 collDecimals, Math.Rounding rounding) internal pure returns (uint) {
+    function convertToAmount(uint256 amountInUsd, uint256 collPrice, uint8 collDecimals, Math.Rounding rounding)
+        internal
+        pure
+        returns (uint256)
+    {
         if (collPrice == 0 || amountInUsd == 0) {
             return 0;
         }
@@ -20,8 +24,15 @@ library PriceLib {
     }
 
     // Coll decimal adjust amount result
-    function convertAssetsToCollAmount(uint assets, uint collPrice, uint nectPrice, uint8 vaultDecimals, uint8 collDecimals, Math.Rounding rounding) internal pure returns (uint) {
-        uint assetsUsdValue = assets.mulDiv(nectPrice, 10 ** vaultDecimals, rounding);
+    function convertAssetsToCollAmount(
+        uint256 assets,
+        uint256 collPrice,
+        uint256 nectPrice,
+        uint8 vaultDecimals,
+        uint8 collDecimals,
+        Math.Rounding rounding
+    ) internal pure returns (uint256) {
+        uint256 assetsUsdValue = assets.mulDiv(nectPrice, 10 ** vaultDecimals, rounding);
 
         if (collPrice != 0) {
             return convertToAmount(assetsUsdValue, collPrice, collDecimals, rounding);
@@ -30,9 +41,15 @@ library PriceLib {
         }
     }
 
-    function convertCollAmountToAssets(uint collAmount, uint collPrice, uint nectPrice, uint8 vaultDecimals, uint8 collDecimals) internal pure returns (uint) {
-        uint collUsdValue = collAmount * collPrice / 10 ** collDecimals;
-        
+    function convertCollAmountToAssets(
+        uint256 collAmount,
+        uint256 collPrice,
+        uint256 nectPrice,
+        uint8 vaultDecimals,
+        uint8 collDecimals
+    ) internal pure returns (uint256) {
+        uint256 collUsdValue = collAmount * collPrice / 10 ** collDecimals;
+
         if (nectPrice != 0) {
             return collUsdValue * 10 ** vaultDecimals / nectPrice;
         } else {

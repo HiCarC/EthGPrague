@@ -5,11 +5,11 @@ pragma solidity 0.8.26;
 import "../interfaces/core/IBeraborrowCore.sol";
 
 /**
-    @title Beraborrow Ownable
-    @notice Contracts inheriting `BeraborrowOwnable` have the same owner as `BeraborrowCore`.
-            The ownership cannot be independently modified or renounced.
-    @dev In the contracts that use BERABORROW_CORE to interact with protocol instance specific parameters,
-            the immutable will be instanced with BeraborrowCore.sol, eitherway, it will be MetaBeraborrowCore.sol
+ * @title Beraborrow Ownable
+ *     @notice Contracts inheriting `BeraborrowOwnable` have the same owner as `BeraborrowCore`.
+ *             The ownership cannot be independently modified or renounced.
+ *     @dev In the contracts that use BERABORROW_CORE to interact with protocol instance specific parameters,
+ *             the immutable will be instanced with BeraborrowCore.sol, eitherway, it will be MetaBeraborrowCore.sol
  */
 contract BeraborrowOwnable {
     IBeraborrowCore public immutable BERABORROW_CORE;

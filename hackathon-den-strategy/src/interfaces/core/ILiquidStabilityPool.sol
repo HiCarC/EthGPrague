@@ -22,7 +22,7 @@ interface ILiquidStabilityPool is IERC4626, IERC1822Proxiable {
         address[] collateralTokens;
         mapping(uint16 => SunsetIndex) _sunsetIndexes;
         mapping(address collateral => uint256 index) indexByCollateral;
-        mapping(bytes32 => uint) threshold;
+        mapping(bytes32 => uint256) threshold;
         EmissionsLib.BalanceData balanceData;
         mapping(address => bool) factoryProtocol;
         mapping(address => bool) liquidationManagerProtocol;
@@ -42,7 +42,7 @@ interface ILiquidStabilityPool is IERC4626, IERC1822Proxiable {
 
     struct RebalanceParams {
         address sentCurrency;
-        uint sentAmount;
+        uint256 sentAmount;
         address receivedCurrency;
         address swapper;
         bytes payload;
@@ -58,17 +58,13 @@ interface ILiquidStabilityPool is IERC4626, IERC1822Proxiable {
         uint16 nextSunsetIndexKey;
     }
 
-    event CollAndEmissionsWithdraw(
-        address indexed receiver,
-        uint shares,
-        uint[] amounts
-    );
+    event CollAndEmissionsWithdraw(address indexed receiver, uint256 shares, uint256[] amounts);
 
     struct Arrays {
-        uint length;
+        uint256 length;
         address[] collaterals;
-        uint collateralsLength;
-        uint[] amounts;
+        uint256 collateralsLength;
+        uint256[] amounts;
     }
 
     event EmissionTokenAdded(address token);
@@ -83,43 +79,31 @@ interface ILiquidStabilityPool is IERC4626, IERC1822Proxiable {
 
     function SUNSET_DURATION() external view returns (uint128);
     function totalDebtTokenDeposits() external view returns (uint256);
-    function enableCollateral(address _collateral, uint64 _unlockRatePerSecond, bool forceThroughBalanceCheck) external;
+    function enableCollateral(address _collateral, uint64 _unlockRatePerSecond, bool forceThroughBalanceCheck)
+        external;
     function startCollateralSunset(address collateral) external;
     function getTotalDebtTokenDeposits() external view returns (uint256);
     function getCollateralTokens() external view returns (address[] memory);
     function offset(address collateral, uint256 _debtToOffset, uint256 _collToAdd) external;
     function initialize(InitParams calldata params) external;
     function rebalance(RebalanceParams calldata p) external;
-    function linearVestingExtraAssets(address token, int amount, address recipient) external;
-    function withdraw(
-        uint assets,
-        address[] calldata preferredUnderlyingTokens,
-        address receiver,
-        address _owner
-    ) external returns (uint shares);
-    function redeem(
-        uint shares,
-        address[] calldata preferredUnderlyingTokens,
-        address receiver,
-        address _owner
-    ) external returns (uint assets);
-    function updateProtocol(
-        address _liquidationManager, 
-        address _factory,
-        bool _register
-    ) external;
+    function linearVestingExtraAssets(address token, int256 amount, address recipient) external;
+    function withdraw(uint256 assets, address[] calldata preferredUnderlyingTokens, address receiver, address _owner)
+        external
+        returns (uint256 shares);
+    function redeem(uint256 shares, address[] calldata preferredUnderlyingTokens, address receiver, address _owner)
+        external
+        returns (uint256 assets);
+    function updateProtocol(address _liquidationManager, address _factory, bool _register) external;
 
-    function redeem(
-        uint assets,
-        address receiver
-    ) external returns (uint shares);
+    function redeem(uint256 assets, address receiver) external returns (uint256 shares);
     function addNewExtraAsset(address token, uint64 _unlockRatePerSecond) external;
     function removeEmitedTokens(address token) external;
-    function setPairThreshold(address tokenIn, address tokenOut, uint thresholdInBP) external;
+    function setPairThreshold(address tokenIn, address tokenOut, uint256 thresholdInBP) external;
     function setUnlockRatePerSecond(address token, uint64 _unlockRatePerSecond) external;
-    function getPrice(address token) external view returns (uint);
-    function getLockedEmissions(address token) external view returns (uint);
+    function getPrice(address token) external view returns (uint256);
+    function getLockedEmissions(address token) external view returns (uint256);
     function extSloads(bytes32[] calldata slots) external view returns (bytes32[] memory res);
-    function unlockRatePerSecond(address token) external view returns (uint);
+    function unlockRatePerSecond(address token) external view returns (uint256);
     function removeExtraAsset(address token) external;
 }

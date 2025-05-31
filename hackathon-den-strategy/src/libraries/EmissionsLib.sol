@@ -6,11 +6,12 @@ import {ILiquidStabilityPool} from "../interfaces/core/ILiquidStabilityPool.sol"
 
 library EmissionsLib {
     using SafeCast for uint256;
-    uint64 constant internal DEFAULT_UNLOCK_RATE = 1e11; // 10% per second
-    uint64 constant internal MAX_UNLOCK_RATE = 1e12; // 100%
+
+    uint64 internal constant DEFAULT_UNLOCK_RATE = 1e11; // 10% per second
+    uint64 internal constant MAX_UNLOCK_RATE = 1e12; // 100%
 
     struct BalanceData {
-        mapping(address token => uint) balance;
+        mapping(address token => uint256) balance;
         mapping(address token => EmissionSchedule) emissionSchedule;
     }
 
@@ -44,7 +45,7 @@ library EmissionsLib {
         emit EmissionsAdded(token, amount);
     }
 
-    function _addEmissions(BalanceData storage $, address token, uint128 amount) private {        
+    function _addEmissions(BalanceData storage $, address token, uint128 amount) private {
         EmissionSchedule memory schedule = $.emissionSchedule[token];
 
         uint256 _unlockTimestamp = unlockTimestamp(schedule);
@@ -97,24 +98,28 @@ library EmissionsLib {
     /**
      * @notice Returns locked emissions
      */
-    function lockedEmissions(EmissionSchedule memory schedule, uint256 _unlockTimestamp) internal view returns (uint256) {
+    function lockedEmissions(EmissionSchedule memory schedule, uint256 _unlockTimestamp)
+        internal
+        view
+        returns (uint256)
+    {
         if (block.timestamp >= _unlockTimestamp) {
-            // all emissions were unlocked 
+            // all emissions were unlocked
             return 0;
         } else {
             // emissions are still unlocking, calculate the amount of already unlocked emissions
             uint256 secondsSinceLockup = block.timestamp - schedule.lockTimestamp;
-            // design decision - use dimensionless 'unlock rate units' to unlock emissions over a fixed time window 
+            // design decision - use dimensionless 'unlock rate units' to unlock emissions over a fixed time window
             uint256 ratePointsUnlocked = unlockRatePerSecond(schedule) * secondsSinceLockup;
             // emissions remainder is designed to be added to balance in unlockTimestamp
             return schedule.emissions - ratePointsUnlocked * schedule.emissions / MAX_UNLOCK_RATE;
         }
-    } 
+    }
 
     // timestamp at which all emissions are fully unlocked
     function unlockTimestamp(EmissionSchedule memory schedule) internal pure returns (uint256) {
         // ceil to account for remainder seconds left after integer division
-        return divRoundUp(MAX_UNLOCK_RATE, unlockRatePerSecond(schedule)) + schedule.lockTimestamp; 
+        return divRoundUp(MAX_UNLOCK_RATE, unlockRatePerSecond(schedule)) + schedule.lockTimestamp;
     }
 
     function unlockRatePerSecond(EmissionSchedule memory schedule) internal pure returns (uint256) {

@@ -12,12 +12,12 @@ import "../dependencies/BeraborrowOwnable.sol";
 import "../dependencies/DelegatedOps.sol";
 
 /**
-    @title Beraborrow Borrower Operations
-    @notice Based on Liquity's `BorrowerOperations`
-            https://github.com/liquity/dev/blob/main/packages/contracts/contracts/BorrowerOperations.sol
-
-            Beraborrow's implementation is modified to support multiple collaterals. There is a 1:n
-            relationship between `BorrowerOperations` and each `DenManager` / `SortedDens` pair.
+ * @title Beraborrow Borrower Operations
+ *     @notice Based on Liquity's `BorrowerOperations`
+ *             https://github.com/liquity/dev/blob/main/packages/contracts/contracts/BorrowerOperations.sol
+ *
+ *             Beraborrow's implementation is modified to support multiple collaterals. There is a 1:n
+ *             relationship between `BorrowerOperations` and each `DenManager` / `SortedDens` pair.
  */
 contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
     using SafeERC20 for IERC20;
@@ -25,7 +25,7 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
     IDebtToken public immutable debtToken;
     address public immutable factory;
     address public immutable brimeDen;
-    uint public immutable brimeMCR;
+    uint256 public immutable brimeMCR;
 
     uint256 public minNetDebt;
 
@@ -100,7 +100,10 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         uint256 _minNetDebt,
         uint256 _gasCompensation
     ) BeraborrowOwnable(_beraborrowCore) BeraborrowBase(_gasCompensation) DelegatedOps(_beraborrowCore) {
-        if (_beraborrowCore == address(0) || _debtTokenAddress == address(0) || _factory == address(0) || _brimeDen == address(0)) {
+        if (
+            _beraborrowCore == address(0) || _debtTokenAddress == address(0) || _factory == address(0)
+                || _brimeDen == address(0)
+        ) {
             revert("BorrowerOperations: 0 address");
         }
 
@@ -130,9 +133,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
     function removeDenManager(IDenManager denManager) external {
         DenManagerData memory dmData = denManagersData[denManager];
         require(
-            address(dmData.collateralToken) != address(0) &&
-                denManager.sunsetting() &&
-                denManager.getEntireSystemDebt() == 0,
+            address(dmData.collateralToken) != address(0) && denManager.sunsetting()
+                && denManager.getEntireSystemDebt() == 0,
             "Den Manager cannot be removed"
         );
         delete denManagersData[denManager];
@@ -148,17 +150,17 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
     }
 
     /**
-        @notice Get the global total collateral ratio
+     * @notice Get the global total collateral ratio
      */
     function getTCR() external view returns (uint256 globalTotalCollateralRatio) {
         SystemBalances memory balances = fetchBalances();
-        (globalTotalCollateralRatio, , ) = _getTCRData(balances);
+        (globalTotalCollateralRatio,,) = _getTCRData(balances);
         return globalTotalCollateralRatio;
     }
 
     /**
-        @notice Get total collateral and debt balances for all active collaterals, as well as
-                the current collateral prices
+     * @notice Get total collateral and debt balances for all active collaterals, as well as
+     *             the current collateral prices
      */
     function fetchBalances() public view returns (SystemBalances memory balances) {
         uint256 loopEnd = denManagers.length;
@@ -167,7 +169,7 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
             debts: new uint256[](loopEnd),
             prices: new uint256[](loopEnd)
         });
-        for (uint256 i; i < loopEnd; ) {
+        for (uint256 i; i < loopEnd;) {
             IDenManager denManager = denManagers[i];
             (uint256 collateral, uint256 debt, uint256 price) = denManager.getEntireSystemBalances();
             balances.collaterals[i] = collateral;
@@ -202,13 +204,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         IERC20 collateralToken;
         LocalVariables_openDen memory vars;
         bool isRecoveryMode;
-        (
-            collateralToken,
-            vars.price,
-            vars.totalPricedCollateral,
-            vars.totalDebt,
-            isRecoveryMode
-        ) = _getCollateralAndTCRData(denManager);
+        (collateralToken, vars.price, vars.totalPricedCollateral, vars.totalDebt, isRecoveryMode) =
+            _getCollateralAndTCRData(denManager);
 
         _requireValidMaxFeePercentage(_maxFeePercentage);
 
@@ -240,14 +237,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         }
 
         // Create the den
-        (vars.stake, vars.arrayIndex) = denManager.openDen(
-            account,
-            _collateralAmount,
-            vars.compositeDebt,
-            vars.NICR,
-            _upperHint,
-            _lowerHint
-        );
+        (vars.stake, vars.arrayIndex) =
+            denManager.openDen(account, _collateralAmount, vars.compositeDebt, vars.NICR, _upperHint, _lowerHint);
         emit DenCreated(denManager, account, vars.arrayIndex);
 
         // Move the collateral to the Den Manager
@@ -256,7 +247,9 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         //  and mint the DebtAmount to the caller and gas compensation for Gas Pool
         debtToken.mintWithGasCompensation(msg.sender, _debtAmount);
 
-        emit DenUpdated(denManager, account, vars.compositeDebt, _collateralAmount, vars.stake, BorrowerOperation.openDen);
+        emit DenUpdated(
+            denManager, account, vars.compositeDebt, _collateralAmount, vars.stake, BorrowerOperation.openDen
+        );
     }
 
     // Send collateral to a den
@@ -351,13 +344,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         IERC20 collateralToken;
         LocalVariables_adjustDen memory vars;
         bool isRecoveryMode;
-        (
-            collateralToken,
-            vars.price,
-            vars.totalPricedCollateral,
-            vars.totalDebt,
-            isRecoveryMode
-        ) = _getCollateralAndTCRData(denManager);
+        (collateralToken, vars.price, vars.totalPricedCollateral, vars.totalDebt, isRecoveryMode) =
+            _getCollateralAndTCRData(denManager);
 
         (vars.coll, vars.debt) = denManager.applyPendingRewards(account);
 
@@ -379,12 +367,7 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
 
         // Calculate old and new ICRs and check if adjustment satisfies all conditions for the current system mode
         _requireValidAdjustmentInCurrentMode(
-            vars.totalPricedCollateral,
-            vars.totalDebt,
-            isRecoveryMode,
-            _collWithdrawal,
-            _isDebtIncrease,
-            vars
+            vars.totalPricedCollateral, vars.totalDebt, isRecoveryMode, _collWithdrawal, _isDebtIncrease, vars
         );
 
         // When the adjustment is a debt repayment, check it's a valid amount and that the caller has enough Debt
@@ -417,9 +400,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         bool isRecoveryMode;
         uint256 totalPricedCollateral;
         uint256 totalDebt;
-        (collateralToken, price, totalPricedCollateral, totalDebt, isRecoveryMode) = _getCollateralAndTCRData(
-            denManager
-        );
+        (collateralToken, price, totalPricedCollateral, totalDebt, isRecoveryMode) =
+            _getCollateralAndTCRData(denManager);
         require(!isRecoveryMode, "BorrowerOps: Operation not permitted during Recovery Mode");
 
         (uint256 coll, uint256 debt) = denManager.applyPendingRewards(account);
@@ -434,7 +416,6 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         // Burn the repaid Debt from the user's balance and the gas compensation from the Gas Pool
         debtToken.burnWithGasCompensation(msg.sender, debt - DEBT_GAS_COMPENSATION);
     }
-
 
     // --- Helper functions ---
 
@@ -460,10 +441,11 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         return debtFee;
     }
 
-    function _getCollChange(
-        uint256 _collReceived,
-        uint256 _requestedCollWithdrawal
-    ) internal pure returns (uint256 collChange, bool isCollIncrease) {
+    function _getCollChange(uint256 _collReceived, uint256 _requestedCollWithdrawal)
+        internal
+        pure
+        returns (uint256 collChange, bool isCollIncrease)
+    {
         if (_collReceived != 0) {
             collChange = _collReceived;
             isCollIncrease = true;
@@ -545,7 +527,10 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
     }
 
     function _requireNewTCRisAboveCCR(uint256 _newTCR) internal view {
-        require(_newTCR >= BERABORROW_CORE.CCR(), "BorrowerOps: An operation that would result in TCR < CCR is not permitted");
+        require(
+            _newTCR >= BERABORROW_CORE.CCR(),
+            "BorrowerOps: An operation that would result in TCR < CCR is not permitted"
+        );
     }
 
     function _requireAtLeastMinNetDebt(uint256 _netDebt) internal view {
@@ -566,14 +551,8 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         bool _isDebtIncrease,
         uint256 _price
     ) internal pure returns (uint256) {
-        (uint256 newColl, uint256 newDebt) = _getNewDenAmounts(
-            _coll,
-            _debt,
-            _collChange,
-            _isCollIncrease,
-            _debtChange,
-            _isDebtIncrease
-        );
+        (uint256 newColl, uint256 newDebt) =
+            _getNewDenAmounts(_coll, _debt, _collChange, _isCollIncrease, _debtChange, _isDebtIncrease);
 
         uint256 newICR = BeraborrowMath._computeCR(newColl, newDebt, _price);
         return newICR;
@@ -611,11 +590,13 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         return newTCR;
     }
 
-    function _getTCRData(
-        SystemBalances memory balances
-    ) internal pure returns (uint256 amount, uint256 totalPricedCollateral, uint256 totalDebt) {
+    function _getTCRData(SystemBalances memory balances)
+        internal
+        pure
+        returns (uint256 amount, uint256 totalPricedCollateral, uint256 totalDebt)
+    {
         uint256 loopEnd = balances.collaterals.length;
-        for (uint256 i; i < loopEnd; ) {
+        for (uint256 i; i < loopEnd;) {
             totalPricedCollateral += (balances.collaterals[i] * balances.prices[i]);
             totalDebt += balances.debts[i];
             unchecked {
@@ -627,10 +608,9 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         return (amount, totalPricedCollateral, totalDebt);
     }
 
-    function _getCollateralAndTCRData(
-        IDenManager denManager
-    )
-        internal view
+    function _getCollateralAndTCRData(IDenManager denManager)
+        internal
+        view
         returns (
             IERC20 collateralToken,
             uint256 price,
@@ -657,5 +637,4 @@ contract BorrowerOperations is BeraborrowBase, BeraborrowOwnable, DelegatedOps {
         SystemBalances memory balances = fetchBalances();
         (, totalPricedCollateral, totalDebt) = _getTCRData(balances);
     }
-
 }

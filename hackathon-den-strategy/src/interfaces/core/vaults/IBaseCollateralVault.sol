@@ -27,24 +27,22 @@ interface IBaseCollateralVault is IERC4626, IERC1822Proxiable {
         uint16 maxWithdrawFee;
         uint16 withdrawFee; // over rewarded tokens, in basis points
         uint8 assetDecimals;
-
         IMetaBeraborrowCore _metaBeraborrowCore;
-
         // Second mapping of this struct is usless, but it's for retrocompatibility with InfraredCollateralVault
         EmissionsLib.BalanceData balanceData;
     }
 
-    function totalAssets() external view returns (uint);
+    function totalAssets() external view returns (uint256);
 
-    function fetchPrice() external view returns (uint);
+    function fetchPrice() external view returns (uint256);
 
-    function getPrice(address token) external view returns (uint);
+    function getPrice(address token) external view returns (uint256);
 
-    function receiveDonations(address[] memory tokens, uint[] memory amounts, address receiver) external;
+    function receiveDonations(address[] memory tokens, uint256[] memory amounts, address receiver) external;
 
     function setWithdrawFee(uint16 _withdrawFee) external;
 
-    function getBalance(address token) external view returns (uint);
+    function getBalance(address token) external view returns (uint256);
 
     function getWithdrawFee() external view returns (uint16);
 

@@ -8,7 +8,7 @@ interface IInfraredVault {
     function withdraw(uint256 amount) external;
     function getReward() external;
     function getRewardForUser(address account) external;
-    function rewardTokens(uint) external view returns (address);
+    function rewardTokens(uint256) external view returns (address);
     function getAllRewardTokens() external view returns (address[] memory);
     function earned(address account, address _rewardsToken) external view returns (uint256);
     function registerVault(address stakingToken) external returns (address);

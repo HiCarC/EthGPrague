@@ -5,12 +5,12 @@ pragma solidity 0.8.26;
 import "../interfaces/core/IDenManager.sol";
 
 /**
-    @title Beraborrow Sorted Dens
-    @notice Based on Liquity's `SortedDens`:
-            https://github.com/liquity/dev/blob/main/packages/contracts/contracts/SortedTroves.sol
-
-            Originally derived from `SortedDoublyLinkedList`:
-            https://github.com/livepeer/protocol/blob/master/contracts/libraries/SortedDoublyLL.sol
+ * @title Beraborrow Sorted Dens
+ *     @notice Based on Liquity's `SortedDens`:
+ *             https://github.com/liquity/dev/blob/main/packages/contracts/contracts/SortedTroves.sol
+ *
+ *             Originally derived from `SortedDoublyLinkedList`:
+ *             https://github.com/livepeer/protocol/blob/master/contracts/libraries/SortedDoublyLL.sol
  */
 contract SortedDens {
     IDenManager public denManager;
@@ -244,12 +244,11 @@ contract SortedDens {
         return _validInsertPosition(denManager, _NICR, _prevId, _nextId);
     }
 
-    function _validInsertPosition(
-        IDenManager _denManager,
-        uint256 _NICR,
-        address _prevId,
-        address _nextId
-    ) internal view returns (bool) {
+    function _validInsertPosition(IDenManager _denManager, uint256 _NICR, address _prevId, address _nextId)
+        internal
+        view
+        returns (bool)
+    {
         if (_prevId == address(0) && _nextId == address(0)) {
             // `(null, null)` is a valid insert position if the list is empty
             return isEmpty();
@@ -261,10 +260,8 @@ contract SortedDens {
             return data.tail == _prevId && _NICR <= _denManager.getNominalICR(_prevId);
         } else {
             // `(_prevId, _nextId)` is a valid insert position if they are adjacent nodes and `_NICR` falls between the two nodes' NICRs
-            return
-                data.nodes[_prevId].nextId == _nextId &&
-                _denManager.getNominalICR(_prevId) >= _NICR &&
-                _NICR >= _denManager.getNominalICR(_nextId);
+            return data.nodes[_prevId].nextId == _nextId && _denManager.getNominalICR(_prevId) >= _NICR
+                && _NICR >= _denManager.getNominalICR(_nextId);
         }
     }
 
@@ -274,11 +271,11 @@ contract SortedDens {
      * @param _NICR Node's NICR
      * @param _startId Id of node to start descending the list from
      */
-    function _descendList(
-        IDenManager _denManager,
-        uint256 _NICR,
-        address _startId
-    ) internal view returns (address, address) {
+    function _descendList(IDenManager _denManager, uint256 _NICR, address _startId)
+        internal
+        view
+        returns (address, address)
+    {
         // If `_startId` is the head, check if the insert position is before the head
         if (data.head == _startId && _NICR >= _denManager.getNominalICR(_startId)) {
             return (address(0), _startId);
@@ -302,11 +299,11 @@ contract SortedDens {
      * @param _NICR Node's NICR
      * @param _startId Id of node to start ascending the list from
      */
-    function _ascendList(
-        IDenManager _denManager,
-        uint256 _NICR,
-        address _startId
-    ) internal view returns (address, address) {
+    function _ascendList(IDenManager _denManager, uint256 _NICR, address _startId)
+        internal
+        view
+        returns (address, address)
+    {
         // If `_startId` is the tail, check if the insert position is after the tail
         if (data.tail == _startId && _NICR <= _denManager.getNominalICR(_startId)) {
             return (_startId, address(0));
@@ -330,20 +327,19 @@ contract SortedDens {
      * @param _prevId Id of previous node for the insert position
      * @param _nextId Id of next node for the insert position
      */
-    function findInsertPosition(
-        uint256 _NICR,
-        address _prevId,
-        address _nextId
-    ) external view returns (address, address) {
+    function findInsertPosition(uint256 _NICR, address _prevId, address _nextId)
+        external
+        view
+        returns (address, address)
+    {
         return _findInsertPosition(denManager, _NICR, _prevId, _nextId);
     }
 
-    function _findInsertPosition(
-        IDenManager _denManager,
-        uint256 _NICR,
-        address _prevId,
-        address _nextId
-    ) internal view returns (address, address) {
+    function _findInsertPosition(IDenManager _denManager, uint256 _NICR, address _prevId, address _nextId)
+        internal
+        view
+        returns (address, address)
+    {
         address prevId = _prevId;
         address nextId = _nextId;
 

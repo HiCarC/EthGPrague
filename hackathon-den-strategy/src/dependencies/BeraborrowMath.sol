@@ -129,20 +129,12 @@ library BeraborrowMath {
         return a > b ? (a - b) <= tolerance : (b - a) <= tolerance;
     }
 
-    function _isWithinToleranceAbove(
-        uint256 a,
-        uint256 b,
-        uint256 tolerance
-    ) internal pure returns (bool) {
+    function _isWithinToleranceAbove(uint256 a, uint256 b, uint256 tolerance) internal pure returns (bool) {
         if (a < b) return false;
         return (a - b) <= tolerance;
     }
 
-    function _isWithinToleranceBelow(
-        uint256 a,
-        uint256 b,
-        uint256 tolerance
-    ) internal pure returns (bool) {
+    function _isWithinToleranceBelow(uint256 a, uint256 b, uint256 tolerance) internal pure returns (bool) {
         if (a > b) return false;
         return (b - a) <= tolerance;
     }

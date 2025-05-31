@@ -61,13 +61,8 @@ interface IBorrowerOperations {
 
     function removeDenManager(address denManager) external;
 
-    function repayDebt(
-        address denManager,
-        address account,
-        uint256 _debtAmount,
-        address _upperHint,
-        address _lowerHint
-    ) external;
+    function repayDebt(address denManager, address account, uint256 _debtAmount, address _upperHint, address _lowerHint)
+        external;
 
     function setDelegateApproval(address _delegate, bool _isApproved) external;
 

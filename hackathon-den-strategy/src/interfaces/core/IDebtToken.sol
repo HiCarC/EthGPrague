@@ -2,8 +2,8 @@
 
 pragma solidity 0.8.26;
 
-import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol"; 
-import { IERC3156FlashBorrower } from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC3156FlashBorrower} from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
 import "./IBeraborrowCore.sol";
 
 interface IDebtToken is IERC20 {
@@ -41,12 +41,9 @@ interface IDebtToken is IERC20 {
     function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
     function maxFlashLoan(address token) external view returns (uint256);
     function flashFee(address token, uint256 amount) external view returns (uint256);
-    function flashLoan(
-        IERC3156FlashBorrower receiver,
-        address token,
-        uint256 amount,
-        bytes calldata data
-    ) external returns (bool);
+    function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes calldata data)
+        external
+        returns (bool);
     function whitelistLiquidStabilityPoolAddress(address _liquidStabilityPool, bool active) external;
     function whitelistBorrowerOperationsAddress(address _borrowerOperations, bool active) external;
     function whitelistFactoryAddress(address _factory, bool active) external;
@@ -55,14 +52,7 @@ interface IDebtToken is IERC20 {
     function setDebtGasCompensation(uint256 _gasCompensation, bool _isFinalValue) external;
     function setFlashLoanFee(uint256 _fee) external;
     function DOMAIN_SEPARATOR() external view returns (bytes32);
-    function permit(
-        address owner,
-        address spender,
-        uint256 amount,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external;
+    function permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s)
+        external;
     function nonces(address owner) external view returns (uint256);
 }

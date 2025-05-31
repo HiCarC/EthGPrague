@@ -20,14 +20,12 @@ interface IInfraredCollateralVault is IBaseCollateralVault {
         /// @dev We currently don't know the infraredVault implementation, but if it were to be possible for them to remove tokens from the rewardTokens
         /// There would be no need to remove it from here since the amounts should continue being accounted for in the virtual balance
         EnumerableSet.AddressSet rewardedTokens;
-
         IInfraredVault _infraredVault;
         address ibgtVault;
         address ibgt;
         IInfraredWrapper infraredWrapper;
         uint96 lastUpdate;
-
-        mapping(address tokenIn => uint) threshold;
+        mapping(address tokenIn => uint256) threshold;
     }
 
     struct InfraredInitParams {
@@ -42,8 +40,8 @@ interface IInfraredCollateralVault is IBaseCollateralVault {
     }
 
     struct RebalanceParams {
-        address sentCurrency; 
-        uint sentAmount; 
+        address sentCurrency;
+        uint256 sentAmount;
         address swapper;
         bytes payload;
     }
@@ -54,23 +52,22 @@ interface IInfraredCollateralVault is IBaseCollateralVault {
 
     function internalizeDonations(address[] memory tokens, uint128[] memory amounts) external;
 
-    function setPairThreshold(address tokenIn, uint thresholdInBP) external;
+    function setPairThreshold(address tokenIn, uint256 thresholdInBP) external;
 
     function setPerformanceFee(uint16 _performanceFee) external;
     function setWithdrawFee(uint16 _withdrawFee) external;
 
-    function getBalance(address token) external view returns (uint);
+    function getBalance(address token) external view returns (uint256);
 
-    function getBalanceOfWithFutureEmissions(address token) external view returns (uint);
+    function getBalanceOfWithFutureEmissions(address token) external view returns (uint256);
 
-    function getFullProfitUnlockTimestamp(address token) external view returns (uint);
+    function getFullProfitUnlockTimestamp(address token) external view returns (uint256);
 
-    function unlockRatePerSecond(address token) external view returns (uint);
+    function unlockRatePerSecond(address token) external view returns (uint256);
 
-    function getLockedEmissions(address token) external view returns (uint);
+    function getLockedEmissions(address token) external view returns (uint256);
 
     function getPerformanceFee() external view returns (uint16);
-
 
     function rewardedTokens() external view returns (address[] memory);
 

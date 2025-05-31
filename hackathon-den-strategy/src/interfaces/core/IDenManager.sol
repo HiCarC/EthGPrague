@@ -78,9 +78,7 @@ interface IDenManager {
 
     function setAddresses(address _priceFeedAddress, address _sortedDensAddress, address _collateralToken) external;
 
-    function setParameters(
-        IFactory.DeploymentParams calldata _params
-    ) external;
+    function setParameters(IFactory.DeploymentParams calldata _params) external;
 
     function setPaused(bool _paused) external;
 
@@ -118,9 +116,7 @@ interface IDenManager {
 
     function SUNSETTING_INTEREST_RATE() external view returns (uint256);
 
-    function Dens(
-        address
-    )
+    function Dens(address)
         external
         view
         returns (
@@ -158,9 +154,10 @@ interface IDenManager {
 
     function getCurrentICR(address _borrower, uint256 _price) external view returns (uint256);
 
-    function getEntireDebtAndColl(
-        address _borrower
-    ) external view returns (uint256 debt, uint256 coll, uint256 pendingDebtReward, uint256 pendingCollateralReward);
+    function getEntireDebtAndColl(address _borrower)
+        external
+        view
+        returns (uint256 debt, uint256 coll, uint256 pendingDebtReward, uint256 pendingCollateralReward);
 
     function getEntireSystemColl() external view returns (uint256);
 

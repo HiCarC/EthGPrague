@@ -29,33 +29,18 @@ contract ScriptSetup is Script {
         string memory RPC_URL = vm.envString("RPC_URL");
         console2.log("Forking from: %s", RPC_URL);
 
-        wberaDenManager = IDenManager(
-            vm.envAddress("DEN_MANAGER_WBERA")
-        );
-        wberaSortedDens = ISortedDens(
-            vm.envAddress("SORTED_DENS_WBERA")
-        );
-        wberaCollateralVault = IInfraredCollateralVault(
-            vm.envAddress("COLL_VAULT_WBERA")
-        );
+        wberaDenManager = IDenManager(vm.envAddress("DEN_MANAGER_WBERA"));
+        wberaSortedDens = ISortedDens(vm.envAddress("SORTED_DENS_WBERA"));
+        wberaCollateralVault = IInfraredCollateralVault(vm.envAddress("COLL_VAULT_WBERA"));
 
-        borrowerOperations = IBorrowerOperations(
-            vm.envAddress("BORROWER_OPERATIONS")
-        );
+        borrowerOperations = IBorrowerOperations(vm.envAddress("BORROWER_OPERATIONS"));
 
-        multiCollateralHintHelpers = MultiCollateralHintHelpers(
-            vm.envAddress("MULTI_COLLATERAL_HINT_HELPERS")
-        );
-        multiDenGetter = MultiDenGetter(
-            vm.envAddress("MULTI_DEN_GETTER")
-        );
-        denManagerGetters = DenManagerGetters(
-            vm.envAddress("DEN_MANAGER_GETTERS")
-        );
+        multiCollateralHintHelpers = MultiCollateralHintHelpers(vm.envAddress("MULTI_COLLATERAL_HINT_HELPERS"));
+        multiDenGetter = MultiDenGetter(vm.envAddress("MULTI_DEN_GETTER"));
+        denManagerGetters = DenManagerGetters(vm.envAddress("DEN_MANAGER_GETTERS"));
     }
 
     function run() public virtual {
         vm.startBroadcast();
-        
     }
 }

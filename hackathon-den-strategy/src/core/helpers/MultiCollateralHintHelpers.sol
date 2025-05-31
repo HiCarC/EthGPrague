@@ -35,12 +35,7 @@ contract MultiCollateralHintHelpers is BeraborrowBase {
      * will leave it uncapped.
      */
 
-    function getRedemptionHints(
-        IDenManager denManager,
-        uint256 _debtAmount,
-        uint256 _price,
-        uint256 _maxIterations
-    )
+    function getRedemptionHints(IDenManager denManager, uint256 _debtAmount, uint256 _price, uint256 _maxIterations)
         external
         view
         returns (address firstRedemptionHint, uint256 partialRedemptionHintNICR, uint256 truncatedDebtAmount)
@@ -63,7 +58,7 @@ contract MultiCollateralHintHelpers is BeraborrowBase {
 
         uint256 minNetDebt = borrowerOperations.minNetDebt();
         while (currentDenuser != address(0) && remainingDebt > 0 && _maxIterations-- > 0) {
-            (uint256 debt, uint256 coll, , ) = denManager.getEntireDebtAndColl(currentDenuser);
+            (uint256 debt, uint256 coll,,) = denManager.getEntireDebtAndColl(currentDenuser);
             uint256 netDebt = _getNetDebt(debt);
 
             if (netDebt > remainingDebt) {
@@ -100,12 +95,11 @@ contract MultiCollateralHintHelpers is BeraborrowBase {
     Submitting numTrials = k * sqrt(length), with k = 15 makes it very, very likely that the ouput address will
     be <= sqrt(length) positions away from the correct insert position.
     */
-    function getApproxHint(
-        IDenManager denManager,
-        uint256 _CR,
-        uint256 _numTrials,
-        uint256 _inputRandomSeed
-    ) external view returns (address hintAddress, uint256 diff, uint256 latestRandomSeed) {
+    function getApproxHint(IDenManager denManager, uint256 _CR, uint256 _numTrials, uint256 _inputRandomSeed)
+        external
+        view
+        returns (address hintAddress, uint256 diff, uint256 latestRandomSeed)
+    {
         ISortedDens sortedDens = ISortedDens(denManager.sortedDens());
         uint256 arrayLength = denManager.getDenOwnersCount();
 

@@ -8,26 +8,32 @@ import {IInfraredCollateralVault} from "src/interfaces/core/vaults/IInfraredColl
 library TokenValidationLib {
     using DynamicArrayLib for DynamicArrayLib.DynamicArray;
     using DynamicArrayLib for address[];
-    using DynamicArrayLib for uint[];
+    using DynamicArrayLib for uint256[];
 
     error DuplicateToken();
     error InvalidToken();
 
-    function checkForDuplicates(address[] memory tokens, uint length) internal pure {
-        for (uint i; i < length; i++) {
-            for (uint j = i + 1; j < length; j++) {
+    function checkForDuplicates(address[] memory tokens, uint256 length) internal pure {
+        for (uint256 i; i < length; i++) {
+            for (uint256 j = i + 1; j < length; j++) {
                 if (tokens[i] == tokens[j]) revert DuplicateToken();
             }
         }
     }
 
-    function checkValidToken(address token, address[] memory collaterals, uint collateralsLength, address nect, bool isExtraAsset) internal pure {
+    function checkValidToken(
+        address token,
+        address[] memory collaterals,
+        uint256 collateralsLength,
+        address nect,
+        bool isExtraAsset
+    ) internal pure {
         if (isExtraAsset || token == nect) {
             return;
         }
 
         bool isCollateral;
-        for (uint j; j < collateralsLength; j++) {
+        for (uint256 j; j < collateralsLength; j++) {
             if (collaterals[j] == token) {
                 isCollateral = true;
                 break;
@@ -38,13 +44,13 @@ library TokenValidationLib {
 
     function aggregateIfNotExistent(
         address token,
-        uint amount, 
+        uint256 amount,
         DynamicArrayLib.DynamicArray memory tokens,
         DynamicArrayLib.DynamicArray memory amounts
     ) internal pure {
-        uint index = tokens.indexOf(token);
+        uint256 index = tokens.indexOf(token);
         if (index != DynamicArrayLib.NOT_FOUND) {
-            uint existingAmount = amounts.getUint256(index);
+            uint256 existingAmount = amounts.getUint256(index);
             amounts.set(index, existingAmount + amount);
         } else {
             tokens.p(token);
@@ -64,8 +70,8 @@ library TokenValidationLib {
 
     /// @dev If the ibgtVault is included in the rewardTokens list, it returns a new reward array that includes the rewardToken list from the ibgtVault.
     function tryGetRewardedTokensIncludingIbgtVault(
-        address[] memory rewardTokens, 
-        address collVaultAsset, 
+        address[] memory rewardTokens,
+        address collVaultAsset,
         IInfraredCollateralVault ibgtVault
     ) internal view returns (address[] memory, uint256) {
         // Gets a new rewardToken array that includes collVaultAsset.
@@ -73,16 +79,16 @@ library TokenValidationLib {
 
         uint256 ibgtVaultIdx = contains(newRewardTokens, address(ibgtVault));
         // returns when ibgtVault is not included in rewardTokens array
-        if(ibgtVaultIdx == 0) {
+        if (ibgtVaultIdx == 0) {
             return (newRewardTokens, length);
         }
-        
+
         // replace ibgtVault with ibgt
         newRewardTokens[ibgtVaultIdx - 1] = ibgtVault.asset();
 
         address[] memory ibgtVaultRewardTokens = tryGetRewardedTokens(ibgtVault);
 
-        if(ibgtVaultRewardTokens.length == 0) {
+        if (ibgtVaultRewardTokens.length == 0) {
             return (newRewardTokens, length);
         }
 
@@ -92,14 +98,14 @@ library TokenValidationLib {
         uint256 finalLength;
 
         // Merge two arrays using the union set method
-        for(uint256 i; i < length; ++i) {
-            if(contains(ibgtVaultRewardTokens, newRewardTokens[i]) == 0) {
+        for (uint256 i; i < length; ++i) {
+            if (contains(ibgtVaultRewardTokens, newRewardTokens[i]) == 0) {
                 finalRewardTokens[finalLength] = newRewardTokens[i];
                 ++finalLength;
             }
         }
 
-        for(uint256 i; i < ibgtVaultLength; ++i) {
+        for (uint256 i; i < ibgtVaultLength; ++i) {
             finalRewardTokens[finalLength] = ibgtVaultRewardTokens[i];
             ++finalLength;
         }
@@ -114,10 +120,10 @@ library TokenValidationLib {
     /// @dev Checks if asset is included in reward tokens array (e.g. BBiBGT)
     /// @dev CollVault main asset goes at index (len - 1), if it is not included in reward tokens
     /// @dev The ordering is inlined with the `CollVaultRouter::previewRedeemUnderlying()` function
-    function pushIfNotIncluded(address[] memory rewardTokens, address collVaultAsset) 
-        internal 
-        pure 
-        returns (address[] memory, uint256) 
+    function pushIfNotIncluded(address[] memory rewardTokens, address collVaultAsset)
+        internal
+        pure
+        returns (address[] memory, uint256)
     {
         uint256 originalLength = rewardTokens.length;
 
@@ -127,7 +133,7 @@ library TokenValidationLib {
 
         address[] memory _rewardTokens = new address[](originalLength + 1);
 
-        for (uint i; i < originalLength; ++i) {
+        for (uint256 i; i < originalLength; ++i) {
             _rewardTokens[i] = rewardTokens[i];
         }
 
@@ -145,10 +151,14 @@ library TokenValidationLib {
         return rewardedTokens;
     }
 
-    function underlyingAmounts(address[] memory tokens, address account) internal view returns (uint[] memory amounts) {
-        amounts = new uint[](tokens.length);
-        
-        for (uint i; i < tokens.length; i++) {
+    function underlyingAmounts(address[] memory tokens, address account)
+        internal
+        view
+        returns (uint256[] memory amounts)
+    {
+        amounts = new uint256[](tokens.length);
+
+        for (uint256 i; i < tokens.length; i++) {
             amounts[i] = IERC20(tokens[i]).balanceOf(account);
         }
     }

@@ -19,7 +19,8 @@ interface ILiquidationManager {
 
     function liquidate(address denManager, address borrower, address liquidator) external;
 
-    function liquidateDens(address denManager, uint256 maxDensToLiquidate, uint256 maxICR, address liquidator) external;
+    function liquidateDens(address denManager, uint256 maxDensToLiquidate, uint256 maxICR, address liquidator)
+        external;
 
     function DEBT_GAS_COMPENSATION() external view returns (uint256);
 
@@ -35,11 +36,11 @@ interface ILiquidationManager {
 
     function liquidationsFeeAndRecipients() external view returns (LiquidationFeeData memory);
 
-    function liquidatorLiquidationFee() external view returns(uint256 feeBps);
+    function liquidatorLiquidationFee() external view returns (uint256 feeBps);
 
-    function sNectGaugeLiquidationFee() external view returns(address recipient, uint256 feeBps);
+    function sNectGaugeLiquidationFee() external view returns (address recipient, uint256 feeBps);
 
-    function poolLiquidationFee() external view returns(address recipient, uint256 feeBps);
+    function poolLiquidationFee() external view returns (address recipient, uint256 feeBps);
 
     function DOMAIN_SEPARATOR() external view returns (bytes32);
 }

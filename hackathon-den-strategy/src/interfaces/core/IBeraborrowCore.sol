@@ -5,7 +5,6 @@ pragma solidity 0.8.26;
 import {IMetaBeraborrowCore} from "src/interfaces/core/IMetaBeraborrowCore.sol";
 
 interface IBeraborrowCore {
-
     // --- Public variables ---
     function metaBeraborrowCore() external view returns (IMetaBeraborrowCore);
     function startTime() external view returns (uint256);

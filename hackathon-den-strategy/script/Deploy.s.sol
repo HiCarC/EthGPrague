@@ -10,7 +10,7 @@ contract Deploy is ScriptSetup {
         vm.stopBroadcast();
     }
 
-    function run() public virtual {
+    function run() public virtual override {
         vm.startBroadcast();
         // insert deployment code here
         // e.g., deploy a contract, initialize it, etc.

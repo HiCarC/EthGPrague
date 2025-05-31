@@ -2,8 +2,14 @@
 
 pragma solidity 0.8.26;
 
-import {ERC4626Upgradeable, ERC20Upgradeable, IERC20, Math, SafeERC20} from "@openzeppelin-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol";
-import {UUPSUpgradeable} from "@openzeppelin-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol"; 
+import {
+    ERC4626Upgradeable,
+    ERC20Upgradeable,
+    IERC20,
+    Math,
+    SafeERC20
+} from "@openzeppelin-upgradeable/contracts/token/ERC20/extensions/ERC4626Upgradeable.sol";
+import {UUPSUpgradeable} from "@openzeppelin-upgradeable/contracts/proxy/utils/UUPSUpgradeable.sol";
 import {IBaseCollateralVault, IERC4626} from "src/interfaces/core/vaults/IBaseCollateralVault.sol";
 import {IMetaBeraborrowCore} from "src/interfaces/core/IMetaBeraborrowCore.sol";
 import {IPriceFeed} from "src/interfaces/core/IPriceFeed.sol";
@@ -12,14 +18,15 @@ import {FeeLib} from "src/libraries/FeeLib.sol";
 import {EmissionsLib} from "src/libraries/EmissionsLib.sol";
 
 abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IBaseCollateralVault {
-    using Math for uint;
+    using Math for uint256;
     using SafeERC20 for IERC20;
-    using FeeLib for uint;
+    using FeeLib for uint256;
 
-    uint internal constant BP = 1e4;
+    uint256 internal constant BP = 1e4;
 
     // keccak256(abi.encode(uint(keccak256("openzeppelin.storage.BaseCollateralVault")) - 1)) & ~bytes32(uint(0xff))
-    bytes32 private constant BaseCollateralVaultStorageLocation = 0x19001df2d131e9aa1479f4ce661ae121445caf0662dea1e41907028a6da6fe00;
+    bytes32 private constant BaseCollateralVaultStorageLocation =
+        0x19001df2d131e9aa1479f4ce661ae121445caf0662dea1e41907028a6da6fe00;
 
     function _getBaseCollVaultStorage() internal pure returns (BaseCollVaultStorage storage store) {
         assembly {
@@ -43,7 +50,10 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         }
 
         _requireAssetFeed(params._metaBeraborrowCore, address(params._asset));
-        require(params._withdrawFee >= params._minWithdrawFee && params._withdrawFee <= params._maxWithdrawFee, "CollVault: withdraw fee out of bounds");
+        require(
+            params._withdrawFee >= params._minWithdrawFee && params._withdrawFee <= params._maxWithdrawFee,
+            "CollVault: withdraw fee out of bounds"
+        );
 
         $.minWithdrawFee = params._minWithdrawFee;
         $.maxWithdrawFee = params._maxWithdrawFee;
@@ -67,7 +77,7 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         require(priceFeed.fetchPrice(asset) != 0, "CollVault: asset price feed not set up");
     }
 
-    modifier onlyOwner {
+    modifier onlyOwner() {
         _onlyOwner();
         _;
     }
@@ -82,33 +92,37 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         require(msg.sender == getMetaBeraborrowCore().owner(), "CollVault: caller is not the owner");
     }
 
-    function _authorizeUpgrade(address newImplementation) internal override virtual onlyOwner {}
+    function _authorizeUpgrade(address newImplementation) internal virtual override onlyOwner {}
 
-    /** @dev See {IERC4626-totalAssets}. */
+    /**
+     * @dev See {IERC4626-totalAssets}.
+     */
     /// @notice Returns the total assets in the vault, denominated in the asset of the vault
     /// @dev Virtual accounting to avoid donations, asset valued denomination, returned in asset decimals
-    function totalAssets() public view override(ERC4626Upgradeable, IBaseCollateralVault) virtual returns (uint) {
+    function totalAssets() public view virtual override(ERC4626Upgradeable, IBaseCollateralVault) returns (uint256) {
         return getBalance(asset());
     }
 
     /// @dev Called by DenManager, returns the share usd value in WAD
     /// @dev Fees are not accounted to downprice the share value for redeemCollateral,
-    ///     for borrowing, MCR will account for this downprice 
-    function fetchPrice() public view virtual returns (uint) {
-        uint _totalSupply = totalSupply();
+    ///     for borrowing, MCR will account for this downprice
+    function fetchPrice() public view virtual returns (uint256) {
+        uint256 _totalSupply = totalSupply();
         if (_totalSupply == 0) return 0;
         return (totalAssets() * 10 ** _decimalsOffset()).mulDiv(getPrice(asset()), _totalSupply);
     }
 
     /// @dev Note, validate this implementation if inherited by multi asset vault (InfraredCollateralVault)
-    function _decimalsOffset() internal view override virtual returns (uint8) {
+    function _decimalsOffset() internal view virtual override returns (uint8) {
         return 18 - assetDecimals();
     }
 
-    function deposit(
-        uint assets,
-        address receiver
-    ) public override(ERC4626Upgradeable, IERC4626) harvestRewards returns (uint shares) {
+    function deposit(uint256 assets, address receiver)
+        public
+        override(ERC4626Upgradeable, IERC4626)
+        harvestRewards
+        returns (uint256 shares)
+    {
         shares = super.deposit(assets, receiver);
 
         _stake(assets);
@@ -116,10 +130,12 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         _increaseBalance(asset(), assets);
     }
 
-    function mint(
-        uint shares,
-        address receiver
-    ) public override(ERC4626Upgradeable, IERC4626) harvestRewards returns (uint assets) {
+    function mint(uint256 shares, address receiver)
+        public
+        override(ERC4626Upgradeable, IERC4626)
+        harvestRewards
+        returns (uint256 assets)
+    {
         assets = super.mint(shares, receiver);
 
         _stake(assets);
@@ -127,23 +143,25 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         _increaseBalance(asset(), assets);
     }
 
-    function withdraw(
-        uint assets,
-        address receiver,
-        address _owner
-    ) public override(ERC4626Upgradeable, IERC4626) harvestRewards returns (uint shares) {
-        uint _totalSupply = totalSupply(); // cached to don't account for the burn
+    function withdraw(uint256 assets, address receiver, address _owner)
+        public
+        override(ERC4626Upgradeable, IERC4626)
+        harvestRewards
+        returns (uint256 shares)
+    {
+        uint256 _totalSupply = totalSupply(); // cached to don't account for the burn
 
-        { // scope to avoid stack too deep error
+        {
+            // scope to avoid stack too deep error
             uint256 maxAssets = maxWithdraw(_owner);
             if (assets > maxAssets) {
                 revert ERC4626ExceededMaxWithdraw(_owner, assets, maxAssets);
             }
         }
-        uint shareFee;
+        uint256 shareFee;
         (shares, shareFee) = _previewWithdraw(assets);
 
-        (uint assetAmount, uint netShares) = _applyShareFee(shares, _totalSupply, shareFee);
+        (uint256 assetAmount, uint256 netShares) = _applyShareFee(shares, _totalSupply, shareFee);
 
         if (assetAmount != 0) {
             _unstake(assetAmount);
@@ -155,24 +173,26 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
     }
 
     /// @dev Decompounded redeem() function to reuse `previewRedeem()` on `infrared.withdraw`
-    function redeem(
-        uint shares,
-        address receiver,
-        address _owner
-    ) public override(ERC4626Upgradeable, IERC4626) harvestRewards returns (uint assets) {
-        uint _totalSupply = totalSupply(); // cached to don't account for the burn
+    function redeem(uint256 shares, address receiver, address _owner)
+        public
+        override(ERC4626Upgradeable, IERC4626)
+        harvestRewards
+        returns (uint256 assets)
+    {
+        uint256 _totalSupply = totalSupply(); // cached to don't account for the burn
 
-        { // scope to avoid stack too deep error
+        {
+            // scope to avoid stack too deep error
             uint256 maxShares = maxRedeem(_owner);
             if (shares > maxShares) {
                 revert ERC4626ExceededMaxRedeem(_owner, shares, maxShares);
             }
         }
 
-        uint shareFee;
+        uint256 shareFee;
         (assets, shareFee) = _previewRedeem(shares);
 
-        (uint assetAmount, uint netShares) = _applyShareFee(shares, _totalSupply, shareFee);
+        (uint256 assetAmount, uint256 netShares) = _applyShareFee(shares, _totalSupply, shareFee);
 
         if (assetAmount != 0) {
             _unstake(assetAmount);
@@ -183,12 +203,16 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         _withdrawExtraRewardedTokens(receiver, netShares, _totalSupply);
     }
 
-    function _applyShareFee(uint shares, uint _totalSupply, uint fee) internal virtual returns (uint, uint) {
+    function _applyShareFee(uint256 shares, uint256 _totalSupply, uint256 fee)
+        internal
+        virtual
+        returns (uint256, uint256)
+    {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
 
-        uint netShares = shares - fee;
+        uint256 netShares = shares - fee;
 
-        uint assetAmount = netShares.mulDiv(getBalance(asset()), _totalSupply, Math.Rounding.Floor);
+        uint256 assetAmount = netShares.mulDiv(getBalance(asset()), _totalSupply, Math.Rounding.Floor);
 
         address feeReceiver = $._metaBeraborrowCore.feeReceiver();
         if (fee != 0) {
@@ -199,59 +223,73 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
     }
 
     /// @dev Preview adding an exit fee on withdraw. See {IERC4626-previewWithdraw}.
-    function previewWithdraw(
-        uint assets
-    ) public view virtual override(ERC4626Upgradeable, IERC4626) returns (uint) {
-        (uint totalShares,) = _previewWithdraw(assets);
+    function previewWithdraw(uint256 assets)
+        public
+        view
+        virtual
+        override(ERC4626Upgradeable, IERC4626)
+        returns (uint256)
+    {
+        (uint256 totalShares,) = _previewWithdraw(assets);
         return totalShares;
     }
 
-    function _previewWithdraw(uint assets) internal view virtual returns (uint, uint) {
+    function _previewWithdraw(uint256 assets) internal view virtual returns (uint256, uint256) {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
 
-        uint netShares = super.previewWithdraw(assets);
-        uint totalShares = netShares.mulDiv(BP, BP - $.withdrawFee, Math.Rounding.Ceil);
-        uint shareFee = totalShares - netShares;
+        uint256 netShares = super.previewWithdraw(assets);
+        uint256 totalShares = netShares.mulDiv(BP, BP - $.withdrawFee, Math.Rounding.Ceil);
+        uint256 shareFee = totalShares - netShares;
         return (totalShares, shareFee);
     }
 
     /// @dev Preview taking an exit fee on redeem. See {IERC4626-previewRedeem}.
-    function previewRedeem(
-        uint shares
-    ) public view virtual override(ERC4626Upgradeable, IERC4626) returns (uint) {
-        (uint assets,) = _previewRedeem(shares);
+    function previewRedeem(uint256 shares)
+        public
+        view
+        virtual
+        override(ERC4626Upgradeable, IERC4626)
+        returns (uint256)
+    {
+        (uint256 assets,) = _previewRedeem(shares);
         return assets;
     }
 
-    function _previewRedeem(uint shares) internal view virtual returns (uint, uint) {
+    function _previewRedeem(uint256 shares) internal view virtual returns (uint256, uint256) {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
 
-        uint shareFee = shares.feeOnRaw($.withdrawFee);
-        uint assets = super.previewRedeem(shares - shareFee);
+        uint256 shareFee = shares.feeOnRaw($.withdrawFee);
+        uint256 assets = super.previewRedeem(shares - shareFee);
         return (assets, shareFee);
     }
 
-    /** @dev See {IERC4626-maxWithdraw}. */
-    function maxWithdraw(address _owner) public view override(ERC4626Upgradeable, IERC4626) returns (uint) {
+    /**
+     * @dev See {IERC4626-maxWithdraw}.
+     */
+    function maxWithdraw(address _owner) public view override(ERC4626Upgradeable, IERC4626) returns (uint256) {
         return previewRedeem(balanceOf(_owner));
     }
 
     /// @dev `receiver` automatically receives `asset()` donations, and `tokens` and `amounts` donations as desired by the owner `amounts`
-    function receiveDonations(address[] memory tokens, uint[] memory amounts, address receiver) external virtual onlyOwner {
+    function receiveDonations(address[] memory tokens, uint256[] memory amounts, address receiver)
+        external
+        virtual
+        onlyOwner
+    {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
 
-        uint tokensLength = tokens.length;
+        uint256 tokensLength = tokens.length;
 
         require(tokensLength == amounts.length, "CollVault: tokens and amounts length mismatch");
 
-        uint assetBalance = IERC20(asset()).balanceOf(address(this));
-        uint virtualBalance = $.balanceData.balance[asset()];
+        uint256 assetBalance = IERC20(asset()).balanceOf(address(this));
+        uint256 virtualBalance = $.balanceData.balance[asset()];
 
         if (assetBalance > virtualBalance) {
             IERC20(asset()).safeTransfer(receiver, assetBalance - virtualBalance);
         }
 
-        for (uint i; i < tokensLength; i++) {
+        for (uint256 i; i < tokensLength; i++) {
             if (tokens[i] == asset()) {
                 continue;
             }
@@ -267,17 +305,20 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
     function setWithdrawFee(uint16 _withdrawFee) external virtual onlyOwner {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
 
-        require(_withdrawFee >= $.minWithdrawFee && _withdrawFee <= $.maxWithdrawFee, "CollVault: Withdraw fee out of bounds");
+        require(
+            _withdrawFee >= $.minWithdrawFee && _withdrawFee <= $.maxWithdrawFee,
+            "CollVault: Withdraw fee out of bounds"
+        );
 
         $.withdrawFee = _withdrawFee;
     }
 
-    function _increaseBalance(address token, uint amount) internal virtual {
+    function _increaseBalance(address token, uint256 amount) internal virtual {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
         $.balanceData.balance[token] += amount;
     }
 
-    function _decreaseBalance(address token, uint amount) internal virtual {
+    function _decreaseBalance(address token, uint256 amount) internal virtual {
         BaseCollVaultStorage storage $ = _getBaseCollVaultStorage();
         $.balanceData.balance[token] -= amount;
     }
@@ -286,13 +327,11 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
         return _getBaseCollVaultStorage().balanceData;
     }
 
-    function getPrice(
-        address token
-    ) public view virtual returns (uint) {
+    function getPrice(address token) public view virtual returns (uint256) {
         return getPriceFeed().fetchPrice(token);
     }
 
-    function getBalance(address token) public view virtual returns (uint) {
+    function getBalance(address token) public view virtual returns (uint256) {
         return _getBaseCollVaultStorage().balanceData.balance[token];
     }
 
@@ -313,7 +352,7 @@ abstract contract BaseCollateralVault is ERC4626Upgradeable, UUPSUpgradeable, IB
     }
 
     function _harvestRewards() internal virtual {}
-    function _stake(uint amount) internal virtual {}
-    function _unstake(uint amount) internal virtual {}
-    function _withdrawExtraRewardedTokens(address receiver, uint netShares, uint _totalSupply) internal virtual {}
+    function _stake(uint256 amount) internal virtual {}
+    function _unstake(uint256 amount) internal virtual {}
+    function _withdrawExtraRewardedTokens(address receiver, uint256 netShares, uint256 _totalSupply) internal virtual {}
 }

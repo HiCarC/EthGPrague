@@ -19,11 +19,11 @@ contract MultiDenGetter {
 
     constructor() {}
 
-    function getMultipleSortedDens(
-        IDenManager denManager,
-        int _startIdx,
-        uint256 _count
-    ) external view returns (CombinedDenData[] memory _dens) {
+    function getMultipleSortedDens(IDenManager denManager, int256 _startIdx, uint256 _count)
+        external
+        view
+        returns (CombinedDenData[] memory _dens)
+    {
         ISortedDens sortedDens = ISortedDens(denManager.sortedDens());
         uint256 startIdx;
         bool descend;
@@ -80,11 +80,8 @@ contract MultiDenGetter {
                 /* interestIndex */
                 ,
                 ,
-
             ) = denManager.Dens(currentDenowner);
-            (_dens[idx].snapshotCollateral, _dens[idx].snapshotDebt) = denManager.rewardSnapshots(
-                currentDenowner
-            );
+            (_dens[idx].snapshotCollateral, _dens[idx].snapshotDebt) = denManager.rewardSnapshots(currentDenowner);
 
             currentDenowner = sortedDens.getNext(currentDenowner);
         }
@@ -115,11 +112,8 @@ contract MultiDenGetter {
                 /* interestIndex */
                 ,
                 ,
-
             ) = denManager.Dens(currentDenowner);
-            (_dens[idx].snapshotCollateral, _dens[idx].snapshotDebt) = denManager.rewardSnapshots(
-                currentDenowner
-            );
+            (_dens[idx].snapshotCollateral, _dens[idx].snapshotDebt) = denManager.rewardSnapshots(currentDenowner);
 
             currentDenowner = sortedDens.getPrev(currentDenowner);
         }

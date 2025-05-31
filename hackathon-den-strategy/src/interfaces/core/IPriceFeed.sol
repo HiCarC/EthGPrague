@@ -27,9 +27,9 @@ interface IPriceFeed {
     ) external;
 
     function whitelistCollateralVault(address _collateralVaultShareToken, bool enable) external;
-    
+
     function setSpotOracle(address _token, address _spotOracle) external;
-    
+
     function MAX_PRICE_DEVIATION_FROM_PREVIOUS_ROUND() external view returns (uint256);
 
     function BERABORROW_CORE() external view returns (address);
@@ -40,18 +40,16 @@ interface IPriceFeed {
 
     function guardian() external view returns (address);
 
-    function oracleRecords(
-        address
-    )
+    function oracleRecords(address)
         external
         view
         returns (
-        address chainLinkOracle,
-        uint8 decimals,
-        uint32 heartbeat,
-        uint16 staleThreshold,
-        address underlyingDerivative
-    );
+            address chainLinkOracle,
+            uint8 decimals,
+            uint32 heartbeat,
+            uint16 staleThreshold,
+            address underlyingDerivative
+        );
 
     function isCollVault(address _collateralVaultShareToken) external view returns (bool);
 
