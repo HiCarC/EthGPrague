@@ -6,12 +6,12 @@ class RiskAdjustedYieldCalculator {
         this.poolDataFile = '2_pool_list.json';
         this.outputFile = '3_risk_adjusted_scores.json';
         
-        // Configuration parameters (removed investmentHorizonDays)
+        // Configuration parameters
         this.config = {
-            liquidationProbability: 2, // my liquidity ratio (berachain average)
-            lpAPR: 0.1362,         //  https://infrared.finance/vaults/beraborrow-snect     
-            lpVol: 0.01,
-            emergencyHaircut: 0.4           // 40% haircut on emergency unwinding
+            liquidationProbability: 0.02, // Fixed: 2% as decimal, not 200%
+            lpAPR: 0.1362,         // BeraBorrow stability pool APR
+            lpVol: 0.01,           // 1% volatility
+            emergencyHaircut: 0.4  // 40% haircut on emergency unwinding
         };
     }
 
@@ -25,7 +25,8 @@ class RiskAdjustedYieldCalculator {
             const fileContent = await fs.readFile(filePath, 'utf8');
             const data = JSON.parse(fileContent);
             
-            const allPools = Object.values(data.pools).flat();
+            // Handle new JSON structure - pools is now a flat array
+            const allPools = data.pools || [];
             console.log(`✅ Loaded ${allPools.length} pools from ${this.poolDataFile}`);
             
             return data;
@@ -37,17 +38,15 @@ class RiskAdjustedYieldCalculator {
 
     /**
      * 📏 Step 2: Horizon Scaling - Calculate adjusted APR for investment horizon
-     * Formula: APR_Δ = 1 - (1 + μ)^(Δ/365d)
+     * Formula: APR_Δ = (1 + μ)^(Δ/365d) - 1
      */
     calculateHorizonScaledAPR(annualAPR, delta) {
-
         if (!annualAPR || annualAPR <= 0) return 0;
         
-        const μ = annualAPR / 100; // Convert percentage to decimal
+        const μ = annualAPR; // Already in decimal format
         const timeRatio = delta / 365;
         
-        const adjustedAPR = -1 + (1+μ) ** timeRatio;
-
+        const adjustedAPR = Math.pow(1 + μ, timeRatio) - 1;
         return adjustedAPR;
     }
 
@@ -62,7 +61,7 @@ class RiskAdjustedYieldCalculator {
         const timeRatio = delta / 365;
         
         const downsideVolatility = σ * Math.sqrt(timeRatio);
-        return downsideVolatility; // Convert back to percentage
+        return downsideVolatility;
     }
 
     /**
@@ -71,7 +70,7 @@ class RiskAdjustedYieldCalculator {
      */
     calculateExpectedLiquidationLoss(liquidationProbability) {
         const haircut = this.config.emergencyHaircut;
-        return liquidationProbability * haircut
+        return liquidationProbability * haircut;
     }
 
     /**
@@ -79,8 +78,6 @@ class RiskAdjustedYieldCalculator {
      * Formula: H_ρ = 1 - |ρ|
      */
     calculateCorrelationHaircut(correlation) {
-        // For now, assume moderate correlation (0.3) for all pools
-        // In a real implementation, you'd calculate correlation with a baseline portfolio
         const assumedCorrelation = correlation || 0.3;
         return 1 - Math.abs(assumedCorrelation);
     }
@@ -92,27 +89,27 @@ class RiskAdjustedYieldCalculator {
     calculateRiskAdjustedScore(pool, delta) {
         // Extract pool data
         const apy = pool.apy || 0;
-        const volatility = pool.volatility || 0.1; // Default 10% if missing
+        const volatility = pool.volatility || 1;
         
         // Step 2: Horizon-scaled APR for the pool
-        const aprHorizon = this.calculateHorizonScaledAPR(apy * 100, delta);
+        const aprHorizon = this.calculateHorizonScaledAPR(apy, delta);
         
         // Step 3: Downside volatility for the pool
         const downsideVol = this.calculateDownsideVolatility(volatility, delta);
         
         // Step 2 & 3 for Liquidity Pool (baseline/benchmark)
-        const lpAPRHorizon = this.calculateHorizonScaledAPR(this.config.lpAPR * 100, delta); // Convert decimal to percentage
-        const lpVolHorizon = this.calculateDownsideVolatility(this.config.lpVol * 100, delta); // Convert decimal to percentage
+        const lpAPRHorizon = this.calculateHorizonScaledAPR(this.config.lpAPR, delta);
+        const lpVolHorizon = this.calculateDownsideVolatility(this.config.lpVol * 100, delta);
         
         // Step 4: Expected liquidation loss
         const liquidationLoss = this.calculateExpectedLiquidationLoss(this.config.liquidationProbability);
         
         // Step 5: Correlation haircut
-        const correlationHaircut = this.calculateCorrelationHaircut(0.3); // Default correlation
+        const correlationHaircut = this.calculateCorrelationHaircut(0.3);
         
         // Step 6: Final score calculation
         const numerator = aprHorizon - lpAPRHorizon - liquidationLoss;
-        const denominator = downsideVol || 1; // Avoid division by zero
+        const denominator = downsideVol || 0.001; // Avoid division by zero
         
         const score = (numerator / denominator) * correlationHaircut;
         
@@ -120,8 +117,8 @@ class RiskAdjustedYieldCalculator {
             score: score,
             components: {
                 aprHorizon: aprHorizon,
-                lpAPRHorizon: lpAPRHorizon,         // Liquidity pool horizon APR
-                lpVolHorizon: lpVolHorizon,         // Liquidity pool horizon volatility
+                lpAPRHorizon: lpAPRHorizon,
+                lpVolHorizon: lpVolHorizon,
                 downsideVolatility: downsideVol,
                 liquidationLoss: liquidationLoss,
                 correlationHaircut: correlationHaircut,
@@ -139,29 +136,31 @@ class RiskAdjustedYieldCalculator {
         
         const processedData = {
             metadata: {
-                ...poolData.metadata,
-                processedAt: new Date().toISOString(),
+                timestamp: new Date().toISOString(),
+                source: poolData.source || 'Unknown',
+                chain: poolData.chain || 'Unknown',
+                protocol: poolData.protocol || 'Unknown',
+                totalPools: poolData.totalPools || 0,
                 calculationConfig: {
                     ...this.config,
-                    delta: delta // Include delta in metadata
+                    delta: delta
                 }
             },
-            scores: {}
+            pools: []
         };
 
-        Object.keys(poolData.pools).forEach(token => {
-            const pools = poolData.pools[token];
+        // Process the flat array of pools
+        const allPools = poolData.pools || [];
+        
+        processedData.pools = allPools.map(pool => {
+            const calculation = this.calculateRiskAdjustedScore(pool, delta);
             
-            processedData.scores[token] = pools.map(pool => {
-                const calculation = this.calculateRiskAdjustedScore(pool, delta);
-                
-                return {
-                    ...pool,
-                    riskAdjustedScore: calculation.score,
-                    scoreComponents: calculation.components
-                };
-            }).sort((a, b) => b.riskAdjustedScore - a.riskAdjustedScore); // Sort by best score
-        });
+            return {
+                ...pool,
+                riskAdjustedScore: calculation.score,
+                scoreComponents: calculation.components
+            };
+        }).sort((a, b) => b.riskAdjustedScore - a.riskAdjustedScore); // Sort by best score
 
         console.log('✅ All pools processed and scored');
         return processedData;
@@ -176,7 +175,7 @@ class RiskAdjustedYieldCalculator {
             await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
             console.log(`✅ Risk-adjusted scores saved to: ${filePath}`);
             
-            const totalPools = Object.values(data.scores).flat().length;
+            const totalPools = data.pools.length;
             console.log(`📊 Total pools scored: ${totalPools}`);
         } catch (error) {
             console.error('❌ Error saving results:', error.message);
@@ -187,34 +186,32 @@ class RiskAdjustedYieldCalculator {
     /**
      * 📋 Step 9: Display top pools by risk-adjusted score
      */
-    displayTopPools(data, delta, topN = 5) {
+    displayTopPools(data, delta, topN = 10) {
         console.log('\n' + '='.repeat(80));
         console.log(`🏆 TOP RISK-ADJUSTED POOLS (Δ = ${delta} days)`);
         console.log('='.repeat(80));
 
-        Object.keys(data.scores).forEach(token => {
-            const pools = data.scores[token];
-            const emoji = token === 'BTC' ? '₿' : token === 'AAVE' ? '🏦' : '💎';
-            
-            console.log(`\n${emoji} TOP ${token} POOLS:`);
-            console.log('-'.repeat(50));
-            
-            if (pools.length === 0) {
-                console.log('❌ No pools found');
-                return;
-            }
+        const allPools = data.pools || [];
+        
+        if (allPools.length === 0) {
+            console.log('❌ No pools found');
+            return;
+        }
 
-            const topPools = pools.slice(0, topN);
-            topPools.forEach((pool, index) => {
-                console.log(`${index + 1}. ${pool.symbol}`);
-                console.log(`   🎯 Risk-Adjusted Score: ${pool.riskAdjustedScore.toFixed(4)}`);
-                console.log(`   📊 APY: ${pool.apy?.toFixed(2) || 'N/A'}%`);
-                console.log(`   ⚡ Volatility: ${pool.volatility?.toFixed(2) || 'N/A'}%`);
-                console.log(`   📏 Horizon APR: ${pool.scoreComponents.aprHorizon.toFixed(3)}%`);
-                console.log(`   📉 Downside Vol: ${pool.scoreComponents.downsideVolatility.toFixed(3)}%`);
-                console.log(`   🏊 Pool ID: ${pool.poolId || 'N/A'}`);
-                console.log('');
-            });
+        const topPools = allPools.slice(0, topN);
+        
+        topPools.forEach((pool, index) => {
+            const emoji = index < 3 ? ['🥇', '🥈', '🥉'][index] : `${index + 1}.`;
+            
+            console.log(`${emoji} ${pool.symbol}`);
+            console.log(`   🎯 Risk-Adjusted Score: ${pool.riskAdjustedScore.toFixed(4)}`);
+            console.log(`   📊 APY: ${(pool.apy * 100).toFixed(2)}%`);
+            console.log(`   ⚡ Volatility: ${pool.volatility.toFixed(2)}%`);
+            console.log(`   📏 Horizon APR: ${(pool.scoreComponents.aprHorizon * 100).toFixed(3)}%`);
+            console.log(`   📉 Downside Vol: ${(pool.scoreComponents.downsideVolatility * 100).toFixed(3)}%`);
+            console.log(`   💰 TVL: $${(pool.tvlUsd / 1000000).toFixed(1)}M`);
+            console.log(`   🏊 Pool ID: ${pool.poolId || 'N/A'}`);
+            console.log('');
         });
 
         console.log('='.repeat(80));

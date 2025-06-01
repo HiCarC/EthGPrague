@@ -173,7 +173,7 @@ class UniswapPoolAnalyzer {
                 for (const field of volatilityFields) {
                     if (pool[field] !== null && pool[field] !== undefined) {
                         let value = pool[field];
-                        
+                         
                         // Handle different data types
                         if (typeof value === 'number' && !isNaN(value)) {
                             volatility = parseFloat(Math.abs(value).toFixed(2));

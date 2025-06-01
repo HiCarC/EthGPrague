@@ -1,2180 +1,947 @@
 {
-  "metadata": {
-    "generatedAt": "2025-05-31T21:27:54.782Z",
-    "chain": "Arbitrum",
-    "protocol": "Uniswap V3",
-    "targetTokens": [
-      "BTC",
-      "AAVE",
-      "ETH"
-    ]
-  },
-  "pools": {
-    "BTC": [
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.233,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.27963,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 405379691.54073,
-          "tvlUsd": 41847033
-        }
-      },
-      {
-        "symbol": "WBTC-USDT",
-        "apy": 0.248,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "af3cd3a9-a9b8-483e-82c6-bf4fceb66584",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 24.83734,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 98199915.92345,
-          "tvlUsd": 7014122
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.234,
-        "volatility": 39.66,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "14d11019-8d05-43b9-8ab9-f9baeb9e70fa",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.38847,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5136080.16905,
-          "tvlUsd": 3700400
-        }
-      },
-      {
-        "symbol": "TBTC-WETH",
-        "apy": 0.153,
-        "volatility": 94.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2fa7e5cc-8f92-4190-90e5-2765c33f1dd0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.31306,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2159132.46003,
-          "tvlUsd": 652074
-        }
-      },
-      {
-        "symbol": "WBTC-USDT",
-        "apy": 0.096,
-        "volatility": 61.63,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "76a365b1-2628-4a7a-adad-89488a1b4d89",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 9.59378,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 691385.59262,
-          "tvlUsd": 320542
-        }
-      },
-      {
-        "symbol": "WBTC-USDC.E",
-        "apy": 0.119,
-        "volatility": 133.59,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "223038c8-7bfa-4fcf-a839-0c4391c17e19",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.94253,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 399975.64595,
-          "tvlUsd": 85547
-        }
-      },
-      {
-        "symbol": "WBTC-USDT",
-        "apy": 2.846,
-        "volatility": 41.94,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "800b020e-9531-44f4-9319-4821f892ddc8",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 284.61141,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 104397.78484,
-          "tvlUsd": 71116
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.073,
-        "volatility": 8.33,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2f9ddcb6-1d5c-42f1-afb1-5df054c419f3",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 7.30203,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 19126.92867,
-          "tvlUsd": 65630
-        }
-      },
-      {
-        "symbol": "BTCM-USDT",
-        "apy": 0.059,
-        "volatility": 29.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cf71cc43-6563-4b86-9ecc-f6cce89c1573",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.86021,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 60101.02206,
-          "tvlUsd": 57984
-        }
-      },
-      {
-        "symbol": "CBBTC-USDT",
-        "apy": 0.106,
-        "volatility": 16.59,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "04778667-f6e6-4e3a-8fc8-7935f106efaf",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 10.59492,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 13098.25507,
-          "tvlUsd": 22563
-        }
-      },
-      {
-        "symbol": "WETH-CBBTC",
-        "apy": 0.245,
-        "volatility": 65.18,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d5d20844-3415-4790-8f40-a7d8d1d94d15",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 24.50376,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 27825.34397,
-          "tvlUsd": 12198
-        }
-      },
-      {
-        "symbol": "WBTC-USDC.E",
-        "apy": 0.116,
-        "volatility": 12.29,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9497e447-3a4a-4103-9059-6dbd36a5c616",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.55487,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5164.22694,
-          "tvlUsd": 12007
-        }
+  "timestamp": "2025-06-01T00:06:40.740Z",
+  "source": "DeFiLlama API",
+  "chain": "Arbitrum",
+  "protocol": "Uniswap V3",
+  "totalPools": 67,
+  "pools": [
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.4685413,
+      "volatility": 200,
+      "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 54200057,
+      "metadata": {
+        "originalAPY": 46.85413,
+        "il7d": null,
+        "volumeUsd7d": 1240961314.64006
       }
-    ],
-    "AAVE": [
-      {
-        "symbol": "WETH-AAVE",
-        "apy": 0.387,
-        "volatility": 73.71,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "95fd15b0-f05e-470f-a87b-ac3d58c2d9a0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 38.73695,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5938117.66701,
-          "tvlUsd": 2301845
-        }
-      },
-      {
-        "symbol": "AAVE-USDT",
-        "apy": 0.424,
-        "volatility": 123.46,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "ea026e68-c3dd-466d-8306-62681b002e86",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 42.41917,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 337034.84233,
-          "tvlUsd": 77999
-        }
-      },
-      {
-        "symbol": "WETH-AAVE",
-        "apy": 0.324,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a8cb3c04-b37b-43a5-b688-53bcc7048661",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 32.37007,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 503213.27317,
-          "tvlUsd": 37249
-        }
+    },
+    {
+      "symbol": "WBTC-WETH",
+      "apy": 0.20478570000000001,
+      "volatility": 96.46992976818788,
+      "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 41759035,
+      "metadata": {
+        "originalAPY": 20.47857,
+        "il7d": null,
+        "volumeUsd7d": 402849117.36373
       }
-    ],
-    "ETH": [
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.518,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 51.78247,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1248295556.70624,
-          "tvlUsd": 54384923
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.233,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.27963,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 405379691.54073,
-          "tvlUsd": 41847033
-        }
-      },
-      {
-        "symbol": "WETH-USDT",
-        "apy": 0.348,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 34.79703,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 175561514.46176,
-          "tvlUsd": 10121134
-        }
-      },
-      {
-        "symbol": "WETH-GMX",
-        "apy": 0.064,
-        "volatility": 2.09,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "5921fee6-b25f-4cd9-9cc4-fb07fe83ea89",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 6.38502,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 711140.0832,
-          "tvlUsd": 9708664
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.762,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 76.24623,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 43053146.92445,
-          "tvlUsd": 7862591
-        }
-      },
-      {
-        "symbol": "PENDLE-WETH",
-        "apy": 0.537,
-        "volatility": 72.65,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 53.69363,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14151320.51227,
-          "tvlUsd": 5565121
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.234,
-        "volatility": 39.66,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "14d11019-8d05-43b9-8ab9-f9baeb9e70fa",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.38847,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5136080.16905,
-          "tvlUsd": 3700400
-        }
-      },
-      {
-        "symbol": "WETH-ARB",
-        "apy": 0.395,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 39.48698,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 61278571.42666,
-          "tvlUsd": 3577025
-        }
-      },
-      {
-        "symbol": "WETH-LINK",
-        "apy": 0.38,
-        "volatility": 51.25,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cd7dd7fa-e34c-4cf0-af2b-6d13438f3852",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 38.04117,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5469294.71575,
-          "tvlUsd": 3049005
-        }
-      },
-      {
-        "symbol": "WETH-USDC.E",
-        "apy": 0.271,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 27.0597,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 25429043.42762,
-          "tvlUsd": 2332096
-        }
-      },
-      {
-        "symbol": "WETH-AAVE",
-        "apy": 0.387,
-        "volatility": 73.71,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "95fd15b0-f05e-470f-a87b-ac3d58c2d9a0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 38.73695,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5938117.66701,
-          "tvlUsd": 2301845
-        }
-      },
-      {
-        "symbol": "MOR-WETH",
-        "apy": 0.04,
-        "volatility": 3.2,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "44f437aa-baa7-48a7-b403-10bc0ca24500",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 4.02738,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 228064.56691,
-          "tvlUsd": 2038709
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.603,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 60.27914,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 225608774.16209,
-          "tvlUsd": 2031098
-        }
-      },
-      {
-        "symbol": "CRV-WETH",
-        "apy": 0.472,
-        "volatility": 110.84,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "415084d5-948c-4a27-a596-3ed9319f8a24",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 47.16791,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 6972941.25091,
-          "tvlUsd": 1797455
-        }
-      },
-      {
-        "symbol": "WSTETH-WETH",
-        "apy": 0.012,
-        "volatility": 102.16,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2ec84b50-59e5-49e6-ab12-41e99ed32a8c",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.21928,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 5053676.98249,
-          "tvlUsd": 1413409
-        }
-      },
-      {
-        "symbol": "WETH-USD+",
-        "apy": 0.151,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.14365,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7153312.03553,
-          "tvlUsd": 1133109
-        }
-      },
-      {
-        "symbol": "ANIME-WETH",
-        "apy": 0.446,
-        "volatility": 60.62,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "20f788ef-8255-41ce-8de2-024e3a0060f6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 44.55813,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1950922.51334,
-          "tvlUsd": 919469
-        }
-      },
-      {
-        "symbol": "ZRO-WETH",
-        "apy": 0.56,
-        "volatility": 83.38,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c48e0049-063d-4976-88c2-961df59ec51a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 55.96447,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2621560.07203,
-          "tvlUsd": 898349
-        }
-      },
-      {
-        "symbol": "WETH-GRT",
-        "apy": 0.122,
-        "volatility": 23.51,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 12.16338,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 701897.44859,
-          "tvlUsd": 853181
-        }
-      },
-      {
-        "symbol": "PENDLE-WETH",
-        "apy": 0.555,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 55.53023,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14000419.92134,
-          "tvlUsd": 750020
-        }
-      },
-      {
-        "symbol": "WETH-XBG",
-        "apy": 0.116,
-        "volatility": 7.78,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "5ca4d40c-372b-42bd-a6ae-a067371160f4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.55704,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 194903.49354,
-          "tvlUsd": 715515
-        }
-      },
-      {
-        "symbol": "TBTC-WETH",
-        "apy": 0.153,
-        "volatility": 94.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2fa7e5cc-8f92-4190-90e5-2765c33f1dd0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.31306,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2159132.46003,
-          "tvlUsd": 652074
-        }
-      },
-      {
-        "symbol": "K-WETH",
-        "apy": 0.121,
-        "volatility": 7.35,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a0bb30a4-289a-4ae5-a0dc-746c3b507c8e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 12.10079,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 155498.98972,
-          "tvlUsd": 604848
-        }
-      },
-      {
-        "symbol": "WETH-GMX",
-        "apy": 0.704,
-        "volatility": 92.5,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d05dabc8-b729-4ca9-b83d-204afb62dde4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 70.41082,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1774653.5374,
-          "tvlUsd": 548178
-        }
-      },
-      {
-        "symbol": "WETH-UNI",
-        "apy": 0.219,
-        "volatility": 67.01,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 21.94012,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1253324.86077,
-          "tvlUsd": 534351
-        }
-      },
-      {
-        "symbol": "WETH-USDT",
-        "apy": 0.198,
-        "volatility": 51.02,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b8582b33-80e3-4250-a496-02936860669f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 19.76685,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 907638.79091,
-          "tvlUsd": 508325
-        }
-      },
-      {
-        "symbol": "WXTZ-WETH",
-        "apy": 0.01,
-        "volatility": 5.81,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "eff4b459-64c1-4994-a8f7-eab9470c26f1",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.01575,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 102320.63648,
-          "tvlUsd": 503233
-        }
-      },
-      {
-        "symbol": "LAVA-WETH",
-        "apy": 0.009,
-        "volatility": 38.24,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "292673f0-42de-4073-b128-1382a4d19e25",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.92984,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 605731.1449,
-          "tvlUsd": 452598
-        }
-      },
-      {
-        "symbol": "UXRP-WETH",
-        "apy": 0.258,
-        "volatility": 9.51,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "987556ec-845d-4410-b5a4-89656b82d044",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 25.76114,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 143273.24963,
-          "tvlUsd": 430570
-        }
-      },
-      {
-        "symbol": "LPT-WETH",
-        "apy": 4.31,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 430.97403,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7285231.92736,
-          "tvlUsd": 425094
-        }
-      },
-      {
-        "symbol": "WETH-DAI",
-        "apy": 0.671,
-        "volatility": 146.78,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "0c1f5caa-98bc-455c-b4bb-009570f7b7a4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 67.10573,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2139532.56291,
-          "tvlUsd": 416473
-        }
-      },
-      {
-        "symbol": "WETH-ARB",
-        "apy": 0.132,
-        "volatility": 26.96,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "483c0801-b3c5-4873-87d9-a84a8de4ec92",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 13.22493,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 390504.79882,
-          "tvlUsd": 413864
-        }
-      },
-      {
-        "symbol": "WETH-USOL",
-        "apy": 0.288,
-        "volatility": 14.22,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "38917ce0-8406-4a61-8002-44e5fb2f682e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 28.75566,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 195791.26862,
-          "tvlUsd": 393286
-        }
-      },
-      {
-        "symbol": "WETH-ATH",
-        "apy": 1.788,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "ebd0ce31-95b7-406a-aa3f-86ea3bbc5998",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 178.78511,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3767703.50842,
-          "tvlUsd": 380029
-        }
-      },
-      {
-        "symbol": "WETH-USDC.E",
-        "apy": 0.12,
-        "volatility": 15.41,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.9566,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 176740.58798,
-          "tvlUsd": 327715
-        }
-      },
-      {
-        "symbol": "WETH-RETH",
-        "apy": 0.002,
-        "volatility": 6.45,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.15066,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 70893.52138,
-          "tvlUsd": 313949
-        }
-      },
-      {
-        "symbol": "WETH-NRN",
-        "apy": 0.493,
-        "volatility": 19.82,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d37a8431-96cc-44c5-92e6-14c43b5b1d91",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 49.32525,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 199677.24606,
-          "tvlUsd": 287848
-        }
-      },
-      {
-        "symbol": "WETH-TRUF",
-        "apy": 0.023,
-        "volatility": 4.05,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "4bb70bd4-189e-49ee-9178-c1f018ac8a5d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.26326,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 39109.26876,
-          "tvlUsd": 275859
-        }
-      },
-      {
-        "symbol": "ETHFI-WETH",
-        "apy": 0.588,
-        "volatility": 73.98,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "127c022f-93bd-4902-ba13-a6015418e5ca",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 58.82849,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 712540.7286,
-          "tvlUsd": 275194
-        }
-      },
-      {
-        "symbol": "WETH-USUI",
-        "apy": 0.612,
-        "volatility": 45.56,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2842f72c-73f7-427e-8d61-10a9af8c2da6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 61.18325,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 409592.46869,
-          "tvlUsd": 256883
-        }
-      },
-      {
-        "symbol": "WETH-NST",
-        "apy": 0.116,
-        "volatility": 31.15,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "16c09aa8-dc98-4c34-8d14-ebebccae7cf4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 11.62537,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 270668.11402,
-          "tvlUsd": 248254
-        }
-      },
-      {
-        "symbol": "RWA-WETH",
-        "apy": 0.028,
-        "volatility": 6.54,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "4f40a17b-d2d6-4e03-90b0-d856e19c8c6b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.80167,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 54872.82571,
-          "tvlUsd": 239820
-        }
-      },
-      {
-        "symbol": "WETH-SEED",
-        "apy": 0.032,
-        "volatility": 4.28,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "5f0db05b-bfdf-465a-9222-687a367addb5",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 3.23593,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 35223.90802,
-          "tvlUsd": 235268
-        }
-      },
-      {
-        "symbol": "TGT-WETH",
-        "apy": 0.023,
-        "volatility": 43.07,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b836dbd8-8835-4542-97e3-9523c991173d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.27565,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 348452.90547,
-          "tvlUsd": 231156
-        }
-      },
-      {
-        "symbol": "LDO-WETH",
-        "apy": 0.334,
-        "volatility": 91.06,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "7bd8982c-5704-4ba0-a4c7-a8c7de9abbb4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 33.43916,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 706533.13074,
-          "tvlUsd": 221682
-        }
-      },
-      {
-        "symbol": "PEAS-WETH",
-        "apy": 0.054,
-        "volatility": 2.4,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d2290557-51d0-4765-bbaa-a821316aef9b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.42471,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 17107.48381,
-          "tvlUsd": 203902
-        }
-      },
-      {
-        "symbol": "PEPE-WETH",
-        "apy": 1.102,
-        "volatility": 45.79,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "48d109b7-eea1-4c7e-9620-a94775c5912e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 110.16294,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 319686.95687,
-          "tvlUsd": 199455
-        }
-      },
-      {
-        "symbol": "WETH-WXM",
-        "apy": 0.051,
-        "volatility": 13.31,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "7d08a6dc-c67c-4c85-8cb5-f793b8747cdd",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.06269,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 54120.81537,
-          "tvlUsd": 116201
-        }
-      },
-      {
-        "symbol": "WEETH-WETH",
-        "apy": 0,
-        "volatility": 5.58,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fe3e33f2-7ad0-4b65-a953-d13a32b76a03",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.03658,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 21653.97617,
-          "tvlUsd": 110828
-        }
-      },
-      {
-        "symbol": "WETH-WETH",
-        "apy": 0,
-        "volatility": 68.23,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.03493,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 250750.21902,
-          "tvlUsd": 105009
-        }
-      },
-      {
-        "symbol": "SNT-WETH",
-        "apy": 0.239,
-        "volatility": 25.03,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "69e1da1f-f058-41a2-ba4d-c7ed099a55b4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 23.88497,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 91520.19986,
-          "tvlUsd": 104489
-        }
-      },
-      {
-        "symbol": "WETH-ARB",
-        "apy": 0.09,
-        "volatility": 3.36,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "57437274-42a0-45eb-8389-992b8b71fc44",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 8.97974,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 12199.31892,
-          "tvlUsd": 103590
-        }
-      },
-      {
-        "symbol": "GNS-WETH",
-        "apy": 1.286,
-        "volatility": 67.54,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1b52e1f6-9bb2-4e19-9b6b-3a27da560aca",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 128.56557,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 213804.4599,
-          "tvlUsd": 90442
-        }
-      },
-      {
-        "symbol": "WETH-CATCH",
-        "apy": 0.583,
-        "volatility": 72.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "111c849f-514f-428e-8fd6-519d5ee01fa4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 58.33807,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 212965.88746,
-          "tvlUsd": 83796
-        }
-      },
-      {
-        "symbol": "AIUS-WETH",
-        "apy": 0.163,
-        "volatility": 13.75,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "de2109d6-db3b-452c-90ce-a1d8175a6a5d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 16.34477,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 39135.55377,
-          "tvlUsd": 81319
-        }
-      },
-      {
-        "symbol": "MAGIC-WETH",
-        "apy": 0.402,
-        "volatility": 134.78,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "afb71713-9c2e-4717-a8a3-9f959b966e49",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 40.16866,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 378071.04241,
-          "tvlUsd": 80147
-        }
-      },
-      {
-        "symbol": "ZRO-WETH",
-        "apy": 0.352,
-        "volatility": 15.43,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2add30f5-048f-452b-8919-6710d73ec986",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 35.18664,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 40167.16596,
-          "tvlUsd": 74391
-        }
-      },
-      {
-        "symbol": "WETH-WNT",
-        "apy": 0.009,
-        "volatility": 2.3,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "4193998b-c070-4474-ace5-84e35cd95e65",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.85075,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5926.31254,
-          "tvlUsd": 73544
-        }
-      },
-      {
-        "symbol": "HERMES-WETH",
-        "apy": 0.08,
-        "volatility": 3.38,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a3a1464b-4c80-4782-ab8d-055f00ec694b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 7.98405,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 8581.36123,
-          "tvlUsd": 72597
-        }
-      },
-      {
-        "symbol": "WETH-USDC",
-        "apy": 0.201,
-        "volatility": 15.58,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "73abd456-ad4d-45df-9a47-86758ab5a8ef",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 20.12253,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 38975.53357,
-          "tvlUsd": 71464
-        }
-      },
-      {
-        "symbol": "WBTC-WETH",
-        "apy": 0.073,
-        "volatility": 8.33,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2f9ddcb6-1d5c-42f1-afb1-5df054c419f3",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 7.30203,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 19126.92867,
-          "tvlUsd": 65630
-        }
-      },
-      {
-        "symbol": "PEAR-WETH",
-        "apy": 0.331,
-        "volatility": 113.23,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9984360f-b781-4018-9d54-3444c4ea6c55",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 33.06368,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 252401.31624,
-          "tvlUsd": 63688
-        }
-      },
-      {
-        "symbol": "WETH-KIP",
-        "apy": 0.011,
-        "volatility": 11.28,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "8ef61a13-a1aa-493a-aa0e-a7742b5fc562",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.0555,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 22215.84712,
-          "tvlUsd": 56247
-        }
-      },
-      {
-        "symbol": "MAIA-WETH",
-        "apy": 0.055,
-        "volatility": 3.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "e0062677-51e2-4b31-b5ee-68f54a9a1048",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.49671,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7076.82716,
-          "tvlUsd": 56008
-        }
-      },
-      {
-        "symbol": "CNDY-WETH",
-        "apy": 0.107,
-        "volatility": 20.59,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "6c8b8db0-b540-431c-95b0-6c0e16d080b6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 10.65934,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 37288.20444,
-          "tvlUsd": 51754
-        }
-      },
-      {
-        "symbol": "SILO-WETH",
-        "apy": 0.088,
-        "volatility": 3.72,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "00b39ea3-8f4e-4ace-aecf-845501e581ae",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 8.77572,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 6726.09089,
-          "tvlUsd": 51697
-        }
-      },
-      {
-        "symbol": "WETH-CIP",
-        "apy": 0.026,
-        "volatility": 6.32,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c99d2c80-1580-4f81-ad5a-caad1d029dc9",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.63543,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 10910.52142,
-          "tvlUsd": 49321
-        }
-      },
-      {
-        "symbol": "WETH-AXGT",
-        "apy": 0.052,
-        "volatility": 10.22,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "0f12919e-9eb5-4a56-a889-1fcb9b134f6b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.22257,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 16705.63994,
-          "tvlUsd": 46697
-        }
-      },
-      {
-        "symbol": "GSWIFT-WETH",
-        "apy": 0.044,
-        "volatility": 23.61,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "90d21621-4372-4d25-99ba-85ddc776cbd2",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 4.39628,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 36764.08281,
-          "tvlUsd": 44496
-        }
-      },
-      {
-        "symbol": "AICODE-WETH",
-        "apy": 0.017,
-        "volatility": 2.84,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "77a1edc8-d751-4d03-bebc-702afee09306",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.74422,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4384.40853,
-          "tvlUsd": 44132
-        }
-      },
-      {
-        "symbol": "WETH-XVS",
-        "apy": 0.091,
-        "volatility": 2.65,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b45a6e97-fb89-4726-b43e-3fcb591b5678",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 9.09519,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3976.75779,
-          "tvlUsd": 42952
-        }
-      },
-      {
-        "symbol": "WETH-ATH",
-        "apy": 1.557,
-        "volatility": 58.35,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "809655b6-6099-4cfc-b7d2-461f49679258",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 155.68533,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 85779.59615,
-          "tvlUsd": 42004
-        }
-      },
-      {
-        "symbol": "GEMS-WETH",
-        "apy": 0.026,
-        "volatility": 4.78,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "4be45818-37f7-47d3-a007-473dbd6a05e2",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.56518,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 6665.9832,
-          "tvlUsd": 39840
-        }
-      },
-      {
-        "symbol": "VCNT-WETH",
-        "apy": 0.076,
-        "volatility": 15.87,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "8a6213a8-095e-4caf-b95b-dc7e8704c9eb",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 7.58342,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 22064.11216,
-          "tvlUsd": 39724
-        }
-      },
-      {
-        "symbol": "YFX-WETH",
-        "apy": 0.011,
-        "volatility": 3.17,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "558e8a10-40bf-49c7-b20f-6e7742724cbe",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.0597,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4307.48231,
-          "tvlUsd": 38785
-        }
-      },
-      {
-        "symbol": "EMP-WETH",
-        "apy": 1.287,
-        "volatility": 56.79,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b9adb830-dee9-4630-99e0-2c4ed703c425",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 128.74837,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 76751.48278,
-          "tvlUsd": 38612
-        }
-      },
-      {
-        "symbol": "WEETH-WETH",
-        "apy": 0.011,
-        "volatility": 103.72,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d83075cf-7446-4ed5-b674-621993a77a76",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.13347,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 139278.03426,
-          "tvlUsd": 38368
-        }
-      },
-      {
-        "symbol": "WETH-USDT",
-        "apy": 0.021,
-        "volatility": 141.21,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b644954f-a623-4804-948c-18f6bfc86de0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.11301,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 187952.15801,
-          "tvlUsd": 38030
-        }
-      },
-      {
-        "symbol": "WETH-AAVE",
-        "apy": 0.324,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a8cb3c04-b37b-43a5-b688-53bcc7048661",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 32.37007,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 503213.27317,
-          "tvlUsd": 37249
-        }
-      },
-      {
-        "symbol": "WETH-STAR",
-        "apy": 0.01,
-        "volatility": 13.4,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cb0c12cb-22e8-416f-8221-9e08c17ce3bd",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.95857,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 17074.65653,
-          "tvlUsd": 36398
-        }
-      },
-      {
-        "symbol": "ZTX-WETH",
-        "apy": 0.198,
-        "volatility": 65.14,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "0c90231e-41c8-4e67-937c-9d265b0ead55",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 19.80909,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 79646.52468,
-          "tvlUsd": 34933
-        }
-      },
-      {
-        "symbol": "WETH-G3",
-        "apy": 0.052,
-        "volatility": 11.92,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "4adc11e0-8604-435f-91e4-b796a4e5d294",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.23639,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14536.10113,
-          "tvlUsd": 34854
-        }
-      },
-      {
-        "symbol": "BOOP-WETH",
-        "apy": 0.065,
-        "volatility": 3.06,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fdd630b1-7e70-41d2-a0de-69f06e3444c2",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 6.48259,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3712.92177,
-          "tvlUsd": 34639
-        }
-      },
-      {
-        "symbol": "EZETH-WETH",
-        "apy": 0.023,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1cd19be5-0021-4d2c-b4fe-f633e8de61ff",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.27647,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 218930.53729,
-          "tvlUsd": 32955
-        }
-      },
-      {
-        "symbol": "REKT-WETH",
-        "apy": 0.087,
-        "volatility": 6.37,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d1e601c7-1af4-4623-bf06-1aa7be7e5028",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 8.655,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7298.73991,
-          "tvlUsd": 32736
-        }
-      },
-      {
-        "symbol": "WETH-WINR",
-        "apy": 0.265,
-        "volatility": 9.68,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "758cf8e9-9ff6-465d-adcb-d8dc5065a13d",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 26.53574,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 10283.93733,
-          "tvlUsd": 30340
-        }
-      },
-      {
-        "symbol": "WETH-KNC",
-        "apy": 0.049,
-        "volatility": 6.69,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3538d37e-20f2-4d22-a768-ce2c9b7521b6",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 4.94117,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 6738.16806,
-          "tvlUsd": 28759
-        }
-      },
-      {
-        "symbol": "WETH-LDY",
-        "apy": 0.001,
-        "volatility": 4.57,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "b550d256-49b6-4779-8f9b-2fc231a04c0a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.07018,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4565.46035,
-          "tvlUsd": 28571
-        }
-      },
-      {
-        "symbol": "SPA-WETH",
-        "apy": 0.537,
-        "volatility": 44.25,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "12a12bdd-10eb-40b8-b395-b5235f419d63",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 53.7227,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 44057.77721,
-          "tvlUsd": 28445
-        }
-      },
-      {
-        "symbol": "L3-WETH",
-        "apy": 0.065,
-        "volatility": 8,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fb1c838b-3df4-4513-acd2-fdc657d3d1c4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 6.5038,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7919.49923,
-          "tvlUsd": 28300
-        }
-      },
-      {
-        "symbol": "XAI-WETH",
-        "apy": 0.348,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1074bbc2-ea12-43f5-9f73-3730aceea22e",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 34.83314,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 235677.3077,
-          "tvlUsd": 28260
-        }
-      },
-      {
-        "symbol": "WETH-UNI",
-        "apy": 0.154,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "0474da3c-755b-4e1f-9f3d-5ecf473c1c20",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 15.39959,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 187450.45272,
-          "tvlUsd": 27623
-        }
-      },
-      {
-        "symbol": "XSPACE-WETH",
-        "apy": 0.001,
-        "volatility": 3.32,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "8995b248-8050-486e-bb36-b7aa3a989299",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.05082,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3103.75312,
-          "tvlUsd": 26734
-        }
-      },
-      {
-        "symbol": "WETH-AA",
-        "apy": 0.027,
-        "volatility": 5.17,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "35e57b64-9b1f-4274-bb87-382fe2c540c4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.66091,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4673.41489,
-          "tvlUsd": 25822
-        }
-      },
-      {
-        "symbol": "SOL-WETH",
-        "apy": 0.163,
-        "volatility": 37.18,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "74a30bce-27cc-49ca-a2e1-3109e6c37553",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 16.32853,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 33495.24659,
-          "tvlUsd": 25743
-        }
-      },
-      {
-        "symbol": "OVER-WETH",
-        "apy": 0.002,
-        "volatility": 15.85,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "58b45e34-e400-4769-9285-6e7644a1cea3",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.2415,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 13661.95046,
-          "tvlUsd": 24626
-        }
-      },
-      {
-        "symbol": "Y2K-WETH",
-        "apy": 0.122,
-        "volatility": 24.97,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cb91d821-4c0b-4034-8345-a222ea2c38bc",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 12.19841,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 21173.9589,
-          "tvlUsd": 24228
-        }
-      },
-      {
-        "symbol": "WETH-GRT",
-        "apy": 0.285,
-        "volatility": 14.33,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "2d0c1d96-0d38-436c-8ba3-a3437219d4c8",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 28.49004,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 11479.76,
-          "tvlUsd": 22892
-        }
-      },
-      {
-        "symbol": "WETH-VEMP",
-        "apy": 0.014,
-        "volatility": 16.8,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "1543ef85-1877-42ca-abbe-523857878dea",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.41907,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 13425.60351,
-          "tvlUsd": 22836
-        }
-      },
-      {
-        "symbol": "WETH-PEPE",
-        "apy": 0.536,
-        "volatility": 5.18,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "00196d9a-9f18-464a-982f-cb451a1303e7",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 53.60515,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4067.95612,
-          "tvlUsd": 22423
-        }
-      },
-      {
-        "symbol": "WETH-W",
-        "apy": 1.998,
-        "volatility": 97.21,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9354b5f2-ab98-4c01-b3fb-d10f284644fd",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 199.8353,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 74834.77754,
-          "tvlUsd": 21994
-        }
-      },
-      {
-        "symbol": "GRIMACE-WETH",
-        "apy": 0.592,
-        "volatility": 33.58,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "7ea6697b-7aaf-412f-a351-e0d6b7068a70",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 59.21437,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 25813.63695,
-          "tvlUsd": 21965
-        }
-      },
-      {
-        "symbol": "WETH-LNDX",
-        "apy": 0.003,
-        "volatility": 2.51,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "be91b23b-9d13-414e-87f7-3c4cd41b663a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.3484,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1900.18514,
-          "tvlUsd": 21665
-        }
-      },
-      {
-        "symbol": "COMP-WETH",
-        "apy": 0.162,
-        "volatility": 23.8,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fb18c0e2-db26-40f9-8979-89d64420cdb7",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 16.17907,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 17074.22614,
-          "tvlUsd": 20501
-        }
-      },
-      {
-        "symbol": "WETH-XVS",
-        "apy": 0.013,
-        "volatility": 2.44,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c0e40905-9de1-497c-b3f4-5dfcb53f450a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.31555,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1753.93583,
-          "tvlUsd": 20498
-        }
-      },
-      {
-        "symbol": "WETH-RETH",
-        "apy": 0,
-        "volatility": 3.47,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "332086db-18ba-4cf6-832f-46e6f47771a0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.01194,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 2393.10328,
-          "tvlUsd": 19728
-        }
-      },
-      {
-        "symbol": "RDNT-WETH",
-        "apy": 0.161,
-        "volatility": 33.04,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "04a3e057-4cca-4928-bd52-6e1e8ae45b12",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 16.08349,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 22711.17645,
-          "tvlUsd": 19642
-        }
-      },
-      {
-        "symbol": "WETH-USDT",
-        "apy": 0.064,
-        "volatility": 6.05,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a6fc6500-e3cb-4d2e-a18e-12bcdf5aa22c",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 6.43546,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4082.41475,
-          "tvlUsd": 19294
-        }
-      },
-      {
-        "symbol": "SRV-WETH",
-        "apy": 0.008,
-        "volatility": 6.66,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "a977a0ad-1dd2-4f9d-a651-d5403db49d84",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.77872,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4460.38263,
-          "tvlUsd": 19133
-        }
-      },
-      {
-        "symbol": "WETH-GS",
-        "apy": 0.255,
-        "volatility": 21.93,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9f93b5d5-1708-4a01-8991-b43cae4035c1",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 25.48355,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 14401.59203,
-          "tvlUsd": 18759
-        }
-      },
-      {
-        "symbol": "WETH-KIBSHI",
-        "apy": 0.006,
-        "volatility": 11.11,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "79338006-a686-4580-b02a-e2fa42399093",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.64678,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 7082.90709,
-          "tvlUsd": 18217
-        }
-      },
-      {
-        "symbol": "PENDLE-WETH",
-        "apy": 0.276,
-        "volatility": 8.45,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "f3889663-0459-4366-b326-468a6541889a",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 27.57121,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5318.85055,
-          "tvlUsd": 17984
-        }
-      },
-      {
-        "symbol": "LDO-WETH",
-        "apy": 0.097,
-        "volatility": 14.5,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "6232eceb-8ec2-4954-bad1-1541ffcc064c",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 9.65946,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 8972.8558,
-          "tvlUsd": 17681
-        }
-      },
-      {
-        "symbol": "STG-WETH",
-        "apy": 0.019,
-        "volatility": 6.72,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "602b6611-6b23-4922-88b6-029d380d0190",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.87479,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4037.73582,
-          "tvlUsd": 17166
-        }
-      },
-      {
-        "symbol": "WETH-XYRO",
-        "apy": 0.024,
-        "volatility": 6.99,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "6cac213d-4571-4722-96ba-09205e1d00bc",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 2.42101,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3951.00354,
-          "tvlUsd": 16155
-        }
-      },
-      {
-        "symbol": "WETH-TIA.N",
-        "apy": 0.649,
-        "volatility": 23.45,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "eb9c7870-803e-48c1-9d85-f1c28816a6f4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 64.93081,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 12531.57954,
-          "tvlUsd": 15268
-        }
-      },
-      {
-        "symbol": "ANON-WETH",
-        "apy": 0.037,
-        "volatility": 7.04,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "7ad74240-771f-4a48-b33a-b125549b7cf9",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 3.6532,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 3679.49162,
-          "tvlUsd": 14943
-        }
-      },
-      {
-        "symbol": "@G-WETH",
-        "apy": 0.908,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "3aeadbf6-3837-4a96-bf83-56b816fa0b40",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 90.75848,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 93286.70282,
-          "tvlUsd": 14058
-        }
-      },
-      {
-        "symbol": "WETH-WSG",
-        "apy": 0.059,
-        "volatility": 9.79,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "cade9b2d-2c53-4d36-9ddd-5a005055fc4b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 5.85501,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 4429.54869,
-          "tvlUsd": 12932
-        }
-      },
-      {
-        "symbol": "WETH-WETH",
-        "apy": 0,
-        "volatility": 22.58,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "797a4442-3672-4137-b10e-f9e5a172c0fa",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 9916.47032,
-          "tvlUsd": 12546
-        }
-      },
-      {
-        "symbol": "WETH-CBBTC",
-        "apy": 0.245,
-        "volatility": 65.18,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "d5d20844-3415-4790-8f40-a7d8d1d94d15",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 24.50376,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 27825.34397,
-          "tvlUsd": 12198
-        }
-      },
-      {
-        "symbol": "WETH-WETH",
-        "apy": 0,
-        "volatility": 2.06,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "9c493ec9-7d67-445c-8478-ed0f86bb337f",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0,
-          "il7d": null,
-          "ilRisk": "no",
-          "volumeUsd7d": 871.59452,
-          "tvlUsd": 12106
-        }
-      },
-      {
-        "symbol": "WETH-TIA.N",
-        "apy": 0.001,
-        "volatility": 7.2,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "26b9fae3-9f64-429f-944d-37128ca3f4bb",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.09557,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2913.13333,
-          "tvlUsd": 11555
-        }
-      },
-      {
-        "symbol": "WETH-NST",
-        "apy": 0.065,
-        "volatility": 13.72,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "c97dddc0-1c07-445b-8880-34f4cbd0ee61",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 6.51803,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 5301.39271,
-          "tvlUsd": 11036
-        }
-      },
-      {
-        "symbol": "WBGL-WETH",
-        "apy": 0.002,
-        "volatility": 2.83,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "552a764e-82ff-4683-9e2f-d83edd9c3dc4",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 0.15194,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1071.27336,
-          "tvlUsd": 10831
-        }
-      },
-      {
-        "symbol": "OBT-WETH",
-        "apy": 0.832,
-        "volatility": 150,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fddae6b6-0551-47e0-97e7-c719080cfe0b",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 83.21795,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 72073.71412,
-          "tvlUsd": 10525
-        }
-      },
-      {
-        "symbol": "RPK-WETH",
-        "apy": 0.01,
-        "volatility": 2.81,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "85ed4c3e-5b8f-4f60-8937-2be359a8f5c0",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 1.02224,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 1025.59788,
-          "tvlUsd": 10439
-        }
-      },
-      {
-        "symbol": "WETH-ARA",
-        "apy": 0.104,
-        "volatility": 6.45,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "122687fd-6421-4748-858e-29cc4e4f6df9",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 10.39731,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 2312.23825,
-          "tvlUsd": 10238
-        }
-      },
-      {
-        "symbol": "WETH-LINK",
-        "apy": 0.136,
-        "volatility": 105.56,
-        "volatilitySource": "volume_tvl_estimation",
-        "poolId": "fad38baa-78b7-410b-b72b-5db39b7f6f51",
-        "project": "uniswap-v3",
-        "rawData": {
-          "originalAPY": 13.58677,
-          "il7d": null,
-          "ilRisk": "yes",
-          "volumeUsd7d": 36954.31136,
-          "tvlUsd": 10002
-        }
+    },
+    {
+      "symbol": "WETH-USDT",
+      "apy": 0.3125932,
+      "volatility": 172.6884596452915,
+      "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 10094993,
+      "metadata": {
+        "originalAPY": 31.25932,
+        "il7d": null,
+        "volumeUsd7d": 174328879.13
       }
-    ]
-  }
+    },
+    {
+      "symbol": "WETH-GMX",
+      "apy": 0.0557173,
+      "volatility": 1,
+      "poolId": "5921fee6-b25f-4cd9-9cc4-fb07fe83ea89",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 9696370,
+      "metadata": {
+        "originalAPY": 5.57173,
+        "il7d": null,
+        "volumeUsd7d": 711139.32724
+      }
+    },
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.618416,
+      "volatility": 54.60847087006027,
+      "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 7838365,
+      "metadata": {
+        "originalAPY": 61.8416,
+        "il7d": null,
+        "volumeUsd7d": 42804112.67714
+      }
+    },
+    {
+      "symbol": "WBTC-USDT",
+      "apy": 0.2282215,
+      "volatility": 138.95889653636354,
+      "poolId": "af3cd3a9-a9b8-483e-82c6-bf4fceb66584",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 7017509,
+      "metadata": {
+        "originalAPY": 22.82215,
+        "il7d": null,
+        "volumeUsd7d": 97514530.7074
+      }
+    },
+    {
+      "symbol": "PENDLE-WETH",
+      "apy": 0.5052255,
+      "volatility": 25.252443779045763,
+      "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 5546850,
+      "metadata": {
+        "originalAPY": 50.52255,
+        "il7d": null,
+        "volumeUsd7d": 14007151.77758
+      }
+    },
+    {
+      "symbol": "WBTC-WETH",
+      "apy": 0.1929677,
+      "volatility": 13.832685477672504,
+      "poolId": "14d11019-8d05-43b9-8ab9-f9baeb9e70fa",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3688479,
+      "metadata": {
+        "originalAPY": 19.29677,
+        "il7d": null,
+        "volumeUsd7d": 5102156.9898
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.3792862,
+      "volatility": 171.83119604489718,
+      "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3550957,
+      "metadata": {
+        "originalAPY": 37.92862,
+        "il7d": null,
+        "volumeUsd7d": 61016518.8414
+      }
+    },
+    {
+      "symbol": "HEGIC-WETH",
+      "apy": 0.0000323,
+      "volatility": 1,
+      "poolId": "e72b5f97-7631-4f13-a251-39d798750f6a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3321109,
+      "metadata": {
+        "originalAPY": 0.00323,
+        "il7d": null,
+        "volumeUsd7d": 17221.35826
+      }
+    },
+    {
+      "symbol": "WETH-LINK",
+      "apy": 0.3778961,
+      "volatility": 17.982184079731905,
+      "poolId": "cd7dd7fa-e34c-4cf0-af2b-6d13438f3852",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3040690,
+      "metadata": {
+        "originalAPY": 37.78961,
+        "il7d": null,
+        "volumeUsd7d": 5467824.73094
+      }
+    },
+    {
+      "symbol": "WETH-USDC.E",
+      "apy": 0.24904769999999998,
+      "volatility": 108.679102370576,
+      "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2324878,
+      "metadata": {
+        "originalAPY": 24.90477,
+        "il7d": null,
+        "volumeUsd7d": 25266565.41611
+      }
+    },
+    {
+      "symbol": "WETH-AAVE",
+      "apy": 0.39520099999999997,
+      "volatility": 25.65715813733952,
+      "poolId": "95fd15b0-f05e-470f-a87b-ac3d58c2d9a0",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2285999,
+      "metadata": {
+        "originalAPY": 39.5201,
+        "il7d": null,
+        "volumeUsd7d": 5865223.78448
+      }
+    },
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.5481264,
+      "volatility": 200,
+      "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2024126,
+      "metadata": {
+        "originalAPY": 54.81264,
+        "il7d": null,
+        "volumeUsd7d": 224699149.24514
+      }
+    },
+    {
+      "symbol": "MOR-WETH",
+      "apy": 0.0308136,
+      "volatility": 1.1272463667755068,
+      "poolId": "44f437aa-baa7-48a7-b403-10bc0ca24500",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2022845,
+      "metadata": {
+        "originalAPY": 3.08136,
+        "il7d": null,
+        "volumeUsd7d": 228024.46768
+      }
+    },
+    {
+      "symbol": "CRV-WETH",
+      "apy": 0.43645670000000003,
+      "volatility": 38.63178423714637,
+      "poolId": "415084d5-948c-4a27-a596-3ed9319f8a24",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1790894,
+      "metadata": {
+        "originalAPY": 43.64567,
+        "il7d": null,
+        "volumeUsd7d": 6918543.05996
+      }
+    },
+    {
+      "symbol": "WSTETH-WETH",
+      "apy": 0.0116924,
+      "volatility": 35.34456785388077,
+      "poolId": "2ec84b50-59e5-49e6-ab12-41e99ed32a8c",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1419991,
+      "metadata": {
+        "originalAPY": 1.16924,
+        "il7d": null,
+        "volumeUsd7d": 5018896.82514
+      }
+    },
+    {
+      "symbol": "WETH-USD+",
+      "apy": 0.1364254,
+      "volatility": 62.83535418358102,
+      "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1130204,
+      "metadata": {
+        "originalAPY": 13.64254,
+        "il7d": null,
+        "volumeUsd7d": 7101676.86397
+      }
+    },
+    {
+      "symbol": "ANIME-WETH",
+      "apy": 0.4043433,
+      "volatility": 21.463268003091255,
+      "poolId": "20f788ef-8255-41ce-8de2-024e3a0060f6",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 908369,
+      "metadata": {
+        "originalAPY": 40.43433,
+        "il7d": null,
+        "volumeUsd7d": 1949656.72927
+      }
+    },
+    {
+      "symbol": "ZRO-WETH",
+      "apy": 0.5325784,
+      "volatility": 29.291481199004874,
+      "poolId": "c48e0049-063d-4976-88c2-961df59ec51a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 893958,
+      "metadata": {
+        "originalAPY": 53.25784,
+        "il7d": null,
+        "volumeUsd7d": 2618535.39497
+      }
+    },
+    {
+      "symbol": "WETH-GRT",
+      "apy": 0.1211886,
+      "volatility": 8.312152061627371,
+      "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 844430,
+      "metadata": {
+        "originalAPY": 12.11886,
+        "il7d": null,
+        "volumeUsd7d": 701903.05654
+      }
+    },
+    {
+      "symbol": "WEETH-WETH",
+      "apy": 0.0169405,
+      "volatility": 1,
+      "poolId": "d5123cc8-ffce-4855-97f8-c471952bcd66",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 791896,
+      "metadata": {
+        "originalAPY": 1.69405,
+        "il7d": null,
+        "volumeUsd7d": 26229.17531
+      }
+    },
+    {
+      "symbol": "PENDLE-WETH",
+      "apy": 0.5277104,
+      "volatility": 186.256231555442,
+      "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 747646,
+      "metadata": {
+        "originalAPY": 52.77104,
+        "il7d": null,
+        "volumeUsd7d": 13925372.64975
+      }
+    },
+    {
+      "symbol": "WETH-XBG",
+      "apy": 0.1177751,
+      "volatility": 2.7380896795682603,
+      "poolId": "5ca4d40c-372b-42bd-a6ae-a067371160f4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 711540,
+      "metadata": {
+        "originalAPY": 11.77751,
+        "il7d": null,
+        "volumeUsd7d": 194826.03306
+      }
+    },
+    {
+      "symbol": "TBTC-WETH",
+      "apy": 0.1446686,
+      "volatility": 32.97134984897512,
+      "poolId": "2fa7e5cc-8f92-4190-90e5-2765c33f1dd0",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 650224,
+      "metadata": {
+        "originalAPY": 14.46686,
+        "il7d": null,
+        "volumeUsd7d": 2143876.29842
+      }
+    },
+    {
+      "symbol": "K-WETH",
+      "apy": 0.110139,
+      "volatility": 2.5391419456705777,
+      "poolId": "a0bb30a4-289a-4ae5-a0dc-746c3b507c8e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 604203,
+      "metadata": {
+        "originalAPY": 11.0139,
+        "il7d": null,
+        "volumeUsd7d": 153415.7181
+      }
+    },
+    {
+      "symbol": "WETH-GMX",
+      "apy": 0.6443234,
+      "volatility": 32.475016442369515,
+      "poolId": "d05dabc8-b729-4ca9-b83d-204afb62dde4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 547488,
+      "metadata": {
+        "originalAPY": 64.43234,
+        "il7d": null,
+        "volumeUsd7d": 1777968.1802
+      }
+    },
+    {
+      "symbol": "WETH-KNS",
+      "apy": 0.0000152,
+      "volatility": 1,
+      "poolId": "3f3a4a11-f3b1-4a2d-a2e4-f34ef792aa91",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 536610,
+      "metadata": {
+        "originalAPY": 0.00152,
+        "il7d": null,
+        "volumeUsd7d": 18854.73435
+      }
+    },
+    {
+      "symbol": "WETH-UNI",
+      "apy": 0.1929833,
+      "volatility": 23.61191601252606,
+      "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 531053,
+      "metadata": {
+        "originalAPY": 19.29833,
+        "il7d": null,
+        "volumeUsd7d": 1253917.88342
+      }
+    },
+    {
+      "symbol": "WETH-USDT",
+      "apy": 0.16227229999999998,
+      "volatility": 17.692409438544683,
+      "poolId": "b8582b33-80e3-4250-a496-02936860669f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 507271,
+      "metadata": {
+        "originalAPY": 16.22723,
+        "il7d": null,
+        "volumeUsd7d": 897484.62283
+      }
+    },
+    {
+      "symbol": "WXTZ-WETH",
+      "apy": 0.011488799999999999,
+      "volatility": 2.09893057044611,
+      "poolId": "eff4b459-64c1-4994-a8f7-eab9470c26f1",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 505727,
+      "metadata": {
+        "originalAPY": 1.14888,
+        "il7d": null,
+        "volumeUsd7d": 106148.58606
+      }
+    },
+    {
+      "symbol": "LAVA-WETH",
+      "apy": 0.0057443,
+      "volatility": 13.362456497997332,
+      "poolId": "292673f0-42de-4073-b128-1382a4d19e25",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 452147,
+      "metadata": {
+        "originalAPY": 0.57443,
+        "il7d": null,
+        "volumeUsd7d": 604179.46182
+      }
+    },
+    {
+      "symbol": "LPT-WETH",
+      "apy": 4.1401822,
+      "volatility": 173.28078680591733,
+      "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 431883,
+      "metadata": {
+        "originalAPY": 414.01822,
+        "il7d": null,
+        "volumeUsd7d": 7483702.60481
+      }
+    },
+    {
+      "symbol": "UXRP-WETH",
+      "apy": 0.2566811,
+      "volatility": 3.3428352355820605,
+      "poolId": "987556ec-845d-4410-b5a4-89656b82d044",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 428598,
+      "metadata": {
+        "originalAPY": 25.66811,
+        "il7d": null,
+        "volumeUsd7d": 143273.24963
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.11456490000000001,
+      "volatility": 9.496870242206953,
+      "poolId": "483c0801-b3c5-4873-87d9-a84a8de4ec92",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 410847,
+      "metadata": {
+        "originalAPY": 11.45649,
+        "il7d": null,
+        "volumeUsd7d": 390176.06484
+      }
+    },
+    {
+      "symbol": "WETH-USOL",
+      "apy": 0.3075058,
+      "volatility": 5.0902893676021135,
+      "poolId": "38917ce0-8406-4a61-8002-44e5fb2f682e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 398847,
+      "metadata": {
+        "originalAPY": 30.75058,
+        "il7d": null,
+        "volumeUsd7d": 203024.66434
+      }
+    },
+    {
+      "symbol": "WETH-DAI",
+      "apy": 0.6145936,
+      "volatility": 55.23346434653293,
+      "poolId": "0c1f5caa-98bc-455c-b4bb-009570f7b7a4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 384633,
+      "metadata": {
+        "originalAPY": 61.45936,
+        "il7d": null,
+        "volumeUsd7d": 2124461.3092
+      }
+    },
+    {
+      "symbol": "WETH-ATH",
+      "apy": 1.7121382,
+      "volatility": 99.62163128193353,
+      "poolId": "ebd0ce31-95b7-406a-aa3f-86ea3bbc5998",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 378912,
+      "metadata": {
+        "originalAPY": 171.21382,
+        "il7d": null,
+        "volumeUsd7d": 3774783.15523
+      }
+    },
+    {
+      "symbol": "WETH-CRYPTO",
+      "apy": 0.0189631,
+      "volatility": 1,
+      "poolId": "a0adee00-d1ff-42da-860d-5a0b4662a62d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 348645,
+      "metadata": {
+        "originalAPY": 1.89631,
+        "il7d": null,
+        "volumeUsd7d": 23787.90258
+      }
+    },
+    {
+      "symbol": "ARC-WETH",
+      "apy": 0.0000022,
+      "volatility": 1,
+      "poolId": "d68f716b-d900-45f5-9ad7-1d84d3532937",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 334676,
+      "metadata": {
+        "originalAPY": 0.00022,
+        "il7d": null,
+        "volumeUsd7d": 429.49489
+      }
+    },
+    {
+      "symbol": "WETH-USDC.E",
+      "apy": 0.106266,
+      "volatility": 5.326135334875098,
+      "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 326898,
+      "metadata": {
+        "originalAPY": 10.6266,
+        "il7d": null,
+        "volumeUsd7d": 174110.29887
+      }
+    },
+    {
+      "symbol": "WBTC-USDT",
+      "apy": 0.0724233,
+      "volatility": 20.95032341847972,
+      "poolId": "76a365b1-2628-4a7a-adad-89488a1b4d89",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 320546,
+      "metadata": {
+        "originalAPY": 7.24233,
+        "il7d": null,
+        "volumeUsd7d": 671554.23705
+      }
+    },
+    {
+      "symbol": "WETH-RETH",
+      "apy": 0.0015137,
+      "volatility": 2.2686825545709683,
+      "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 312483,
+      "metadata": {
+        "originalAPY": 0.15137,
+        "il7d": null,
+        "volumeUsd7d": 70892.47307
+      }
+    },
+    {
+      "symbol": "WETH-NRN",
+      "apy": 0.3076708,
+      "volatility": 6.954319765453213,
+      "poolId": "d37a8431-96cc-44c5-92e6-14c43b5b1d91",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 286510,
+      "metadata": {
+        "originalAPY": 30.76708,
+        "il7d": null,
+        "volumeUsd7d": 199248.2156
+      }
+    },
+    {
+      "symbol": "WETH-TRUF",
+      "apy": 0.022782900000000002,
+      "volatility": 1.41877777963145,
+      "poolId": "4bb70bd4-189e-49ee-9178-c1f018ac8a5d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 275729,
+      "metadata": {
+        "originalAPY": 2.27829,
+        "il7d": null,
+        "volumeUsd7d": 39119.81784
+      }
+    },
+    {
+      "symbol": "ETHFI-WETH",
+      "apy": 0.521269,
+      "volatility": 26.307566348585752,
+      "poolId": "127c022f-93bd-4902-ba13-a6015418e5ca",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 271629,
+      "metadata": {
+        "originalAPY": 52.1269,
+        "il7d": null,
+        "volumeUsd7d": 714589.79397
+      }
+    },
+    {
+      "symbol": "NYA-WETH",
+      "apy": 0.0000788,
+      "volatility": 1,
+      "poolId": "4b0214bf-be80-464d-9058-8712af9c0cab",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 270243,
+      "metadata": {
+        "originalAPY": 0.00788,
+        "il7d": null,
+        "volumeUsd7d": 17620.3424
+      }
+    },
+    {
+      "symbol": "WETH-USUI",
+      "apy": 0.5938914,
+      "volatility": 16.00763152750411,
+      "poolId": "2842f72c-73f7-427e-8d61-10a9af8c2da6",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 256798,
+      "metadata": {
+        "originalAPY": 59.38914,
+        "il7d": null,
+        "volumeUsd7d": 411072.7761
+      }
+    },
+    {
+      "symbol": "WETH-NST",
+      "apy": 0.1134754,
+      "volatility": 10.95135456791918,
+      "poolId": "16c09aa8-dc98-4c34-8d14-ebebccae7cf4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 247662,
+      "metadata": {
+        "originalAPY": 11.34754,
+        "il7d": null,
+        "volumeUsd7d": 271223.4375
+      }
+    },
+    {
+      "symbol": "RWA-WETH",
+      "apy": 0.024870100000000003,
+      "volatility": 2.295560396380943,
+      "poolId": "4f40a17b-d2d6-4e03-90b0-d856e19c8c6b",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 237852,
+      "metadata": {
+        "originalAPY": 2.48701,
+        "il7d": null,
+        "volumeUsd7d": 54600.36314
+      }
+    },
+    {
+      "symbol": "WETH-SEED",
+      "apy": 0.0324785,
+      "volatility": 1.5026943973038118,
+      "poolId": "5f0db05b-bfdf-465a-9222-687a367addb5",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 234405,
+      "metadata": {
+        "originalAPY": 3.24785,
+        "il7d": null,
+        "volumeUsd7d": 35223.90802
+      }
+    },
+    {
+      "symbol": "TGT-WETH",
+      "apy": 0.022686799999999997,
+      "volatility": 14.930201141422014,
+      "poolId": "b836dbd8-8835-4542-97e3-9523c991173d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 230940,
+      "metadata": {
+        "originalAPY": 2.26868,
+        "il7d": null,
+        "volumeUsd7d": 344798.06516
+      }
+    },
+    {
+      "symbol": "LDO-WETH",
+      "apy": 0.3270935,
+      "volatility": 32.35681673307137,
+      "poolId": "7bd8982c-5704-4ba0-a4c7-a8c7de9abbb4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 218860,
+      "metadata": {
+        "originalAPY": 32.70935,
+        "il7d": null,
+        "volumeUsd7d": 708161.29102
+      }
+    },
+    {
+      "symbol": "PEAS-WETH",
+      "apy": 0.052117000000000004,
+      "volatility": 1,
+      "poolId": "d2290557-51d0-4765-bbaa-a821316aef9b",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 203587,
+      "metadata": {
+        "originalAPY": 5.2117,
+        "il7d": null,
+        "volumeUsd7d": 17107.48381
+      }
+    },
+    {
+      "symbol": "PEPE-WETH",
+      "apy": 0.9606863,
+      "volatility": 15.624826139065824,
+      "poolId": "48d109b7-eea1-4c7e-9620-a94775c5912e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 198913,
+      "metadata": {
+        "originalAPY": 96.06863,
+        "il7d": null,
+        "volumeUsd7d": 310798.10418
+      }
+    },
+    {
+      "symbol": "BONZAI-WETH",
+      "apy": 7e-7,
+      "volatility": 1,
+      "poolId": "da2ce73c-9c39-48ba-b52c-d3215bf02d81",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 197085,
+      "metadata": {
+        "originalAPY": 0.00007,
+        "il7d": null,
+        "volumeUsd7d": 301.42724
+      }
+    },
+    {
+      "symbol": "WETH-UNI",
+      "apy": 0.0003226,
+      "volatility": 1,
+      "poolId": "fb4691bb-dd87-496e-a1e0-9e9809994cdd",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 154847,
+      "metadata": {
+        "originalAPY": 0.03226,
+        "il7d": null,
+        "volumeUsd7d": 241.32551
+      }
+    },
+    {
+      "symbol": "TN-CSCCV1-ETHUSD-WETH",
+      "apy": 0.0000115,
+      "volatility": 1,
+      "poolId": "682c81b8-07c9-46db-b1b1-0256d657e529",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 146011,
+      "metadata": {
+        "originalAPY": 0.00115,
+        "il7d": null,
+        "volumeUsd7d": 18.18053
+      }
+    },
+    {
+      "symbol": "WETH-LSETH",
+      "apy": 0.0000471,
+      "volatility": 1,
+      "poolId": "434f05af-7128-4d40-93f8-22db263f927d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 121029,
+      "metadata": {
+        "originalAPY": 0.00471,
+        "il7d": null,
+        "volumeUsd7d": 389.65912
+      }
+    },
+    {
+      "symbol": "WETH-VKA",
+      "apy": 0.0053702,
+      "volatility": 1,
+      "poolId": "1e2306ac-0def-45a0-b8bb-f4d4554c61a4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 119426,
+      "metadata": {
+        "originalAPY": 0.53702,
+        "il7d": null,
+        "volumeUsd7d": 4468.16132
+      }
+    },
+    {
+      "symbol": "WETH-MZRTOKEN",
+      "apy": 0.0000511,
+      "volatility": 1,
+      "poolId": "17788324-2a4b-47ac-9284-efb4041c21ed",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 116874,
+      "metadata": {
+        "originalAPY": 0.00511,
+        "il7d": null,
+        "volumeUsd7d": 7557.11282
+      }
+    },
+    {
+      "symbol": "WETH-WXM",
+      "apy": 0.047017800000000005,
+      "volatility": 4.647269098579423,
+      "poolId": "7d08a6dc-c67c-4c85-8cb5-f793b8747cdd",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 116150,
+      "metadata": {
+        "originalAPY": 4.70178,
+        "il7d": null,
+        "volumeUsd7d": 53978.03058
+      }
+    },
+    {
+      "symbol": "IBEX-WETH",
+      "apy": 0.0041301,
+      "volatility": 1,
+      "poolId": "d8bc3ab1-9305-43e7-8c39-f4d1a4bf737a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 115367,
+      "metadata": {
+        "originalAPY": 0.41301,
+        "il7d": null,
+        "volumeUsd7d": 2006.31727
+      }
+    },
+    {
+      "symbol": "WEETH-WETH",
+      "apy": 0.0002587,
+      "volatility": 1.902077673437231,
+      "poolId": "fe3e33f2-7ad0-4b65-a953-d13a32b76a03",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 110429,
+      "metadata": {
+        "originalAPY": 0.02587,
+        "il7d": null,
+        "volumeUsd7d": 21004.45354
+      }
+    },
+    {
+      "symbol": "WETH-WETH",
+      "apy": 0.0003511,
+      "volatility": 23.77493454573299,
+      "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 104476,
+      "metadata": {
+        "originalAPY": 0.03511,
+        "il7d": null,
+        "volumeUsd7d": 248391.00616
+      }
+    },
+    {
+      "symbol": "SNT-WETH",
+      "apy": 0.2400683,
+      "volatility": 8.803489823872873,
+      "poolId": "69e1da1f-f058-41a2-ba4d-c7ed099a55b4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 103959,
+      "metadata": {
+        "originalAPY": 24.00683,
+        "il7d": null,
+        "volumeUsd7d": 91520.19986
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.06090569999999999,
+      "volatility": 1.18624260210035,
+      "poolId": "57437274-42a0-45eb-8389-992b8b71fc44",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 102840,
+      "metadata": {
+        "originalAPY": 6.09057,
+        "il7d": null,
+        "volumeUsd7d": 12199.31892
+      }
+    }
+  ]
 }
