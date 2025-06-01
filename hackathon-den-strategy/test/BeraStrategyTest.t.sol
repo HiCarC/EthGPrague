@@ -457,11 +457,11 @@ contract BeraStrategyTest is Test {
         uint256 rewards = vault.harvestAllRewards();
 
         // 4. Check strategy balances
-        (uint256 lsp, uint256 pool, uint256 total) = vault
+        (uint256 lspBalance, uint256 poolBalance, uint256 totalBalance) = vault
             .getStrategyBalances();
-        console.log("LSP Balance:", lsp);
-        console.log("Pool Balance:", pool);
-        console.log("Total Balance:", total);
+        console.log("LSP Balance:", lspBalance);
+        console.log("Pool Balance:", poolBalance);
+        console.log("Total Balance:", totalBalance);
 
         // 5. Test rebalancing if needed
         if (vault.shouldRebalance()) {

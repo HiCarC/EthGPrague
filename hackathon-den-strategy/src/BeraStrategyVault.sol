@@ -350,16 +350,18 @@ contract BeraStrategyVault is ERC4626, Ownable {
     function _rebalanceAllocations() internal {
         uint256 totalNECT = lspBalance + poolBalance;
         uint256 targetLSP = (totalNECT * LSP_ALLOCATION) / 1e18;
-        uint256 targetPool = (totalNECT * POOL_ALLOCATION) / 1e18;
+        uint256 targetPoolAmount = (totalNECT * POOL_ALLOCATION) / 1e18;
 
         // Rebalance if allocations drift significantly
         if (lspBalance > targetLSP + ((targetLSP * 5) / 100)) {
             // Too much in LSP, move some to pool
             uint256 excess = lspBalance - targetLSP;
             _moveLSPToPool(excess);
-        } else if (poolBalance > targetPool + ((targetPool * 5) / 100)) {
+        } else if (
+            poolBalance > targetPoolAmount + ((targetPoolAmount * 5) / 100)
+        ) {
             // Too much in pool, move some to LSP
-            uint256 excess = poolBalance - targetPool;
+            uint256 excess = poolBalance - targetPoolAmount;
             _movePoolToLSP(excess);
         }
     }

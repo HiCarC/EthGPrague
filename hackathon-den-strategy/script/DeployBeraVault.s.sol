@@ -7,12 +7,12 @@ import {IERC20} from "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.so
 
 contract DeployBeraVault is Script {
     // Berachain Mainnet Contract Addresses (PROPERLY CHECKSUMMED)
-    address constant WBERA = 0x7507C1dC16935b82698E4C63f2746A5fCf994df8;
+    address constant WBERA = 0x6969696969696969696969696969696969696969;
     address constant BORROWER_OPERATIONS =
         0x25378B1f162BF1FD30c71F8c1aC5e2dDCf5e3b34;
     address constant DEN_MANAGER = 0x5C9B6E1b2ac530dBD3d48D41E18B00A24D44ADB0;
-    address constant NECT_TOKEN = 0x1306D3c36eC7E38dd2c128fBe3097C2C2449af64;
-    address constant LSP = 0x9158d1b0c9Cc4EC7640EAeF0522f710dADeE9a1B;
+    address constant NECT_TOKEN = 0x1cE0a25D13CE4d52071aE7e02Cf1F6606F4C79d3;
+    address constant LSP = 0x597877Ccf65be938BD214C4c46907669e3E62128;
 
     // YOUR TARGET POOL (60% allocation)
     address constant TARGET_POOL = 0x9A3549ef882584a687C1FF1843e3B3C07a2A0cB2;
