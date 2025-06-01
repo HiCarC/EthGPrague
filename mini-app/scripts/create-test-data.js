@@ -72,7 +72,8 @@ async function main() {
 
   // Get the contract address from environment or use placeholder
   const contractAddress =
-    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "YOUR_CONTRACT_ADDRESS_HERE";
+    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||
+    "0x90b1D44c0f1b124CbF5020f30E9F107E4EfD60b1";
 
   if (
     contractAddress === "YOUR_CONTRACT_ADDRESS_HERE" ||

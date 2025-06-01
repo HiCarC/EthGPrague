@@ -116,7 +116,7 @@ export const BookingModal = ({
 
       const result = await MiniKit.commandsAsync.pay({
         reference: id,
-        to: "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771",
+        to: "0x90b1D44c0f1b124CbF5020f30E9F107E4EfD60b1",
         tokens: [
           {
             symbol: Tokens.WLD,

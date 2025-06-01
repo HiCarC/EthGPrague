@@ -4,7 +4,7 @@ const { ethers } = pkg;
 async function main() {
   console.log("🔍 Debugging Booking Parameters...\n");
 
-  const contractAddress = "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
+  const contractAddress = "0x90b1D44c0f1b124CbF5020f30E9F107E4EfD60b1";
 
   // Connect to Worldchain mainnet
   const provider = new ethers.JsonRpcProvider(

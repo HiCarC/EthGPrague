@@ -5,7 +5,7 @@ async function main() {
   console.log("🎄 Transferring WLD from Holiday contract...\n");
 
   // Contract addresses
-  const HOLIDAY_CONTRACT = "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
+  const HOLIDAY_CONTRACT = "0x90b1D44c0f1b124CbF5020f30E9F107E4EfD60b1";
   const DESTINATION_ADDRESS = "0xc32436ad125a48bf568d3f0623550f160bbc72d7";
   const WLD_TOKEN_ADDRESS = "0x2cFc85d8E48F8EAB294be644d9E25C3030863003";
 

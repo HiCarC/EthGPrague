@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Heart, CalendarDays, MessageCircle, User } from "lucide-react";
+import { Search, CalendarDays, User, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const BottomNavigation = () => {
@@ -16,22 +16,16 @@ export const BottomNavigation = () => {
       isActive: pathname === "/home",
     },
     {
-      label: "Wishlists",
-      icon: Heart,
-      href: "/wishlists",
-      isActive: pathname === "/wishlists",
-    },
-    {
       label: "Trips",
       icon: CalendarDays,
       href: "/bookings",
       isActive: pathname === "/bookings",
     },
     {
-      label: "Messages",
-      icon: MessageCircle,
-      href: "/messages",
-      isActive: pathname === "/messages",
+      label: "Wallet",
+      icon: Wallet,
+      href: "/wallet",
+      isActive: pathname === "/wallet",
     },
     {
       label: "Profile",

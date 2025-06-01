@@ -54,7 +54,7 @@ const worldchainMainnet = defineChain({
 
 // Replace with your deployed contract address
 export const HOTEL_BOOKING_CONTRACT_ADDRESS =
-  "0x0D42170A23E7b83c2d8E48Ad6BDa5e7273A1F771";
+  "0x90b1D44c0f1b124CbF5020f30E9F107E4EfD60b1";
 
 // Public client for reading contract data
 export const publicClient = createPublicClient({
