@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "generatedAt": "2025-06-01T02:47:00.382Z",
+    "chain": "Berachain",
+    "protocols": "BEX, Uniswap V3, and others",
+    "targetTokens": [
+      "BTC",
+      "ETH",
+      "AAVE",
+      "BERA",
+      "HONEY",
+      "USDC",
+      "NECT"
+    ]
+  },
+  "pools": {
+    "BTC": [],
+    "ETH": [],
+    "AAVE": [],
+    "BERA": [],
+    "HONEY": [],
+    "USDC": [],
+    "NECT": []
+  }
+}
