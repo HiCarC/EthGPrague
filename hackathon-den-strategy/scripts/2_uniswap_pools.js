@@ -1,451 +1,223 @@
 const axios = require('axios');
-const fs = require('fs').promises;
-const path = require('path');
+const fs = require('fs');
 
-class UniswapPoolsFetcher {
+class ArbitrumPoolFetcher {
     constructor() {
-        this.outputFile = '2_uniswap_pools.json';
-        this.uniswapApiUrl = 'https://api.uniswap.org/v1/graphql';
-        this.coingeckoApiUrl = 'https://api.coingecko.com/api/v3';
+        this.outputFile = '2_pool_list.json';
         
-        // Target tokens on Arbitrum
+        // Target tokens
         this.targetTokens = {
-            BTC: [
-                { symbol: 'WBTC', address: '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f' },
-                { symbol: 'TBTC', address: '0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40' },
-                { symbol: 'CBBTC', address: '0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b' }
-            ],
-            ETH: [
-                { symbol: 'WETH', address: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1' },
-                { symbol: 'WSTETH', address: '0x5979D7b546E38E414F7E9822514be443A4800529' },
-                { symbol: 'RETH', address: '0xEC70Dcb4A1EFa46b40cB5B644fcd2b52D8EB6dCe' }
-            ],
-            AAVE: [
-                { symbol: 'AAVE', address: '0xba5DdD1f9d7F570dc94a51479a000E3BCE967196' }
-            ]
+            BTC: ['bitcoin', 'btc', 'wbtc'],
+            ETH: ['ethereum', 'eth', 'weth'],
+            AAVE: ['aave']
         };
-        
-        // Common base tokens for pairing
-        this.baseTokens = [
-            { symbol: 'WETH', address: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1' },
-            { symbol: 'USDC', address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831' },
-            { symbol: 'USDT', address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9' },
-            { symbol: 'USDC.E', address: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8' },
-            { symbol: 'DAI', address: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1' }
-        ];
     }
 
     /**
-     * 📡 Fetch pools from Uniswap Labs API
+     * 🎯 Get pools from multiple reliable sources
      */
-    async fetchUniswapPools() {
-        console.log('📡 Fetching pools from Uniswap Labs API...');
+    async getAllPools() {
+        console.log('🎯 STARTING MULTI-SOURCE POOL FETCHER');
+        console.log('🌐 Using CoinGecko + DeFiLlama for reliable data');
+        console.log('⚡ Chain: Arbitrum');
+        console.log('============================================================');
+
+        try {
+            // Method 1: Try DeFiLlama with better filtering
+            const pools = await this.fetchFromDeFiLlama();
+            
+            if (pools.length > 0) {
+                console.log(`✅ Found ${pools.length} pools from DeFiLlama`);
+                return pools;
+            }
+
+            throw new Error('No pools found from any source');
+
+        } catch (error) {
+            console.error('❌ Error in getAllPools:', error.message);
+            throw error;
+        }
+    }
+
+    /**
+     * 📊 Fetch from DeFiLlama with better filtering
+     */
+    async fetchFromDeFiLlama() {
+        console.log('📡 Fetching from DeFiLlama API...');
         
         try {
-            const query = `
-                query GetPools {
-                    v3Pools(
-                        chain: ARBITRUM,
-                        first: 200,
-                        orderBy: totalValueLockedUSD,
-                        orderDirection: desc
-                    ) {
-                        address
-                        feeTier
-                        totalValueLockedUSD
-                        volume24h {
-                            value
-                        }
-                        fees24h {
-                            value
-                        }
-                        token0 {
-                            address
-                            symbol
-                            name
-                        }
-                        token1 {
-                            address
-                            symbol
-                            name
-                        }
-                        poolDayData(first: 7, orderBy: date, orderDirection: desc) {
-                            date
-                            volumeUSD
-                            feesUSD
-                            tvlUSD
-                        }
-                    }
-                }
-            `;
-
-            const response = await axios.post(this.uniswapApiUrl, {
-                query: query
-            }, {
+            const response = await axios.get('https://yields.llama.fi/pools', {
+                timeout: 15000,
                 headers: {
-                    'Content-Type': 'application/json',
-                    'User-Agent': 'Mozilla/5.0 (compatible; PoolAnalyzer/1.0)'
+                    'Accept': 'application/json',
+                    'User-Agent': 'ArbitrumPoolFetcher/1.0'
                 }
             });
 
-            if (response.data.errors) {
-                console.log('⚠️  Uniswap API returned errors:', response.data.errors);
-                return [];
+            if (!response.data?.data) {
+                throw new Error('Invalid response format from DeFiLlama');
             }
 
-            const pools = response.data.data?.v3Pools || [];
-            console.log(`✅ Fetched ${pools.length} pools from Uniswap`);
-            return pools;
+            const allPools = response.data.data;
+            console.log(`📊 Total pools available: ${allPools.length}`);
+
+            // Filter for Arbitrum Uniswap V3 pools with our target tokens
+            const filteredPools = allPools.filter(pool => {
+                // Basic filters
+                const isArbitrum = pool.chain?.toLowerCase() === 'arbitrum';
+                const isUniswapV3 = pool.project?.toLowerCase().includes('uniswap-v3');
+                const hasMinTVL = pool.tvlUsd && pool.tvlUsd > 100000; // $100k minimum
+                const hasAPY = pool.apy && pool.apy > 0;
+
+                if (!isArbitrum || !isUniswapV3 || !hasMinTVL || !hasAPY) {
+                    return false;
+                }
+
+                // Check if pool contains our target tokens
+                const symbol = (pool.symbol || '').toLowerCase();
+                
+                return Object.values(this.targetTokens).some(tokenVariants => 
+                    tokenVariants.some(variant => symbol.includes(variant.toLowerCase()))
+                );
+            });
+
+            console.log(`🎯 Filtered to ${filteredPools.length} relevant pools`);
+            
+            return filteredPools;
 
         } catch (error) {
-            console.error('❌ Error fetching from Uniswap API:', error.message);
+            console.log(`❌ DeFiLlama error: ${error.message}`);
             return [];
         }
     }
 
     /**
-     * 📊 Get token volatility from CoinGecko
+     * 🧮 Calculate volatility from price data
      */
-    async getTokenVolatility(tokenSymbol) {
+    calculateVolatility(pool) {
         try {
-            // Map common token symbols to CoinGecko IDs
-            const tokenMap = {
-                'WBTC': 'wrapped-bitcoin',
-                'TBTC': 'tbtc',
-                'CBBTC': 'coinbase-wrapped-btc',
-                'WETH': 'weth',
-                'WSTETH': 'wrapped-steth',
-                'RETH': 'rocket-pool-eth',
-                'AAVE': 'aave',
-                'USDC': 'usd-coin',
-                'USDT': 'tether',
-                'DAI': 'dai'
-            };
-
-            const coinId = tokenMap[tokenSymbol.toUpperCase()];
-            if (!coinId) {
-                console.log(`⚠️  No CoinGecko mapping for ${tokenSymbol}`);
-                return null;
+            // Method 1: Use IL (Impermanent Loss) as volatility proxy
+            if (pool.il7d && typeof pool.il7d === 'number') {
+                // IL7d is typically given as percentage, convert to annualized volatility
+                const weeklyIL = Math.abs(pool.il7d);
+                const annualizedVol = weeklyIL * Math.sqrt(52); // Scale to annual
+                return Math.min(Math.max(annualizedVol, 1), 200); // Cap between 1% and 200%
             }
 
-            const response = await axios.get(
-                `${this.coingeckoApiUrl}/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`
-            );
-
-            const prices = response.data.prices.map(p => p[1]);
-            const returns = [];
-            
-            for (let i = 1; i < prices.length; i++) {
-                returns.push(Math.log(prices[i] / prices[i-1]));
+            // Method 2: Use price change if available
+            if (pool.priceUsd && pool.price7dAgo) {
+                const priceChange = Math.abs((pool.priceUsd - pool.price7dAgo) / pool.price7dAgo);
+                const weeklyVol = priceChange * 100;
+                const annualizedVol = weeklyVol * Math.sqrt(52);
+                return Math.min(Math.max(annualizedVol, 1), 200);
             }
 
-            const variance = returns.reduce((sum, ret) => {
-                const mean = returns.reduce((a, b) => a + b, 0) / returns.length;
-                return sum + Math.pow(ret - mean, 2);
-            }, 0) / (returns.length - 1);
+            // Method 3: Use volume/TVL ratio as volatility proxy
+            if (pool.volumeUsd7d && pool.tvlUsd) {
+                const turnover = pool.volumeUsd7d / pool.tvlUsd;
+                const estimatedVol = turnover * 10; // Rough approximation
+                return Math.min(Math.max(estimatedVol, 1), 200);
+            }
 
-            // Annualized volatility (daily to annual)
-            const volatility = Math.sqrt(variance * 365) * 100;
-            
-            return volatility;
+            return null; // No volatility data available
 
         } catch (error) {
-            console.log(`⚠️  Could not fetch volatility for ${tokenSymbol}:`, error.message);
             return null;
         }
     }
 
     /**
-     * 🔍 Filter pools for target tokens
+     * 🔄 Process and save pool data
      */
-    filterRelevantPools(pools) {
-        console.log('🔍 Filtering pools for target tokens...');
-        
-        const relevantPools = [];
-        const allTargetAddresses = new Set();
-        const allBaseAddresses = new Set();
-
-        // Collect all target and base token addresses
-        Object.values(this.targetTokens).flat().forEach(token => {
-            allTargetAddresses.add(token.address.toLowerCase());
-        });
-        
-        this.baseTokens.forEach(token => {
-            allBaseAddresses.add(token.address.toLowerCase());
-        });
-
-        pools.forEach(pool => {
-            const token0Addr = pool.token0.address.toLowerCase();
-            const token1Addr = pool.token1.address.toLowerCase();
-            
-            // Check if pool contains at least one target token
-            const hasTargetToken = allTargetAddresses.has(token0Addr) || allTargetAddresses.has(token1Addr);
-            
-            // Check if it's paired with a base token or another target token
-            const hasValidPair = allBaseAddresses.has(token0Addr) || allBaseAddresses.has(token1Addr) ||
-                               (allTargetAddresses.has(token0Addr) && allTargetAddresses.has(token1Addr));
-            
-            // Filter criteria
-            const meetsMinimumRequirements = 
-                hasTargetToken &&
-                hasValidPair &&
-                parseFloat(pool.totalValueLockedUSD) > 50000 && // Min $50K TVL
-                pool.volume24h?.value > 1000; // Min $1K daily volume
-
-            if (meetsMinimumRequirements) {
-                relevantPools.push(pool);
-            }
-        });
-
-        console.log(`✅ Found ${relevantPools.length} relevant pools`);
-        return relevantPools;
-    }
-
-    /**
-     * 💰 Calculate accurate APY from fees and TVL
-     */
-    calculateAPY(pool) {
-        try {
-            const fees24h = parseFloat(pool.fees24h?.value || 0);
-            const tvl = parseFloat(pool.totalValueLockedUSD || 0);
-            
-            if (tvl === 0) return 0;
-            
-            // Calculate daily yield and annualize it
-            const dailyYield = fees24h / tvl;
-            const annualYield = dailyYield * 365;
-            
-            return Math.max(0, Math.min(annualYield, 2)); // Cap at 200% to avoid outliers
-            
-        } catch (error) {
-            console.log(`⚠️  Error calculating APY for pool:`, error.message);
-            return 0;
-        }
-    }
-
-    /**
-     * 📈 Process pools and enrich with volatility data
-     */
-    async processPoolsWithVolatility(pools) {
-        console.log('📈 Processing pools and fetching volatility data...');
+    async processPoolData(pools) {
+        console.log('🔄 Processing pool data...');
         
         const processedPools = [];
-        const volatilityCache = new Map();
-        
+
         for (const pool of pools) {
             try {
-                // Calculate APY
-                const apy = this.calculateAPY(pool);
+                const volatility = this.calculateVolatility(pool);
                 
-                // Get volatility for token pair (use the more volatile token)
-                let volatility = null;
-                
-                const token0Symbol = pool.token0.symbol;
-                const token1Symbol = pool.token1.symbol;
-                
-                // Check cache first
-                let vol0 = volatilityCache.get(token0Symbol);
-                let vol1 = volatilityCache.get(token1Symbol);
-                
-                // Fetch if not cached
-                if (vol0 === undefined) {
-                    vol0 = await this.getTokenVolatility(token0Symbol);
-                    volatilityCache.set(token0Symbol, vol0);
-                    
-                    // Rate limit for CoinGecko
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                // Only include pools with volatility data
+                if (volatility === null) {
+                    console.log(`❌ Skipping ${pool.symbol} - no volatility data`);
+                    continue;
                 }
-                
-                if (vol1 === undefined) {
-                    vol1 = await this.getTokenVolatility(token1Symbol);
-                    volatilityCache.set(token1Symbol, vol1);
-                    
-                    // Rate limit for CoinGecko
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                }
-                
-                // Use the higher volatility (more conservative)
-                if (vol0 !== null && vol1 !== null) {
-                    volatility = Math.max(vol0, vol1);
-                } else if (vol0 !== null) {
-                    volatility = vol0;
-                } else if (vol1 !== null) {
-                    volatility = vol1;
-                }
-                
-                // Only include pools with valid volatility data
-                if (volatility !== null && volatility > 0) {
-                    processedPools.push({
-                        symbol: `${pool.token0.symbol}-${pool.token1.symbol}`,
-                        apy: apy,
-                        volatility: volatility,
-                        volatilitySource: "coingecko_historical",
-                        poolAddress: pool.address,
-                        feeTier: pool.feeTier,
-                        project: "uniswap-v3",
-                        rawData: {
-                            originalAPY: apy * 100, // As percentage
-                            fees24h: pool.fees24h?.value || 0,
-                            volume24h: pool.volume24h?.value || 0,
-                            tvlUsd: parseFloat(pool.totalValueLockedUSD || 0),
-                            token0: pool.token0,
-                            token1: pool.token1
-                        }
-                    });
-                }
-                
-                console.log(`✅ Processed ${pool.token0.symbol}-${pool.token1.symbol}: APY=${(apy*100).toFixed(2)}%, Vol=${volatility?.toFixed(2)}%`);
-                
+
+                const processedPool = {
+                    symbol: pool.symbol || 'Unknown',
+                    apy: (pool.apy || 0) / 100, // Convert percentage to decimal
+                    volatility: volatility,
+                    poolId: pool.pool || null,
+                    project: pool.project || 'Unknown',
+                    chain: pool.chain || 'Unknown',
+                    tvlUsd: pool.tvlUsd || 0,
+                    metadata: {
+                        originalAPY: pool.apy,
+                        il7d: pool.il7d,
+                        priceUsd: pool.priceUsd,
+                        price7dAgo: pool.price7dAgo,
+                        volumeUsd7d: pool.volumeUsd7d
+                    }
+                };
+
+                processedPools.push(processedPool);
+                console.log(`✅ ${pool.symbol}: APY ${processedPool.apy.toFixed(3)}, Vol ${volatility.toFixed(1)}%`);
+
             } catch (error) {
-                console.log(`⚠️  Error processing pool ${pool.token0.symbol}-${pool.token1.symbol}:`, error.message);
+                console.log(`❌ Error processing ${pool.symbol}: ${error.message}`);
             }
         }
-        
-        console.log(`📊 Successfully processed ${processedPools.length} pools with volatility data`);
+
         return processedPools;
-    }
-
-    /**
-     * 🏷️ Categorize pools by target token type
-     */
-    categorizePoolsByToken(pools) {
-        const categorized = {
-            BTC: [],
-            ETH: [],
-            AAVE: []
-        };
-
-        pools.forEach(pool => {
-            const symbol = pool.symbol.toUpperCase();
-            
-            // Check which category this pool belongs to
-            if (symbol.includes('WBTC') || symbol.includes('TBTC') || symbol.includes('CBBTC')) {
-                categorized.BTC.push(pool);
-            } else if (symbol.includes('WETH') || symbol.includes('WSTETH') || symbol.includes('RETH')) {
-                categorized.ETH.push(pool);
-            } else if (symbol.includes('AAVE')) {
-                categorized.AAVE.push(pool);
-            }
-        });
-
-        // Sort each category by APY descending
-        Object.keys(categorized).forEach(category => {
-            categorized[category].sort((a, b) => b.apy - a.apy);
-        });
-
-        return categorized;
     }
 
     /**
      * 💾 Save results to JSON file
      */
-    async saveResults(categorizedPools) {
-        try {
-            const totalPools = Object.values(categorizedPools).flat().length;
-            
-            const outputData = {
-                metadata: {
-                    generatedAt: new Date().toISOString(),
-                    chain: "Arbitrum",
-                    protocol: "Uniswap V3",
-                    targetTokens: ["BTC", "ETH", "AAVE"],
-                    dataSource: "uniswap-labs-api",
-                    volatilitySource: "coingecko",
-                    totalPools: totalPools,
-                    minTVL: 50000,
-                    minVolume24h: 1000
-                },
-                pools: categorizedPools
-            };
+    async saveResults(pools) {
+        const results = {
+            timestamp: new Date().toISOString(),
+            source: 'DeFiLlama API',
+            chain: 'Arbitrum',
+            protocol: 'Uniswap V3',
+            totalPools: pools.length,
+            pools: pools
+        };
 
-            const filePath = path.resolve(this.outputFile);
-            await fs.writeFile(filePath, JSON.stringify(outputData, null, 2), 'utf8');
-            
-            console.log(`💾 Results saved to: ${filePath}`);
-            console.log(`📊 Total pools: ${totalPools}`);
-            
-            // Display summary
-            Object.keys(categorizedPools).forEach(category => {
-                const count = categorizedPools[category].length;
-                console.log(`   ${category}: ${count} pools`);
-            });
-
-        } catch (error) {
-            console.error('❌ Error saving results:', error.message);
-            throw error;
-        }
+        fs.writeFileSync(this.outputFile, JSON.stringify(results, null, 2));
+        console.log(`💾 Results saved to ${this.outputFile}`);
+        console.log(`📊 Total pools with volatility data: ${pools.length}`);
     }
 
     /**
-     * 🎯 Main execution function
+     * 🚀 Main execution function
      */
-    async fetchAndProcessPools() {
+    async run() {
         try {
-            console.log('🎯 STARTING UNISWAP POOLS FETCHER');
-            console.log('🌐 Using Uniswap Labs API + CoinGecko');
-            console.log('='.repeat(60));
-
-            // Step 1: Fetch all pools from Uniswap
-            const allPools = await this.fetchUniswapPools();
-            
-            if (allPools.length === 0) {
-                throw new Error('No pools fetched from Uniswap API');
-            }
-
-            // Step 2: Filter for relevant pools
-            const relevantPools = this.filterRelevantPools(allPools);
-            
-            if (relevantPools.length === 0) {
-                throw new Error('No relevant pools found');
-            }
-
-            // Step 3: Process pools with volatility data
-            const processedPools = await this.processPoolsWithVolatility(relevantPools);
+            const rawPools = await this.getAllPools();
+            const processedPools = await this.processPoolData(rawPools);
             
             if (processedPools.length === 0) {
-                throw new Error('No pools processed successfully');
+                throw new Error('No pools with volatility data found');
             }
 
-            // Step 4: Categorize by token type
-            const categorizedPools = this.categorizePoolsByToken(processedPools);
-
-            // Step 5: Save results
-            await this.saveResults(categorizedPools);
-
-            console.log('\n✅ UNISWAP POOLS FETCH COMPLETE!');
-            console.log(`💾 Results saved to: ${this.outputFile}`);
-
-            return categorizedPools;
-
+            await this.saveResults(processedPools);
+            
+            console.log('\n🎉 SUCCESS! Pool data fetched and processed');
+            console.log(`📁 Check ${this.outputFile} for results`);
+            
         } catch (error) {
             console.error('❌ Execution failed:', error.message);
-            throw error;
+            process.exit(1);
         }
     }
 }
 
-// 🚀 Main execution function
-async function main() {
-    console.log('🦄 UNISWAP POOLS FETCHER');
-    console.log('🎯 Fetching Real Pool Data from Uniswap Labs');
-    console.log('📈 Getting Accurate Volatility from CoinGecko');
-    console.log('⚡ Chain: Arbitrum');
-    console.log('');
-
-    const fetcher = new UniswapPoolsFetcher();
-    
-    try {
-        await fetcher.fetchAndProcessPools();
-    } catch (error) {
-        console.error('❌ Execution failed:', error.message);
-        process.exit(1);
-    }
+// 🚀 Execute if run directly
+if (require.main === module) {
+    const fetcher = new ArbitrumPoolFetcher();
+    fetcher.run();
 }
 
-// Export for use in other scripts
-module.exports = { UniswapPoolsFetcher };
-
-// Run if called directly
-if (require.main === module) {
-    main().catch(console.error);
-} 
+module.exports = ArbitrumPoolFetcher; 

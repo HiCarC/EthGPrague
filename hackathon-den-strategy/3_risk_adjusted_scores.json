@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "timestamp": "2025-06-01T00:12:18.621Z",
+    "timestamp": "2025-06-01T01:29:17.708Z",
     "source": "DeFiLlama API",
     "chain": "Arbitrum",
     "protocol": "Uniswap V3",
     "totalPools": 67,
     "calculationConfig": {
-      "liquidationProbability": 0.02,
+      "liquidationProbability": 0.005,
       "lpAPR": 0.1362,
       "lpVol": 0.01,
       "emergencyHaircut": 0.4,
@@ -16,1426 +16,1376 @@
   "pools": [
     {
       "symbol": "PEPE-WETH",
-      "apy": 0.9606863,
-      "volatility": 15.624826139065824,
+      "apy": 0.7830055,
+      "volatility": 15.154687679565555,
       "poolId": "48d109b7-eea1-4c7e-9620-a94775c5912e",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 198913,
+      "tvlUsd": 197769,
       "metadata": {
-        "originalAPY": 96.06863,
+        "originalAPY": 78.30055,
         "il7d": null,
-        "volumeUsd7d": 310798.10418
+        "volumeUsd7d": 299712.74277
       },
-      "riskAdjustedScore": 0.0823120479569174,
+      "riskAdjustedScore": 0.22349158442449105,
       "scoreComponents": {
-        "aprHorizon": 0.01299622479974083,
+        "aprHorizon": 0.011152422788324845,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.02163803312619882,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.020986962101790275,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": 0.002544386886252921,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "LPT-WETH",
-      "apy": 4.1401822,
-      "volatility": 173.28078680591733,
-      "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 431883,
-      "metadata": {
-        "originalAPY": 414.01822,
-        "il7d": null,
-        "volumeUsd7d": 7483702.60481
-      },
-      "riskAdjustedScore": 0.06254883893547443,
-      "scoreComponents": {
-        "aprHorizon": 0.03189427830914582,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.23996781606841008,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": 0.02144244039565791,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-ATH",
-      "apy": 1.7121382,
-      "volatility": 99.62163128193353,
-      "poolId": "ebd0ce31-95b7-406a-aa3f-86ea3bbc5998",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 378912,
-      "metadata": {
-        "originalAPY": 171.21382,
-        "il7d": null,
-        "volumeUsd7d": 3774783.15523
-      },
-      "riskAdjustedScore": 0.044990727547774376,
-      "scoreComponents": {
-        "aprHorizon": 0.019318929881504854,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.13796096920239534,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": 0.008867091968016945,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDC",
-      "apy": 0.5481264,
-      "volatility": 200,
-      "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 2024126,
-      "metadata": {
-        "originalAPY": 54.81264,
-        "il7d": null,
-        "volumeUsd7d": 224699149.24514
-      },
-      "riskAdjustedScore": -0.005142956073112674,
-      "scoreComponents": {
-        "aprHorizon": 0.008416917828414139,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.2769699058871257,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.00203492008507377,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "PENDLE-WETH",
-      "apy": 0.5277104,
-      "volatility": 186.256231555442,
-      "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 747646,
-      "metadata": {
-        "originalAPY": 52.77104,
-        "il7d": null,
-        "volumeUsd7d": 13925372.64975
-      },
-      "riskAdjustedScore": -0.006219108649276959,
-      "scoreComponents": {
-        "aprHorizon": 0.008160213165545827,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.25793685462400734,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0022916247479420823,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDC",
-      "apy": 0.4685413,
-      "volatility": 200,
-      "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 54200057,
-      "metadata": {
-        "originalAPY": 46.85413,
-        "il7d": null,
-        "volumeUsd7d": 1240961314.64006
-      },
-      "riskAdjustedScore": -0.007721212243441737,
-      "scoreComponents": {
-        "aprHorizon": 0.007396775872915651,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.2769699058871257,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.003055062040572258,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDC",
-      "apy": 0.618416,
-      "volatility": 54.60847087006027,
-      "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 7838365,
-      "metadata": {
-        "originalAPY": 61.8416,
-        "il7d": null,
-        "volumeUsd7d": 42804112.67714
-      },
-      "riskAdjustedScore": -0.010883810686007337,
-      "scoreComponents": {
-        "aprHorizon": 0.009276005189883696,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0756245151876022,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.001175832723604213,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-DAI",
-      "apy": 0.6145936,
-      "volatility": 55.23346434653293,
-      "poolId": "0c1f5caa-98bc-455c-b4bb-009570f7b7a4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 384633,
-      "metadata": {
-        "originalAPY": 61.45936,
-        "il7d": null,
-        "volumeUsd7d": 2124461.3092
-      },
-      "riskAdjustedScore": -0.011179504369437843,
-      "scoreComponents": {
-        "aprHorizon": 0.00923023690765512,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.07649003710939568,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0012216010058327884,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-ARB",
-      "apy": 0.3792862,
-      "volatility": 171.83119604489718,
-      "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 3550957,
-      "metadata": {
-        "originalAPY": 37.92862,
-        "il7d": null,
-        "volumeUsd7d": 61016518.8414
-      },
-      "riskAdjustedScore": -0.012548447023244367,
-      "scoreComponents": {
-        "aprHorizon": 0.00618607668781701,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.23796035098513713,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0042657612256708985,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-GMX",
-      "apy": 0.6443234,
-      "volatility": 32.475016442369515,
-      "poolId": "d05dabc8-b729-4ca9-b83d-204afb62dde4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 547488,
-      "metadata": {
-        "originalAPY": 64.43234,
-        "il7d": null,
-        "volumeUsd7d": 1777968.1802
-      },
-      "riskAdjustedScore": -0.01351642169102178,
-      "scoreComponents": {
-        "aprHorizon": 0.009583446221178793,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.04497301123862972,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0008683916923091159,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDT",
-      "apy": 0.3125932,
-      "volatility": 172.6884596452915,
-      "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 10094993,
-      "metadata": {
-        "originalAPY": 31.25932,
-        "il7d": null,
-        "volumeUsd7d": 174328879.13
-      },
-      "riskAdjustedScore": -0.015284186363415997,
-      "scoreComponents": {
-        "aprHorizon": 0.0052301587011414075,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.23914753207874545,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.005221679212346501,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WBTC-USDT",
-      "apy": 0.2282215,
-      "volatility": 138.95889653636354,
-      "poolId": "af3cd3a9-a9b8-483e-82c6-bf4fceb66584",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 7017509,
-      "metadata": {
-        "originalAPY": 22.82215,
-        "il7d": null,
-        "volumeUsd7d": 97514530.7074
-      },
-      "riskAdjustedScore": -0.02365016396514895,
-      "scoreComponents": {
-        "aprHorizon": 0.003950165848312315,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.19243716247927722,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.006501672065175594,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDC.E",
-      "apy": 0.24904769999999998,
-      "volatility": 108.679102370576,
-      "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 2324878,
-      "metadata": {
-        "originalAPY": 24.90477,
-        "il7d": null,
-        "volumeUsd7d": 25266565.41611
-      },
-      "riskAdjustedScore": -0.028733529191510527,
-      "scoreComponents": {
-        "aprHorizon": 0.004273956581084537,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.1505042037773787,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.006177881332403372,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WBTC-WETH",
-      "apy": 0.20478570000000001,
-      "volatility": 96.46992976818788,
-      "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 41759035,
-      "metadata": {
-        "originalAPY": 20.47857,
-        "il7d": null,
-        "volumeUsd7d": 402849117.36373
-      },
-      "riskAdjustedScore": -0.036009794127563825,
-      "scoreComponents": {
-        "aprHorizon": 0.0035792999335522158,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.13359633684416314,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.006872537979935693,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "ZRO-WETH",
-      "apy": 0.5325784,
-      "volatility": 29.291481199004874,
-      "poolId": "c48e0049-063d-4976-88c2-961df59ec51a",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 893958,
-      "metadata": {
-        "originalAPY": 53.25784,
-        "il7d": null,
-        "volumeUsd7d": 2618535.39497
-      },
-      "riskAdjustedScore": -0.038484048706406905,
-      "scoreComponents": {
-        "aprHorizon": 0.008221726107342286,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.04056429395491447,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0022301118061456224,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "CRV-WETH",
-      "apy": 0.43645670000000003,
-      "volatility": 38.63178423714637,
-      "poolId": "415084d5-948c-4a27-a596-3ed9319f8a24",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 1790894,
-      "metadata": {
-        "originalAPY": 43.64567,
-        "il7d": null,
-        "volumeUsd7d": 6918543.05996
-      },
-      "riskAdjustedScore": -0.04555630484310403,
-      "scoreComponents": {
-        "aprHorizon": 0.006970086144017396,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.05349920822207089,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0034817517694705133,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "ETHFI-WETH",
-      "apy": 0.521269,
-      "volatility": 26.307566348585752,
-      "poolId": "127c022f-93bd-4902-ba13-a6015418e5ca",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 271629,
-      "metadata": {
-        "originalAPY": 52.1269,
-        "il7d": null,
-        "volumeUsd7d": 714589.79397
-      },
-      "riskAdjustedScore": -0.04560057051050378,
-      "scoreComponents": {
-        "aprHorizon": 0.0080785222893347,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.036432020878435556,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.002373315624153209,
+        "numerator": 0.006700584874836936,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-USUI",
-      "apy": 0.5938914,
-      "volatility": 16.00763152750411,
+      "apy": 0.5686610000000001,
+      "volatility": 15.958297789328117,
       "poolId": "2842f72c-73f7-427e-8d61-10a9af8c2da6",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 256798,
+      "tvlUsd": 254538,
       "metadata": {
-        "originalAPY": 59.38914,
+        "originalAPY": 56.8661,
         "il7d": null,
-        "volumeUsd7d": 411072.7761
+        "volumeUsd7d": 406199.32027
       },
-      "riskAdjustedScore": -0.04646037875146294,
+      "riskAdjustedScore": 0.13366447309198726,
       "scoreComponents": {
-        "aprHorizon": 0.008980493405291945,
+        "aprHorizon": 0.008671785952481192,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.022168160988243,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.022099841184144677,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.001471344508195964,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "PENDLE-WETH",
-      "apy": 0.5052255,
-      "volatility": 25.252443779045763,
-      "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 5546850,
-      "metadata": {
-        "originalAPY": 50.52255,
-        "il7d": null,
-        "volumeUsd7d": 14007151.77758
-      },
-      "riskAdjustedScore": -0.05160832427440032,
-      "scoreComponents": {
-        "aprHorizon": 0.007873571932250245,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.03497083488451119,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0025782659812376638,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USD+",
-      "apy": 0.1364254,
-      "volatility": 62.83535418358102,
-      "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 1130204,
-      "metadata": {
-        "originalAPY": 13.64254,
-        "il7d": null,
-        "volumeUsd7d": 7101676.86397
-      },
-      "riskAdjustedScore": -0.06432418596579557,
-      "scoreComponents": {
-        "aprHorizon": 0.002455651429467798,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.08701751067305323,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.007996186484020111,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "LDO-WETH",
-      "apy": 0.3270935,
-      "volatility": 32.35681673307137,
-      "poolId": "7bd8982c-5704-4ba0-a4c7-a8c7de9abbb4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 218860,
-      "metadata": {
-        "originalAPY": 32.70935,
-        "il7d": null,
-        "volumeUsd7d": 708161.29102
-      },
-      "riskAdjustedScore": -0.07826270017643928,
-      "scoreComponents": {
-        "aprHorizon": 0.005441982818916058,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.04480932242682876,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.005009855094571851,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-AAVE",
-      "apy": 0.39520099999999997,
-      "volatility": 25.65715813733952,
-      "poolId": "95fd15b0-f05e-470f-a87b-ac3d58c2d9a0",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 2285999,
-      "metadata": {
-        "originalAPY": 39.5201,
-        "il7d": null,
-        "volumeUsd7d": 5865223.78448
-      },
-      "riskAdjustedScore": -0.07967764032810629,
-      "scoreComponents": {
-        "aprHorizon": 0.00640748018412407,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.03553130337315014,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.004044357729363839,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "ANIME-WETH",
-      "apy": 0.4043433,
-      "volatility": 21.463268003091255,
-      "poolId": "20f788ef-8255-41ce-8de2-024e3a0060f6",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 908369,
-      "metadata": {
-        "originalAPY": 40.43433,
-        "il7d": null,
-        "volumeUsd7d": 1949656.72927
-      },
-      "riskAdjustedScore": -0.09227756296892155,
-      "scoreComponents": {
-        "aprHorizon": 0.006533548483667273,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.029723396594231708,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.003918289429820636,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-LINK",
-      "apy": 0.3778961,
-      "volatility": 17.982184079731905,
-      "poolId": "cd7dd7fa-e34c-4cf0-af2b-6d13438f3852",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 3040690,
-      "metadata": {
-        "originalAPY": 37.78961,
-        "il7d": null,
-        "volumeUsd7d": 5467824.73094
-      },
-      "riskAdjustedScore": -0.12045532951648817,
-      "scoreComponents": {
-        "aprHorizon": 0.006166619060820944,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.02490261916104158,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.004285218852666965,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "TBTC-WETH",
-      "apy": 0.1446686,
-      "volatility": 32.97134984897512,
-      "poolId": "2fa7e5cc-8f92-4190-90e5-2765c33f1dd0",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 650224,
-      "metadata": {
-        "originalAPY": 14.46686,
-        "il7d": null,
-        "volumeUsd7d": 2143876.29842
-      },
-      "riskAdjustedScore": -0.12045590137063503,
-      "scoreComponents": {
-        "aprHorizon": 0.0025946098867328793,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.045660358323210685,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.00785722802675503,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WSTETH-WETH",
-      "apy": 0.0116924,
-      "volatility": 35.34456785388077,
-      "poolId": "2ec84b50-59e5-49e6-ab12-41e99ed32a8c",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 1419991,
-      "metadata": {
-        "originalAPY": 1.16924,
-        "il7d": null,
-        "volumeUsd7d": 5018896.82514
-      },
-      "riskAdjustedScore": -0.14628530202587087,
-      "scoreComponents": {
-        "aprHorizon": 0.0002229618513465148,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.04894690816055243,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010228876062141394,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-UNI",
-      "apy": 0.1929833,
-      "volatility": 23.61191601252606,
-      "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 531053,
-      "metadata": {
-        "originalAPY": 19.29833,
-        "il7d": null,
-        "volumeUsd7d": 1253917.88342
-      },
-      "riskAdjustedScore": -0.15117907119630647,
-      "scoreComponents": {
-        "aprHorizon": 0.0033898421879650087,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0326989507790203,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0070619957255229,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDT",
-      "apy": 0.16227229999999998,
-      "volatility": 17.692409438544683,
-      "poolId": "b8582b33-80e3-4250-a496-02936860669f",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 507271,
-      "metadata": {
-        "originalAPY": 16.22723,
-        "il7d": null,
-        "volumeUsd7d": 897484.62283
-      },
-      "riskAdjustedScore": -0.21609498550515788,
-      "scoreComponents": {
-        "aprHorizon": 0.0028881044192017313,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.02450132488555108,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0075637334942861775,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WBTC-USDT",
-      "apy": 0.0724233,
-      "volatility": 20.95032341847972,
-      "poolId": "76a365b1-2628-4a7a-adad-89488a1b4d89",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 320546,
-      "metadata": {
-        "originalAPY": 7.24233,
-        "il7d": null,
-        "volumeUsd7d": 671554.23705
-      },
-      "riskAdjustedScore": -0.21979744875779894,
-      "scoreComponents": {
-        "aprHorizon": 0.0013418473596855662,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.02901304552760587,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009109990553802343,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-WETH",
-      "apy": 0.0003511,
-      "volatility": 23.77493454573299,
-      "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 104476,
-      "metadata": {
-        "originalAPY": 0.03511,
-        "il7d": null,
-        "volumeUsd7d": 248391.00616
-      },
-      "riskAdjustedScore": -0.2220695227983775,
-      "scoreComponents": {
-        "aprHorizon": 0.000006732265543041294,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0329247069180212,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010445105647944868,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WBTC-WETH",
-      "apy": 0.1929677,
-      "volatility": 13.832685477672504,
-      "poolId": "14d11019-8d05-43b9-8ab9-f9baeb9e70fa",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 3688479,
-      "metadata": {
-        "originalAPY": 19.29677,
-        "il7d": null,
-        "volumeUsd7d": 5102156.9898
-      },
-      "riskAdjustedScore": -0.2580666444517024,
-      "scoreComponents": {
-        "aprHorizon": 0.0033895905547915994,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.01915618797458582,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.007062247358696309,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "TGT-WETH",
-      "apy": 0.022686799999999997,
-      "volatility": 14.930201141422014,
-      "poolId": "b836dbd8-8835-4542-97e3-9523c991173d",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 230940,
-      "metadata": {
-        "originalAPY": 2.26868,
-        "il7d": null,
-        "volumeUsd7d": 344798.06516
-      },
-      "riskAdjustedScore": -0.3392839423605077,
-      "scoreComponents": {
-        "aprHorizon": 0.00043031988200570304,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.02067608202507756,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010021518031482206,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "SNT-WETH",
-      "apy": 0.2400683,
-      "volatility": 8.803489823872873,
-      "poolId": "69e1da1f-f058-41a2-ba4d-c7ed099a55b4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 103959,
-      "metadata": {
-        "originalAPY": 24.00683,
-        "il7d": null,
-        "volumeUsd7d": 91520.19986
-      },
-      "riskAdjustedScore": -0.36269363071308,
-      "scoreComponents": {
-        "aprHorizon": 0.004135005672381897,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.012191508739981694,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.0063168322411060115,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-NRN",
-      "apy": 0.3076708,
-      "volatility": 6.954319765453213,
-      "poolId": "d37a8431-96cc-44c5-92e6-14c43b5b1d91",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 286510,
-      "metadata": {
-        "originalAPY": 30.76708,
-        "il7d": null,
-        "volumeUsd7d": 199248.2156
-      },
-      "riskAdjustedScore": -0.3847987720347416,
-      "scoreComponents": {
-        "aprHorizon": 0.005157728882583923,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.009630686454732772,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.005294109030903986,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-NST",
-      "apy": 0.1134754,
-      "volatility": 10.95135456791918,
-      "poolId": "16c09aa8-dc98-4c34-8d14-ebebccae7cf4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 247662,
-      "metadata": {
-        "originalAPY": 11.34754,
-        "il7d": null,
-        "volumeUsd7d": 271223.4375
-      },
-      "riskAdjustedScore": -0.38717146375510086,
-      "scoreComponents": {
-        "aprHorizon": 0.00206350364671537,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0151659782200656,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.008388334266772539,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "LAVA-WETH",
-      "apy": 0.0057443,
-      "volatility": 13.362456497997332,
-      "poolId": "292673f0-42de-4073-b128-1382a4d19e25",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 452147,
-      "metadata": {
-        "originalAPY": 0.57443,
-        "il7d": null,
-        "volumeUsd7d": 604179.46182
-      },
-      "riskAdjustedScore": -0.3912126985368783,
-      "scoreComponents": {
-        "aprHorizon": 0.00010985548828945646,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.018504991593355665,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010341982425198452,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-ARB",
-      "apy": 0.11456490000000001,
-      "volatility": 9.496870242206953,
-      "poolId": "483c0801-b3c5-4873-87d9-a84a8de4ec92",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 410847,
-      "metadata": {
-        "originalAPY": 11.45649,
-        "il7d": null,
-        "volumeUsd7d": 390176.06484
-      },
-      "riskAdjustedScore": -0.4454679951605344,
-      "scoreComponents": {
-        "aprHorizon": 0.0020822984903186015,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.013151736286031522,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.008369539423169307,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-GRT",
-      "apy": 0.1211886,
-      "volatility": 8.312152061627371,
-      "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 844430,
-      "metadata": {
-        "originalAPY": 12.11886,
-        "il7d": null,
-        "volumeUsd7d": 701903.05654
-      },
-      "riskAdjustedScore": -0.5020348048798383,
-      "scoreComponents": {
-        "aprHorizon": 0.0021961768605378573,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.011511079871142055,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.008255661052950052,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USOL",
-      "apy": 0.3075058,
-      "volatility": 5.0902893676021135,
-      "poolId": "38917ce0-8406-4a61-8002-44e5fb2f682e",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 398847,
-      "metadata": {
-        "originalAPY": 30.75058,
-        "il7d": null,
-        "volumeUsd7d": 203024.66434
-      },
-      "riskAdjustedScore": -0.5259510934834039,
-      "scoreComponents": {
-        "aprHorizon": 0.005155296388541508,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.00704928483541497,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.005296541524946401,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-USDC.E",
-      "apy": 0.106266,
-      "volatility": 5.326135334875098,
-      "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 326898,
-      "metadata": {
-        "originalAPY": 10.6266,
-        "il7d": null,
-        "volumeUsd7d": 174110.29887
-      },
-      "riskAdjustedScore": -0.8079305196905094,
-      "scoreComponents": {
-        "aprHorizon": 0.0019386786301596182,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0073758960122122545,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.00851315928332829,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "UXRP-WETH",
-      "apy": 0.2566811,
-      "volatility": 3.3428352355820605,
-      "poolId": "987556ec-845d-4410-b5a4-89656b82d044",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 428598,
-      "metadata": {
-        "originalAPY": 25.66811,
-        "il7d": null,
-        "volumeUsd7d": 143273.24963
-      },
-      "riskAdjustedScore": -0.9164122635074607,
-      "scoreComponents": {
-        "aprHorizon": 0.004391310620923905,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.004629323802976655,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.006060527292564004,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-WXM",
-      "apy": 0.047017800000000005,
-      "volatility": 4.647269098579423,
-      "poolId": "7d08a6dc-c67c-4c85-8cb5-f793b8747cdd",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 116150,
-      "metadata": {
-        "originalAPY": 4.70178,
-        "il7d": null,
-        "volumeUsd7d": 53978.03058
-      },
-      "riskAdjustedScore": -1.0409333982305127,
-      "scoreComponents": {
-        "aprHorizon": 0.0008815432046866967,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.006435768424328452,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009570294708801212,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-XBG",
-      "apy": 0.1177751,
-      "volatility": 2.7380896795682603,
-      "poolId": "5ca4d40c-372b-42bd-a6ae-a067371160f4",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 711540,
-      "metadata": {
-        "originalAPY": 11.77751,
-        "il7d": null,
-        "volumeUsd7d": 194826.03306
-      },
-      "riskAdjustedScore": -1.534870211301323,
-      "scoreComponents": {
-        "aprHorizon": 0.0021375727058603466,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0037918422043026565,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.008314265207627562,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "K-WETH",
-      "apy": 0.110139,
-      "volatility": 2.5391419456705777,
-      "poolId": "a0bb30a4-289a-4ae5-a0dc-746c3b507c8e",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 604203,
-      "metadata": {
-        "originalAPY": 11.0139,
-        "il7d": null,
-        "volumeUsd7d": 153415.7181
-      },
-      "riskAdjustedScore": -1.6813560059038692,
-      "scoreComponents": {
-        "aprHorizon": 0.0020058353824838893,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0035163295286321657,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.00844600253100402,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "RWA-WETH",
-      "apy": 0.024870100000000003,
-      "volatility": 2.295560396380943,
-      "poolId": "4f40a17b-d2d6-4e03-90b0-d856e19c8c6b",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 237852,
-      "metadata": {
-        "originalAPY": 2.48701,
-        "il7d": null,
-        "volumeUsd7d": 54600.36314
-      },
-      "riskAdjustedScore": -2.197674680125818,
-      "scoreComponents": {
-        "aprHorizon": 0.00047123732610621083,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0031790057347192134,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009980600587381698,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-RETH",
-      "apy": 0.0015137,
-      "volatility": 2.2686825545709683,
-      "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 312483,
-      "metadata": {
-        "originalAPY": 0.15137,
-        "il7d": null,
-        "volumeUsd7d": 70892.47307
-      },
-      "riskAdjustedScore": -2.3222413696125486,
-      "scoreComponents": {
-        "aprHorizon": 0.000029008334642366407,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.003141783968136425,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010422829578845542,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WXTZ-WETH",
-      "apy": 0.011488799999999999,
-      "volatility": 2.09893057044611,
-      "poolId": "eff4b459-64c1-4994-a8f7-eab9470c26f1",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 505727,
-      "metadata": {
-        "originalAPY": 1.14888,
-        "il7d": null,
-        "volumeUsd7d": 106148.58606
-      },
-      "riskAdjustedScore": -2.464275074650162,
-      "scoreComponents": {
-        "aprHorizon": 0.00021910107941014445,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.002906703012800351,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010232736834077764,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WEETH-WETH",
-      "apy": 0.0002587,
-      "volatility": 1.902077673437231,
-      "poolId": "fe3e33f2-7ad0-4b65-a953-d13a32b76a03",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 110429,
-      "metadata": {
-        "originalAPY": 0.02587,
-        "il7d": null,
-        "volumeUsd7d": 21004.45354
-      },
-      "riskAdjustedScore": -2.7762188136516306,
-      "scoreComponents": {
-        "aprHorizon": 0.0000049607405248064396,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.002634091371009565,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010446877172963102,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-SEED",
-      "apy": 0.0324785,
-      "volatility": 1.5026943973038118,
-      "poolId": "5f0db05b-bfdf-465a-9222-687a367addb5",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 234405,
-      "metadata": {
-        "originalAPY": 3.24785,
-        "il7d": null,
-        "volumeUsd7d": 35223.90802
-      },
-      "riskAdjustedScore": -3.3094927850884073,
-      "scoreComponents": {
-        "aprHorizon": 0.0006131620350928735,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0020810056289917393,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009838675878395035,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-TRUF",
-      "apy": 0.022782900000000002,
-      "volatility": 1.41877777963145,
-      "poolId": "4bb70bd4-189e-49ee-9178-c1f018ac8a5d",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 275729,
-      "metadata": {
-        "originalAPY": 2.27829,
-        "il7d": null,
-        "volumeUsd7d": 39119.81784
-      },
-      "riskAdjustedScore": -3.5697389005155817,
-      "scoreComponents": {
-        "aprHorizon": 0.00043212270357462224,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0019647937404963394,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010019715209913287,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "WETH-ARB",
-      "apy": 0.06090569999999999,
-      "volatility": 1.18624260210035,
-      "poolId": "57437274-42a0-45eb-8389-992b8b71fc44",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 102840,
-      "metadata": {
-        "originalAPY": 6.09057,
-        "il7d": null,
-        "volumeUsd7d": 12199.31892
-      },
-      "riskAdjustedScore": -3.9702091942111815,
-      "scoreComponents": {
-        "aprHorizon": 0.0011345083857243754,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0016427675093151654,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009317329527763533,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "MOR-WETH",
-      "apy": 0.0308136,
-      "volatility": 1.1272463667755068,
-      "poolId": "44f437aa-baa7-48a7-b403-10bc0ca24500",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 2022845,
-      "metadata": {
-        "originalAPY": 3.08136,
-        "il7d": null,
-        "volumeUsd7d": 228024.46768
-      },
-      "riskAdjustedScore": -4.425660739455539,
-      "scoreComponents": {
-        "aprHorizon": 0.0005821933907828036,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0015610666005870827,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.009869644522705105,
+        "numerator": 0.004219948038993284,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-GMX",
-      "apy": 0.0557173,
-      "volatility": 1,
-      "poolId": "5921fee6-b25f-4cd9-9cc4-fb07fe83ea89",
+      "apy": 0.6366128,
+      "volatility": 32.59351145884018,
+      "poolId": "d05dabc8-b729-4ca9-b83d-204afb62dde4",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 9696370,
+      "tvlUsd": 542568,
       "metadata": {
-        "originalAPY": 5.57173,
+        "originalAPY": 63.66128,
         "il7d": null,
-        "volumeUsd7d": 711139.32724
+        "volumeUsd7d": 1768419.63252
       },
-      "riskAdjustedScore": -4.75720789041792,
+      "riskAdjustedScore": 0.07817126032735439,
       "scoreComponents": {
-        "aprHorizon": 0.0010403849013840283,
+        "aprHorizon": 0.009492444625724739,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.0451371090064296,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.00941145301210388,
+        "numerator": 0.00504060671223683,
         "delta": 7
       }
     },
     {
-      "symbol": "PEAS-WETH",
-      "apy": 0.052117000000000004,
-      "volatility": 1,
-      "poolId": "d2290557-51d0-4765-bbaa-a821316aef9b",
+      "symbol": "LPT-WETH",
+      "apy": 3.9887495,
+      "volatility": 179.0601074197814,
+      "poolId": "240bcd61-cc7a-40fa-9dec-b6e84e00f65c",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 203587,
+      "tvlUsd": 426522,
       "metadata": {
-        "originalAPY": 5.2117,
+        "originalAPY": 398.87495,
         "il7d": null,
-        "volumeUsd7d": 17107.48381
+        "volumeUsd7d": 7637307.51369
       },
-      "riskAdjustedScore": -4.790356906415288,
+      "riskAdjustedScore": 0.0757974091075963,
       "scoreComponents": {
-        "aprHorizon": 0.0009748043310908727,
+        "aprHorizon": 0.031302670042062664,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.24797130550097735,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.009477033582397036,
+        "numerator": 0.026850832128574753,
         "delta": 7
       }
     },
     {
-      "symbol": "WETH-CRYPTO",
-      "apy": 0.0189631,
-      "volatility": 1,
-      "poolId": "a0adee00-d1ff-42da-860d-5a0b4662a62d",
+      "symbol": "WETH-ATH",
+      "apy": 1.6032352,
+      "volatility": 101.36341239175042,
+      "poolId": "ebd0ce31-95b7-406a-aa3f-86ea3bbc5998",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 348645,
+      "tvlUsd": 373789,
       "metadata": {
-        "originalAPY": 1.89631,
+        "originalAPY": 160.32352,
         "il7d": null,
-        "volumeUsd7d": 23787.90258
+        "volumeUsd7d": 3788852.85545
       },
-      "riskAdjustedScore": -5.100952481018262,
+      "riskAdjustedScore": 0.07014437786717347,
       "scoreComponents": {
-        "aprHorizon": 0.000360335566328418,
+        "aprHorizon": 0.018518097830223956,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.14037307395270512,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.01009150234715949,
+        "numerator": 0.014066259916736048,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "PENDLE-WETH",
+      "apy": 0.471446,
+      "volatility": 25.44189567017802,
+      "poolId": "a978c15f-c41a-433b-b02f-3434256ba66f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 5498263,
+      "metadata": {
+        "originalAPY": 47.1446,
+        "il7d": null,
+        "volumeUsd7d": 13988623.36132
+      },
+      "riskAdjustedScore": 0.05926741027603263,
+      "scoreComponents": {
+        "aprHorizon": 0.0074349527085768585,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.03523319724679639,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.00298311479508895,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "ETHFI-WETH",
+      "apy": 0.44421999999999995,
+      "volatility": 26.372172736253127,
+      "poolId": "127c022f-93bd-4902-ba13-a6015418e5ca",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 271298,
+      "metadata": {
+        "originalAPY": 44.422,
+        "il7d": null,
+        "volumeUsd7d": 715471.7719
+      },
+      "riskAdjustedScore": 0.050261907280504406,
+      "scoreComponents": {
+        "aprHorizon": 0.007074180477185887,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.03652149100399525,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0026223425636979786,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USOL",
+      "apy": 0.2921895,
+      "volatility": 5.016375799558256,
+      "poolId": "38917ce0-8406-4a61-8002-44e5fb2f682e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 397063,
+      "metadata": {
+        "originalAPY": 29.21895,
+        "il7d": null,
+        "volumeUsd7d": 199181.72241
+      },
+      "riskAdjustedScore": 0.04799775164471722,
+      "scoreComponents": {
+        "aprHorizon": 0.0049281762174686605,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.006946925665490527,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0004763383039807518,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-AAVE",
+      "apy": 0.4344788,
+      "volatility": 26.351023498318842,
+      "poolId": "95fd15b0-f05e-470f-a87b-ac3d58c2d9a0",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2253208,
+      "metadata": {
+        "originalAPY": 43.44788,
+        "il7d": null,
+        "volumeUsd7d": 5937433.69546
+      },
+      "riskAdjustedScore": 0.04779507429974031,
+      "scoreComponents": {
+        "aprHorizon": 0.006943477241282858,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.036492202491794044,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0024916393277949495,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "ZRO-WETH",
+      "apy": 0.4147801,
+      "volatility": 29.150204131326767,
+      "poolId": "c48e0049-063d-4976-88c2-961df59ec51a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 893466,
+      "metadata": {
+        "originalAPY": 41.47801,
+        "il7d": null,
+        "volumeUsd7d": 2604471.62844
+      },
+      "riskAdjustedScore": 0.038575839277847294,
+      "scoreComponents": {
+        "aprHorizon": 0.006676487082421856,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.04036864647422039,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.002224649168933947,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "ANIME-WETH",
+      "apy": 0.3532653,
+      "volatility": 21.445985950361298,
+      "poolId": "20f788ef-8255-41ce-8de2-024e3a0060f6",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 907276,
+      "metadata": {
+        "originalAPY": 35.32653,
+        "il7d": null,
+        "volumeUsd7d": 1945742.83491
+      },
+      "riskAdjustedScore": 0.03221439896217629,
+      "scoreComponents": {
+        "aprHorizon": 0.0058186241532238725,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.029699463551640947,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0013667862397359638,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-DAI",
+      "apy": 0.5054613,
+      "volatility": 54.658555137155815,
+      "poolId": "0c1f5caa-98bc-455c-b4bb-009570f7b7a4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 383870,
+      "metadata": {
+        "originalAPY": 50.54613,
+        "il7d": null,
+        "volumeUsd7d": 2098177.95605
+      },
+      "riskAdjustedScore": 0.03167142993812196,
+      "scoreComponents": {
+        "aprHorizon": 0.007876599682887342,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.07569387436132159,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.003424761769399433,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.481211,
+      "volatility": 54.675307108383784,
+      "poolId": "94594b8f-fd0c-48c3-b760-87c8e56b64fa",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 7732264,
+      "metadata": {
+        "originalAPY": 48.1211,
+        "il7d": null,
+        "volumeUsd7d": 42276390.88431
+      },
+      "riskAdjustedScore": 0.028760255264596694,
+      "scoreComponents": {
+        "aprHorizon": 0.007562755565765356,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.07571707332079376,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.003110917652277447,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-LINK",
+      "apy": 0.3174863,
+      "volatility": 18.036705626710475,
+      "poolId": "cd7dd7fa-e34c-4cf0-af2b-6d13438f3852",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3009396,
+      "metadata": {
+        "originalAPY": 31.74863,
+        "il7d": null,
+        "volumeUsd7d": 5427958.97662
+      },
+      "riskAdjustedScore": 0.02382241193976911,
+      "scoreComponents": {
+        "aprHorizon": 0.005301893831671123,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.024978123299718956,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0008500559181832141,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "CRV-WETH",
+      "apy": 0.35992690000000005,
+      "volatility": 38.62684345726992,
+      "poolId": "415084d5-948c-4a27-a596-3ed9319f8a24",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1781099,
+      "metadata": {
+        "originalAPY": 35.99269,
+        "il7d": null,
+        "volumeUsd7d": 6879823.22549
+      },
+      "riskAdjustedScore": 0.019125333236692285,
+      "scoreComponents": {
+        "aprHorizon": 0.0059133512350444395,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.05349236598538394,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0014615133215565308,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "PENDLE-WETH",
+      "apy": 0.49787059999999994,
+      "volatility": 187.82411609166897,
+      "poolId": "c4f27457-0d3d-4f6d-8c3e-eb1a0e6e91b8",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 741887,
+      "metadata": {
+        "originalAPY": 49.78706,
+        "il7d": null,
+        "volumeUsd7d": 13934427.00149
+      },
+      "riskAdjustedScore": 0.008953746125352612,
+      "scoreComponents": {
+        "aprHorizon": 0.007778898256101785,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.26010813878621064,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0033270603426138762,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "LDO-WETH",
+      "apy": 0.2981839,
+      "volatility": 32.342292944654915,
+      "poolId": "7bd8982c-5704-4ba0-a4c7-a8c7de9abbb4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 218827,
+      "metadata": {
+        "originalAPY": 29.81839,
+        "il7d": null,
+        "volumeUsd7d": 707736.69382
+      },
+      "riskAdjustedScore": 0.008838692988062955,
+      "scoreComponents": {
+        "aprHorizon": 0.005017378012045048,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.04478920916527461,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0005655400985571397,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.45240070000000004,
+      "volatility": 200,
+      "poolId": "2d4ca6f7-b980-49df-b32e-91f613ae9e09",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2018060,
+      "metadata": {
+        "originalAPY": 45.24007,
+        "il7d": null,
+        "volumeUsd7d": 223048431.7115
+      },
+      "riskAdjustedScore": 0.00690330950931087,
+      "scoreComponents": {
+        "aprHorizon": 0.007183279320778668,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.2769699058871257,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0027314414072907595,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDC",
+      "apy": 0.37652050000000004,
+      "volatility": 200,
+      "poolId": "a14bd201-764c-40a5-86b8-2928b2461232",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 54126886,
+      "metadata": {
+        "originalAPY": 37.65205,
+        "il7d": null,
+        "volumeUsd7d": 1226414523.46942
+      },
+      "riskAdjustedScore": 0.004285141590023235,
+      "scoreComponents": {
+        "aprHorizon": 0.006147345431918971,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.2769699058871257,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.0016955075184310626,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.302333,
+      "volatility": 155.9464417973321,
+      "poolId": "3e9da80c-274d-4f55-8421-7439d4ef429d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3880585,
+      "metadata": {
+        "originalAPY": 30.2333,
+        "il7d": null,
+        "volumeUsd7d": 60516342.28421
+      },
+      "riskAdjustedScore": 0.0020324476475047735,
+      "scoreComponents": {
+        "aprHorizon": 0.005078883889916064,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.21596235654019602,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": 0.000627045976428155,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDT",
+      "apy": 0.2582659,
+      "volatility": 170.43292517566266,
+      "poolId": "49bdce2c-65d0-4bb7-bdc0-dc0d642317e6",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 10065741,
+      "metadata": {
+        "originalAPY": 25.82659,
+        "il7d": null,
+        "volumeUsd7d": 171553368.26906
+      },
+      "riskAdjustedScore": -0.00010751213038809992,
+      "scoreComponents": {
+        "aprHorizon": 0.004415587287263767,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.23602395622985414,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.00003625062622414181,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDC.E",
+      "apy": 0.2038206,
+      "volatility": 107.29455440060485,
+      "poolId": "9fb44210-2b23-4b7d-8f2f-aba82b93843e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2318579,
+      "metadata": {
+        "originalAPY": 20.38206,
+        "il7d": null,
+        "volumeUsd7d": 24877090.06476
+      },
+      "riskAdjustedScore": -0.0041832326805057865,
+      "scoreComponents": {
+        "aprHorizon": 0.0035638761809790864,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.14858681317268307,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0008879617325088223,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WBTC-USDT",
+      "apy": 0.1796093,
+      "volatility": 136.49827351551068,
+      "poolId": "af3cd3a9-a9b8-483e-82c6-bf4fceb66584",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 6996699,
+      "metadata": {
+        "originalAPY": 17.96093,
+        "il7d": null,
+        "volumeUsd7d": 95503733.38077
+      },
+      "riskAdjustedScore": -0.004735985931210018,
+      "scoreComponents": {
+        "aprHorizon": 0.0031729216515210545,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.1890295698467307,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0012789162619668542,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WBTC-WETH",
+      "apy": 0.1719806,
+      "volatility": 95.68691095676269,
+      "poolId": "bb7e9353-129f-4e01-b822-f4250d0abb8a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 41545036,
+      "metadata": {
+        "originalAPY": 17.19806,
+        "il7d": null,
+        "volumeUsd7d": 397531616.04275
+      },
+      "riskAdjustedScore": -0.007415280255051467,
+      "scoreComponents": {
+        "aprHorizon": 0.003048104454230538,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.1325119736116217,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0014037334592573707,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USD+",
+      "apy": 0.1105515,
+      "volatility": 62.237055981545396,
+      "poolId": "34331469-15f0-4da2-9205-69816a7c26f3",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1126657,
+      "metadata": {
+        "originalAPY": 11.05515,
+        "il7d": null,
+        "volumeUsd7d": 7011981.4781
+      },
+      "riskAdjustedScore": -0.019807692934945144,
+      "scoreComponents": {
+        "aprHorizon": 0.002012974473064144,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.08618895768950202,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0024388634404237646,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-UNI",
+      "apy": 0.1719517,
+      "volatility": 23.832014281590585,
+      "poolId": "eb782bdd-b9a5-4522-914d-285049ce9e9f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 526573,
+      "metadata": {
+        "originalAPY": 17.19517,
+        "il7d": null,
+        "volumeUsd7d": 1254929.52563
+      },
+      "riskAdjustedScore": -0.029782838695017765,
+      "scoreComponents": {
+        "aprHorizon": 0.0030476300925388333,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.033003753763363904,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0014042078209490754,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "TBTC-WETH",
+      "apy": 0.1339715,
+      "volatility": 32.67523638564553,
+      "poolId": "2fa7e5cc-8f92-4190-90e5-2765c33f1dd0",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 648077,
+      "metadata": {
+        "originalAPY": 13.39715,
+        "il7d": null,
+        "volumeUsd7d": 2117606.91711
+      },
+      "riskAdjustedScore": -0.03152290811135028,
+      "scoreComponents": {
+        "aprHorizon": 0.002414094200388961,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.04525028573285915,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.002037743713098948,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "UXRP-WETH",
+      "apy": 0.24652629999999998,
+      "volatility": 3.342919780376899,
+      "poolId": "987556ec-845d-4410-b5a4-89656b82d044",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 426640,
+      "metadata": {
+        "originalAPY": 24.65263,
+        "il7d": null,
+        "volumeUsd7d": 142622.32951
+      },
+      "riskAdjustedScore": -0.03278139398661928,
+      "scoreComponents": {
+        "aprHorizon": 0.004235038591227536,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.004629440884796003,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.00021679932226037306,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WBTC-WETH",
+      "apy": 0.1706626,
+      "volatility": 13.706428836829927,
+      "poolId": "14d11019-8d05-43b9-8ab9-f9baeb9e70fa",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3671905,
+      "metadata": {
+        "originalAPY": 17.06626,
+        "il7d": null,
+        "volumeUsd7d": 5032870.45781
+      },
+      "riskAdjustedScore": -0.05256557122162953,
+      "scoreComponents": {
+        "aprHorizon": 0.003026459256615599,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.018981341524926854,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0014253786568723097,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-NRN",
+      "apy": 0.2117169,
+      "volatility": 6.934326101628464,
+      "poolId": "d37a8431-96cc-44c5-92e6-14c43b5b1d91",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 285668,
+      "metadata": {
+        "originalAPY": 21.17169,
+        "il7d": null,
+        "volumeUsd7d": 198091.50688
+      },
+      "riskAdjustedScore": -0.05555402352148068,
+      "scoreComponents": {
+        "aprHorizon": 0.0036897162134383876,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.009602998238793375,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0007621217000495211,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "SNT-WETH",
+      "apy": 0.1970381,
+      "volatility": 8.694629454856463,
+      "poolId": "69e1da1f-f058-41a2-ba4d-c7ed099a55b4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 107568,
+      "metadata": {
+        "originalAPY": 19.70381,
+        "il7d": null,
+        "volumeUsd7d": 93526.39012
+      },
+      "riskAdjustedScore": -0.057944027824031956,
+      "scoreComponents": {
+        "aprHorizon": 0.003455138261547974,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.012040753509175129,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0009966996519399345,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WSTETH-WETH",
+      "apy": 0.0106568,
+      "volatility": 34.97964121100943,
+      "poolId": "2ec84b50-59e5-49e6-ab12-41e99ed32a8c",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 1420055,
+      "metadata": {
+        "originalAPY": 1.06568,
+        "il7d": null,
+        "volumeUsd7d": 4967301.43999
+      },
+      "riskAdjustedScore": -0.061392869256801264,
+      "scoreComponents": {
+        "aprHorizon": 0.000203316325468883,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.04844153967089353,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004248521588019026,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDT",
+      "apy": 0.1273235,
+      "volatility": 17.385227989725426,
+      "poolId": "b8582b33-80e3-4250-a496-02936860669f",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 506493,
+      "metadata": {
+        "originalAPY": 12.73235,
+        "il7d": null,
+        "volumeUsd7d": 880549.62802
+      },
+      "riskAdjustedScore": -0.06253306815171689,
+      "scoreComponents": {
+        "aprHorizon": 0.002301064418662291,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.024075924800702378,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.002150773494825618,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WBTC-USDT",
+      "apy": 0.0645493,
+      "volatility": 20.55833596512079,
+      "poolId": "76a365b1-2628-4a7a-adad-89488a1b4d89",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 319732,
+      "metadata": {
+        "originalAPY": 6.45493,
+        "il7d": null,
+        "volumeUsd7d": 657315.78748
+      },
+      "riskAdjustedScore": -0.0799449885307769,
+      "scoreComponents": {
+        "aprHorizon": 0.0012003379658489521,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.028470201887277086,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0032514999476389566,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-WETH",
+      "apy": 0.0008507,
+      "volatility": 24.415818054753494,
+      "poolId": "3f754e97-de1f-4e84-8fc3-f14bd0a85560",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 102167,
+      "metadata": {
+        "originalAPY": 0.08507,
+        "il7d": null,
+        "volumeUsd7d": 249449.08832
+      },
+      "riskAdjustedScore": -0.0918268497691039,
+      "scoreComponents": {
+        "aprHorizon": 0.00001630799192975374,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0338122341439113,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004435529921558155,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "TGT-WETH",
+      "apy": 0.026117599999999998,
+      "volatility": 15.182751564234383,
+      "poolId": "b836dbd8-8835-4542-97e3-9523c991173d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 229729,
+      "metadata": {
+        "originalAPY": 2.61176,
+        "il7d": null,
+        "volumeUsd7d": 348791.83341
+      },
+      "riskAdjustedScore": -0.13174662214440983,
+      "scoreComponents": {
+        "aprHorizon": 0.0004945784840186818,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.02102582635926804,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.003957259429469227,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-NST",
+      "apy": 0.0780473,
+      "volatility": 11.022905191230208,
+      "poolId": "16c09aa8-dc98-4c34-8d14-ebebccae7cf4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 246300,
+      "metadata": {
+        "originalAPY": 7.80473,
+        "il7d": null,
+        "volumeUsd7d": 271494.15486
+      },
+      "riskAdjustedScore": -0.13800648911958144,
+      "scoreComponents": {
+        "aprHorizon": 0.001442297861929509,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.015265065067088702,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0030095400515583997,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-GRT",
+      "apy": 0.1103992,
+      "volatility": 8.418949059014023,
+      "poolId": "6f2ec10e-003b-47d5-9e58-a55ae5ef6497",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 836835,
+      "metadata": {
+        "originalAPY": 11.03992,
+        "il7d": null,
+        "volumeUsd7d": 704527.12358
+      },
+      "riskAdjustedScore": -0.14658654778966945,
+      "scoreComponents": {
+        "aprHorizon": 0.0020103389371979308,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.011658977642718098,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.002441498976289978,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.0785888,
+      "volatility": 9.493533870600757,
+      "poolId": "483c0801-b3c5-4873-87d9-a84a8de4ec92",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 408735,
+      "metadata": {
+        "originalAPY": 7.85888,
+        "il7d": null,
+        "volumeUsd7d": 388033.95666
+      },
+      "riskAdjustedScore": -0.1597252827943234,
+      "scoreComponents": {
+        "aprHorizon": 0.0014519424746382015,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.01314711591338266,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0029998954388497073,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "LAVA-WETH",
+      "apy": 0.005007,
+      "volatility": 13.372199043959219,
+      "poolId": "292673f0-42de-4073-b128-1382a4d19e25",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 450190,
+      "metadata": {
+        "originalAPY": 0.5007,
+        "il7d": null,
+        "volumeUsd7d": 602003.02876
+      },
+      "riskAdjustedScore": -0.16465893537527754,
+      "scoreComponents": {
+        "aprHorizon": 0.00009578964678569335,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.018518483553546485,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004356048266702215,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-USDC.E",
+      "apy": 0.078927,
+      "volatility": 5.18601582741976,
+      "poolId": "d8f13b99-3eb8-436f-97d6-882ea1eff8f4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 326086,
+      "metadata": {
+        "originalAPY": 7.8927,
+        "il7d": null,
+        "volumeUsd7d": 169108.71571
+      },
+      "riskAdjustedScore": -0.2918066342226842,
+      "scoreComponents": {
+        "aprHorizon": 0.0014579637184373162,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.007181851578247977,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0029938741950505925,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-WXM",
+      "apy": 0.0471809,
+      "volatility": 4.662691532836621,
+      "poolId": "7d08a6dc-c67c-4c85-8cb5-f793b8747cdd",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 115694,
+      "metadata": {
+        "originalAPY": 4.71809,
+        "il7d": null,
+        "volumeUsd7d": 53944.54342
+      },
+      "riskAdjustedScore": -0.3867220971806884,
+      "scoreComponents": {
+        "aprHorizon": 0.0008845330903233251,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.006457126175152284,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0035673048231645837,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-XBG",
+      "apy": 0.1139274,
+      "volatility": 2.7424604331058027,
+      "poolId": "5ca4d40c-372b-42bd-a6ae-a067371160f4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 709942,
+      "metadata": {
+        "originalAPY": 11.39274,
+        "il7d": null,
+        "volumeUsd7d": 194698.78448
+      },
+      "riskAdjustedScore": -0.4387625924138352,
+      "scoreComponents": {
+        "aprHorizon": 0.0020713032369308326,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.003797895040282401,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.002380534676557076,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "K-WETH",
+      "apy": 0.09025999999999999,
+      "volatility": 2.5310152829371644,
+      "poolId": "a0bb30a4-289a-4ae5-a0dc-746c3b507c8e",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 602731,
+      "metadata": {
+        "originalAPY": 9.026,
+        "il7d": null,
+        "volumeUsd7d": 152552.13725
+      },
+      "riskAdjustedScore": -0.5578244736123698,
+      "scoreComponents": {
+        "aprHorizon": 0.0016586710601420585,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0035050753235699164,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0027931668533458503,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "RWA-WETH",
+      "apy": 0.0239724,
+      "volatility": 2.2651665654612096,
+      "poolId": "4f40a17b-d2d6-4e03-90b0-d856e19c8c6b",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 236812,
+      "metadata": {
+        "originalAPY": 2.39724,
+        "il7d": null,
+        "volumeUsd7d": 53641.86247
+      },
+      "riskAdjustedScore": -0.8920197108844735,
+      "scoreComponents": {
+        "aprHorizon": 0.00045442379978344327,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.003136914852272275,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0039974141137044655,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-SEED",
+      "apy": 0.056691200000000004,
+      "volatility": 1.7313539585917948,
+      "poolId": "5f0db05b-bfdf-465a-9222-687a367addb5",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 232949,
+      "metadata": {
+        "originalAPY": 5.66912,
+        "il7d": null,
+        "volumeUsd7d": 40331.71733
+      },
+      "riskAdjustedScore": -0.9908080799832791,
+      "scoreComponents": {
+        "aprHorizon": 0.0010580870955498867,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.00239766471484236,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.003393750817938022,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-RETH",
+      "apy": 0.0015064,
+      "volatility": 2.1561788249241767,
+      "poolId": "cd3afedc-3dd3-43cc-9729-9a15db508683",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 311248,
+      "metadata": {
+        "originalAPY": 0.15064,
+        "il7d": null,
+        "volumeUsd7d": 67110.63469
+      },
+      "riskAdjustedScore": -1.0368707124811836,
+      "scoreComponents": {
+        "aprHorizon": 0.0000288685416851564,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0029859832310753127,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004422969371802752,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WXTZ-WETH",
+      "apy": 0.0079816,
+      "volatility": 2.0081755209101853,
+      "poolId": "eff4b459-64c1-4994-a8f7-eab9470c26f1",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 515060,
+      "metadata": {
+        "originalAPY": 0.79816,
+        "il7d": null,
+        "volumeUsd7d": 103433.08838
+      },
+      "riskAdjustedScore": -1.0821757875818419,
+      "scoreComponents": {
+        "aprHorizon": 0.00015247575639798505,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0027810209251566188,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004299362157089924,
         "delta": 7
       }
     },
     {
       "symbol": "WEETH-WETH",
-      "apy": 0.0169405,
-      "volatility": 1,
-      "poolId": "d5123cc8-ffce-4855-97f8-c471952bcd66",
+      "apy": 0.0002178,
+      "volatility": 1.9095652150987308,
+      "poolId": "fe3e33f2-7ad0-4b65-a953-d13a32b76a03",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 791896,
+      "tvlUsd": 109996,
       "metadata": {
-        "originalAPY": 1.69405,
+        "originalAPY": 0.02178,
         "il7d": null,
-        "volumeUsd7d": 26229.17531
+        "volumeUsd7d": 21004.45354
       },
-      "riskAdjustedScore": -5.120220264084481,
+      "riskAdjustedScore": -1.1773149848850493,
       "scoreComponents": {
-        "aprHorizon": 0.0003222170230248178,
+        "aprHorizon": 0.000004176540215228286,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "downsideVolatility": 0.002644460489556122,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010129620890463091,
+        "numerator": -0.0044476613732726804,
         "delta": 7
       }
     },
     {
-      "symbol": "WETH-VKA",
-      "apy": 0.0053702,
-      "volatility": 1,
-      "poolId": "1e2306ac-0def-45a0-b8bb-f4d4554c61a4",
+      "symbol": "WETH-TRUF",
+      "apy": 0.022381799999999997,
+      "volatility": 1.3892824502423577,
+      "poolId": "4bb70bd4-189e-49ee-9178-c1f018ac8a5d",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 119426,
+      "tvlUsd": 276038,
       "metadata": {
-        "originalAPY": 0.53702,
+        "originalAPY": 2.23818,
         "il7d": null,
-        "volumeUsd7d": 4468.16132
+        "volumeUsd7d": 38349.4749
       },
-      "riskAdjustedScore": -5.23116951247111,
+      "riskAdjustedScore": -1.465252631387312,
       "scoreComponents": {
-        "aprHorizon": 0.00010271985956844532,
+        "aprHorizon": 0.0004245970270844168,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0019239471474713063,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004027240886403492,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-ARB",
+      "apy": 0.020405600000000003,
+      "volatility": 1.1923294648878464,
+      "poolId": "57437274-42a0-45eb-8389-992b8b71fc44",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 102315,
+      "metadata": {
+        "originalAPY": 2.04056,
+        "il7d": null,
+        "volumeUsd7d": 12199.31892
+      },
+      "riskAdjustedScore": -1.7230248575358977,
+      "scoreComponents": {
+        "aprHorizon": 0.00038747605548983266,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.001651196898382169,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004064361857998076,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "PEAS-WETH",
+      "apy": 0.04966039999999999,
+      "volatility": 1,
+      "poolId": "d2290557-51d0-4765-bbaa-a821316aef9b",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 204247,
+      "metadata": {
+        "originalAPY": 4.96604,
+        "il7d": null,
+        "volumeUsd7d": 17048.99028
+      },
+      "riskAdjustedScore": -1.7802189913880753,
+      "scoreComponents": {
+        "aprHorizon": 0.0009299301527505577,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010349118053919464,
+        "numerator": -0.003521907760737351,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "MOR-WETH",
+      "apy": 0.0203031,
+      "volatility": 1.13308089247655,
+      "poolId": "44f437aa-baa7-48a7-b403-10bc0ca24500",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 2024098,
+      "metadata": {
+        "originalAPY": 2.03031,
+        "il7d": null,
+        "volumeUsd7d": 229346.67683
+      },
+      "riskAdjustedScore": -1.8139812476883803,
+      "scoreComponents": {
+        "aprHorizon": 0.0003855487709003569,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0015691465407586525,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004066289142587552,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-GMX",
+      "apy": 0.0334934,
+      "volatility": 1,
+      "poolId": "5921fee6-b25f-4cd9-9cc4-fb07fe83ea89",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 9618467,
+      "metadata": {
+        "originalAPY": 3.34934,
+        "il7d": null,
+        "volumeUsd7d": 710684.90541
+      },
+      "riskAdjustedScore": -1.930805645130446,
+      "scoreComponents": {
+        "aprHorizon": 0.000632016071929975,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0038198218415579337,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-CRYPTO",
+      "apy": 0.0085602,
+      "volatility": 1,
+      "poolId": "a0adee00-d1ff-42da-860d-5a0b4662a62d",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 347340,
+      "metadata": {
+        "originalAPY": 0.85602,
+        "il7d": null,
+        "volumeUsd7d": 23792.98182
+      },
+      "riskAdjustedScore": -2.1676351396525133,
+      "scoreComponents": {
+        "aprHorizon": 0.0001634829090080281,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004288355004479881,
         "delta": 7
       }
     },
@@ -1452,165 +1402,190 @@
         "il7d": null,
         "volumeUsd7d": 2006.31727
       },
-      "riskAdjustedScore": -5.243135230903844,
+      "riskAdjustedScore": -2.2103147614398178,
       "scoreComponents": {
         "aprHorizon": 0.00007904740308140035,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010372790510406509,
+        "numerator": -0.004372790510406508,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WETH-VKA",
+      "apy": 0.0024178,
+      "volatility": 1,
+      "poolId": "1e2306ac-0def-45a0-b8bb-f4d4554c61a4",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 118480,
+      "metadata": {
+        "originalAPY": 0.24178,
+        "il7d": null,
+        "volumeUsd7d": 4463.83944
+      },
+      "riskAdjustedScore": -2.2268605806602073,
+      "scoreComponents": {
+        "aprHorizon": 0.00004631387456499603,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004405524038922913,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "WEETH-WETH",
+      "apy": 0.0013292,
+      "volatility": 1,
+      "poolId": "d5123cc8-ffce-4855-97f8-c471952bcd66",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 788787,
+      "metadata": {
+        "originalAPY": 0.13292,
+        "il7d": null,
+        "volumeUsd7d": 26229.17531
+      },
+      "riskAdjustedScore": -2.2373940564028945,
+      "scoreComponents": {
+        "aprHorizon": 0.00002547490467130764,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004426363008816601,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-UNI",
-      "apy": 0.0003226,
+      "apy": 0.0001815,
       "volatility": 1,
       "poolId": "fb4691bb-dd87-496e-a1e0-9e9809994cdd",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 154847,
+      "tvlUsd": 153330,
       "metadata": {
-        "originalAPY": 0.03226,
+        "originalAPY": 0.01815,
         "il7d": null,
         "volumeUsd7d": 241.32551
       },
-      "riskAdjustedScore": -5.279964555365918,
+      "riskAdjustedScore": -2.2485115637224333,
       "scoreComponents": {
-        "aprHorizon": 0.000006185870723207643,
+        "aprHorizon": 0.000003480512128506419,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010445652042764701,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "NYA-WETH",
-      "apy": 0.0000788,
-      "volatility": 1,
-      "poolId": "4b0214bf-be80-464d-9058-8712af9c0cab",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 270243,
-      "metadata": {
-        "originalAPY": 0.00788,
-        "il7d": null,
-        "volumeUsd7d": 17620.3424
-      },
-      "riskAdjustedScore": -5.282327474442191,
-      "scoreComponents": {
-        "aprHorizon": 0.0000015111744791074244,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010450326739008801,
+        "numerator": -0.004448357401359402,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-MZRTOKEN",
-      "apy": 0.0000511,
+      "apy": 0.0000906,
       "volatility": 1,
       "poolId": "17788324-2a4b-47ac-9284-efb4041c21ed",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 116874,
+      "tvlUsd": 116508,
       "metadata": {
-        "originalAPY": 0.00511,
+        "originalAPY": 0.00906,
         "il7d": null,
-        "volumeUsd7d": 7557.11282
+        "volumeUsd7d": 7561.29846
       },
-      "riskAdjustedScore": -5.282595979660976,
+      "riskAdjustedScore": -2.24939262590912,
       "scoreComponents": {
-        "aprHorizon": 9.799754421280227e-7,
+        "aprHorizon": 0.0000017374570504546938,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.01045085793804578,
+        "numerator": -0.004450100456437454,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "NYA-WETH",
+      "apy": 0.0000792,
+      "volatility": 1,
+      "poolId": "4b0214bf-be80-464d-9058-8712af9c0cab",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 268785,
+      "metadata": {
+        "originalAPY": 0.00792,
+        "il7d": null,
+        "volumeUsd7d": 17620.3424
+      },
+      "riskAdjustedScore": -2.2495031276998865,
+      "scoreComponents": {
+        "aprHorizon": 0.000001518845117676193,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.0044503190683702325,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-LSETH",
-      "apy": 0.0000471,
+      "apy": 0.0000342,
       "volatility": 1,
       "poolId": "434f05af-7128-4d40-93f8-22db263f927d",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 121029,
+      "tvlUsd": 120572,
       "metadata": {
-        "originalAPY": 0.00471,
+        "originalAPY": 0.00342,
         "il7d": null,
-        "volumeUsd7d": 389.65912
+        "volumeUsd7d": 374.99555
       },
-      "riskAdjustedScore": -5.282634753580599,
+      "riskAdjustedScore": -2.249939331043384,
       "scoreComponents": {
-        "aprHorizon": 9.032668073505334e-7,
+        "aprHorizon": 6.558794105604449e-7,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010450934646680558,
-        "delta": 7
-      }
-    },
-    {
-      "symbol": "HEGIC-WETH",
-      "apy": 0.0000323,
-      "volatility": 1,
-      "poolId": "e72b5f97-7631-4f13-a251-39d798750f6a",
-      "project": "uniswap-v3",
-      "chain": "Arbitrum",
-      "tvlUsd": 3321109,
-      "metadata": {
-        "originalAPY": 0.00323,
-        "il7d": null,
-        "volumeUsd7d": 17221.35826
-      },
-      "riskAdjustedScore": -5.282778218405546,
-      "scoreComponents": {
-        "aprHorizon": 6.194422426109014e-7,
-        "lpAPRHorizon": 0.0024518379134879087,
-        "lpVolHorizon": 0.0013848495294356286,
-        "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
-        "correlationHaircut": 0.7,
-        "numerator": -0.010451218471245298,
+        "numerator": -0.004451182034077348,
         "delta": 7
       }
     },
     {
       "symbol": "WETH-KNS",
-      "apy": 0.0000152,
+      "apy": 0.0000153,
       "volatility": 1,
       "poolId": "3f3a4a11-f3b1-4a2d-a2e4-f34ef792aa91",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 536610,
+      "tvlUsd": 533842,
       "metadata": {
-        "originalAPY": 0.00152,
+        "originalAPY": 0.00153,
         "il7d": null,
-        "volumeUsd7d": 18854.73435
+        "volumeUsd7d": 18853.84657
       },
-      "riskAdjustedScore": -5.2829439810327985,
+      "riskAdjustedScore": -2.250122542188622,
       "scoreComponents": {
-        "aprHorizon": 2.9150467639738054e-7,
+        "aprHorizon": 2.934224558881482e-7,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010451546408811511,
+        "numerator": -0.004451544491032021,
         "delta": 7
       }
     },
@@ -1621,46 +1596,71 @@
       "poolId": "682c81b8-07c9-46db-b1b1-0256d657e529",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 146011,
+      "tvlUsd": 145460,
       "metadata": {
         "originalAPY": 0.00115,
         "il7d": null,
         "volumeUsd7d": 18.18053
       },
-      "riskAdjustedScore": -5.282979848166,
+      "riskAdjustedScore": -2.250159378701973,
       "scoreComponents": {
         "aprHorizon": 2.2054670134608045e-7,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010451617366786563,
+        "numerator": -0.004451617366786563,
+        "delta": 7
+      }
+    },
+    {
+      "symbol": "HEGIC-WETH",
+      "apy": 0.000004,
+      "volatility": 1,
+      "poolId": "e72b5f97-7631-4f13-a251-39d798750f6a",
+      "project": "uniswap-v3",
+      "chain": "Arbitrum",
+      "tvlUsd": 3315360,
+      "metadata": {
+        "originalAPY": 0.0004,
+        "il7d": null,
+        "volumeUsd7d": 17221.35826
+      },
+      "riskAdjustedScore": -2.250232082749547,
+      "scoreComponents": {
+        "aprHorizon": 7.671217838733924e-8,
+        "lpAPRHorizon": 0.0024518379134879087,
+        "lpVolHorizon": 0.0013848495294356286,
+        "downsideVolatility": 0.0013848495294356286,
+        "liquidationLoss": 0.002,
+        "correlationHaircut": 0.7,
+        "numerator": -0.004451761201309521,
         "delta": 7
       }
     },
     {
       "symbol": "ARC-WETH",
-      "apy": 0.0000022,
+      "apy": 0.0000016000000000000001,
       "volatility": 1,
       "poolId": "d68f716b-d900-45f5-9ad7-1d84d3532937",
       "project": "uniswap-v3",
       "chain": "Arbitrum",
-      "tvlUsd": 334676,
+      "tvlUsd": 460660,
       "metadata": {
-        "originalAPY": 0.00022,
+        "originalAPY": 0.00016,
         "il7d": null,
         "volumeUsd7d": 429.49489
       },
-      "riskAdjustedScore": -5.283070001264685,
+      "riskAdjustedScore": -2.250255348157762,
       "scoreComponents": {
-        "aprHorizon": 4.219173521669006e-8,
+        "aprHorizon": 3.0684907503797376e-8,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010451795721752692,
+        "numerator": -0.004451807228580405,
         "delta": 7
       }
     },
@@ -1677,15 +1677,15 @@
         "il7d": null,
         "volumeUsd7d": 301.42724
       },
-      "riskAdjustedScore": -5.283084542164011,
+      "riskAdjustedScore": -2.2502640726999843,
       "scoreComponents": {
         "aprHorizon": 1.3424652944848958e-8,
         "lpAPRHorizon": 0.0024518379134879087,
         "lpVolHorizon": 0.0013848495294356286,
         "downsideVolatility": 0.0013848495294356286,
-        "liquidationLoss": 0.008,
+        "liquidationLoss": 0.002,
         "correlationHaircut": 0.7,
-        "numerator": -0.010451824488834964,
+        "numerator": -0.004451824488834964,
         "delta": 7
       }
     }
