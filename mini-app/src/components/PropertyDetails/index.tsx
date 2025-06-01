@@ -53,6 +53,29 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
     }
   }, []);
 
+  // Move these hooks before any conditional returns
+  const hasImages = useMemo(
+    () =>
+      property?.imageUrls &&
+      Array.isArray(property.imageUrls) &&
+      property.imageUrls.length > 0,
+    [property?.imageUrls]
+  );
+
+  const nextImage = useCallback(() => {
+    if (hasImages && property?.imageUrls) {
+      setCurrentImageIndex((prev) => (prev + 1) % property.imageUrls.length);
+    }
+  }, [hasImages, property?.imageUrls]);
+
+  const prevImage = useCallback(() => {
+    if (hasImages && property?.imageUrls) {
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? property.imageUrls.length - 1 : prev - 1
+      );
+    }
+  }, [hasImages, property?.imageUrls]);
+
   useEffect(() => {
     if (propertyId) {
       loadProperty();
@@ -163,30 +186,12 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
   }
 
   // Safely get property values with fallbacks
-  const hasImages =
-    property.imageUrls &&
-    Array.isArray(property.imageUrls) &&
-    property.imageUrls.length > 0;
   const maxGuests = property.maxGuests ? property.maxGuests.toString() : "1";
   const propertyName = property.name || "Unnamed Property";
   const propertyLocation = property.location || "Location not specified";
   const propertyDescription =
     property.description || "No description available";
   const propertyOwner = property.owner || "";
-
-  const nextImage = useCallback(() => {
-    if (hasImages && property?.imageUrls) {
-      setCurrentImageIndex((prev) => (prev + 1) % property.imageUrls.length);
-    }
-  }, [hasImages, property?.imageUrls]);
-
-  const prevImage = useCallback(() => {
-    if (hasImages && property?.imageUrls) {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? property.imageUrls.length - 1 : prev - 1
-      );
-    }
-  }, [hasImages, property?.imageUrls]);
 
   // Mock amenities for demonstration
   const amenities = [
