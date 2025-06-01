@@ -26,7 +26,7 @@ export default async function WishlistsPage() {
               Create your first wishlist to save properties you love
             </p>
             <Button
-              onClick={() => (window.location.href = "/home")}
+              //   onClick={() => (window.location.href = "/home")}
               className="bg-gray-900 text-white hover:bg-gray-800"
             >
               <Plus size={16} className="mr-2" />

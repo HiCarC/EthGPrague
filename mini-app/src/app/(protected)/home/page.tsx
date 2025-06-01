@@ -14,17 +14,6 @@ export default async function HomePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
       <div className="pb-20">
-        {/* Search Header */}
-        <div className="bg-white px-4 py-6 shadow-sm">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
-              placeholder="Start your search"
-              className="pl-10 py-3 text-base border-gray-200 rounded-full"
-            />
-          </div>
-        </div>
-
         {/* Category Tabs */}
         <div className="bg-white px-4 py-6 border-b">
           <div className="flex justify-around items-center">
@@ -92,14 +81,6 @@ export default async function HomePage() {
         </div>
 
         {/* Prices notification */}
-        <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="bg-white rounded-full px-4 py-3 shadow-lg border border-gray-200 flex items-center space-x-2">
-            <Diamond className="w-5 h-5 text-pink-500" />
-            <span className="text-sm font-medium text-gray-900">
-              Prices include all fees
-            </span>
-          </div>
-        </div>
       </div>
 
       {/* Bottom Navigation */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { Property, BookingService } from "@/services/booking";
 import { formatWeiToWld, truncateAddress } from "@/lib/utils";
 import { BookingModal } from "@/components/BookingModal";
@@ -32,6 +32,10 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Touch handling for swipe navigation
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
   const pricePerNight = useMemo(
     () =>
       property && property.pricePerNight
@@ -40,11 +44,53 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
     [property?.pricePerNight]
   );
 
+  const handleBackNavigation = useCallback(() => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // Fallback to home page if no history
+      window.location.href = "/";
+    }
+  }, []);
+
   useEffect(() => {
     if (propertyId) {
       loadProperty();
     }
   }, [propertyId]);
+
+  // Add touch event listeners for swipe detection
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+      const swipeDistance = touchStartX.current - touchEndX.current;
+      const minSwipeDistance = 100; // Minimum distance for a swipe
+
+      // Left swipe (swipe from left to right, so start > end)
+      if (swipeDistance < -minSwipeDistance) {
+        handleBackNavigation();
+      }
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
+    document.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [handleBackNavigation]);
 
   const loadProperty = async () => {
     try {
@@ -128,19 +174,19 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
     property.description || "No description available";
   const propertyOwner = property.owner || "";
 
-  const nextImage = () => {
-    if (hasImages && property.imageUrls) {
+  const nextImage = useCallback(() => {
+    if (hasImages && property?.imageUrls) {
       setCurrentImageIndex((prev) => (prev + 1) % property.imageUrls.length);
     }
-  };
+  }, [hasImages, property?.imageUrls]);
 
-  const prevImage = () => {
-    if (hasImages && property.imageUrls) {
+  const prevImage = useCallback(() => {
+    if (hasImages && property?.imageUrls) {
       setCurrentImageIndex((prev) =>
         prev === 0 ? property.imageUrls.length - 1 : prev - 1
       );
     }
-  };
+  }, [hasImages, property?.imageUrls]);
 
   // Mock amenities for demonstration
   const amenities = [
@@ -154,6 +200,18 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
     <div className="min-h-screen bg-white">
       {/* Hero Image Gallery */}
       <div className="relative h-80 md:h-96 bg-gray-200 overflow-hidden">
+        {/* Back Button */}
+        <div className="absolute top-4 left-4 z-10">
+          <Button
+            onClick={handleBackNavigation}
+            variant="ghost"
+            size="sm"
+            className="bg-white/90 text-gray-700 hover:bg-white shadow-md rounded-full p-2"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
+        </div>
+
         {hasImages && property.imageUrls ? (
           <>
             <img
@@ -318,10 +376,6 @@ export const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
           >
             Reserve
           </Button>
-
-          <p className="text-center text-gray-600 text-sm mt-3">
-            You won't be charged yet
-          </p>
         </div>
       </div>
 

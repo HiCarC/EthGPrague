@@ -83,13 +83,7 @@ export const PropertyListings = () => {
                 </div>
               )}
             </div>
-            <Button
-              variant="secondary"
-              size="sm"
-              className="absolute top-3 left-3 bg-white/90 text-gray-700 hover:bg-white text-xs px-2 py-1"
-            >
-              Guest favourite
-            </Button>
+
             <Button
               variant="tertiary"
               size="sm"
@@ -119,15 +113,17 @@ export const PropertyListings = () => {
               <span className="text-sm text-gray-900 ml-1">4.98</span>
             </div>
           </div>
-          <button
+          <Button
+            variant="primary"
+            size="sm"
             onClick={(e) => {
               e.preventDefault();
               handleBookNow(property);
             }}
             className="mt-2 w-full bg-gray-900 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
           >
-            Book now
-          </button>
+            <span className="text-white flex ">Book now</span>
+          </Button>
         </div>
       </div>
     );
