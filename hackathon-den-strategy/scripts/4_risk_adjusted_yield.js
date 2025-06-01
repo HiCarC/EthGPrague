@@ -4,7 +4,7 @@ const path = require('path');
 class RiskAdjustedYieldCalculator {
     constructor() {
         this.poolDataFile = '2_pool_list.json';
-        this.outputFile = '3_risk_adjusted_scores.json';
+        this.outputFile = '4_risk_adjusted_scores.json';
         
         // Configuration parameters
         this.config = {
