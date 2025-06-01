@@ -8,7 +8,7 @@ class RiskAdjustedYieldCalculator {
         
         // Configuration parameters
         this.config = {
-            liquidationProbability: 0.1, // Fixed: 2% as decimal, not 200%
+            liquidationProbability: 0.005, // Fixed: 2% as decimal, not 200%
             lpAPR: 0.1362,         // BeraBorrow stability pool APR
             lpVol: 0.01,           // 1% volatility
             emergencyHaircut: 0.4  // 40% haircut on emergency unwinding

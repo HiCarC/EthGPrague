@@ -1,73 +1,73 @@
 {
-  "timestamp": "2025-06-01T00:57:10.419Z",
-  "targetDays": 20,
+  "timestamp": "2025-06-01T01:28:36.811Z",
+  "targetDays": 7,
   "volatilityMetrics": {
-    "historicalVol": 0.8347952752396717,
-    "recent30DayVol": 0.9050947386058706,
-    "ewmaVol": 0.7243600026445584,
+    "historicalVol": 0.8347872105879728,
+    "recent30DayVol": 0.9050358508476148,
+    "ewmaVol": 0.7243264150557963,
     "volatilityOfVolatility": 0.01804674132533317,
-    "dailyVolatility": 0.04369518175257261,
-    "meanReturn": 0.001784962749261583
+    "dailyVolatility": 0.043694759629409954,
+    "meanReturn": 0.0017882707505822797
   },
   "marketRegime": {
     "regime": "NORMAL",
     "riskMultiplier": 1,
-    "annualizedRecentVol": 0.5522618382837571
+    "annualizedRecentVol": 0.5522169354384827
   },
   "prediction": {
     "predictions": {
-      "historical": 0.8347952752396717,
-      "recent30Day": 0.9050947386058706,
-      "ewma": 0.7243600026445584,
-      "regimeAdjusted": 0.7243600026445584,
-      "macroAdjusted": 0.6519240023801025
+      "historical": 0.8347872105879728,
+      "recent30Day": 0.9050358508476148,
+      "ewma": 0.7243264150557963,
+      "regimeAdjusted": 0.7243264150557963,
+      "macroAdjusted": 0.6518937735502167
     },
-    "ensemblePrediction": 0.7606850770566638,
-    "timeScaledVolatility": 0.1780629081473778,
+    "ensemblePrediction": 0.7606494855415408,
+    "timeScaledVolatility": 0.10533850821176557,
     "confidence": 0.7
   },
   "liquidationProbabilities": [
     {
       "collateralRatio": 1.1,
-      "probability": 0.9625135157150362,
+      "probability": 0.6438185917566364,
       "requiredDrop": 0,
-      "zScore": 1.7806290814737777,
-      "predictedVolatility": 17.80629081473778
+      "zScore": 0.3686847787411795,
+      "predictedVolatility": 10.533850821176557
     },
     {
       "collateralRatio": 1.2,
-      "probability": 0.9018168261556365,
+      "probability": 0.3237162317670739,
       "requiredDrop": 8.333333333333323,
-      "zScore": 1.2919738197186863,
-      "predictedVolatility": 17.80629081473778
+      "zScore": -0.4573320166999308,
+      "predictedVolatility": 10.533850821176557
     },
     {
       "collateralRatio": 1.3,
-      "probability": 0.8002332651072827,
+      "probability": 0.11176530913184712,
       "requiredDrop": 15.38461538461538,
-      "zScore": 0.8424545542729752,
-      "predictedVolatility": 17.80629081473778
+      "zScore": -1.2171938092423484,
+      "predictedVolatility": 10.533850821176557
     },
     {
       "collateralRatio": 1.5,
-      "probability": 0.5154756389074544,
+      "probability": 0.005002197840220934,
       "requiredDrop": 26.66666666666666,
-      "zScore": 0.038801254832124106,
-      "predictedVolatility": 17.80629081473778
+      "zScore": -2.575679381802318,
+      "predictedVolatility": 10.533850821176557
     },
     {
       "collateralRatio": 2,
-      "probability": 0.05741857565938063,
+      "probability": 5.592962581957295e-8,
       "requiredDrop": 44.99999999999999,
-      "zScore": -1.576819176423971,
-      "predictedVolatility": 17.80629081473778
+      "zScore": -5.306704126081437,
+      "predictedVolatility": 10.533850821176557
     },
     {
       "collateralRatio": 2.7,
-      "probability": 0.0005528077845277091,
+      "probability": 1.6653345369377348e-16,
       "requiredDrop": 59.25925925925925,
-      "zScore": -3.2622043898450035,
-      "predictedVolatility": 17.80629081473778
+      "zScore": -8.155658393091063,
+      "predictedVolatility": 10.533850821176557
     }
   ],
   "confidence": 0.7
