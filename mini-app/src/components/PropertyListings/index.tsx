@@ -2,10 +2,23 @@
 
 import { useState, useEffect } from "react";
 import { BookingService, Property } from "@/services/booking";
-import { PropertyCard } from "@/components/PropertyCard";
 import { CreatePropertyModal } from "@/components/CreatePropertyModal";
+import { BookingModal } from "@/components/BookingModal";
 import { Button } from "@worldcoin/mini-apps-ui-kit-react";
-import { Plus, Search, Filter, MapPin } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Filter,
+  MapPin,
+  Users,
+  Calendar,
+  Heart,
+  Star,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { formatWeiToWld, truncateAddress } from "@/lib/utils";
+import Link from "next/link";
+import Image from "next/image";
 
 export const PropertyListings = () => {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -13,6 +26,10 @@ export const PropertyListings = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
   useEffect(() => {
     loadProperties();
@@ -40,33 +57,94 @@ export const PropertyListings = () => {
       property.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleBookNow = (property: Property) => {
+    setSelectedProperty(property);
+    setShowBookingModal(true);
+  };
+
+  const PropertyCard = ({ property }: { property: Property }) => {
+    const hasImages = property.imageUrls && property.imageUrls.length > 0;
+    const pricePerNight = formatWeiToWld(property.pricePerNight);
+
+    return (
+      <div className="flex-shrink-0 w-72">
+        <Link href={`/property/${property.id.toString()}`}>
+          <div className="relative">
+            <div className="w-full h-48 rounded-xl overflow-hidden bg-gray-200">
+              {hasImages ? (
+                <img
+                  src={property.imageUrls[0]}
+                  alt={property.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gradient-to-br from-gray-100 to-gray-200">
+                  <MapPin className="w-12 h-12" />
+                </div>
+              )}
+            </div>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="absolute top-3 left-3 bg-white/90 text-gray-700 hover:bg-white text-xs px-2 py-1"
+            >
+              Guest favourite
+            </Button>
+            <Button
+              variant="tertiary"
+              size="sm"
+              className="absolute top-3 right-3 text-gray-700 hover:bg-white/20 p-2"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // Handle wishlist toggle
+              }}
+            >
+              <Heart className="w-5 h-5" />
+            </Button>
+          </div>
+        </Link>
+        <div className="mt-3">
+          <h3 className="font-medium text-gray-900 truncate">
+            {property.name}
+          </h3>
+          <p className="text-sm text-gray-600 truncate">{property.location}</p>
+          <div className="flex items-center mt-1">
+            <span className="text-gray-900 font-medium">
+              {pricePerNight} WLD
+            </span>
+            <span className="text-gray-600 text-sm ml-1">per night</span>
+            <div className="flex items-center ml-auto">
+              <Star className="w-4 h-4 fill-current text-gray-900" />
+              <span className="text-sm text-gray-900 ml-1">4.98</span>
+            </div>
+          </div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleBookNow(property);
+            }}
+            className="mt-2 w-full bg-gray-900 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
+          >
+            Book now
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <div className="space-y-6">
-        {/* Header skeleton */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <div className="h-10 bg-gray-200 rounded-lg animate-pulse"></div>
-          </div>
-          <div className="h-10 w-32 bg-gray-200 rounded-lg animate-pulse"></div>
-        </div>
-
-        {/* Properties grid skeleton */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-lg shadow-md overflow-hidden border"
-            >
-              <div className="h-48 bg-gray-200 animate-pulse"></div>
-              <div className="p-4 space-y-3">
-                <div className="h-6 bg-gray-200 rounded animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+        {/* Loading skeletons */}
+        <div className="flex space-x-4 overflow-x-auto pb-2">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="flex-shrink-0 w-72">
+              <div className="w-full h-48 rounded-xl bg-gray-200 animate-pulse"></div>
+              <div className="mt-3 space-y-2">
+                <div className="h-5 bg-gray-200 rounded animate-pulse"></div>
                 <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
-                <div className="flex justify-between items-center">
-                  <div className="h-4 bg-gray-200 rounded animate-pulse w-1/3"></div>
-                  <div className="h-8 bg-gray-200 rounded animate-pulse w-20"></div>
-                </div>
+                <div className="h-4 bg-gray-200 rounded animate-pulse w-1/2"></div>
               </div>
             </div>
           ))}
@@ -79,7 +157,10 @@ export const PropertyListings = () => {
     return (
       <div className="text-center py-12">
         <div className="text-red-500 mb-4">{error}</div>
-        <Button onClick={loadProperties} variant="primary" size="lg">
+        <Button
+          onClick={loadProperties}
+          className="bg-gray-900 text-white hover:bg-gray-800"
+        >
           Try Again
         </Button>
       </div>
@@ -88,39 +169,36 @@ export const PropertyListings = () => {
 
   return (
     <div className="space-y-6">
-      {/* Enhanced Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Find Your Perfect Stay
-          </h1>
-          <p className="text-gray-600">
-            Discover unique properties powered by blockchain technology
-          </p>
+      {/* Search and Filter */}
+      <div className="flex items-center w-full gap-3">
+        <div className="flex relative w-8/12">
+          <input
+            type="text"
+            placeholder="Search properties..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+          />
         </div>
-
-        {/* Search and actions */}
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-          <div className="   w-full flex flex-row items-center ">
-            <input
-              type="text"
-              placeholder="Search by name, location, or description..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full p-4 h-5 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
-            />
-          </div>
-
-          <div className="flex gap-2">
-            <div
-              onClick={() => setShowCreateModal(true)}
-              className="w-full flex items-center justify-center gap-2 bg-black text-white p-3 rounded-lg cursor-pointer hover:bg-gray-800 disabled:bg-gray-400"
-            >
-              <Plus size={16} />
-              List Property
-            </div>
-          </div>
-        </div>
+        {/* <Button
+          variant="secondary"
+          size="sm"
+          className="flex items-center gap-2"
+        >
+          <Filter className="w-4 h-4" />
+          Filter
+        </Button> */}
+        <Button
+          onClick={() => setShowCreateModal(true)}
+          className="bg-gray-900  text-white hover:bg-gray-800 flex items-center gap-2"
+          size="sm"
+          variant="primary"
+        >
+          <span className="text-white flex ">
+            <Plus className="w-4 h-4" />
+            List New
+          </span>
+        </Button>
       </div>
 
       {/* Results summary */}
@@ -137,7 +215,7 @@ export const PropertyListings = () => {
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="text-blue-600 hover:text-blue-700 text-sm"
+              className="text-gray-900 hover:text-gray-700 text-sm underline"
             >
               Clear search
             </button>
@@ -145,7 +223,7 @@ export const PropertyListings = () => {
         </div>
       )}
 
-      {/* Properties grid */}
+      {/* Properties horizontal scroll */}
       {filteredProperties.length === 0 ? (
         <div className="text-center py-16">
           <div className="max-w-md mx-auto">
@@ -162,8 +240,7 @@ export const PropertyListings = () => {
                 </p>
                 <Button
                   onClick={() => setSearchTerm("")}
-                  variant="primary"
-                  size="lg"
+                  className="bg-gray-900 text-white hover:bg-gray-800"
                 >
                   Show All Properties
                 </Button>
@@ -175,9 +252,7 @@ export const PropertyListings = () => {
                 </p>
                 <Button
                   onClick={() => setShowCreateModal(true)}
-                  variant="primary"
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-gray-900 text-white hover:bg-gray-800"
                 >
                   <Plus size={16} className="mr-2" />
                   List Your Property
@@ -187,13 +262,9 @@ export const PropertyListings = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex space-x-4 overflow-x-auto pb-2">
           {filteredProperties.map((property) => (
-            <PropertyCard
-              key={property.id.toString()}
-              property={property}
-              onBookingUpdate={loadProperties}
-            />
+            <PropertyCard key={property.id.toString()} property={property} />
           ))}
         </div>
       )}
@@ -207,6 +278,23 @@ export const PropertyListings = () => {
         }}
         onPropertyCreated={loadProperties}
       />
+
+      {/* Booking Modal */}
+      {selectedProperty && (
+        <BookingModal
+          isOpen={showBookingModal}
+          onClose={() => {
+            setShowBookingModal(false);
+            setSelectedProperty(null);
+          }}
+          property={selectedProperty}
+          onBookingCreated={() => {
+            setShowBookingModal(false);
+            setSelectedProperty(null);
+            loadProperties();
+          }}
+        />
+      )}
     </div>
   );
 };

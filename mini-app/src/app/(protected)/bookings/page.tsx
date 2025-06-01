@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { BookingService, Booking, Property } from "@/services/booking";
 import { formatWeiToWld } from "@/lib/utils";
-import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+import { Button } from "@/components/ui/button";
+import { BottomNavigation } from "@/components/BottomNavigation";
 import {
   Calendar,
   Users,
@@ -174,242 +175,236 @@ export default function BookingsPage() {
     return (
       <div
         key={booking.id.toString()}
-        className="bg-white rounded-lg border border-gray-200 p-4 space-y-3"
+        className="bg-white rounded-xl border border-gray-200 p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow"
       >
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {isHost ? (
-              <Building size={20} className="text-blue-600" />
-            ) : (
-              <User size={20} className="text-green-600" />
-            )}
-            <h3 className="font-semibold text-lg">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <h3 className="font-semibold text-lg text-gray-900 mb-1">
               {booking.property?.name || "Property"}
             </h3>
+            <div className="flex items-center text-gray-600 text-sm">
+              <MapPin className="w-4 h-4 mr-1" />
+              <span>
+                {booking.property?.location || "Location not available"}
+              </span>
+            </div>
           </div>
           <div
-            className={`px-2 py-1 rounded-full text-xs font-medium ${status.color} flex items-center gap-1`}
+            className={`px-3 py-1 rounded-full text-xs font-medium ${status.color} flex items-center gap-1`}
           >
-            <StatusIcon size={12} />
+            <StatusIcon className="w-3 h-3" />
             {status.label}
           </div>
         </div>
 
-        {/* Property Details */}
-        <div className="space-y-2">
-          {booking.property?.location && (
-            <div className="flex items-center gap-2 text-gray-600">
-              <MapPin size={16} />
-              <span className="text-sm">{booking.property.location}</span>
+        {/* Property Image */}
+        <div className="w-full h-32 rounded-lg overflow-hidden bg-gray-100">
+          {booking.property?.imageUrls &&
+          booking.property.imageUrls.length > 0 ? (
+            <img
+              src={booking.property.imageUrls[0]}
+              alt={booking.property.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-400">
+              <Building className="w-8 h-8" />
             </div>
           )}
-
-          <div className="flex items-center gap-4 text-sm text-gray-600">
-            <div className="flex items-center gap-1">
-              <Calendar size={16} />
-              <span>
-                {formatDate(booking.checkInDate)} -{" "}
-                {formatDate(booking.checkOutDate)}
-              </span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Users size={16} />
-              <span>{Number(booking.guestCount)} guests</span>
-            </div>
-          </div>
         </div>
 
         {/* Booking Details */}
-        <div className="bg-gray-50 rounded-lg p-3 space-y-2">
-          <div className="flex justify-between text-sm">
-            <span>Duration:</span>
-            <span className="font-medium">{nights} nights</span>
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="flex items-center gap-2 text-gray-600">
+            <Calendar className="w-4 h-4" />
+            <div>
+              <div className="font-medium text-gray-900">Check-in</div>
+              <div>{formatDate(booking.checkInDate)}</div>
+            </div>
           </div>
-          <div className="flex justify-between text-sm">
-            <span>Total Amount:</span>
-            <span className="font-semibold text-green-600">
-              {totalAmount} WLD
-            </span>
+          <div className="flex items-center gap-2 text-gray-600">
+            <Calendar className="w-4 h-4" />
+            <div>
+              <div className="font-medium text-gray-900">Check-out</div>
+              <div>{formatDate(booking.checkOutDate)}</div>
+            </div>
           </div>
-          <div className="flex justify-between text-sm">
-            <span>Booking ID:</span>
-            <span className="font-mono text-xs">{booking.id.toString()}</span>
+          <div className="flex items-center gap-2 text-gray-600">
+            <Users className="w-4 h-4" />
+            <div>
+              <div className="font-medium text-gray-900">Guests</div>
+              <div>{booking.guestCount.toString()}</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <CreditCard className="w-4 h-4" />
+            <div>
+              <div className="font-medium text-gray-900">Total</div>
+              <div className="font-semibold text-gray-900">
+                {totalAmount} WLD
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Actions for Host */}
+        {/* Guest/Host Info */}
+        <div className="pt-3 border-t border-gray-100">
+          <div className="text-xs text-gray-500 mb-1">
+            {isHost ? "Guest" : "Host"}
+          </div>
+          <div className="text-sm font-medium text-gray-900">
+            {isHost
+              ? `${booking.guest.slice(0, 6)}...${booking.guest.slice(-4)}`
+              : `${booking.property?.owner.slice(
+                  0,
+                  6
+                )}...${booking.property?.owner.slice(-4)}`}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
         {isHost && booking.status === 0 && (
-          <div className="flex gap-2 pt-2">
+          <div className="flex gap-3 pt-3">
             <Button
-              size="sm"
               onClick={() => handleBookingAction(booking, "confirm")}
-              className="flex-1"
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+              size="sm"
             >
-              Confirm Booking
+              Confirm
             </Button>
             <Button
-              size="sm"
-              variant="secondary"
               onClick={() => handleBookingAction(booking, "cancel")}
+              variant="outline"
+              className="flex-1 border-red-200 text-red-600 hover:bg-red-50"
+              size="sm"
+            >
+              Decline
+            </Button>
+          </div>
+        )}
+
+        {booking.status === 1 && (
+          <div className="flex gap-3 pt-3">
+            <Button
+              onClick={() => handleBookingAction(booking, "checkin")}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+              size="sm"
+            >
+              Check In
+            </Button>
+            <Button
+              onClick={() => handleBookingAction(booking, "cancel")}
+              variant="outline"
               className="flex-1"
+              size="sm"
             >
               Cancel
             </Button>
           </div>
         )}
 
-        {/* Check-in/Check-out Actions for Host */}
-        {isHost && booking.status === 1 && (
-          <div className="flex gap-2 pt-2">
-            <Button
-              size="sm"
-              onClick={() => handleBookingAction(booking, "checkin")}
-              className="flex-1"
-            >
-              Check In Guest
-            </Button>
-          </div>
-        )}
-
-        {/* Check-out Action for Host */}
-        {isHost && booking.status === 3 && (
-          <div className="flex gap-2 pt-2">
-            <Button
-              size="sm"
-              onClick={() => handleBookingAction(booking, "checkout")}
-              className="flex-1"
-            >
-              Check Out Guest
-            </Button>
-          </div>
+        {booking.status === 3 && (
+          <Button
+            onClick={() => handleBookingAction(booking, "checkout")}
+            className="w-full bg-gray-900 hover:bg-gray-800 text-white"
+            size="sm"
+          >
+            Check Out
+          </Button>
         )}
       </div>
     );
   };
 
-  if (!session) {
+  const currentBookings =
+    activeTab === "guest"
+      ? bookingsData.guestBookings
+      : bookingsData.hostBookings;
+
+  if (bookingsData.loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <AlertCircle size={48} className="mx-auto text-gray-400 mb-4" />
-          <h2 className="text-xl font-semibold text-gray-700 mb-2">
-            Authentication Required
-          </h2>
-          <p className="text-gray-500">Please log in to view your bookings.</p>
+      <div className="min-h-screen bg-gray-50">
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
         </div>
+        <BottomNavigation />
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 pb-20">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">My Bookings</h1>
-        <p className="text-gray-600">
-          Manage your reservations and hosting activities
+      <div className="bg-white px-4 py-6 shadow-sm">
+        <h1 className="text-2xl font-semibold text-gray-900">Trips</h1>
+        <p className="text-gray-600 text-sm mt-1">
+          Manage your bookings and hosting
         </p>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
-        <button
-          onClick={() => setActiveTab("guest")}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-            activeTab === "guest"
-              ? "bg-white text-blue-600 shadow-sm"
-              : "text-gray-600 hover:text-gray-900"
-          }`}
-        >
-          <div className="flex items-center justify-center gap-2">
-            <User size={16} />
-            My Trips ({bookingsData.guestBookings.length})
-          </div>
-        </button>
-        <button
-          onClick={() => setActiveTab("host")}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-            activeTab === "host"
-              ? "bg-white text-blue-600 shadow-sm"
-              : "text-gray-600 hover:text-gray-900"
-          }`}
-        >
-          <div className="flex items-center justify-center gap-2">
-            <Building size={16} />
+      <div className="bg-white border-b">
+        <div className="flex">
+          <button
+            onClick={() => setActiveTab("guest")}
+            className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+              activeTab === "guest"
+                ? "text-gray-900 border-b-2 border-gray-900"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Your trips ({bookingsData.guestBookings.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("host")}
+            className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+              activeTab === "host"
+                ? "text-gray-900 border-b-2 border-gray-900"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
             Hosting ({bookingsData.hostBookings.length})
-          </div>
-        </button>
+          </button>
+        </div>
       </div>
 
-      {/* Loading State */}
-      {bookingsData.loading && (
-        <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading your bookings...</p>
-        </div>
-      )}
+      {/* Content */}
+      <div className="px-4 py-6 pb-24">
+        {currentBookings.length === 0 ? (
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <Calendar size={48} className="mx-auto text-gray-300 mb-4" />
+              <div className="text-gray-500 mb-4 text-lg">
+                {activeTab === "guest"
+                  ? "No trips booked...yet!"
+                  : "No bookings to manage...yet!"}
+              </div>
+              <p className="text-gray-400 text-sm mb-6">
+                {activeTab === "guest"
+                  ? "Time to dust off your bags and start planning your next adventure"
+                  : "When you have bookings to manage, you'll find them here"}
+              </p>
+              <Button
+                onClick={() => (window.location.href = "/home")}
+                className="bg-gray-900 text-white hover:bg-gray-800"
+              >
+                {activeTab === "guest"
+                  ? "Start searching"
+                  : "List your property"}
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4 max-w-2xl mx-auto">
+            {currentBookings.map((booking) =>
+              renderBookingCard(booking, activeTab === "host")
+            )}
+          </div>
+        )}
+      </div>
 
-      {/* Bookings List */}
-      {!bookingsData.loading && (
-        <div className="space-y-4">
-          {activeTab === "guest" && (
-            <>
-              {bookingsData.guestBookings.length === 0 ? (
-                <div className="text-center py-8">
-                  <Calendar size={48} className="mx-auto text-gray-400 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                    No trips yet
-                  </h3>
-                  <p className="text-gray-500">
-                    Book your first property to see your trips here.
-                  </p>
-                </div>
-              ) : (
-                bookingsData.guestBookings.map((booking) =>
-                  renderBookingCard(booking, false)
-                )
-              )}
-            </>
-          )}
-
-          {activeTab === "host" && (
-            <>
-              {bookingsData.hostBookings.length === 0 ? (
-                <div className="text-center py-8">
-                  <Building size={48} className="mx-auto text-gray-400 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                    No bookings yet
-                  </h3>
-                  <p className="text-gray-500">
-                    Once guests book your properties, they'll appear here.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  {bookingsData.hostBookings.length > 0 && (
-                    <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                      <div className="flex items-center gap-2 text-blue-800">
-                        <AlertCircle size={16} />
-                        <span className="text-sm font-medium">
-                          Host Dashboard
-                        </span>
-                      </div>
-                      <p className="text-sm text-blue-700 mt-1">
-                        Manage guest bookings for your properties. Confirm
-                        pending bookings and handle check-ins/check-outs.
-                      </p>
-                    </div>
-                  )}
-                  {bookingsData.hostBookings.map((booking) =>
-                    renderBookingCard(booking, true)
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
-      )}
+      <BottomNavigation />
     </div>
   );
 }
